@@ -1,0 +1,484 @@
+"""Static dashboard HTML export."""
+
+from __future__ import annotations
+
+import json
+from html import escape
+from pathlib import Path
+from urllib.parse import urlparse
+
+
+DEFAULT_DASHBOARD_TITLE = "Portfolio Risk Compass Dashboard"
+
+
+def build_dashboard_html(
+    input_json: Path,
+    title: str = DEFAULT_DASHBOARD_TITLE,
+) -> str:
+    """Render a self-contained, no-JS dashboard from a demo manifest or report."""
+
+    source = _read_json(input_json)
+    bundle_dir = input_json.parent
+    if _is_manifest(source):
+        manifest = source
+        exposure = _load_artifact(bundle_dir, manifest, "exposure_report.json")
+        catalysts = _load_artifact(bundle_dir, manifest, "catalysts.json")
+        guardrails = _load_artifact(bundle_dir, manifest, "guardrails.json")
+        stress = _load_artifact(bundle_dir, manifest, "stress.json")
+    else:
+        manifest = None
+        exposure = source
+        catalysts = None
+        guardrails = None
+        stress = None
+
+    return render_dashboard_html(
+        exposure=exposure,
+        manifest=manifest,
+        catalysts=catalysts,
+        guardrails=guardrails,
+        stress=stress,
+        title=title,
+    )
+
+
+def render_dashboard_html(
+    exposure: dict,
+    manifest: dict | None = None,
+    catalysts: dict | None = None,
+    guardrails: dict | None = None,
+    stress: dict | None = None,
+    title: str = DEFAULT_DASHBOARD_TITLE,
+) -> str:
+    metadata = exposure.get("metadata", {})
+    generated = manifest.get("as_of") if manifest else metadata.get("as_of", "unknown")
+    base_currency = metadata.get("base_currency", "n/a")
+    total_value = metadata.get("total_market_value", "n/a")
+    risk_boundary = _risk_boundary_text(guardrails)
+
+    nav = [
+        ("summary", "Summary"),
+        ("exposure", "Exposure"),
+        ("concentration", "Concentration"),
+    ]
+    if guardrails:
+        nav.append(("guardrails", "Risk Boundaries"))
+    if stress:
+        nav.append(("stress", "Stress"))
+    if catalysts:
+        nav.append(("catalysts", "Catalysts"))
+    if manifest:
+        nav.append(("bundle", "Bundle"))
+
+    body = [
+        "<!doctype html>",
+        '<html lang="en">',
+        "<head>",
+        '<meta charset="utf-8">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1">',
+        f"<title>{_text(title)}</title>",
+        f"<style>{_stylesheet()}</style>",
+        "</head>",
+        "<body>",
+        '<header class="site-header">',
+        f"<h1>{_text(title)}</h1>",
+        f"<p>Generated from static JSON artifacts as of {_text(generated)}.</p>",
+        '<nav aria-label="Dashboard sections">',
+        "".join(
+            f'<a href="#{_attr(section_id)}">{_text(label)}</a>'
+            for section_id, label in nav
+        ),
+        "</nav>",
+        "</header>",
+        "<main>",
+        '<section id="summary" class="section">',
+        "<h2>Summary</h2>",
+        '<div class="cards">',
+        _card("Total Value", total_value, str(base_currency)),
+        _card("Holdings", metadata.get("holding_count", "n/a"), "positions"),
+        _card(
+            "Concentration Limit",
+            f"{metadata.get('concentration_limit_pct', 'n/a')}%",
+            "configured boundary",
+        ),
+        _card("Risk Boundary", risk_boundary["status"], risk_boundary["detail"]),
+        "</div>",
+        f'<p class="boundary-text">Risk boundary: {_text(risk_boundary["sentence"])}</p>',
+        "</section>",
+        _exposure_section(exposure),
+        _concentration_section(exposure),
+    ]
+    if guardrails:
+        body.append(_guardrail_section(guardrails))
+    if stress:
+        body.append(_stress_section(stress))
+    if catalysts:
+        body.append(_catalyst_section(catalysts))
+    if manifest:
+        body.append(_bundle_section(manifest))
+    body.extend(["</main>", "</body>", "</html>"])
+    return "\n".join(body) + "\n"
+
+
+def write_dashboard_html(
+    input_json: Path,
+    output_html: Path,
+    title: str = DEFAULT_DASHBOARD_TITLE,
+) -> None:
+    output_html.parent.mkdir(parents=True, exist_ok=True)
+    output_html.write_text(build_dashboard_html(input_json, title=title), encoding="utf-8")
+
+
+def _is_manifest(data: dict) -> bool:
+    return isinstance(data.get("artifacts"), list) and "bundle" in data
+
+
+def _load_artifact(bundle_dir: Path, manifest: dict, path: str) -> dict | None:
+    artifact = next(
+        (
+            item
+            for item in manifest.get("artifacts", [])
+            if item.get("path") == path and item.get("format") == "json"
+        ),
+        None,
+    )
+    if artifact is None:
+        return None
+
+    artifact_path = Path(artifact["path"])
+    if artifact_path.is_absolute() or ".." in artifact_path.parts:
+        raise ValueError(f"artifact path must stay inside bundle directory: {path}")
+    return _read_json(bundle_dir / artifact_path)
+
+
+def _read_json(path: Path) -> dict:
+    with path.open(encoding="utf-8") as handle:
+        data = json.load(handle)
+    if not isinstance(data, dict):
+        raise ValueError(f"expected JSON object in {path}")
+    return data
+
+
+def _exposure_section(report: dict) -> str:
+    groups = report.get("metadata", {}).get("group_by", [])
+    parts = ['<section id="exposure" class="section">', "<h2>Exposure</h2>"]
+    for group in groups:
+        rows = report.get("exposures", {}).get(group, [])
+        title = str(group).replace("_", " ").title()
+        parts.extend(
+            [
+                f"<h3>{_text(title)}</h3>",
+                '<table><thead><tr><th>Bucket</th><th>Market Value</th><th>Portfolio %</th></tr></thead><tbody>',
+            ]
+        )
+        if rows:
+            for row in rows:
+                parts.append(
+                    "<tr>"
+                    f"<td>{_text(row.get('bucket', ''))}</td>"
+                    f"<td>{_text(row.get('market_value', ''))}</td>"
+                    f"<td>{_text(row.get('pct_of_portfolio', ''))}%</td>"
+                    "</tr>"
+                )
+        else:
+            parts.append("<tr><td>None</td><td>0.00</td><td>0.0000%</td></tr>")
+        parts.append("</tbody></table>")
+    parts.append("</section>")
+    return "\n".join(parts)
+
+
+def _concentration_section(report: dict) -> str:
+    rows = report.get("concentration", [])
+    parts = [
+        '<section id="concentration" class="section">',
+        "<h2>Concentration</h2>",
+        '<table><thead><tr><th>Symbol</th><th>Market Value</th><th>Portfolio %</th><th>Limit %</th></tr></thead><tbody>',
+    ]
+    if rows:
+        for row in rows:
+            parts.append(
+                "<tr>"
+                f"<td>{_text(row.get('symbol', ''))}</td>"
+                f"<td>{_text(row.get('market_value', ''))}</td>"
+                f"<td>{_text(row.get('pct_of_portfolio', ''))}%</td>"
+                f"<td>{_text(row.get('limit_pct', ''))}%</td>"
+                "</tr>"
+            )
+    else:
+        parts.append("<tr><td>None</td><td>0.00</td><td>0.0000%</td><td>0.0000%</td></tr>")
+    parts.extend(["</tbody></table>", "</section>"])
+    return "\n".join(parts)
+
+
+def _guardrail_section(guardrails: dict) -> str:
+    metadata = guardrails.get("metadata", {})
+    parts = [
+        '<section id="guardrails" class="section">',
+        "<h2>Risk Boundaries</h2>",
+        f'<p class="boundary-text">Risk boundary: {_text(_risk_boundary_text(guardrails)["sentence"])}</p>',
+        '<table><thead><tr><th>Status</th><th>Check</th><th>Scope</th><th>Actual</th><th>Limit</th><th>Message</th></tr></thead><tbody>',
+    ]
+    for item in guardrails.get("items", []):
+        status = item.get("status", "")
+        parts.append(
+            "<tr>"
+            f'<td><span class="status status-{_attr(str(status).lower())}">{_text(status)}</span></td>'
+            f"<td>{_text(item.get('check', ''))}</td>"
+            f"<td>{_text(item.get('scope', ''))}</td>"
+            f"<td>{_text(item.get('actual', ''))}</td>"
+            f"<td>{_text(item.get('limit', ''))}</td>"
+            f"<td>{_text(item.get('message', ''))}</td>"
+            "</tr>"
+        )
+    parts.extend(
+        [
+            "</tbody></table>",
+            '<dl class="meta-list">',
+            f"<dt>Snapshot Date</dt><dd>{_text(metadata.get('snapshot_date', 'n/a'))}</dd>",
+            f"<dt>Last Review</dt><dd>{_text(metadata.get('last_review_date', 'n/a'))}</dd>",
+            "</dl>",
+            "</section>",
+        ]
+    )
+    return "\n".join(parts)
+
+
+def _stress_section(stress: dict) -> str:
+    metadata = stress.get("metadata", {})
+    parts = [
+        '<section id="stress" class="section">',
+        "<h2>Stress</h2>",
+        '<div class="cards">',
+        _card("Scenario", metadata.get("scenario_name", "n/a"), "configured shocks"),
+        _card("Stressed Value", metadata.get("stressed_market_value", "n/a"), "after shocks"),
+        _card("Value Delta", metadata.get("market_value_delta", "n/a"), f"{metadata.get('market_value_delta_pct', 'n/a')}%"),
+        "</div>",
+        '<table><thead><tr><th>Shock</th><th>Selector</th><th>Bucket</th><th>Move %</th><th>Value Delta</th></tr></thead><tbody>',
+    ]
+    for row in stress.get("shock_impacts", []):
+        parts.append(
+            "<tr>"
+            f"<td>{_text(row.get('name', ''))}</td>"
+            f"<td>{_text(row.get('selector', ''))}</td>"
+            f"<td>{_text(row.get('bucket', ''))}</td>"
+            f"<td>{_text(row.get('price_move_pct', ''))}%</td>"
+            f"<td>{_text(row.get('market_value_delta', ''))}</td>"
+            "</tr>"
+        )
+    parts.extend(["</tbody></table>", "</section>"])
+    return "\n".join(parts)
+
+
+def _catalyst_section(catalysts: dict) -> str:
+    parts = [
+        '<section id="catalysts" class="section">',
+        "<h2>Catalysts</h2>",
+        '<table><thead><tr><th>Date</th><th>Symbol</th><th>Flag</th><th>Importance</th><th>Title</th><th>Action</th><th>Thesis</th></tr></thead><tbody>',
+    ]
+    for row in catalysts.get("catalysts", []):
+        link = _safe_href(row.get("thesis_link", ""))
+        thesis = (
+            f'<a href="{_attr(link)}">Open</a>'
+            if link
+            else ""
+        )
+        parts.append(
+            "<tr>"
+            f"<td>{_text(row.get('date', ''))}</td>"
+            f"<td>{_text(row.get('symbol', ''))}</td>"
+            f"<td>{_text(row.get('flag', ''))}</td>"
+            f"<td>{_text(row.get('importance', ''))}</td>"
+            f"<td>{_text(row.get('title', ''))}</td>"
+            f"<td>{_text(row.get('action', ''))}</td>"
+            f"<td>{thesis}</td>"
+            "</tr>"
+        )
+    parts.extend(["</tbody></table>", "</section>"])
+    return "\n".join(parts)
+
+
+def _bundle_section(manifest: dict) -> str:
+    parts = [
+        '<section id="bundle" class="section">',
+        "<h2>Bundle</h2>",
+        '<table><thead><tr><th>Artifact</th><th>Format</th><th>Description</th><th>Bytes</th></tr></thead><tbody>',
+    ]
+    for item in manifest.get("artifacts", []):
+        parts.append(
+            "<tr>"
+            f"<td>{_text(item.get('path', ''))}</td>"
+            f"<td>{_text(item.get('format', ''))}</td>"
+            f"<td>{_text(item.get('description', ''))}</td>"
+            f"<td>{_text(item.get('bytes', ''))}</td>"
+            "</tr>"
+        )
+    parts.extend(["</tbody></table>", "</section>"])
+    return "\n".join(parts)
+
+
+def _risk_boundary_text(guardrails: dict | None) -> dict[str, str]:
+    if not guardrails:
+        return {
+            "status": "n/a",
+            "detail": "No guardrail artifact provided.",
+            "sentence": "No guardrail artifact was provided.",
+        }
+
+    status = str(guardrails.get("metadata", {}).get("overall_status", "UNKNOWN"))
+    items = guardrails.get("items", [])
+    failures = [item for item in items if item.get("status") == "FAIL"]
+    warnings = [item for item in items if item.get("status") == "WARN"]
+    if failures:
+        leading = failures[0].get("message", "A configured limit was breached.")
+        detail = f"{len(failures)} fail, {len(warnings)} warn"
+        sentence = f"{status}. {detail}. {leading}"
+    elif warnings:
+        leading = warnings[0].get("message", "A configured limit is near its boundary.")
+        detail = f"0 fail, {len(warnings)} warn"
+        sentence = f"{status}. {detail}. {leading}"
+    else:
+        detail = "All configured checks passed."
+        sentence = f"{status}. {detail}"
+    return {"status": status, "detail": detail, "sentence": sentence}
+
+
+def _card(label: str, value: object, detail: object) -> str:
+    return (
+        '<article class="card">'
+        f"<h3>{_text(label)}</h3>"
+        f'<p class="card-value">{_text(value)}</p>'
+        f'<p class="card-detail">{_text(detail)}</p>'
+        "</article>"
+    )
+
+
+def _safe_href(value: object) -> str:
+    href = str(value)
+    parsed = urlparse(href)
+    if parsed.scheme in {"http", "https", "mailto"}:
+        return href
+    if href.startswith("#"):
+        return href
+    return ""
+
+
+def _text(value: object) -> str:
+    return escape(str(value), quote=True)
+
+
+def _attr(value: object) -> str:
+    return escape(str(value), quote=True)
+
+
+def _stylesheet() -> str:
+    return """
+:root {
+  color-scheme: light;
+  --bg: #f5f7f9;
+  --panel: #ffffff;
+  --ink: #172026;
+  --muted: #5d6973;
+  --line: #d9e0e6;
+  --accent: #116466;
+  --fail: #a62323;
+  --warn: #8a5a00;
+  --pass: #1d6b3b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.45;
+}
+.site-header {
+  background: #172026;
+  color: #fff;
+  padding: 32px max(24px, calc((100vw - 1180px) / 2));
+}
+.site-header h1 { margin: 0 0 8px; font-size: 32px; }
+.site-header p { margin: 0 0 20px; color: #d4dde5; }
+nav { display: flex; flex-wrap: wrap; gap: 10px; }
+nav a {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  padding: 7px 10px;
+  text-decoration: none;
+}
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.section {
+  margin: 0 0 24px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+h2 { margin: 0 0 16px; font-size: 24px; }
+h3 { margin: 18px 0 10px; font-size: 18px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fbfcfd;
+}
+.card h3 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.card-value { margin: 0; font-size: 24px; font-weight: 700; }
+.card-detail { margin: 6px 0 0; color: var(--muted); }
+.boundary-text {
+  border-left: 4px solid var(--accent);
+  margin: 16px 0 0;
+  padding: 8px 12px;
+  background: #eef7f6;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 18px;
+  font-size: 14px;
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+.status {
+  border-radius: 999px;
+  display: inline-block;
+  font-weight: 700;
+  padding: 2px 8px;
+}
+.status-pass { color: var(--pass); background: #e7f4ec; }
+.status-warn { color: var(--warn); background: #fff4d8; }
+.status-fail { color: var(--fail); background: #fae7e7; }
+.meta-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+}
+.meta-list dt { color: var(--muted); font-weight: 700; }
+.meta-list dd { margin: 0; }
+@media (max-width: 720px) {
+  .site-header { padding: 24px 16px; }
+  main { padding: 16px; }
+  .section { padding: 16px; overflow-x: auto; }
+  .site-header h1 { font-size: 26px; }
+}
+""".strip()

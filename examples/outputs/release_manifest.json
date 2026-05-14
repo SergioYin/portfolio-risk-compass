@@ -1,0 +1,74 @@
+{
+  "artifact_count": 11,
+  "artifacts": [
+    {
+      "bytes": 1198,
+      "format": "json",
+      "path": "catalysts.json",
+      "sha256": "4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1"
+    },
+    {
+      "bytes": 711,
+      "format": "markdown",
+      "path": "catalysts.md",
+      "sha256": "6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6"
+    },
+    {
+      "bytes": 11197,
+      "format": "html",
+      "path": "dashboard.html",
+      "sha256": "b49f680069dbbdd89f012c2e941ac986dc2e990a6f2c3191d27850f4fa651780"
+    },
+    {
+      "bytes": 3747,
+      "format": "json",
+      "path": "exposure_report.json",
+      "sha256": "d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c"
+    },
+    {
+      "bytes": 1247,
+      "format": "markdown",
+      "path": "exposure_report.md",
+      "sha256": "c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6"
+    },
+    {
+      "bytes": 2644,
+      "format": "json",
+      "path": "guardrails.json",
+      "sha256": "bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82"
+    },
+    {
+      "bytes": 1227,
+      "format": "markdown",
+      "path": "guardrails.md",
+      "sha256": "36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c"
+    },
+    {
+      "bytes": 2334,
+      "format": "json",
+      "path": "index.json",
+      "sha256": "e5fb80b60f35194de3d2ab1478c04328123b575b36a4e4304bb460d9cd24e134"
+    },
+    {
+      "bytes": 4167,
+      "format": "json",
+      "path": "snapshot_current.json",
+      "sha256": "86a21abdb6c48e054f7524858dbecec2f3f101506680cdaef1f23d4b0a52ff7b"
+    },
+    {
+      "bytes": 4029,
+      "format": "json",
+      "path": "stress.json",
+      "sha256": "d7693910dc7c2b6e90c5d4029b41e557be9d26a2ef2c22999e452c0e11c9e58c"
+    },
+    {
+      "bytes": 1024,
+      "format": "markdown",
+      "path": "stress.md",
+      "sha256": "1066d939df0e190691409dc8b028033f077211f45a464db466703b241b86adb8"
+    }
+  ],
+  "bundle": "portfolio-risk-compass-release",
+  "outputs_dir": "examples/outputs",
+  "schema_version": 1
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "AAPL",
+    "date": "2026-05-20",
+    "title": "Developer conference product announcements",
+    "importance": "medium",
+    "thesis_link": "https://example.com/theses/aapl-platform-services",
+    "action": "Check whether announcements support the services growth thesis"
+  },
+  {
+    "symbol": "MSFT",
+    "date": "2026-05-12",
+    "title": "Cloud segment investor update",
+    "importance": "high",
+    "thesis_link": "https://example.com/theses/msft-cloud-margin",
+    "action": "Review Azure growth and margin commentary"
+  },
+  {
+    "symbol": "TSLA",
+    "date": "2026-05-15",
+    "title": "Robotaxi milestone review",
+    "importance": "critical",
+    "thesis_link": "https://example.com/theses/tsla-autonomy-optionality",
+    "action": "Decide whether event risk still fits the position size"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "Risk-off rotation",
+  "shocks": [
+    {
+      "name": "Technology rerating",
+      "sector": "Technology",
+      "price_move_pct": "-10"
+    },
+    {
+      "name": "Apple idiosyncratic miss",
+      "symbol": "AAPL",
+      "price_move_pct": "-5"
+    },
+    {
+      "name": "Bond rally",
+      "asset_class": "Fixed Income",
+      "price_move_pct": "2"
+    },
+    {
+      "name": "International equity drawdown",
+      "region": "Global ex-US",
+      "price_move_pct": "-8"
+    }
+  ]
+}

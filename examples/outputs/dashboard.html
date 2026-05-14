@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Risk Compass Dashboard</title>
+<style>:root {
+  color-scheme: light;
+  --bg: #f5f7f9;
+  --panel: #ffffff;
+  --ink: #172026;
+  --muted: #5d6973;
+  --line: #d9e0e6;
+  --accent: #116466;
+  --fail: #a62323;
+  --warn: #8a5a00;
+  --pass: #1d6b3b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.45;
+}
+.site-header {
+  background: #172026;
+  color: #fff;
+  padding: 32px max(24px, calc((100vw - 1180px) / 2));
+}
+.site-header h1 { margin: 0 0 8px; font-size: 32px; }
+.site-header p { margin: 0 0 20px; color: #d4dde5; }
+nav { display: flex; flex-wrap: wrap; gap: 10px; }
+nav a {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  padding: 7px 10px;
+  text-decoration: none;
+}
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.section {
+  margin: 0 0 24px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+h2 { margin: 0 0 16px; font-size: 24px; }
+h3 { margin: 18px 0 10px; font-size: 18px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fbfcfd;
+}
+.card h3 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.card-value { margin: 0; font-size: 24px; font-weight: 700; }
+.card-detail { margin: 6px 0 0; color: var(--muted); }
+.boundary-text {
+  border-left: 4px solid var(--accent);
+  margin: 16px 0 0;
+  padding: 8px 12px;
+  background: #eef7f6;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 18px;
+  font-size: 14px;
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+.status {
+  border-radius: 999px;
+  display: inline-block;
+  font-weight: 700;
+  padding: 2px 8px;
+}
+.status-pass { color: var(--pass); background: #e7f4ec; }
+.status-warn { color: var(--warn); background: #fff4d8; }
+.status-fail { color: var(--fail); background: #fae7e7; }
+.meta-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+}
+.meta-list dt { color: var(--muted); font-weight: 700; }
+.meta-list dd { margin: 0; }
+@media (max-width: 720px) {
+  .site-header { padding: 24px 16px; }
+  main { padding: 16px; }
+  .section { padding: 16px; overflow-x: auto; }
+  .site-header h1 { font-size: 26px; }
+}</style>
+</head>
+<body>
+<header class="site-header">
+<h1>Portfolio Risk Compass Dashboard</h1>
+<p>Generated from static JSON artifacts as of 2026-05-15.</p>
+<nav aria-label="Dashboard sections">
+<a href="#summary">Summary</a><a href="#exposure">Exposure</a><a href="#concentration">Concentration</a><a href="#guardrails">Risk Boundaries</a><a href="#stress">Stress</a><a href="#catalysts">Catalysts</a><a href="#bundle">Bundle</a>
+</nav>
+</header>
+<main>
+<section id="summary" class="section">
+<h2>Summary</h2>
+<div class="cards">
+<article class="card"><h3>Total Value</h3><p class="card-value">7350.00</p><p class="card-detail">USD</p></article>
+<article class="card"><h3>Holdings</h3><p class="card-value">5</p><p class="card-detail">positions</p></article>
+<article class="card"><h3>Concentration Limit</h3><p class="card-value">25.0000%</p><p class="card-detail">configured boundary</p></article>
+<article class="card"><h3>Risk Boundary</h3><p class="card-value">FAIL</p><p class="card-detail">1 fail, 0 warn</p></article>
+</div>
+<p class="boundary-text">Risk boundary: FAIL. 1 fail, 0 warn. Technology sector is 54.4218% of portfolio.</p>
+</section>
+<section id="exposure" class="section">
+<h2>Exposure</h2>
+<h3>Asset Class</h3>
+<table><thead><tr><th>Bucket</th><th>Market Value</th><th>Portfolio %</th></tr></thead><tbody>
+<tr><td>Equity</td><td>4900.00</td><td>66.6667%</td></tr>
+<tr><td>Fixed Income</td><td>1450.00</td><td>19.7279%</td></tr>
+<tr><td>Cash</td><td>1000.00</td><td>13.6054%</td></tr>
+</tbody></table>
+<h3>Sector</h3>
+<table><thead><tr><th>Bucket</th><th>Market Value</th><th>Portfolio %</th></tr></thead><tbody>
+<tr><td>Technology</td><td>4000.00</td><td>54.4218%</td></tr>
+<tr><td>Government Bonds</td><td>1450.00</td><td>19.7279%</td></tr>
+<tr><td>Cash</td><td>1000.00</td><td>13.6054%</td></tr>
+<tr><td>Diversified</td><td>900.00</td><td>12.2449%</td></tr>
+</tbody></table>
+<h3>Region</h3>
+<table><thead><tr><th>Bucket</th><th>Market Value</th><th>Portfolio %</th></tr></thead><tbody>
+<tr><td>North America</td><td>6450.00</td><td>87.7551%</td></tr>
+<tr><td>Global ex-US</td><td>900.00</td><td>12.2449%</td></tr>
+</tbody></table>
+<h3>Currency</h3>
+<table><thead><tr><th>Bucket</th><th>Market Value</th><th>Portfolio %</th></tr></thead><tbody>
+<tr><td>USD</td><td>7350.00</td><td>100.0000%</td></tr>
+</tbody></table>
+</section>
+<section id="concentration" class="section">
+<h2>Concentration</h2>
+<table><thead><tr><th>Symbol</th><th>Market Value</th><th>Portfolio %</th><th>Limit %</th></tr></thead><tbody>
+<tr><td>MSFT</td><td>2100.00</td><td>28.5714%</td><td>25.0000%</td></tr>
+<tr><td>AAPL</td><td>1900.00</td><td>25.8503%</td><td>25.0000%</td></tr>
+</tbody></table>
+</section>
+<section id="guardrails" class="section">
+<h2>Risk Boundaries</h2>
+<p class="boundary-text">Risk boundary: FAIL. 1 fail, 0 warn. Technology sector is 54.4218% of portfolio.</p>
+<table><thead><tr><th>Status</th><th>Check</th><th>Scope</th><th>Actual</th><th>Limit</th><th>Message</th></tr></thead><tbody>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_position_pct</td><td>AAPL</td><td>25.8503</td><td>35.0000</td><td>AAPL is 25.8503% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_position_pct</td><td>BND</td><td>19.7279</td><td>35.0000</td><td>BND is 19.7279% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_position_pct</td><td>CASH</td><td>13.6054</td><td>35.0000</td><td>CASH is 13.6054% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_position_pct</td><td>MSFT</td><td>28.5714</td><td>35.0000</td><td>MSFT is 28.5714% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_position_pct</td><td>VXUS</td><td>12.2449</td><td>35.0000</td><td>VXUS is 12.2449% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_sector_pct</td><td>Cash</td><td>13.6054</td><td>50.0000</td><td>Cash sector is 13.6054% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_sector_pct</td><td>Diversified</td><td>12.2449</td><td>50.0000</td><td>Diversified sector is 12.2449% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_sector_pct</td><td>Government Bonds</td><td>19.7279</td><td>50.0000</td><td>Government Bonds sector is 19.7279% of portfolio.</td></tr>
+<tr><td><span class="status status-fail">FAIL</span></td><td>max_sector_pct</td><td>Technology</td><td>54.4218</td><td>50.0000</td><td>Technology sector is 54.4218% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>min_cash_pct</td><td>Cash</td><td>13.6054</td><td>5.0000</td><td>Cash is 13.6054% of portfolio.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>max_leverage_multiple</td><td>portfolio</td><td>1.0000</td><td>1.2500</td><td>Gross exposure is 1.0000x net value.</td></tr>
+<tr><td><span class="status status-pass">PASS</span></td><td>required_review_cadence_days</td><td>portfolio</td><td>14</td><td>30</td><td>Last review was 14 day(s) before snapshot.</td></tr>
+</tbody></table>
+<dl class="meta-list">
+<dt>Snapshot Date</dt><dd>2026-05-15</dd>
+<dt>Last Review</dt><dd>2026-05-01</dd>
+</dl>
+</section>
+<section id="stress" class="section">
+<h2>Stress</h2>
+<div class="cards">
+<article class="card"><h3>Scenario</h3><p class="card-value">Risk-off rotation</p><p class="card-detail">configured shocks</p></article>
+<article class="card"><h3>Stressed Value</h3><p class="card-value">6812.00</p><p class="card-detail">after shocks</p></article>
+<article class="card"><h3>Value Delta</h3><p class="card-value">-538.00</p><p class="card-detail">-7.3197%</p></article>
+</div>
+<table><thead><tr><th>Shock</th><th>Selector</th><th>Bucket</th><th>Move %</th><th>Value Delta</th></tr></thead><tbody>
+<tr><td>Technology rerating</td><td>sector</td><td>Technology</td><td>-10.0000%</td><td>-400.00</td></tr>
+<tr><td>Apple idiosyncratic miss</td><td>symbol</td><td>AAPL</td><td>-5.0000%</td><td>-95.00</td></tr>
+<tr><td>Bond rally</td><td>asset_class</td><td>Fixed Income</td><td>2.0000%</td><td>29.00</td></tr>
+<tr><td>International equity drawdown</td><td>region</td><td>Global ex-US</td><td>-8.0000%</td><td>-72.00</td></tr>
+</tbody></table>
+</section>
+<section id="catalysts" class="section">
+<h2>Catalysts</h2>
+<table><thead><tr><th>Date</th><th>Symbol</th><th>Flag</th><th>Importance</th><th>Title</th><th>Action</th><th>Thesis</th></tr></thead><tbody>
+<tr><td>2026-05-12</td><td>MSFT</td><td>overdue</td><td>high</td><td>Cloud segment investor update</td><td>Review Azure growth and margin commentary</td><td><a href="https://example.com/theses/msft-cloud-margin">Open</a></td></tr>
+<tr><td>2026-05-15</td><td>TSLA</td><td>today</td><td>critical</td><td>Robotaxi milestone review</td><td>Decide whether event risk still fits the position size</td><td><a href="https://example.com/theses/tsla-autonomy-optionality">Open</a></td></tr>
+<tr><td>2026-05-20</td><td>AAPL</td><td>upcoming</td><td>medium</td><td>Developer conference product announcements</td><td>Check whether announcements support the services growth thesis</td><td><a href="https://example.com/theses/aapl-platform-services">Open</a></td></tr>
+</tbody></table>
+</section>
+<section id="bundle" class="section">
+<h2>Bundle</h2>
+<table><thead><tr><th>Artifact</th><th>Format</th><th>Description</th><th>Bytes</th></tr></thead><tbody>
+<tr><td>exposure_report.json</td><td>json</td><td>Portfolio exposure report as JSON.</td><td>3747</td></tr>
+<tr><td>exposure_report.md</td><td>markdown</td><td>Portfolio exposure report as Markdown.</td><td>1247</td></tr>
+<tr><td>snapshot_current.json</td><td>json</td><td>Current portfolio snapshot JSON.</td><td>4167</td></tr>
+<tr><td>catalysts.json</td><td>json</td><td>Catalyst checklist as JSON.</td><td>1198</td></tr>
+<tr><td>catalysts.md</td><td>markdown</td><td>Catalyst checklist as Markdown.</td><td>711</td></tr>
+<tr><td>guardrails.json</td><td>json</td><td>Portfolio guardrail review as JSON.</td><td>2644</td></tr>
+<tr><td>guardrails.md</td><td>markdown</td><td>Portfolio guardrail review as Markdown.</td><td>1227</td></tr>
+<tr><td>stress.json</td><td>json</td><td>Stress scenario report as JSON.</td><td>4029</td></tr>
+<tr><td>stress.md</td><td>markdown</td><td>Stress scenario report as Markdown.</td><td>1024</td></tr>
+</tbody></table>
+</section>
+</main>
+</body>
+</html>

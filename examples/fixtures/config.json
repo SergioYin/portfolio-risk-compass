@@ -1,0 +1,18 @@
+{
+  "base_currency": "USD",
+  "group_by": ["asset_class", "sector", "region", "currency"],
+  "concentration_limit_pct": "25",
+  "max_position_pct": "35",
+  "max_sector_pct": "50",
+  "min_cash_pct": "5",
+  "max_leverage_multiple": "1.25",
+  "required_review_cadence_days": 30,
+  "last_review_date": "2026-05-01",
+  "target_allocations": {
+    "asset_class": {
+      "Equity": "70",
+      "Fixed Income": "20",
+      "Cash": "10"
+    }
+  }
+}

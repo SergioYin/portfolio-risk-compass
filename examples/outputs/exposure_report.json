@@ -1,0 +1,167 @@
+{
+  "concentration": [
+    {
+      "limit_pct": "25.0000",
+      "market_value": "2100.00",
+      "pct_of_portfolio": "28.5714",
+      "symbol": "MSFT"
+    },
+    {
+      "limit_pct": "25.0000",
+      "market_value": "1900.00",
+      "pct_of_portfolio": "25.8503",
+      "symbol": "AAPL"
+    }
+  ],
+  "exposures": {
+    "asset_class": [
+      {
+        "bucket": "Equity",
+        "market_value": "4900.00",
+        "pct_of_portfolio": "66.6667"
+      },
+      {
+        "bucket": "Fixed Income",
+        "market_value": "1450.00",
+        "pct_of_portfolio": "19.7279"
+      },
+      {
+        "bucket": "Cash",
+        "market_value": "1000.00",
+        "pct_of_portfolio": "13.6054"
+      }
+    ],
+    "currency": [
+      {
+        "bucket": "USD",
+        "market_value": "7350.00",
+        "pct_of_portfolio": "100.0000"
+      }
+    ],
+    "region": [
+      {
+        "bucket": "North America",
+        "market_value": "6450.00",
+        "pct_of_portfolio": "87.7551"
+      },
+      {
+        "bucket": "Global ex-US",
+        "market_value": "900.00",
+        "pct_of_portfolio": "12.2449"
+      }
+    ],
+    "sector": [
+      {
+        "bucket": "Technology",
+        "market_value": "4000.00",
+        "pct_of_portfolio": "54.4218"
+      },
+      {
+        "bucket": "Government Bonds",
+        "market_value": "1450.00",
+        "pct_of_portfolio": "19.7279"
+      },
+      {
+        "bucket": "Cash",
+        "market_value": "1000.00",
+        "pct_of_portfolio": "13.6054"
+      },
+      {
+        "bucket": "Diversified",
+        "market_value": "900.00",
+        "pct_of_portfolio": "12.2449"
+      }
+    ]
+  },
+  "holdings": [
+    {
+      "asset_class": "Equity",
+      "currency": "USD",
+      "market_value": "1900.00",
+      "name": "Apple Inc.",
+      "price": "190.00",
+      "quantity": "10",
+      "region": "North America",
+      "sector": "Technology",
+      "symbol": "AAPL"
+    },
+    {
+      "asset_class": "Fixed Income",
+      "currency": "USD",
+      "market_value": "1450.00",
+      "name": "Vanguard Total Bond Market ETF",
+      "price": "72.50",
+      "quantity": "20",
+      "region": "North America",
+      "sector": "Government Bonds",
+      "symbol": "BND"
+    },
+    {
+      "asset_class": "Cash",
+      "currency": "USD",
+      "market_value": "1000.00",
+      "name": "USD Cash",
+      "price": "1.00",
+      "quantity": "1000",
+      "region": "North America",
+      "sector": "Cash",
+      "symbol": "CASH"
+    },
+    {
+      "asset_class": "Equity",
+      "currency": "USD",
+      "market_value": "2100.00",
+      "name": "Microsoft Corp.",
+      "price": "420.00",
+      "quantity": "5",
+      "region": "North America",
+      "sector": "Technology",
+      "symbol": "MSFT"
+    },
+    {
+      "asset_class": "Equity",
+      "currency": "USD",
+      "market_value": "900.00",
+      "name": "Vanguard Total International Stock ETF",
+      "price": "60.00",
+      "quantity": "15",
+      "region": "Global ex-US",
+      "sector": "Diversified",
+      "symbol": "VXUS"
+    }
+  ],
+  "metadata": {
+    "base_currency": "USD",
+    "concentration_limit_pct": "25.0000",
+    "group_by": [
+      "asset_class",
+      "sector",
+      "region",
+      "currency"
+    ],
+    "holding_count": 5,
+    "total_market_value": "7350.00"
+  },
+  "target_drift": {
+    "asset_class": [
+      {
+        "actual_pct": "13.6054",
+        "bucket": "Cash",
+        "drift_pct": "3.6054",
+        "target_pct": "10.0000"
+      },
+      {
+        "actual_pct": "66.6667",
+        "bucket": "Equity",
+        "drift_pct": "-3.3333",
+        "target_pct": "70.0000"
+      },
+      {
+        "actual_pct": "19.7279",
+        "bucket": "Fixed Income",
+        "drift_pct": "-0.2721",
+        "target_pct": "20.0000"
+      }
+    ]
+  }
+}

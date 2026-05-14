@@ -1,0 +1,142 @@
+{
+  "holdings": [
+    {
+      "base_contribution_pct": "25.8503",
+      "base_market_value": "1900.00",
+      "contribution_delta_pct": "-2.1422",
+      "market_value_delta": "-285.00",
+      "name": "Apple Inc.",
+      "shocks": [
+        {
+          "bucket": "Technology",
+          "market_value_delta": "-190.00",
+          "name": "Technology rerating",
+          "price_move_pct": "-10.0000",
+          "selector": "sector"
+        },
+        {
+          "bucket": "AAPL",
+          "market_value_delta": "-95.00",
+          "name": "Apple idiosyncratic miss",
+          "price_move_pct": "-5.0000",
+          "selector": "symbol"
+        }
+      ],
+      "stressed_contribution_pct": "23.7082",
+      "stressed_market_value": "1615.00",
+      "symbol": "AAPL",
+      "total_price_move_pct": "-15.0000"
+    },
+    {
+      "base_contribution_pct": "19.7279",
+      "base_market_value": "1450.00",
+      "contribution_delta_pct": "1.9838",
+      "market_value_delta": "29.00",
+      "name": "Vanguard Total Bond Market ETF",
+      "shocks": [
+        {
+          "bucket": "Fixed Income",
+          "market_value_delta": "29.00",
+          "name": "Bond rally",
+          "price_move_pct": "2.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "21.7117",
+      "stressed_market_value": "1479.00",
+      "symbol": "BND",
+      "total_price_move_pct": "2.0000"
+    },
+    {
+      "base_contribution_pct": "13.6054",
+      "base_market_value": "1000.00",
+      "contribution_delta_pct": "1.0745",
+      "market_value_delta": "0.00",
+      "name": "USD Cash",
+      "shocks": [],
+      "stressed_contribution_pct": "14.6800",
+      "stressed_market_value": "1000.00",
+      "symbol": "CASH",
+      "total_price_move_pct": "0.0000"
+    },
+    {
+      "base_contribution_pct": "28.5714",
+      "base_market_value": "2100.00",
+      "contribution_delta_pct": "-0.8263",
+      "market_value_delta": "-210.00",
+      "name": "Microsoft Corp.",
+      "shocks": [
+        {
+          "bucket": "Technology",
+          "market_value_delta": "-210.00",
+          "name": "Technology rerating",
+          "price_move_pct": "-10.0000",
+          "selector": "sector"
+        }
+      ],
+      "stressed_contribution_pct": "27.7452",
+      "stressed_market_value": "1890.00",
+      "symbol": "MSFT",
+      "total_price_move_pct": "-10.0000"
+    },
+    {
+      "base_contribution_pct": "12.2449",
+      "base_market_value": "900.00",
+      "contribution_delta_pct": "-0.0899",
+      "market_value_delta": "-72.00",
+      "name": "Vanguard Total International Stock ETF",
+      "shocks": [
+        {
+          "bucket": "Global ex-US",
+          "market_value_delta": "-72.00",
+          "name": "International equity drawdown",
+          "price_move_pct": "-8.0000",
+          "selector": "region"
+        }
+      ],
+      "stressed_contribution_pct": "12.1550",
+      "stressed_market_value": "828.00",
+      "symbol": "VXUS",
+      "total_price_move_pct": "-8.0000"
+    }
+  ],
+  "metadata": {
+    "base_market_value": "7350.00",
+    "holding_count": 5,
+    "market_value_delta": "-538.00",
+    "market_value_delta_pct": "-7.3197",
+    "scenario_name": "Risk-off rotation",
+    "shock_count": 4,
+    "stressed_market_value": "6812.00"
+  },
+  "shock_impacts": [
+    {
+      "bucket": "Technology",
+      "market_value_delta": "-400.00",
+      "name": "Technology rerating",
+      "price_move_pct": "-10.0000",
+      "selector": "sector"
+    },
+    {
+      "bucket": "AAPL",
+      "market_value_delta": "-95.00",
+      "name": "Apple idiosyncratic miss",
+      "price_move_pct": "-5.0000",
+      "selector": "symbol"
+    },
+    {
+      "bucket": "Fixed Income",
+      "market_value_delta": "29.00",
+      "name": "Bond rally",
+      "price_move_pct": "2.0000",
+      "selector": "asset_class"
+    },
+    {
+      "bucket": "Global ex-US",
+      "market_value_delta": "-72.00",
+      "name": "International equity drawdown",
+      "price_move_pct": "-8.0000",
+      "selector": "region"
+    }
+  ]
+}

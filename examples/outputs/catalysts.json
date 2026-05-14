@@ -1,0 +1,41 @@
+{
+  "catalysts": [
+    {
+      "action": "Review Azure growth and margin commentary",
+      "date": "2026-05-12",
+      "days_from_as_of": -3,
+      "flag": "overdue",
+      "importance": "high",
+      "symbol": "MSFT",
+      "thesis_link": "https://example.com/theses/msft-cloud-margin",
+      "title": "Cloud segment investor update"
+    },
+    {
+      "action": "Decide whether event risk still fits the position size",
+      "date": "2026-05-15",
+      "days_from_as_of": 0,
+      "flag": "today",
+      "importance": "critical",
+      "symbol": "TSLA",
+      "thesis_link": "https://example.com/theses/tsla-autonomy-optionality",
+      "title": "Robotaxi milestone review"
+    },
+    {
+      "action": "Check whether announcements support the services growth thesis",
+      "date": "2026-05-20",
+      "days_from_as_of": 5,
+      "flag": "upcoming",
+      "importance": "medium",
+      "symbol": "AAPL",
+      "thesis_link": "https://example.com/theses/aapl-platform-services",
+      "title": "Developer conference product announcements"
+    }
+  ],
+  "metadata": {
+    "as_of": "2026-05-15",
+    "catalyst_count": 3,
+    "overdue_count": 1,
+    "today_count": 1,
+    "upcoming_count": 1
+  }
+}

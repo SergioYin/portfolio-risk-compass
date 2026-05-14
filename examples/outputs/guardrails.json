@@ -1,0 +1,106 @@
+{
+  "items": [
+    {
+      "actual": "25.8503",
+      "check": "max_position_pct",
+      "limit": "35.0000",
+      "message": "AAPL is 25.8503% of portfolio.",
+      "scope": "AAPL",
+      "status": "PASS"
+    },
+    {
+      "actual": "19.7279",
+      "check": "max_position_pct",
+      "limit": "35.0000",
+      "message": "BND is 19.7279% of portfolio.",
+      "scope": "BND",
+      "status": "PASS"
+    },
+    {
+      "actual": "13.6054",
+      "check": "max_position_pct",
+      "limit": "35.0000",
+      "message": "CASH is 13.6054% of portfolio.",
+      "scope": "CASH",
+      "status": "PASS"
+    },
+    {
+      "actual": "28.5714",
+      "check": "max_position_pct",
+      "limit": "35.0000",
+      "message": "MSFT is 28.5714% of portfolio.",
+      "scope": "MSFT",
+      "status": "PASS"
+    },
+    {
+      "actual": "12.2449",
+      "check": "max_position_pct",
+      "limit": "35.0000",
+      "message": "VXUS is 12.2449% of portfolio.",
+      "scope": "VXUS",
+      "status": "PASS"
+    },
+    {
+      "actual": "13.6054",
+      "check": "max_sector_pct",
+      "limit": "50.0000",
+      "message": "Cash sector is 13.6054% of portfolio.",
+      "scope": "Cash",
+      "status": "PASS"
+    },
+    {
+      "actual": "12.2449",
+      "check": "max_sector_pct",
+      "limit": "50.0000",
+      "message": "Diversified sector is 12.2449% of portfolio.",
+      "scope": "Diversified",
+      "status": "PASS"
+    },
+    {
+      "actual": "19.7279",
+      "check": "max_sector_pct",
+      "limit": "50.0000",
+      "message": "Government Bonds sector is 19.7279% of portfolio.",
+      "scope": "Government Bonds",
+      "status": "PASS"
+    },
+    {
+      "actual": "54.4218",
+      "check": "max_sector_pct",
+      "limit": "50.0000",
+      "message": "Technology sector is 54.4218% of portfolio.",
+      "scope": "Technology",
+      "status": "FAIL"
+    },
+    {
+      "actual": "13.6054",
+      "check": "min_cash_pct",
+      "limit": "5.0000",
+      "message": "Cash is 13.6054% of portfolio.",
+      "scope": "Cash",
+      "status": "PASS"
+    },
+    {
+      "actual": "1.0000",
+      "check": "max_leverage_multiple",
+      "limit": "1.2500",
+      "message": "Gross exposure is 1.0000x net value.",
+      "scope": "portfolio",
+      "status": "PASS"
+    },
+    {
+      "actual": "14",
+      "check": "required_review_cadence_days",
+      "limit": "30",
+      "message": "Last review was 14 day(s) before snapshot.",
+      "scope": "portfolio",
+      "status": "PASS"
+    }
+  ],
+  "metadata": {
+    "configured_checks": 12,
+    "last_review_date": "2026-05-01",
+    "overall_status": "FAIL",
+    "snapshot_date": "2026-05-15"
+  }
+}

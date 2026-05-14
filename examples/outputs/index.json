@@ -1,0 +1,104 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3747,
+      "description": "Portfolio exposure report as JSON.",
+      "format": "json",
+      "path": "exposure_report.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1247,
+      "description": "Portfolio exposure report as Markdown.",
+      "format": "markdown",
+      "path": "exposure_report.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 4167,
+      "description": "Current portfolio snapshot JSON.",
+      "format": "json",
+      "path": "snapshot_current.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1198,
+      "description": "Catalyst checklist as JSON.",
+      "format": "json",
+      "path": "catalysts.json",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 711,
+      "description": "Catalyst checklist as Markdown.",
+      "format": "markdown",
+      "path": "catalysts.md",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 2644,
+      "description": "Portfolio guardrail review as JSON.",
+      "format": "json",
+      "path": "guardrails.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1227,
+      "description": "Portfolio guardrail review as Markdown.",
+      "format": "markdown",
+      "path": "guardrails.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 4029,
+      "description": "Stress scenario report as JSON.",
+      "format": "json",
+      "path": "stress.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 1024,
+      "description": "Stress scenario report as Markdown.",
+      "format": "markdown",
+      "path": "stress.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    }
+  ],
+  "as_of": "2026-05-15",
+  "bundle": "portfolio-risk-compass-demo",
+  "fixtures": {
+    "directory": "examples/fixtures",
+    "files": [
+      "holdings.csv",
+      "config.json",
+      "catalysts.json",
+      "scenario.json"
+    ]
+  },
+  "schema_version": 1
+}

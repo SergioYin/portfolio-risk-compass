@@ -1,0 +1,6 @@
+symbol,name,quantity,price,asset_class,sector,region,currency
+AAPL,Apple Inc.,10,190.00,Equity,Technology,North America,USD
+MSFT,Microsoft Corp.,5,420.00,Equity,Technology,North America,USD
+BND,Vanguard Total Bond Market ETF,20,72.50,Fixed Income,Government Bonds,North America,USD
+VXUS,Vanguard Total International Stock ETF,15,60.00,Equity,Diversified,Global ex-US,USD
+CASH,USD Cash,1000,1.00,Cash,Cash,North America,USD
