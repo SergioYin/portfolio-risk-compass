@@ -1,0 +1,190 @@
+{
+  "items": [
+    {
+      "educational_review_prompt": "Review whether holding AAPL still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "limit_pct": "25.0000",
+          "market_value": "1900.00",
+          "portfolio_pct": "25.8503",
+          "reason_code": "CONCENTRATION_LIMIT"
+        },
+        {
+          "market_value_delta": "-285.00",
+          "matched_shocks": [
+            "Technology rerating",
+            "Apple idiosyncratic miss"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Risk-off rotation",
+          "total_price_move_pct": "-15.0000"
+        }
+      ],
+      "evidence_summary": "concentration 25.8503% vs limit 25.0000%; Risk-off rotation stress move -15.0000%",
+      "reason_codes": [
+        "CONCENTRATION_LIMIT",
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "AAPL",
+      "scope_type": "holding",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Technology still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual": "54.4218",
+          "check": "max_sector_pct",
+          "limit": "50.0000",
+          "message": "Technology sector is 54.4218% of portfolio.",
+          "reason_code": "GUARDRAIL_FAIL",
+          "status": "FAIL"
+        }
+      ],
+      "evidence_summary": "max_sector_pct FAIL: actual 54.4218, limit 50.0000",
+      "reason_codes": [
+        "GUARDRAIL_FAIL"
+      ],
+      "scope": "Technology",
+      "scope_type": "sector",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether holding MSFT still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "limit_pct": "25.0000",
+          "market_value": "2100.00",
+          "portfolio_pct": "28.5714",
+          "reason_code": "CONCENTRATION_LIMIT"
+        },
+        {
+          "market_value_delta": "-210.00",
+          "matched_shocks": [
+            "Technology rerating"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Risk-off rotation",
+          "total_price_move_pct": "-10.0000"
+        }
+      ],
+      "evidence_summary": "concentration 28.5714% vs limit 25.0000%; Risk-off rotation stress move -10.0000%",
+      "reason_codes": [
+        "CONCENTRATION_LIMIT",
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "MSFT",
+      "scope_type": "holding",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether holding VXUS still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-72.00",
+          "matched_shocks": [
+            "International equity drawdown"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Risk-off rotation",
+          "total_price_move_pct": "-8.0000"
+        }
+      ],
+      "evidence_summary": "Risk-off rotation stress move -8.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "VXUS",
+      "scope_type": "holding",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Cash still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "13.6054",
+          "drift_pct": "3.6054",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "10.0000"
+        }
+      ],
+      "evidence_summary": "drift 3.6054% vs target 10.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Cash",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Equity still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "66.6667",
+          "drift_pct": "-3.3333",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "70.0000"
+        }
+      ],
+      "evidence_summary": "drift -3.3333% vs target 70.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Equity",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Fixed Income still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "19.7279",
+          "drift_pct": "-0.2721",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "20.0000"
+        }
+      ],
+      "evidence_summary": "drift -0.2721% vs target 20.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Fixed Income",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether the portfolio still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-538.00",
+          "market_value_delta_pct": "-7.3197",
+          "reason_code": "STRESS_PORTFOLIO_DRAWDOWN",
+          "scenario": "Risk-off rotation"
+        }
+      ],
+      "evidence_summary": "Risk-off rotation portfolio stress -7.3197%",
+      "reason_codes": [
+        "STRESS_PORTFOLIO_DRAWDOWN"
+      ],
+      "scope": "portfolio",
+      "scope_type": "portfolio",
+      "severity": "low"
+    }
+  ],
+  "metadata": {
+    "item_count": 8,
+    "review_type": "broker_free_rebalance_watchlist",
+    "safety_wording": "Educational portfolio review only. This watchlist does not recommend trades, order types, position quantities, account transfers, or timing. Use it to decide what deserves human review against your own policy.",
+    "schema_version": 1,
+    "severity_counts": {
+      "high": 2,
+      "low": 4,
+      "medium": 2
+    },
+    "source_artifacts": [
+      "exposure_report",
+      "guardrail_review",
+      "stress_report"
+    ]
+  }
+}

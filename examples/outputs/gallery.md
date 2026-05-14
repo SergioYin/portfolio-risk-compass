@@ -18,6 +18,7 @@ Safety boundary: Static portfolio review artifact only; not investment advice, t
 | [catalysts.md](catalysts.md) | markdown | Catalyst checklist as Markdown. |
 | [guardrails.md](guardrails.md) | markdown | Portfolio guardrail review as Markdown. |
 | [stress.md](stress.md) | markdown | Stress scenario report as Markdown. |
+| [rebalance_watchlist.md](rebalance_watchlist.md) | markdown | Educational rebalance review watchlist as Markdown. |
 
 ## Template Galleries
 

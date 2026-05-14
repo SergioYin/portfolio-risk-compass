@@ -1,0 +1,281 @@
+{
+  "items": [
+    {
+      "educational_review_prompt": "Review whether holding VTI still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "limit_pct": "45.0000",
+          "market_value": "30648.00",
+          "portfolio_pct": "48.8710",
+          "reason_code": "CONCENTRATION_LIMIT"
+        },
+        {
+          "actual": "48.8710",
+          "check": "max_position_pct",
+          "limit": "50.0000",
+          "message": "VTI is 48.8710% of portfolio.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        },
+        {
+          "market_value_delta": "-1838.88",
+          "matched_shocks": [
+            "US equity drawdown"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Global risk-off with bond cushion",
+          "total_price_move_pct": "-6.0000"
+        }
+      ],
+      "evidence_summary": "concentration 48.8710% vs limit 45.0000%; max_position_pct WARN: actual 48.8710, limit 50.0000; Global risk-off with bond cushion stress move -6.0000%",
+      "reason_codes": [
+        "CONCENTRATION_LIMIT",
+        "GUARDRAIL_WARN",
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "VTI",
+      "scope_type": "holding",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether holding VXUS still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-882.00",
+          "matched_shocks": [
+            "Ex-US equity drawdown"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Global risk-off with bond cushion",
+          "total_price_move_pct": "-8.0000"
+        }
+      ],
+      "evidence_summary": "Global risk-off with bond cushion stress move -8.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "VXUS",
+      "scope_type": "holding",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether the portfolio still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual": "1.0000",
+          "check": "max_leverage_multiple",
+          "limit": "1.0500",
+          "message": "Gross exposure is 1.0000x net value.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        },
+        {
+          "market_value_delta": "-3752.50",
+          "market_value_delta_pct": "-5.9837",
+          "reason_code": "STRESS_PORTFOLIO_DRAWDOWN",
+          "scenario": "Global risk-off with bond cushion"
+        }
+      ],
+      "evidence_summary": "max_leverage_multiple WARN: actual 1.0000, limit 1.0500; Global risk-off with bond cushion portfolio stress -5.9837%",
+      "reason_codes": [
+        "GUARDRAIL_WARN",
+        "STRESS_PORTFOLIO_DRAWDOWN"
+      ],
+      "scope": "portfolio",
+      "scope_type": "portfolio",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether region Global ex-US still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "24.7273",
+          "drift_pct": "-5.2727",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "30.0000"
+        }
+      ],
+      "evidence_summary": "drift -5.2727% vs target 30.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Global ex-US",
+      "scope_type": "region",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether region North America still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "75.2727",
+          "drift_pct": "5.2727",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "70.0000"
+        }
+      ],
+      "evidence_summary": "drift 5.2727% vs target 70.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "North America",
+      "scope_type": "region",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Diversified still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual": "66.4514",
+          "check": "max_sector_pct",
+          "limit": "70.0000",
+          "message": "Diversified sector is 66.4514% of portfolio.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        }
+      ],
+      "evidence_summary": "max_sector_pct WARN: actual 66.4514, limit 70.0000",
+      "reason_codes": [
+        "GUARDRAIL_WARN"
+      ],
+      "scope": "Diversified",
+      "scope_type": "sector",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Cash still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "8.0064",
+          "drift_pct": "3.0064",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "5.0000"
+        }
+      ],
+      "evidence_summary": "drift 3.0064% vs target 5.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Cash",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Equity still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "66.4514",
+          "drift_pct": "-3.5486",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "70.0000"
+        }
+      ],
+      "evidence_summary": "drift -3.5486% vs target 70.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Equity",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Fixed Income still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "25.5422",
+          "drift_pct": "0.5422",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "25.0000"
+        }
+      ],
+      "evidence_summary": "drift 0.5422% vs target 25.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Fixed Income",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding BND still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-461.44",
+          "matched_shocks": [
+            "US equity drawdown",
+            "Aggregate bond rally"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Global risk-off with bond cushion",
+          "total_price_move_pct": "-4.0000"
+        }
+      ],
+      "evidence_summary": "Global risk-off with bond cushion stress move -4.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "BND",
+      "scope_type": "holding",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding BNDX still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-268.92",
+          "matched_shocks": [
+            "Ex-US equity drawdown",
+            "Aggregate bond rally"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Global risk-off with bond cushion",
+          "total_price_move_pct": "-6.0000"
+        }
+      ],
+      "evidence_summary": "Global risk-off with bond cushion stress move -6.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "BNDX",
+      "scope_type": "holding",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding SGOV still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-301.26",
+          "matched_shocks": [
+            "US equity drawdown",
+            "Cash stable"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Global risk-off with bond cushion",
+          "total_price_move_pct": "-6.0000"
+        }
+      ],
+      "evidence_summary": "Global risk-off with bond cushion stress move -6.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "SGOV",
+      "scope_type": "holding",
+      "severity": "low"
+    }
+  ],
+  "metadata": {
+    "item_count": 12,
+    "review_type": "broker_free_rebalance_watchlist",
+    "safety_wording": "Educational portfolio review only. This watchlist does not recommend trades, order types, position quantities, account transfers, or timing. Use it to decide what deserves human review against your own policy.",
+    "schema_version": 1,
+    "severity_counts": {
+      "high": 0,
+      "low": 6,
+      "medium": 6
+    },
+    "source_artifacts": [
+      "exposure_report",
+      "guardrail_review",
+      "stress_report"
+    ]
+  }
+}

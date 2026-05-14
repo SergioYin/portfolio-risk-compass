@@ -1,23 +1,28 @@
 # Release Manifest
 
 - Outputs directory: examples/outputs
-- Artifact count: 43
+- Artifact count: 54
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
 | catalysts.json | json | 1198 | `4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1` |
 | catalysts.md | markdown | 711 | `6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6` |
-| dashboard.html | html | 14644 | `2a0c2318d971dbf03d35f5ebaa9967b2515d15b33994739164f6eb2c48cc11fd` |
-| dashboard_preview.md | markdown | 1100 | `a0a051ff0366c42dc12654c27bea76a24068022de6a6502dfa29b92c5bb67944` |
-| dashboard_snippet.html | html | 779 | `c81bf7888b9ec07f5443622e2d0d0f8f2c8ae1d5d14cf02bfa6c60645914f4a7` |
+| dashboard.html | html | 16145 | `0faa2e0a2ca30cb6db1e282423f0e440443ab92387a05d7c3171158be71ad354` |
+| dashboard_preview.md | markdown | 1147 | `15666ede03bed22d242605024edf02faf329c56beeccca23c09437e59caecac0` |
+| dashboard_snippet.html | html | 876 | `bdedaa119048fd3ff5cdf9ac0fd460b99e12f0338f45790352498194f12254b4` |
 | exposure_report.json | json | 3747 | `d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c` |
 | exposure_report.md | markdown | 1247 | `c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6` |
-| gallery.md | markdown | 1950 | `a26f1cc727d44e3fd7bc3cb83020c42b7c13b4c83f742bdec55c8dff01a4b26d` |
+| gallery.md | markdown | 2068 | `a1336dedf3f71fa95aaa11d9c718148c2a50aafd2879c48737283683d9bb9ea4` |
 | guardrails.json | json | 2644 | `bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82` |
 | guardrails.md | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
-| index.json | json | 10648 | `75e19319c1e3603e5c0654c00860ca62a54382b2f9c4354c45a4afa099025fa0` |
+| history.json | json | 5520 | `0a90df843340771135e341619be8880d93b9fc2cff4dedfb02c24fe80bc5b6f7` |
+| history.md | markdown | 1219 | `782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186` |
+| index.json | json | 13816 | `51bf9e4f1fbb068d34a58b4a30e40c88bfb855016b7c1e491bc8984c91f78902` |
 | invest_thesis_ledger_adapter.json | json | 2441 | `4c4351aaf1ad9a8930cee64a82163619170692ceacf7f2bbc05301eb8ab5ea0a` |
 | leveraged_etp_risk_lab_adapter.json | json | 3954 | `866db8127afbabf788523aa45d66603810026fe947c901ff7626d08294a07170` |
+| rebalance_watchlist.json | json | 6298 | `14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80` |
+| rebalance_watchlist.md | markdown | 2386 | `d36cea814fee02520e73f53bc164369c289e8dff97b7bc08d244e9eaf70253ae` |
+| review_memo.md | markdown | 6337 | `cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8` |
 | snapshot_current.json | json | 4167 | `86a21abdb6c48e054f7524858dbecec2f3f101506680cdaef1f23d4b0a52ff7b` |
 | stress.json | json | 4029 | `d7693910dc7c2b6e90c5d4029b41e557be9d26a2ef2c22999e452c0e11c9e58c` |
 | stress.md | markdown | 1024 | `1066d939df0e190691409dc8b028033f077211f45a464db466703b241b86adb8` |
@@ -27,6 +32,8 @@
 | templates/cash-rebalance/exposure_report.md | markdown | 1603 | `37261f53c042abdddebb9791f1f51fdc2b60303e3bce071125d9cc092e1f4191` |
 | templates/cash-rebalance/guardrails.json | json | 3063 | `7f95da29d0fd028673ef0046b10f4b0028e9bb0decd1311fad3bf0d66ee051b3` |
 | templates/cash-rebalance/guardrails.md | markdown | 1401 | `7bd2ca6bff41e85c1ed841203bd5cb8d00815f2ea528716bfc8a2a6f1d005890` |
+| templates/cash-rebalance/rebalance_watchlist.json | json | 9243 | `e6fbe69d797f9ff2b75a96aa0e483865d54c7c26f551dc9d9bd24cf575db00ab` |
+| templates/cash-rebalance/rebalance_watchlist.md | markdown | 3519 | `c6bcdc7dc3ee3f6974d413d71376f8f0bb5181446cc949c4437136468a04f205` |
 | templates/cash-rebalance/snapshot_current.json | json | 5220 | `f0501512b7b91c3b598e7d3c59243e57fb10c64e234ec36c02749bd1e4c8fb63` |
 | templates/cash-rebalance/stress.json | json | 4947 | `b8a492b89f529b7628ddc7252ab53c4b641ec4d95c177ede4b89629b89431106` |
 | templates/cash-rebalance/stress.md | markdown | 1121 | `b6b54c5519623a1129a0e4efbed254f39e1e02757553aac73c298ed1f6211697` |
@@ -36,6 +43,8 @@
 | templates/etf-core/exposure_report.md | markdown | 1384 | `73f29c1fa9ef9933b5047d40f0677ef09b0064ebe9c9ce27bb3395e5ab77b43f` |
 | templates/etf-core/guardrails.json | json | 2437 | `8cb9fda70fd244ecc3535f592f3126ae69ae883e3d49ea8fd3f0451461ab68a7` |
 | templates/etf-core/guardrails.md | markdown | 1135 | `182b86b6181661f3ed2dd5e4d0f88f3efaa301cc7cc211fee152029bbc36dae7` |
+| templates/etf-core/rebalance_watchlist.json | json | 9512 | `12c35f366fcb9863550afcd0806d80c34ac3841e56653b0636e51ef325cb9efc` |
+| templates/etf-core/rebalance_watchlist.md | markdown | 3456 | `05f1290fe6b74a77407844492b962405cce275f25d993ca8801555785bd56776` |
 | templates/etf-core/snapshot_current.json | json | 4356 | `774d480e568d53ebc6c06dd246318139a309904e2b64194e195f60b7ee97749a` |
 | templates/etf-core/stress.json | json | 4765 | `015a952180e48fd5a4e61d406d74095c99970f0a68dc442268e8151b6bca9dac` |
 | templates/etf-core/stress.md | markdown | 1054 | `3f434fd71a0ec5199f53f5bb79bd3d66a286b6911d66118b339bf0f16bb40e87` |
@@ -45,6 +54,8 @@
 | templates/leveraged-sleeve/exposure_report.md | markdown | 1553 | `20b378d2af04c71f88f0c5d7300b0781c368d4a218fef4c703bb4afdd334267a` |
 | templates/leveraged-sleeve/guardrails.json | json | 2820 | `b502ec1b19bb59d07e77af0eb609c8f936f020fa87edf97af2914582ba6682d3` |
 | templates/leveraged-sleeve/guardrails.md | markdown | 1291 | `f43bed65e5a4dcd315d9d60f07a7f532133cc989a8895bd585879d373fade346` |
+| templates/leveraged-sleeve/rebalance_watchlist.json | json | 10144 | `3f4f8700f450c90577e8711b324943da1d8a338343800bc14baa074e3e8b5e9b` |
+| templates/leveraged-sleeve/rebalance_watchlist.md | markdown | 3701 | `56e873a049c0e213cabe1b015844e0a53e17b275018b9b83f28c65473121474c` |
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |

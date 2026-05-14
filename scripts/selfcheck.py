@@ -56,6 +56,7 @@ def main() -> int:
                 "examples/outputs/leveraged_etp_risk_lab_adapter.json",
             ],
             [sys.executable, "-m", "portfolio_risk_compass", "release-manifest"],
+            [sys.executable, "-m", "portfolio_risk_compass", "docs-export"],
             [sys.executable, "scripts/privacy_scan.py"],
             [sys.executable, "-m", "portfolio_risk_compass", "package-audit"],
         ]
@@ -69,6 +70,7 @@ def main() -> int:
         root / "examples/outputs/dashboard_snippet.html",
         root / "examples/outputs/invest_thesis_ledger_adapter.json",
         root / "examples/outputs/leveraged_etp_risk_lab_adapter.json",
+        root / "examples/outputs/docs_export.md",
     ]
     for path in required_showcase_files:
         if not path.is_file():

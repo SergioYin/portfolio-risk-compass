@@ -15,6 +15,8 @@ from . import __version__
 DEFAULT_RELEASE_OUTPUTS_DIR = Path("examples/outputs")
 DEFAULT_RELEASE_MANIFEST_JSON = DEFAULT_RELEASE_OUTPUTS_DIR / "release_manifest.json"
 DEFAULT_RELEASE_MANIFEST_MARKDOWN = DEFAULT_RELEASE_OUTPUTS_DIR / "release_manifest.md"
+DEFAULT_DOCS_EXPORT = DEFAULT_RELEASE_OUTPUTS_DIR / "docs_export.md"
+TEST_COMMAND_DISPLAY = ["python", "-m", "unittest", "discover", "-s", "tests"]
 
 _PACKAGING_ITEMS = (
     ("pyproject.toml", "pyproject.toml"),
@@ -45,7 +47,7 @@ def build_package_audit(
         "missing_packaging_items": _missing_packaging_items(root),
         "tests": {
             "run": False,
-            "command": [sys.executable, "-m", "unittest", "discover", "-s", "tests"],
+            "command": TEST_COMMAND_DISPLAY,
         },
     }
     if run_tests:
@@ -138,10 +140,17 @@ def write_release_manifest(
     json_path: Path,
     markdown_path: Path,
 ) -> dict:
-    manifest = build_release_manifest(outputs_dir, exclude_paths=(json_path, markdown_path))
+    manifest = build_release_manifest(
+        outputs_dir,
+        exclude_paths=(json_path, markdown_path, _default_docs_export_for(outputs_dir)),
+    )
     _write_text(json_path, render_release_manifest_json(manifest))
     _write_text(markdown_path, render_release_manifest_markdown(manifest))
     return manifest
+
+
+def _default_docs_export_for(outputs_dir: Path) -> Path:
+    return outputs_dir / DEFAULT_DOCS_EXPORT.name
 
 
 def _artifact_entry(outputs_dir: Path, path: Path) -> dict:

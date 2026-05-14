@@ -38,6 +38,11 @@ class DemoBundleTests(unittest.TestCase):
             "guardrails.md",
             "stress.json",
             "stress.md",
+            "rebalance_watchlist.json",
+            "rebalance_watchlist.md",
+            "history.json",
+            "history.md",
+            "review_memo.md",
             "templates/cash-rebalance/exposure_report.json",
             "templates/cash-rebalance/exposure_report.md",
             "templates/cash-rebalance/snapshot_current.json",
@@ -47,6 +52,8 @@ class DemoBundleTests(unittest.TestCase):
             "templates/cash-rebalance/guardrails.md",
             "templates/cash-rebalance/stress.json",
             "templates/cash-rebalance/stress.md",
+            "templates/cash-rebalance/rebalance_watchlist.json",
+            "templates/cash-rebalance/rebalance_watchlist.md",
             "templates/etf-core/exposure_report.json",
             "templates/etf-core/exposure_report.md",
             "templates/etf-core/snapshot_current.json",
@@ -56,6 +63,8 @@ class DemoBundleTests(unittest.TestCase):
             "templates/etf-core/guardrails.md",
             "templates/etf-core/stress.json",
             "templates/etf-core/stress.md",
+            "templates/etf-core/rebalance_watchlist.json",
+            "templates/etf-core/rebalance_watchlist.md",
             "templates/leveraged-sleeve/exposure_report.json",
             "templates/leveraged-sleeve/exposure_report.md",
             "templates/leveraged-sleeve/snapshot_current.json",
@@ -65,6 +74,8 @@ class DemoBundleTests(unittest.TestCase):
             "templates/leveraged-sleeve/guardrails.md",
             "templates/leveraged-sleeve/stress.json",
             "templates/leveraged-sleeve/stress.md",
+            "templates/leveraged-sleeve/rebalance_watchlist.json",
+            "templates/leveraged-sleeve/rebalance_watchlist.md",
         ]
         self.assertEqual(index, manifest)
         self.assertEqual(index["schema_version"], 1)
@@ -75,6 +86,7 @@ class DemoBundleTests(unittest.TestCase):
             "config.json",
             "catalysts.json",
             "scenario.json",
+            "history/*.json",
         ])
         self.assertEqual(index["templates"]["template_count"], 3)
         self.assertEqual(
@@ -135,7 +147,7 @@ class DemoBundleTests(unittest.TestCase):
 
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
-        self.assertEqual(len(manifest["artifacts"]), 9)
+        self.assertEqual(len(manifest["artifacts"]), 14)
 
 
 if __name__ == "__main__":

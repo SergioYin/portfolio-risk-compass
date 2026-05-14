@@ -1,0 +1,276 @@
+{
+  "items": [
+    {
+      "educational_review_prompt": "Review whether asset class Cash still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "39.4657",
+          "drift_pct": "19.4657",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "20.0000"
+        }
+      ],
+      "evidence_summary": "drift 19.4657% vs target 20.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Cash",
+      "scope_type": "asset_class",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Equity still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "40.0728",
+          "drift_pct": "-14.9272",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "55.0000"
+        }
+      ],
+      "evidence_summary": "drift -14.9272% vs target 55.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Equity",
+      "scope_type": "asset_class",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Diversified still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "40.0728",
+          "drift_pct": "-14.9272",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "55.0000"
+        }
+      ],
+      "evidence_summary": "drift -14.9272% vs target 55.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Diversified",
+      "scope_type": "sector",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Treasury Bills still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "29.3862",
+          "drift_pct": "14.3862",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "15.0000"
+        }
+      ],
+      "evidence_summary": "drift 14.3862% vs target 15.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Treasury Bills",
+      "scope_type": "sector",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether the portfolio still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual": "1.0000",
+          "check": "max_leverage_multiple",
+          "limit": "1.1000",
+          "message": "Gross exposure is 1.0000x net value.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        },
+        {
+          "market_value_delta": "-1302.03",
+          "market_value_delta_pct": "-2.1168",
+          "reason_code": "STRESS_PORTFOLIO_DRAWDOWN",
+          "scenario": "Cash deployment after mild pullback"
+        }
+      ],
+      "evidence_summary": "max_leverage_multiple WARN: actual 1.0000, limit 1.1000; Cash deployment after mild pullback portfolio stress -2.1168%",
+      "reason_codes": [
+        "GUARDRAIL_WARN",
+        "STRESS_PORTFOLIO_DRAWDOWN"
+      ],
+      "scope": "portfolio",
+      "scope_type": "portfolio",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Cash still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "10.0796",
+          "drift_pct": "5.0796",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "5.0000"
+        }
+      ],
+      "evidence_summary": "drift 5.0796% vs target 5.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Cash",
+      "scope_type": "sector",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Fixed Income still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "20.4615",
+          "drift_pct": "-4.5385",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "25.0000"
+        }
+      ],
+      "evidence_summary": "drift -4.5385% vs target 25.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Fixed Income",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding AGG still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-165.92",
+          "matched_shocks": [
+            "Bond mark-to-market pressure"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Cash deployment after mild pullback",
+          "total_price_move_pct": "-2.0000"
+        }
+      ],
+      "evidence_summary": "Cash deployment after mild pullback stress move -2.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "AGG",
+      "scope_type": "holding",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding IVV still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-739.48",
+          "matched_shocks": [
+            "Equity pullback"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Cash deployment after mild pullback",
+          "total_price_move_pct": "-4.0000"
+        }
+      ],
+      "evidence_summary": "Cash deployment after mild pullback stress move -4.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "IVV",
+      "scope_type": "holding",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding MUB still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-150.15",
+          "matched_shocks": [
+            "Bond mark-to-market pressure",
+            "Municipal spread widening"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Cash deployment after mild pullback",
+          "total_price_move_pct": "-3.5000"
+        }
+      ],
+      "evidence_summary": "Cash deployment after mild pullback stress move -3.5000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "MUB",
+      "scope_type": "holding",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether holding VEA still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-246.48",
+          "matched_shocks": [
+            "Equity pullback"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Cash deployment after mild pullback",
+          "total_price_move_pct": "-4.0000"
+        }
+      ],
+      "evidence_summary": "Cash deployment after mild pullback stress move -4.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "VEA",
+      "scope_type": "holding",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Aggregate Bonds still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "13.4871",
+          "drift_pct": "-1.5129",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "15.0000"
+        }
+      ],
+      "evidence_summary": "drift -1.5129% vs target 15.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Aggregate Bonds",
+      "scope_type": "sector",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Municipal Bonds still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "6.9744",
+          "drift_pct": "-3.0256",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "10.0000"
+        }
+      ],
+      "evidence_summary": "drift -3.0256% vs target 10.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Municipal Bonds",
+      "scope_type": "sector",
+      "severity": "low"
+    }
+  ],
+  "metadata": {
+    "item_count": 13,
+    "review_type": "broker_free_rebalance_watchlist",
+    "safety_wording": "Educational portfolio review only. This watchlist does not recommend trades, order types, position quantities, account transfers, or timing. Use it to decide what deserves human review against your own policy.",
+    "schema_version": 1,
+    "severity_counts": {
+      "high": 4,
+      "low": 7,
+      "medium": 2
+    },
+    "source_artifacts": [
+      "exposure_report",
+      "guardrail_review",
+      "stress_report"
+    ]
+  }
+}

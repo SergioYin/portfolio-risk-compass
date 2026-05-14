@@ -89,6 +89,59 @@
       ]
     },
     {
+      "bytes": 6298,
+      "description": "Educational rebalance review watchlist as JSON.",
+      "format": "json",
+      "path": "rebalance_watchlist.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 2386,
+      "description": "Educational rebalance review watchlist as Markdown.",
+      "format": "markdown",
+      "path": "rebalance_watchlist.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 5520,
+      "description": "Portfolio history ledger as JSON.",
+      "format": "json",
+      "path": "history.json",
+      "source_fixtures": [
+        "history/*.json"
+      ]
+    },
+    {
+      "bytes": 1219,
+      "description": "Portfolio history ledger as Markdown.",
+      "format": "markdown",
+      "path": "history.md",
+      "source_fixtures": [
+        "history/*.json"
+      ]
+    },
+    {
+      "bytes": 6337,
+      "description": "Human review memo combining generated portfolio artifacts.",
+      "format": "markdown",
+      "path": "review_memo.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json",
+        "catalysts.json",
+        "history/*.json"
+      ]
+    },
+    {
       "bytes": 4711,
       "description": "Portfolio exposure report as JSON.",
       "format": "json",
@@ -173,6 +226,28 @@
       "path": "templates/cash-rebalance/stress.md",
       "source_fixtures": [
         "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 9243,
+      "description": "Educational rebalance review watchlist as JSON.",
+      "format": "json",
+      "path": "templates/cash-rebalance/rebalance_watchlist.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 3519,
+      "description": "Educational rebalance review watchlist as Markdown.",
+      "format": "markdown",
+      "path": "templates/cash-rebalance/rebalance_watchlist.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
         "scenario.json"
       ]
     },
@@ -265,6 +340,28 @@
       ]
     },
     {
+      "bytes": 9512,
+      "description": "Educational rebalance review watchlist as JSON.",
+      "format": "json",
+      "path": "templates/etf-core/rebalance_watchlist.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 3456,
+      "description": "Educational rebalance review watchlist as Markdown.",
+      "format": "markdown",
+      "path": "templates/etf-core/rebalance_watchlist.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
+    },
+    {
       "bytes": 4669,
       "description": "Portfolio exposure report as JSON.",
       "format": "json",
@@ -351,6 +448,28 @@
         "holdings.csv",
         "scenario.json"
       ]
+    },
+    {
+      "bytes": 10144,
+      "description": "Educational rebalance review watchlist as JSON.",
+      "format": "json",
+      "path": "templates/leveraged-sleeve/rebalance_watchlist.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 3701,
+      "description": "Educational rebalance review watchlist as Markdown.",
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/rebalance_watchlist.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json"
+      ]
     }
   ],
   "as_of": "2026-05-15",
@@ -361,7 +480,8 @@
       "holdings.csv",
       "config.json",
       "catalysts.json",
-      "scenario.json"
+      "scenario.json",
+      "history/*.json"
     ]
   },
   "schema_version": 1,

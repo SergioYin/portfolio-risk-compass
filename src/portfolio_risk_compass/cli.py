@@ -29,7 +29,13 @@ from .demo import (
     build_demo_bundle,
 )
 from .dashboard import DEFAULT_DASHBOARD_TITLE, write_dashboard_html
+from .docs_export import DEFAULT_DOCS_EXPORT, write_docs_export
 from .holdings import read_holdings_csv
+from .history import (
+    build_history_ledger,
+    render_history_json,
+    render_history_markdown,
+)
 from .integrations import (
     INTEGRATION_PROFILES,
     build_integration_export,
@@ -45,7 +51,13 @@ from .packaging import (
     render_package_audit_markdown,
     write_release_manifest,
 )
+from .rebalance_watchlist import (
+    build_rebalance_watchlist,
+    render_rebalance_watchlist_json,
+    render_rebalance_watchlist_markdown,
+)
 from .reports import render_json_report, render_markdown_report
+from .review_memo import build_review_memo, render_review_memo_markdown
 from .snapshots import (
     build_snapshot,
     diff_snapshots,
@@ -71,13 +83,17 @@ COMMAND_NAMES = (
     "analyze",
     "snapshot",
     "diff",
+    "history",
     "catalysts",
     "guardrails",
     "stress",
+    "rebalance-watchlist",
+    "review-memo",
     "template-list",
     "demo-bundle",
     "dashboard",
     "integration-export",
+    "docs-export",
     "package-audit",
     "release-manifest",
 )
@@ -93,12 +109,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_snapshot(args)
     if args.command == "diff":
         return _run_diff(args)
+    if args.command == "history":
+        return _run_history(args)
     if args.command == "catalysts":
         return _run_catalysts(args)
     if args.command == "guardrails":
         return _run_guardrails(args)
     if args.command == "stress":
         return _run_stress(args)
+    if args.command == "rebalance-watchlist":
+        return _run_rebalance_watchlist(args)
+    if args.command == "review-memo":
+        return _run_review_memo(args)
     if args.command == "template-list":
         return _run_template_list(args)
     if args.command == "demo-bundle":
@@ -107,6 +129,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_dashboard(args)
     if args.command == "integration-export":
         return _run_integration_export(args)
+    if args.command == "docs-export":
+        return _run_docs_export(args)
     if args.command == "package-audit":
         return _run_package_audit(args)
     if args.command == "release-manifest":
@@ -155,6 +179,27 @@ def _run_diff(args: argparse.Namespace) -> int:
         sys.stdout.write(render_snapshot_json(diff))
     else:
         sys.stdout.write(render_diff_markdown(diff))
+    return 0
+
+
+def _run_history(args: argparse.Namespace) -> int:
+    ledger = build_history_ledger(args.snapshots_dir)
+    json_ledger = render_history_json(ledger)
+    markdown_ledger = render_history_markdown(ledger)
+
+    wrote_file = False
+    if args.json:
+        _write_text(args.json, json_ledger)
+        wrote_file = True
+    if args.markdown:
+        _write_text(args.markdown, markdown_ledger)
+        wrote_file = True
+
+    if not wrote_file:
+        if args.format == "markdown":
+            sys.stdout.write(markdown_ledger)
+        else:
+            sys.stdout.write(json_ledger)
     return 0
 
 
@@ -233,6 +278,57 @@ def _run_stress(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_rebalance_watchlist(args: argparse.Namespace) -> int:
+    holdings = read_holdings_csv(args.holdings_csv)
+    config = read_config_json(args.config)
+    scenario = read_scenario_json(args.scenario_json)
+    exposure_report = analyze_portfolio(holdings, config)
+    guardrail_review = evaluate_guardrails(
+        holdings,
+        config,
+        ReviewDates(
+            snapshot_date=parse_review_date(args.snapshot_date, "snapshot_date"),
+            last_review_date=parse_review_date(args.last_review_date, "last_review_date"),
+        ),
+    )
+    stress_report = stress_portfolio(holdings, scenario)
+    watchlist = build_rebalance_watchlist(
+        exposure_report,
+        guardrail_review,
+        stress_report,
+    )
+
+    json_report = render_rebalance_watchlist_json(watchlist)
+    markdown_report = render_rebalance_watchlist_markdown(watchlist)
+
+    wrote_file = False
+    if args.json:
+        _write_text(args.json, json_report)
+        wrote_file = True
+    if args.markdown:
+        _write_text(args.markdown, markdown_report)
+        wrote_file = True
+
+    if not wrote_file:
+        if args.format == "markdown":
+            sys.stdout.write(markdown_report)
+        else:
+            sys.stdout.write(json_report)
+    return 0
+
+
+def _run_review_memo(args: argparse.Namespace) -> int:
+    memo = build_review_memo(args.outputs_dir, title=args.title)
+    markdown = render_review_memo_markdown(memo)
+
+    if args.markdown:
+        _write_text(args.markdown, markdown)
+        sys.stdout.write(str(args.markdown) + "\n")
+    else:
+        sys.stdout.write(markdown)
+    return 0
+
+
 def _run_template_list(args: argparse.Namespace) -> int:
     manifest = template_manifest(args.templates_dir)
     if args.format == "markdown":
@@ -267,6 +363,18 @@ def _run_integration_export(args: argparse.Namespace) -> int:
     else:
         export = build_integration_export(args.outputs_dir, args.profile)
         sys.stdout.write(render_integration_export_json(export))
+    return 0
+
+
+def _run_docs_export(args: argparse.Namespace) -> int:
+    write_docs_export(
+        _build_parser(),
+        args.output,
+        outputs_dir=args.outputs_dir,
+        output_format=args.format,
+        title=args.title,
+    )
+    sys.stdout.write(str(args.output) + "\n")
     return 0
 
 
@@ -348,6 +456,31 @@ def _build_parser() -> argparse.ArgumentParser:
         "--json", action="store_true", help="Print JSON instead of Markdown."
     )
 
+    history = subparsers.add_parser(
+        "history",
+        help="Render a trend ledger from a directory of snapshots.",
+        description=(
+            "Read snapshot JSON files from a directory and render total value trends, "
+            "target exposure drift, guardrail status when present, and catalyst counts "
+            "when present."
+        ),
+    )
+    history.add_argument(
+        "snapshots_dir",
+        type=Path,
+        help="Directory containing snapshot JSON files.",
+    )
+    history.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="json",
+        help="Stdout format when no output path is provided.",
+    )
+    history.add_argument("--json", type=Path, help="Write JSON ledger to this path.")
+    history.add_argument(
+        "--markdown", type=Path, help="Write Markdown ledger to this path."
+    )
+
     catalysts = subparsers.add_parser(
         "catalysts",
         help="Render a catalyst calendar checklist.",
@@ -421,6 +554,70 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     stress.add_argument(
         "--markdown", type=Path, help="Write Markdown stress report to this path."
+    )
+
+    watchlist = subparsers.add_parser(
+        "rebalance-watchlist",
+        help="Build an educational review watchlist without trade recommendations.",
+        description=(
+            "Combine target drift, guardrail WARN/FAIL items, concentration, and "
+            "stress drawdowns into a broker-free educational review watchlist with "
+            "reason codes and severity. The output does not recommend trades or quantities."
+        ),
+    )
+    watchlist.add_argument("holdings_csv", type=Path, help="Path to holdings CSV.")
+    watchlist.add_argument("scenario_json", type=Path, help="Path to scenario JSON.")
+    watchlist.add_argument(
+        "--config",
+        type=Path,
+        required=True,
+        help="JSON config with targets and guardrail policy fields.",
+    )
+    watchlist.add_argument(
+        "--snapshot-date",
+        help="Portfolio snapshot date for review cadence checks. Defaults to today.",
+    )
+    watchlist.add_argument(
+        "--last-review-date",
+        help="Last completed portfolio review date. Overrides config last_review_date.",
+    )
+    watchlist.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="json",
+        help="Stdout format when no output path is provided.",
+    )
+    watchlist.add_argument(
+        "--json", type=Path, help="Write JSON watchlist to this path."
+    )
+    watchlist.add_argument(
+        "--markdown", type=Path, help="Write Markdown watchlist to this path."
+    )
+
+    review_memo = subparsers.add_parser(
+        "review-memo",
+        help="Assemble generated artifacts into a human review Markdown memo.",
+        description=(
+            "Read exposure, guardrails, stress, catalysts, history, and rebalance "
+            "watchlist JSON artifacts from an outputs directory and combine them "
+            "into a single Markdown memo with assumptions and a non-advice boundary."
+        ),
+    )
+    review_memo.add_argument(
+        "--outputs-dir",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR,
+        help=f"Directory containing generated JSON artifacts. Defaults to {DEFAULT_OUTPUT_DIR}.",
+    )
+    review_memo.add_argument(
+        "--markdown",
+        type=Path,
+        help="Path to write the Markdown memo. Prints Markdown to stdout when omitted.",
+    )
+    review_memo.add_argument(
+        "--title",
+        default="Portfolio Review Memo",
+        help="Memo title. Defaults to 'Portfolio Review Memo'.",
     )
 
     template_list = subparsers.add_parser(
@@ -529,6 +726,38 @@ def _build_parser() -> argparse.ArgumentParser:
         "--json",
         type=Path,
         help="Path to write adapter JSON. Prints JSON to stdout when omitted.",
+    )
+
+    docs_export = subparsers.add_parser(
+        "docs-export",
+        help="Write a deterministic single-file CLI and artifact reference.",
+        description=(
+            "Write CLI reference, input schemas, artifact inventory, safety boundary, "
+            "and generated example output to one no-JavaScript Markdown or HTML file."
+        ),
+    )
+    docs_export.add_argument(
+        "--output",
+        type=Path,
+        default=DEFAULT_DOCS_EXPORT,
+        help=f"Path to write the docs file. Defaults to {DEFAULT_DOCS_EXPORT}.",
+    )
+    docs_export.add_argument(
+        "--outputs-dir",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR,
+        help=f"Directory to inventory. Defaults to {DEFAULT_OUTPUT_DIR}.",
+    )
+    docs_export.add_argument(
+        "--format",
+        choices=("markdown", "html"),
+        default="markdown",
+        help="Docs format. Defaults to Markdown.",
+    )
+    docs_export.add_argument(
+        "--title",
+        default="Portfolio Risk Compass Docs Export",
+        help="Document title.",
     )
 
     package_audit = subparsers.add_parser(

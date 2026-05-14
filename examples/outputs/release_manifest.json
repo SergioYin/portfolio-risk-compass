@@ -1,5 +1,5 @@
 {
-  "artifact_count": 43,
+  "artifact_count": 54,
   "artifacts": [
     {
       "bytes": 1198,
@@ -14,22 +14,22 @@
       "sha256": "6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6"
     },
     {
-      "bytes": 14644,
+      "bytes": 16145,
       "format": "html",
       "path": "dashboard.html",
-      "sha256": "2a0c2318d971dbf03d35f5ebaa9967b2515d15b33994739164f6eb2c48cc11fd"
+      "sha256": "0faa2e0a2ca30cb6db1e282423f0e440443ab92387a05d7c3171158be71ad354"
     },
     {
-      "bytes": 1100,
+      "bytes": 1147,
       "format": "markdown",
       "path": "dashboard_preview.md",
-      "sha256": "a0a051ff0366c42dc12654c27bea76a24068022de6a6502dfa29b92c5bb67944"
+      "sha256": "15666ede03bed22d242605024edf02faf329c56beeccca23c09437e59caecac0"
     },
     {
-      "bytes": 779,
+      "bytes": 876,
       "format": "html",
       "path": "dashboard_snippet.html",
-      "sha256": "c81bf7888b9ec07f5443622e2d0d0f8f2c8ae1d5d14cf02bfa6c60645914f4a7"
+      "sha256": "bdedaa119048fd3ff5cdf9ac0fd460b99e12f0338f45790352498194f12254b4"
     },
     {
       "bytes": 3747,
@@ -44,10 +44,10 @@
       "sha256": "c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6"
     },
     {
-      "bytes": 1950,
+      "bytes": 2068,
       "format": "markdown",
       "path": "gallery.md",
-      "sha256": "a26f1cc727d44e3fd7bc3cb83020c42b7c13b4c83f742bdec55c8dff01a4b26d"
+      "sha256": "a1336dedf3f71fa95aaa11d9c718148c2a50aafd2879c48737283683d9bb9ea4"
     },
     {
       "bytes": 2644,
@@ -62,10 +62,22 @@
       "sha256": "36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c"
     },
     {
-      "bytes": 10648,
+      "bytes": 5520,
+      "format": "json",
+      "path": "history.json",
+      "sha256": "0a90df843340771135e341619be8880d93b9fc2cff4dedfb02c24fe80bc5b6f7"
+    },
+    {
+      "bytes": 1219,
+      "format": "markdown",
+      "path": "history.md",
+      "sha256": "782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186"
+    },
+    {
+      "bytes": 13816,
       "format": "json",
       "path": "index.json",
-      "sha256": "75e19319c1e3603e5c0654c00860ca62a54382b2f9c4354c45a4afa099025fa0"
+      "sha256": "51bf9e4f1fbb068d34a58b4a30e40c88bfb855016b7c1e491bc8984c91f78902"
     },
     {
       "bytes": 2441,
@@ -78,6 +90,24 @@
       "format": "json",
       "path": "leveraged_etp_risk_lab_adapter.json",
       "sha256": "866db8127afbabf788523aa45d66603810026fe947c901ff7626d08294a07170"
+    },
+    {
+      "bytes": 6298,
+      "format": "json",
+      "path": "rebalance_watchlist.json",
+      "sha256": "14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80"
+    },
+    {
+      "bytes": 2386,
+      "format": "markdown",
+      "path": "rebalance_watchlist.md",
+      "sha256": "d36cea814fee02520e73f53bc164369c289e8dff97b7bc08d244e9eaf70253ae"
+    },
+    {
+      "bytes": 6337,
+      "format": "markdown",
+      "path": "review_memo.md",
+      "sha256": "cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8"
     },
     {
       "bytes": 4167,
@@ -134,6 +164,18 @@
       "sha256": "7bd2ca6bff41e85c1ed841203bd5cb8d00815f2ea528716bfc8a2a6f1d005890"
     },
     {
+      "bytes": 9243,
+      "format": "json",
+      "path": "templates/cash-rebalance/rebalance_watchlist.json",
+      "sha256": "e6fbe69d797f9ff2b75a96aa0e483865d54c7c26f551dc9d9bd24cf575db00ab"
+    },
+    {
+      "bytes": 3519,
+      "format": "markdown",
+      "path": "templates/cash-rebalance/rebalance_watchlist.md",
+      "sha256": "c6bcdc7dc3ee3f6974d413d71376f8f0bb5181446cc949c4437136468a04f205"
+    },
+    {
       "bytes": 5220,
       "format": "json",
       "path": "templates/cash-rebalance/snapshot_current.json",
@@ -188,6 +230,18 @@
       "sha256": "182b86b6181661f3ed2dd5e4d0f88f3efaa301cc7cc211fee152029bbc36dae7"
     },
     {
+      "bytes": 9512,
+      "format": "json",
+      "path": "templates/etf-core/rebalance_watchlist.json",
+      "sha256": "12c35f366fcb9863550afcd0806d80c34ac3841e56653b0636e51ef325cb9efc"
+    },
+    {
+      "bytes": 3456,
+      "format": "markdown",
+      "path": "templates/etf-core/rebalance_watchlist.md",
+      "sha256": "05f1290fe6b74a77407844492b962405cce275f25d993ca8801555785bd56776"
+    },
+    {
       "bytes": 4356,
       "format": "json",
       "path": "templates/etf-core/snapshot_current.json",
@@ -240,6 +294,18 @@
       "format": "markdown",
       "path": "templates/leveraged-sleeve/guardrails.md",
       "sha256": "f43bed65e5a4dcd315d9d60f07a7f532133cc989a8895bd585879d373fade346"
+    },
+    {
+      "bytes": 10144,
+      "format": "json",
+      "path": "templates/leveraged-sleeve/rebalance_watchlist.json",
+      "sha256": "3f4f8700f450c90577e8711b324943da1d8a338343800bc14baa074e3e8b5e9b"
+    },
+    {
+      "bytes": 3701,
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/rebalance_watchlist.md",
+      "sha256": "56e873a049c0e213cabe1b015844e0a53e17b275018b9b83f28c65473121474c"
     },
     {
       "bytes": 5184,

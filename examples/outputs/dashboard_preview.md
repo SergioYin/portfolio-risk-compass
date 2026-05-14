@@ -22,3 +22,4 @@ Safety boundary: Static portfolio review artifact only; not investment advice, t
 | `catalysts.md` | markdown | 711 |
 | `guardrails.md` | markdown | 1227 |
 | `stress.md` | markdown | 1024 |
+| `rebalance_watchlist.md` | markdown | 2386 |

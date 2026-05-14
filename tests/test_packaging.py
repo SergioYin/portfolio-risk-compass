@@ -55,11 +55,15 @@ class PackagingCommandTests(unittest.TestCase):
                 run_tests=False,
             )
 
-        self.assertEqual(report["version"], "0.2.0")
-        self.assertEqual(report["command_count"], 12)
+        self.assertEqual(report["version"], "0.3.0")
+        self.assertEqual(report["command_count"], 16)
         self.assertEqual(report["fixture_count"], 1)
         self.assertEqual(report["output_artifact_count"], 1)
         self.assertFalse(report["tests"]["run"])
+        self.assertEqual(
+            report["tests"]["command"],
+            ["python", "-m", "unittest", "discover", "-s", "tests"],
+        )
         self.assertIn("LICENSE", report["missing_packaging_items"])
         self.assertIn("package module", report["missing_packaging_items"])
 
@@ -109,6 +113,7 @@ class PackagingCommandTests(unittest.TestCase):
             output_dir = Path(temp_dir) / "outputs"
             output_dir.mkdir()
             (output_dir / "report.json").write_text("{}\n", encoding="utf-8")
+            (output_dir / "docs_export.md").write_text("# Docs\n", encoding="utf-8")
             json_path = output_dir / "release_manifest.json"
             markdown_path = output_dir / "release_manifest.md"
 
@@ -133,6 +138,7 @@ class PackagingCommandTests(unittest.TestCase):
 
         self.assertEqual(manifest["artifact_count"], 1)
         self.assertEqual(manifest["artifacts"][0]["path"], "report.json")
+        self.assertNotIn("docs_export.md", markdown)
         self.assertIn("# Release Manifest", markdown)
         self.assertEqual(
             stdout.write.call_args_list[0].args[0],

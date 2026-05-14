@@ -299,6 +299,7 @@ def _select_gallery_artifacts(manifest: dict) -> list[dict]:
         "exposure_report.md",
         "guardrails.md",
         "stress.md",
+        "rebalance_watchlist.md",
         "catalysts.md",
         "index.json",
     }

@@ -11,9 +11,12 @@ Typical requests include:
 
 - Build an exposure report from a holdings CSV.
 - Compare portfolio snapshots.
+- Build a history ledger from a snapshot directory.
 - Check configured guardrails.
 - Run scenario stress analysis.
+- Build an educational rebalance review watchlist without trade quantities.
 - Prepare a catalyst checklist.
+- Assemble generated artifacts into a human review memo.
 - Generate the demo bundle or static dashboard.
 - Audit package readiness or create a release manifest.
 
@@ -24,9 +27,12 @@ Route tasks to the command that matches the requested output:
 - Exposure summaries: `portfolio-risk-compass analyze`.
 - Dated portfolio state: `portfolio-risk-compass snapshot`.
 - Snapshot comparison: `portfolio-risk-compass diff`.
+- Snapshot ledger trends: `portfolio-risk-compass history`.
 - Policy checks: `portfolio-risk-compass guardrails`.
 - Scenario shocks: `portfolio-risk-compass stress`.
+- Educational rebalance review watchlist: `portfolio-risk-compass rebalance-watchlist`.
 - Catalyst tracking: `portfolio-risk-compass catalysts`.
+- Human review memo: `portfolio-risk-compass review-memo`.
 - Demo artifacts: `portfolio-risk-compass demo-bundle`.
 - Dashboard export: `portfolio-risk-compass dashboard`.
 - Package checks: `portfolio-risk-compass package-audit`.
@@ -64,6 +70,14 @@ Compare snapshots:
 portfolio-risk-compass diff snapshots/previous.json snapshots/current.json --json
 ```
 
+Build a history ledger:
+
+```bash
+portfolio-risk-compass history examples/fixtures/history \
+  --json history.json \
+  --markdown history.md
+```
+
 Check guardrails:
 
 ```bash
@@ -81,6 +95,19 @@ portfolio-risk-compass stress examples/fixtures/holdings.csv examples/fixtures/s
   --markdown stress.md
 ```
 
+Build an educational rebalance review watchlist:
+
+```bash
+portfolio-risk-compass rebalance-watchlist examples/fixtures/holdings.csv examples/fixtures/scenario.json \
+  --config examples/fixtures/config.json \
+  --json rebalance_watchlist.json \
+  --markdown rebalance_watchlist.md
+```
+
+Treat watchlist output as review evidence only. It must not be converted into
+trade instructions, order types, position quantities, account transfers, or
+timing recommendations.
+
 Build catalysts:
 
 ```bash
@@ -89,6 +116,18 @@ portfolio-risk-compass catalysts examples/fixtures/catalysts.json \
   --json catalysts.json \
   --markdown catalysts.md
 ```
+
+Assemble a human review memo from generated artifacts:
+
+```bash
+portfolio-risk-compass review-memo \
+  --outputs-dir examples/outputs \
+  --markdown review_memo.md
+```
+
+Treat memo output as educational review context only. It is not investment,
+tax, legal, accounting, or trading advice and must not be converted into
+buy, sell, hold, sizing, order type, transfer, or timing recommendations.
 
 Build demo outputs and dashboard:
 

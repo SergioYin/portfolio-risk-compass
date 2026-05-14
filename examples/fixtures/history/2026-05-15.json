@@ -1,0 +1,60 @@
+{
+  "catalysts": {
+    "metadata": {
+      "as_of": "2026-05-15",
+      "catalyst_count": 3,
+      "overdue_count": 1,
+      "today_count": 1,
+      "upcoming_count": 1
+    }
+  },
+  "guardrails": {
+    "items": [
+      {
+        "status": "PASS"
+      },
+      {
+        "status": "FAIL"
+      },
+      {
+        "status": "PASS"
+      }
+    ],
+    "metadata": {
+      "configured_checks": 3,
+      "overall_status": "FAIL",
+      "snapshot_date": "2026-05-15"
+    }
+  },
+  "report": {
+    "metadata": {
+      "total_market_value": "7350.00"
+    },
+    "target_drift": {
+      "asset_class": [
+        {
+          "actual_pct": "13.6054",
+          "bucket": "Cash",
+          "drift_pct": "3.6054",
+          "target_pct": "10.0000"
+        },
+        {
+          "actual_pct": "66.6667",
+          "bucket": "Equity",
+          "drift_pct": "-3.3333",
+          "target_pct": "70.0000"
+        },
+        {
+          "actual_pct": "19.7279",
+          "bucket": "Fixed Income",
+          "drift_pct": "-0.2721",
+          "target_pct": "20.0000"
+        }
+      ]
+    }
+  },
+  "snapshot": {
+    "date": "2026-05-15",
+    "id": "ledger-2026-05-15"
+  }
+}

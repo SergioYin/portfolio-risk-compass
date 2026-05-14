@@ -80,6 +80,9 @@ The repository includes generated artifacts under
 | [`exposure_report.md`](examples/outputs/exposure_report.md) | Allocation, concentration, and target drift summary |
 | [`guardrails.md`](examples/outputs/guardrails.md) | PASS/WARN/FAIL policy checks |
 | [`stress.md`](examples/outputs/stress.md) | Scenario shock impacts by rule and holding |
+| [`rebalance_watchlist.md`](examples/outputs/rebalance_watchlist.md) | Educational review watchlist with severity and reason codes |
+| [`review_memo.md`](examples/outputs/review_memo.md) | Human review memo combining exposure, guardrails, stress, catalysts, history, and watchlist artifacts |
+| [`history.md`](examples/outputs/history.md) | Snapshot ledger trends for value, drift, guardrails, and catalysts |
 | [`catalysts.md`](examples/outputs/catalysts.md) | Date-ordered thesis event checklist |
 | [`dashboard.html`](examples/outputs/dashboard.html) | Self-contained static dashboard export |
 | [`gallery.md`](examples/outputs/gallery.md) | Static gallery index for dashboard and demo artifacts |
@@ -171,6 +174,50 @@ The diff includes total market value, allocation bucket value and percentage
 point changes, concentration entries added or removed from the configured limit,
 and target drift percentage point changes.
 
+## History Ledger
+
+Build a stateful trend ledger from a directory of snapshot JSON files:
+
+```bash
+portfolio-risk-compass history examples/fixtures/history \
+  --json examples/outputs/history.json \
+  --markdown examples/outputs/history.md
+```
+
+When no `--json` or `--markdown` path is provided, JSON is printed to stdout.
+Use `--format markdown` to print Markdown instead. Snapshot files are ordered by
+snapshot date, id, and filename, so output is deterministic even when directory
+iteration order differs by platform.
+
+The ledger reports total market value by snapshot, period-over-period value
+change, first-to-last target drift changes, guardrail status counts when a
+snapshot contains a top-level `guardrails` or `guardrail_review` block, and
+catalyst counts when a snapshot contains a top-level `catalysts` or
+`catalyst_checklist` block.
+
+Optional snapshot enrichment shape:
+
+```json
+{
+  "snapshot": {"id": "ledger-2026-05-15", "date": "2026-05-15"},
+  "report": {
+    "metadata": {"total_market_value": "7350.00"},
+    "target_drift": {
+      "asset_class": [
+        {"bucket": "Equity", "actual_pct": "66.6667", "target_pct": "70.0000", "drift_pct": "-3.3333"}
+      ]
+    }
+  },
+  "guardrails": {
+    "metadata": {"overall_status": "FAIL", "configured_checks": 3},
+    "items": [{"status": "PASS"}, {"status": "FAIL"}]
+  },
+  "catalysts": {
+    "metadata": {"catalyst_count": 3, "overdue_count": 1, "today_count": 1, "upcoming_count": 1}
+  }
+}
+```
+
 ## Guardrail Policy Checks
 
 Run configured portfolio review guardrails against a holdings file:
@@ -249,6 +296,38 @@ includes scenario totals, named shock market value impacts, per-holding stressed
 market value, value deltas, total price move, and contribution percentage-point
 deltas.
 
+## Rebalance Review Watchlist
+
+Build a broker-free educational watchlist from target drift, guardrail WARN/FAIL
+items, concentration, and stress drawdowns:
+
+```bash
+portfolio-risk-compass rebalance-watchlist examples/fixtures/holdings.csv examples/fixtures/scenario.json \
+  --config examples/fixtures/config.json \
+  --snapshot-date 2026-05-15 \
+  --json rebalance_watchlist.json \
+  --markdown rebalance_watchlist.md
+```
+
+When no `--json` or `--markdown` path is provided, JSON is printed to stdout.
+Use `--format markdown` to print Markdown instead.
+
+The watchlist groups review reasons by subject, assigns `high`, `medium`, or
+`low` severity, and includes reason codes such as `TARGET_DRIFT`,
+`GUARDRAIL_FAIL`, `CONCENTRATION_LIMIT`, and `STRESS_DRAWDOWN`.
+
+Safety boundary: this command does not recommend trades, order types, position
+quantities, account transfers, or timing. It only identifies topics that may
+deserve human review against a documented allocation and risk policy.
+
+Sample watchlist output:
+
+```markdown
+| Severity | Scope type | Scope | Reason codes | Evidence summary |
+| --- | --- | --- | --- | --- |
+| high | holding | AAPL | CONCENTRATION_LIMIT, STRESS_DRAWDOWN | concentration 25.8503% vs limit 25.0000%; Risk-off rotation stress move -15.0000% |
+```
+
 ## Catalyst Calendar
 
 Track thesis-relevant portfolio events with a plain JSON fixture:
@@ -283,6 +362,27 @@ Output is date ordered. Each item is flagged as `overdue`, `today`, or
 `upcoming` relative to `--as-of`, and Markdown output groups items into checklist
 sections.
 
+## Review Memo
+
+Combine the generated JSON artifacts into one Markdown memo for human review:
+
+```bash
+portfolio-risk-compass review-memo \
+  --outputs-dir examples/outputs \
+  --markdown examples/outputs/review_memo.md
+```
+
+The command reads `exposure_report.json`, `guardrails.json`, `stress.json`,
+`catalysts.json`, `history.json`, and `rebalance_watchlist.json` from the output
+directory. The memo includes source artifact paths, an executive summary,
+exposure and concentration tables, guardrail results, stress impacts, catalysts,
+history, explicit assumptions, and a non-advice boundary. When `--markdown` is
+omitted, Markdown is printed to stdout.
+
+Boundary: the memo is for educational human review only. It is not investment,
+tax, legal, accounting, or trading advice, and it does not recommend buying,
+selling, holding, position sizes, order types, account transfers, or timing.
+
 ## Demo Bundle and Dashboard Export
 
 List the named example portfolio templates:
@@ -315,6 +415,9 @@ portfolio-risk-compass demo-bundle \
 
 The command writes `examples/outputs/index.json`, a manifest for the generated
 JSON and Markdown reports. It also refreshes
+[`examples/outputs/history.json`](examples/outputs/history.json),
+[`examples/outputs/history.md`](examples/outputs/history.md),
+[`examples/outputs/review_memo.md`](examples/outputs/review_memo.md),
 [`examples/outputs/gallery.md`](examples/outputs/gallery.md),
 [`examples/outputs/dashboard_preview.md`](examples/outputs/dashboard_preview.md),
 and
@@ -407,6 +510,25 @@ portfolio-risk-compass release-manifest \
   --outputs-dir examples/outputs \
   --json dist/release_manifest.json \
   --markdown dist/release_manifest.md
+```
+
+Export a deterministic single-file reference for CLI usage, accepted input
+schemas, generated artifact inventory, safety boundaries, and a generated
+example snippet:
+
+```bash
+portfolio-risk-compass docs-export
+```
+
+By default this writes
+[`examples/outputs/docs_export.md`](examples/outputs/docs_export.md). The export
+is Markdown or no-JavaScript HTML:
+
+```bash
+portfolio-risk-compass docs-export \
+  --outputs-dir examples/outputs \
+  --output dist/portfolio-risk-compass-reference.html \
+  --format html
 ```
 
 ## Roadmap

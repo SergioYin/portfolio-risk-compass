@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "snapshot_count": 3,
+  "snapshot_directory": "examples/fixtures/history",
+  "snapshots": [
+    {
+      "catalysts": {
+        "catalyst_count": 2,
+        "overdue_count": 0,
+        "today_count": 1,
+        "upcoming_count": 1
+      },
+      "date": "2026-05-13",
+      "exposure_drift": {
+        "asset_class": [
+          {
+            "actual_pct": "12.0000",
+            "bucket": "Cash",
+            "drift_pct": "2.0000",
+            "target_pct": "10.0000"
+          },
+          {
+            "actual_pct": "68.0000",
+            "bucket": "Equity",
+            "drift_pct": "-2.0000",
+            "target_pct": "70.0000"
+          },
+          {
+            "actual_pct": "20.0000",
+            "bucket": "Fixed Income",
+            "drift_pct": "0.0000",
+            "target_pct": "20.0000"
+          }
+        ]
+      },
+      "guardrails": {
+        "configured_checks": 2,
+        "fail_count": 0,
+        "overall_status": "WARN",
+        "pass_count": 1,
+        "warn_count": 1
+      },
+      "id": "ledger-2026-05-13",
+      "source_file": "2026-05-13.json",
+      "total_market_value": {
+        "change": "0.00",
+        "change_pct": "0.0000",
+        "value": "7000.00"
+      }
+    },
+    {
+      "catalysts": {
+        "catalyst_count": 3,
+        "overdue_count": 1,
+        "today_count": 0,
+        "upcoming_count": 2
+      },
+      "date": "2026-05-14",
+      "exposure_drift": {
+        "asset_class": [
+          {
+            "actual_pct": "13.0000",
+            "bucket": "Cash",
+            "drift_pct": "3.0000",
+            "target_pct": "10.0000"
+          },
+          {
+            "actual_pct": "67.0000",
+            "bucket": "Equity",
+            "drift_pct": "-3.0000",
+            "target_pct": "70.0000"
+          },
+          {
+            "actual_pct": "20.0000",
+            "bucket": "Fixed Income",
+            "drift_pct": "0.0000",
+            "target_pct": "20.0000"
+          }
+        ]
+      },
+      "guardrails": {
+        "configured_checks": 2,
+        "fail_count": 1,
+        "overall_status": "FAIL",
+        "pass_count": 1,
+        "warn_count": 0
+      },
+      "id": "ledger-2026-05-14",
+      "source_file": "2026-05-14.json",
+      "total_market_value": {
+        "change": "250.00",
+        "change_pct": "3.5714",
+        "value": "7250.00"
+      }
+    },
+    {
+      "catalysts": {
+        "catalyst_count": 3,
+        "overdue_count": 1,
+        "today_count": 1,
+        "upcoming_count": 1
+      },
+      "date": "2026-05-15",
+      "exposure_drift": {
+        "asset_class": [
+          {
+            "actual_pct": "13.6054",
+            "bucket": "Cash",
+            "drift_pct": "3.6054",
+            "target_pct": "10.0000"
+          },
+          {
+            "actual_pct": "66.6667",
+            "bucket": "Equity",
+            "drift_pct": "-3.3333",
+            "target_pct": "70.0000"
+          },
+          {
+            "actual_pct": "19.7279",
+            "bucket": "Fixed Income",
+            "drift_pct": "-0.2721",
+            "target_pct": "20.0000"
+          }
+        ]
+      },
+      "guardrails": {
+        "configured_checks": 3,
+        "fail_count": 1,
+        "overall_status": "FAIL",
+        "pass_count": 2,
+        "warn_count": 0
+      },
+      "id": "ledger-2026-05-15",
+      "source_file": "2026-05-15.json",
+      "total_market_value": {
+        "change": "100.00",
+        "change_pct": "1.3793",
+        "value": "7350.00"
+      }
+    }
+  ],
+  "trends": {
+    "catalyst_counts": [
+      {
+        "catalyst_count": 2,
+        "date": "2026-05-13",
+        "id": "ledger-2026-05-13",
+        "overdue_count": 0,
+        "today_count": 1,
+        "upcoming_count": 1
+      },
+      {
+        "catalyst_count": 3,
+        "date": "2026-05-14",
+        "id": "ledger-2026-05-14",
+        "overdue_count": 1,
+        "today_count": 0,
+        "upcoming_count": 2
+      },
+      {
+        "catalyst_count": 3,
+        "date": "2026-05-15",
+        "id": "ledger-2026-05-15",
+        "overdue_count": 1,
+        "today_count": 1,
+        "upcoming_count": 1
+      }
+    ],
+    "exposure_drift": {
+      "asset_class": [
+        {
+          "bucket": "Cash",
+          "first_drift_pct": "2.0000",
+          "last_drift_pct": "3.6054",
+          "pct_point_change": "1.6054"
+        },
+        {
+          "bucket": "Equity",
+          "first_drift_pct": "-2.0000",
+          "last_drift_pct": "-3.3333",
+          "pct_point_change": "-1.3333"
+        },
+        {
+          "bucket": "Fixed Income",
+          "first_drift_pct": "0.0000",
+          "last_drift_pct": "-0.2721",
+          "pct_point_change": "-0.2721"
+        }
+      ]
+    },
+    "guardrail_status": [
+      {
+        "configured_checks": 2,
+        "date": "2026-05-13",
+        "fail_count": 0,
+        "id": "ledger-2026-05-13",
+        "overall_status": "WARN",
+        "pass_count": 1,
+        "warn_count": 1
+      },
+      {
+        "configured_checks": 2,
+        "date": "2026-05-14",
+        "fail_count": 1,
+        "id": "ledger-2026-05-14",
+        "overall_status": "FAIL",
+        "pass_count": 1,
+        "warn_count": 0
+      },
+      {
+        "configured_checks": 3,
+        "date": "2026-05-15",
+        "fail_count": 1,
+        "id": "ledger-2026-05-15",
+        "overall_status": "FAIL",
+        "pass_count": 2,
+        "warn_count": 0
+      }
+    ],
+    "total_market_value": {
+      "change": "350.00",
+      "change_pct": "5.0000",
+      "first": "7000.00",
+      "last": "7350.00"
+    }
+  }
+}

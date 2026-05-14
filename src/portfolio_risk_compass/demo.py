@@ -22,7 +22,14 @@ from .guardrails import (
     render_guardrail_markdown,
 )
 from .holdings import read_holdings_csv
+from .history import build_history_ledger, render_history_json, render_history_markdown
+from .rebalance_watchlist import (
+    build_rebalance_watchlist,
+    render_rebalance_watchlist_json,
+    render_rebalance_watchlist_markdown,
+)
 from .reports import render_json_report, render_markdown_report
+from .review_memo import build_review_memo, render_review_memo_markdown
 from .snapshots import build_snapshot, render_snapshot_json
 from .stress import (
     read_scenario_json,
@@ -85,12 +92,7 @@ def build_demo_bundle(
         "as_of": as_of,
         "fixtures": {
             "directory": str(fixtures_dir),
-            "files": [
-                "holdings.csv",
-                "config.json",
-                "catalysts.json",
-                "scenario.json",
-            ],
+            "files": _fixture_files(fixtures_dir),
         },
         "templates": {
             **template_manifest(templates_dir),
@@ -117,6 +119,7 @@ def _build_fixture_artifacts(
     config_path = fixtures_dir / "config.json"
     catalysts_path = fixtures_dir / "catalysts.json"
     scenario_path = fixtures_dir / "scenario.json"
+    history_dir = fixtures_dir / "history"
 
     holdings = read_holdings_csv(holdings_path)
     config = read_config_json(config_path)
@@ -138,8 +141,13 @@ def _build_fixture_artifacts(
 
     scenario = read_scenario_json(scenario_path)
     stress_report = stress_portfolio(holdings, scenario)
+    rebalance_watchlist = build_rebalance_watchlist(
+        exposure_report,
+        guardrail_review,
+        stress_report,
+    )
 
-    return [
+    artifacts = [
         _write_artifact(
             output_dir,
             f"{output_prefix}exposure_report.json",
@@ -212,7 +220,79 @@ def _build_fixture_artifacts(
             ("holdings.csv", "scenario.json"),
             render_stress_markdown(stress_report),
         ),
+        _write_artifact(
+            output_dir,
+            f"{output_prefix}rebalance_watchlist.json",
+            "json",
+            "Educational rebalance review watchlist as JSON.",
+            ("holdings.csv", "config.json", "scenario.json"),
+            render_rebalance_watchlist_json(rebalance_watchlist),
+        ),
+        _write_artifact(
+            output_dir,
+            f"{output_prefix}rebalance_watchlist.md",
+            "markdown",
+            "Educational rebalance review watchlist as Markdown.",
+            ("holdings.csv", "config.json", "scenario.json"),
+            render_rebalance_watchlist_markdown(rebalance_watchlist),
+        ),
     ]
+    if history_dir.is_dir():
+        history_ledger = build_history_ledger(history_dir)
+        artifacts.extend(
+            [
+                _write_artifact(
+                    output_dir,
+                    f"{output_prefix}history.json",
+                    "json",
+                    "Portfolio history ledger as JSON.",
+                    ("history/*.json",),
+                    render_history_json(history_ledger),
+                ),
+                _write_artifact(
+                    output_dir,
+                    f"{output_prefix}history.md",
+                    "markdown",
+                    "Portfolio history ledger as Markdown.",
+                    ("history/*.json",),
+                    render_history_markdown(history_ledger),
+                ),
+            ]
+        )
+        artifacts.append(
+            _write_artifact(
+                output_dir,
+                f"{output_prefix}review_memo.md",
+                "markdown",
+                "Human review memo combining generated portfolio artifacts.",
+                (
+                    "holdings.csv",
+                    "config.json",
+                    "scenario.json",
+                    "catalysts.json",
+                    "history/*.json",
+                ),
+                render_review_memo_markdown(
+                    build_review_memo(
+                        output_dir / output_prefix,
+                        title="Portfolio Review Memo",
+                    )
+                ),
+            )
+        )
+    return artifacts
+
+
+def _fixture_files(fixtures_dir: Path) -> list[str]:
+    files = [
+        "holdings.csv",
+        "config.json",
+        "catalysts.json",
+        "scenario.json",
+    ]
+    if (fixtures_dir / "history").is_dir():
+        files.append("history/*.json")
+    return files
 
 
 def _write_artifact(

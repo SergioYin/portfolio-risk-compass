@@ -1,0 +1,302 @@
+{
+  "items": [
+    {
+      "educational_review_prompt": "Review whether holding QQQ still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-1907.19",
+          "matched_shocks": [
+            "Technology factor selloff",
+            "Broad equity risk-off"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Growth shock with leverage drag",
+          "total_price_move_pct": "-17.0000"
+        }
+      ],
+      "evidence_summary": "Growth shock with leverage drag stress move -17.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "QQQ",
+      "scope_type": "holding",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether holding TQQQ still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-700.80",
+          "matched_shocks": [
+            "Technology factor selloff",
+            "Leveraged ETF decay proxy"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Growth shock with leverage drag",
+          "total_price_move_pct": "-20.0000"
+        }
+      ],
+      "evidence_summary": "Growth shock with leverage drag stress move -20.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "TQQQ",
+      "scope_type": "holding",
+      "severity": "high"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Cash still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "5.2846",
+          "drift_pct": "-2.7154",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "8.0000"
+        },
+        {
+          "actual": "5.2846",
+          "check": "min_cash_pct",
+          "limit": "5.0000",
+          "message": "Cash is 5.2846% of portfolio.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        }
+      ],
+      "evidence_summary": "drift -2.7154% vs target 8.0000%; min_cash_pct WARN: actual 5.2846, limit 5.0000",
+      "reason_codes": [
+        "GUARDRAIL_WARN",
+        "TARGET_DRIFT"
+      ],
+      "scope": "Cash",
+      "scope_type": "asset_class",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether holding SPY still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "limit_pct": "40.0000",
+          "market_value": "21004.00",
+          "portfolio_pct": "44.3991",
+          "reason_code": "CONCENTRATION_LIMIT"
+        },
+        {
+          "actual": "44.3991",
+          "check": "max_position_pct",
+          "limit": "45.0000",
+          "message": "SPY is 44.3991% of portfolio.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        },
+        {
+          "market_value_delta": "-1050.20",
+          "matched_shocks": [
+            "Broad equity risk-off"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Growth shock with leverage drag",
+          "total_price_move_pct": "-5.0000"
+        }
+      ],
+      "evidence_summary": "concentration 44.3991% vs limit 40.0000%; max_position_pct WARN: actual 44.3991, limit 45.0000; Growth shock with leverage drag stress move -5.0000%",
+      "reason_codes": [
+        "CONCENTRATION_LIMIT",
+        "GUARDRAIL_WARN",
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "SPY",
+      "scope_type": "holding",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether holding SSO still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-197.16",
+          "matched_shocks": [
+            "Leveraged ETF decay proxy"
+          ],
+          "reason_code": "STRESS_DRAWDOWN",
+          "scenario": "Growth shock with leverage drag",
+          "total_price_move_pct": "-8.0000"
+        }
+      ],
+      "evidence_summary": "Growth shock with leverage drag stress move -8.0000%",
+      "reason_codes": [
+        "STRESS_DRAWDOWN"
+      ],
+      "scope": "SSO",
+      "scope_type": "holding",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether the portfolio still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "market_value_delta": "-3789.19",
+          "market_value_delta_pct": "-8.0097",
+          "reason_code": "STRESS_PORTFOLIO_DRAWDOWN",
+          "scenario": "Growth shock with leverage drag"
+        }
+      ],
+      "evidence_summary": "Growth shock with leverage drag portfolio stress -8.0097%",
+      "reason_codes": [
+        "STRESS_PORTFOLIO_DRAWDOWN"
+      ],
+      "scope": "portfolio",
+      "scope_type": "portfolio",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Diversified still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "49.6087",
+          "drift_pct": "-5.3913",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "55.0000"
+        },
+        {
+          "actual": "49.6087",
+          "check": "max_sector_pct",
+          "limit": "55.0000",
+          "message": "Diversified sector is 49.6087% of portfolio.",
+          "reason_code": "GUARDRAIL_WARN",
+          "status": "WARN"
+        }
+      ],
+      "evidence_summary": "drift -5.3913% vs target 55.0000%; max_sector_pct WARN: actual 49.6087, limit 55.0000",
+      "reason_codes": [
+        "GUARDRAIL_WARN",
+        "TARGET_DRIFT"
+      ],
+      "scope": "Diversified",
+      "scope_type": "sector",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Technology still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "31.1216",
+          "drift_pct": "6.1216",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "25.0000"
+        }
+      ],
+      "evidence_summary": "drift 6.1216% vs target 25.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Technology",
+      "scope_type": "sector",
+      "severity": "medium"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Equity still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "68.1138",
+          "drift_pct": "3.1138",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "65.0000"
+        }
+      ],
+      "evidence_summary": "drift 3.1138% vs target 65.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Equity",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Fixed Income still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "13.9852",
+          "drift_pct": "1.9852",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "12.0000"
+        }
+      ],
+      "evidence_summary": "drift 1.9852% vs target 12.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Fixed Income",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether asset class Leveraged Equity still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "12.6165",
+          "drift_pct": "-2.3835",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "15.0000"
+        }
+      ],
+      "evidence_summary": "drift -2.3835% vs target 15.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Leveraged Equity",
+      "scope_type": "asset_class",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Cash still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "5.2846",
+          "drift_pct": "-2.7154",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "8.0000"
+        }
+      ],
+      "evidence_summary": "drift -2.7154% vs target 8.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Cash",
+      "scope_type": "sector",
+      "severity": "low"
+    },
+    {
+      "educational_review_prompt": "Review whether sector Treasury Bonds still fits the documented allocation, risk, liquidity, and time-horizon policy before taking any action.",
+      "evidence": [
+        {
+          "actual_pct": "13.9852",
+          "drift_pct": "1.9852",
+          "reason_code": "TARGET_DRIFT",
+          "target_pct": "12.0000"
+        }
+      ],
+      "evidence_summary": "drift 1.9852% vs target 12.0000%",
+      "reason_codes": [
+        "TARGET_DRIFT"
+      ],
+      "scope": "Treasury Bonds",
+      "scope_type": "sector",
+      "severity": "low"
+    }
+  ],
+  "metadata": {
+    "item_count": 13,
+    "review_type": "broker_free_rebalance_watchlist",
+    "safety_wording": "Educational portfolio review only. This watchlist does not recommend trades, order types, position quantities, account transfers, or timing. Use it to decide what deserves human review against your own policy.",
+    "schema_version": 1,
+    "severity_counts": {
+      "high": 2,
+      "low": 5,
+      "medium": 6
+    },
+    "source_artifacts": [
+      "exposure_report",
+      "guardrail_review",
+      "stress_report"
+    ]
+  }
+}
