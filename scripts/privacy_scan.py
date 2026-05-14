@@ -53,7 +53,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = _build_parser().parse_args(argv)
     root = args.root.resolve()
     terms = _private_terms(args.term)
-    findings = list(scan_repository(root, terms))
+    findings = list(scan_repository(root, terms, exclude_patterns=args.exclude))
 
     for finding in findings:
         print(f"{finding.path.relative_to(root)}:{finding.line}: {finding.rule}")
@@ -66,12 +66,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 0
 
 
-def scan_repository(root: Path, terms: Iterable[str]) -> Iterator[Finding]:
+def scan_repository(
+    root: Path,
+    terms: Iterable[str],
+    exclude_patterns: Sequence[str] = (),
+) -> Iterator[Finding]:
     term_rules = [
         (f"private_term:{index + 1}", re.compile(re.escape(term), re.IGNORECASE))
         for index, term in enumerate(dict.fromkeys(term for term in terms if term))
     ]
-    for path in _iter_text_paths(root):
+    for path in _iter_text_paths(root, exclude_patterns=exclude_patterns):
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
@@ -104,6 +108,15 @@ def _build_parser() -> argparse.ArgumentParser:
         default=[],
         help="Additional private term to flag. Can be supplied more than once.",
     )
+    parser.add_argument(
+        "--exclude",
+        action="append",
+        default=[],
+        help=(
+            "Relative path glob to skip, for known public fixtures. Can be supplied "
+            "more than once."
+        ),
+    )
     return parser
 
 
@@ -118,13 +131,16 @@ def _private_terms(extra_terms: Sequence[str]) -> list[str]:
     return terms
 
 
-def _iter_text_paths(root: Path) -> Iterator[Path]:
+def _iter_text_paths(root: Path, exclude_patterns: Sequence[str] = ()) -> Iterator[Path]:
     for path in sorted(root.rglob("*")):
         if not path.is_file():
             continue
-        if any(part in SKIPPED_DIRS for part in path.relative_to(root).parts):
+        relative_path = path.relative_to(root)
+        if any(part in SKIPPED_DIRS for part in relative_path.parts):
             continue
         if path.suffix.lower() in SKIPPED_SUFFIXES:
+            continue
+        if any(relative_path.match(pattern) for pattern in exclude_patterns):
             continue
         yield path
 

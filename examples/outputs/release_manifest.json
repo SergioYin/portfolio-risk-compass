@@ -1,5 +1,5 @@
 {
-  "artifact_count": 11,
+  "artifact_count": 43,
   "artifacts": [
     {
       "bytes": 1198,
@@ -14,10 +14,22 @@
       "sha256": "6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6"
     },
     {
-      "bytes": 11197,
+      "bytes": 14644,
       "format": "html",
       "path": "dashboard.html",
-      "sha256": "b49f680069dbbdd89f012c2e941ac986dc2e990a6f2c3191d27850f4fa651780"
+      "sha256": "2a0c2318d971dbf03d35f5ebaa9967b2515d15b33994739164f6eb2c48cc11fd"
+    },
+    {
+      "bytes": 1100,
+      "format": "markdown",
+      "path": "dashboard_preview.md",
+      "sha256": "a0a051ff0366c42dc12654c27bea76a24068022de6a6502dfa29b92c5bb67944"
+    },
+    {
+      "bytes": 779,
+      "format": "html",
+      "path": "dashboard_snippet.html",
+      "sha256": "c81bf7888b9ec07f5443622e2d0d0f8f2c8ae1d5d14cf02bfa6c60645914f4a7"
     },
     {
       "bytes": 3747,
@@ -32,6 +44,12 @@
       "sha256": "c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6"
     },
     {
+      "bytes": 1950,
+      "format": "markdown",
+      "path": "gallery.md",
+      "sha256": "a26f1cc727d44e3fd7bc3cb83020c42b7c13b4c83f742bdec55c8dff01a4b26d"
+    },
+    {
       "bytes": 2644,
       "format": "json",
       "path": "guardrails.json",
@@ -44,10 +62,22 @@
       "sha256": "36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c"
     },
     {
-      "bytes": 2334,
+      "bytes": 10648,
       "format": "json",
       "path": "index.json",
-      "sha256": "e5fb80b60f35194de3d2ab1478c04328123b575b36a4e4304bb460d9cd24e134"
+      "sha256": "75e19319c1e3603e5c0654c00860ca62a54382b2f9c4354c45a4afa099025fa0"
+    },
+    {
+      "bytes": 2441,
+      "format": "json",
+      "path": "invest_thesis_ledger_adapter.json",
+      "sha256": "4c4351aaf1ad9a8930cee64a82163619170692ceacf7f2bbc05301eb8ab5ea0a"
+    },
+    {
+      "bytes": 3954,
+      "format": "json",
+      "path": "leveraged_etp_risk_lab_adapter.json",
+      "sha256": "866db8127afbabf788523aa45d66603810026fe947c901ff7626d08294a07170"
     },
     {
       "bytes": 4167,
@@ -66,6 +96,168 @@
       "format": "markdown",
       "path": "stress.md",
       "sha256": "1066d939df0e190691409dc8b028033f077211f45a464db466703b241b86adb8"
+    },
+    {
+      "bytes": 1233,
+      "format": "json",
+      "path": "templates/cash-rebalance/catalysts.json",
+      "sha256": "c856b823b725ca0925d2e2e5aed104e6831ae1ab38ad21d25beff558590d41b4"
+    },
+    {
+      "bytes": 751,
+      "format": "markdown",
+      "path": "templates/cash-rebalance/catalysts.md",
+      "sha256": "8fca7d5a4ffb4d421e6eaa71f8c6f0cb1d55b8c3a1cf89c3bb2ab24d1fb17c3f"
+    },
+    {
+      "bytes": 4711,
+      "format": "json",
+      "path": "templates/cash-rebalance/exposure_report.json",
+      "sha256": "11e054a432a49082656d7d906d7c0ddb4249ec8cb2b0def40c1f8acf818f685e"
+    },
+    {
+      "bytes": 1603,
+      "format": "markdown",
+      "path": "templates/cash-rebalance/exposure_report.md",
+      "sha256": "37261f53c042abdddebb9791f1f51fdc2b60303e3bce071125d9cc092e1f4191"
+    },
+    {
+      "bytes": 3063,
+      "format": "json",
+      "path": "templates/cash-rebalance/guardrails.json",
+      "sha256": "7f95da29d0fd028673ef0046b10f4b0028e9bb0decd1311fad3bf0d66ee051b3"
+    },
+    {
+      "bytes": 1401,
+      "format": "markdown",
+      "path": "templates/cash-rebalance/guardrails.md",
+      "sha256": "7bd2ca6bff41e85c1ed841203bd5cb8d00815f2ea528716bfc8a2a6f1d005890"
+    },
+    {
+      "bytes": 5220,
+      "format": "json",
+      "path": "templates/cash-rebalance/snapshot_current.json",
+      "sha256": "f0501512b7b91c3b598e7d3c59243e57fb10c64e234ec36c02749bd1e4c8fb63"
+    },
+    {
+      "bytes": 4947,
+      "format": "json",
+      "path": "templates/cash-rebalance/stress.json",
+      "sha256": "b8a492b89f529b7628ddc7252ab53c4b641ec4d95c177ede4b89629b89431106"
+    },
+    {
+      "bytes": 1121,
+      "format": "markdown",
+      "path": "templates/cash-rebalance/stress.md",
+      "sha256": "b6b54c5519623a1129a0e4efbed254f39e1e02757553aac73c298ed1f6211697"
+    },
+    {
+      "bytes": 1221,
+      "format": "json",
+      "path": "templates/etf-core/catalysts.json",
+      "sha256": "b50fbf2ec08df456f6322dff824e6a9d028d982983ab5f8aa574d972655eca31"
+    },
+    {
+      "bytes": 742,
+      "format": "markdown",
+      "path": "templates/etf-core/catalysts.md",
+      "sha256": "11740e73735df27e2a2c015c6da84ce09bbcec1debb55f5ab3ca8ae58a5fd825"
+    },
+    {
+      "bytes": 3917,
+      "format": "json",
+      "path": "templates/etf-core/exposure_report.json",
+      "sha256": "820c1680faa166cf6a55f1242e56e5f97f8116b5d8a063a213b993e7e90e4ad1"
+    },
+    {
+      "bytes": 1384,
+      "format": "markdown",
+      "path": "templates/etf-core/exposure_report.md",
+      "sha256": "73f29c1fa9ef9933b5047d40f0677ef09b0064ebe9c9ce27bb3395e5ab77b43f"
+    },
+    {
+      "bytes": 2437,
+      "format": "json",
+      "path": "templates/etf-core/guardrails.json",
+      "sha256": "8cb9fda70fd244ecc3535f592f3126ae69ae883e3d49ea8fd3f0451461ab68a7"
+    },
+    {
+      "bytes": 1135,
+      "format": "markdown",
+      "path": "templates/etf-core/guardrails.md",
+      "sha256": "182b86b6181661f3ed2dd5e4d0f88f3efaa301cc7cc211fee152029bbc36dae7"
+    },
+    {
+      "bytes": 4356,
+      "format": "json",
+      "path": "templates/etf-core/snapshot_current.json",
+      "sha256": "774d480e568d53ebc6c06dd246318139a309904e2b64194e195f60b7ee97749a"
+    },
+    {
+      "bytes": 4765,
+      "format": "json",
+      "path": "templates/etf-core/stress.json",
+      "sha256": "015a952180e48fd5a4e61d406d74095c99970f0a68dc442268e8151b6bca9dac"
+    },
+    {
+      "bytes": 1054,
+      "format": "markdown",
+      "path": "templates/etf-core/stress.md",
+      "sha256": "3f434fd71a0ec5199f53f5bb79bd3d66a286b6911d66118b339bf0f16bb40e87"
+    },
+    {
+      "bytes": 1236,
+      "format": "json",
+      "path": "templates/leveraged-sleeve/catalysts.json",
+      "sha256": "a3755874f1afa03e68cafb3de229413b8ded622a21dd8d3ea4780974dbce3a97"
+    },
+    {
+      "bytes": 759,
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/catalysts.md",
+      "sha256": "3cb4f7f4290348cb00a5c2b1ca1091f5e8d610bda0f8edbf2dd64b257b7fb232"
+    },
+    {
+      "bytes": 4669,
+      "format": "json",
+      "path": "templates/leveraged-sleeve/exposure_report.json",
+      "sha256": "f820d12ea644faddea454430d29488bbae983253dc979e985dd4837476fc2148"
+    },
+    {
+      "bytes": 1553,
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/exposure_report.md",
+      "sha256": "20b378d2af04c71f88f0c5d7300b0781c368d4a218fef4c703bb4afdd334267a"
+    },
+    {
+      "bytes": 2820,
+      "format": "json",
+      "path": "templates/leveraged-sleeve/guardrails.json",
+      "sha256": "b502ec1b19bb59d07e77af0eb609c8f936f020fa87edf97af2914582ba6682d3"
+    },
+    {
+      "bytes": 1291,
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/guardrails.md",
+      "sha256": "f43bed65e5a4dcd315d9d60f07a7f532133cc989a8895bd585879d373fade346"
+    },
+    {
+      "bytes": 5184,
+      "format": "json",
+      "path": "templates/leveraged-sleeve/snapshot_current.json",
+      "sha256": "b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217"
+    },
+    {
+      "bytes": 4930,
+      "format": "json",
+      "path": "templates/leveraged-sleeve/stress.json",
+      "sha256": "99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34"
+    },
+    {
+      "bytes": 1129,
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/stress.md",
+      "sha256": "070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89"
     }
   ],
   "bundle": "portfolio-risk-compass-release",

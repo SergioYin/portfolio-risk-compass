@@ -1,0 +1,176 @@
+{
+  "report": {
+    "concentration": [
+      {
+        "limit_pct": "45.0000",
+        "market_value": "30648.00",
+        "pct_of_portfolio": "48.8710",
+        "symbol": "VTI"
+      }
+    ],
+    "exposures": {
+      "asset_class": [
+        {
+          "bucket": "Equity",
+          "market_value": "41673.00",
+          "pct_of_portfolio": "66.4514"
+        },
+        {
+          "bucket": "Fixed Income",
+          "market_value": "16018.00",
+          "pct_of_portfolio": "25.5422"
+        },
+        {
+          "bucket": "Cash",
+          "market_value": "5021.00",
+          "pct_of_portfolio": "8.0064"
+        }
+      ],
+      "currency": [
+        {
+          "bucket": "USD",
+          "market_value": "62712.00",
+          "pct_of_portfolio": "100.0000"
+        }
+      ],
+      "region": [
+        {
+          "bucket": "North America",
+          "market_value": "47205.00",
+          "pct_of_portfolio": "75.2727"
+        },
+        {
+          "bucket": "Global ex-US",
+          "market_value": "15507.00",
+          "pct_of_portfolio": "24.7273"
+        }
+      ],
+      "sector": [
+        {
+          "bucket": "Diversified",
+          "market_value": "41673.00",
+          "pct_of_portfolio": "66.4514"
+        },
+        {
+          "bucket": "Aggregate Bonds",
+          "market_value": "16018.00",
+          "pct_of_portfolio": "25.5422"
+        },
+        {
+          "bucket": "Treasury Bills",
+          "market_value": "5021.00",
+          "pct_of_portfolio": "8.0064"
+        }
+      ]
+    },
+    "holdings": [
+      {
+        "asset_class": "Fixed Income",
+        "currency": "USD",
+        "market_value": "11536.00",
+        "name": "Vanguard Total Bond Market ETF",
+        "price": "72.10",
+        "quantity": "160",
+        "region": "North America",
+        "sector": "Aggregate Bonds",
+        "symbol": "BND"
+      },
+      {
+        "asset_class": "Fixed Income",
+        "currency": "USD",
+        "market_value": "4482.00",
+        "name": "Vanguard Total International Bond ETF",
+        "price": "49.80",
+        "quantity": "90",
+        "region": "Global ex-US",
+        "sector": "Aggregate Bonds",
+        "symbol": "BNDX"
+      },
+      {
+        "asset_class": "Cash",
+        "currency": "USD",
+        "market_value": "5021.00",
+        "name": "iShares 0-3 Month Treasury Bond ETF",
+        "price": "100.42",
+        "quantity": "50",
+        "region": "North America",
+        "sector": "Treasury Bills",
+        "symbol": "SGOV"
+      },
+      {
+        "asset_class": "Equity",
+        "currency": "USD",
+        "market_value": "30648.00",
+        "name": "Vanguard Total Stock Market ETF",
+        "price": "255.40",
+        "quantity": "120",
+        "region": "North America",
+        "sector": "Diversified",
+        "symbol": "VTI"
+      },
+      {
+        "asset_class": "Equity",
+        "currency": "USD",
+        "market_value": "11025.00",
+        "name": "Vanguard Total International Stock ETF",
+        "price": "61.25",
+        "quantity": "180",
+        "region": "Global ex-US",
+        "sector": "Diversified",
+        "symbol": "VXUS"
+      }
+    ],
+    "metadata": {
+      "base_currency": "USD",
+      "concentration_limit_pct": "45.0000",
+      "group_by": [
+        "asset_class",
+        "sector",
+        "region",
+        "currency"
+      ],
+      "holding_count": 5,
+      "total_market_value": "62712.00"
+    },
+    "target_drift": {
+      "asset_class": [
+        {
+          "actual_pct": "8.0064",
+          "bucket": "Cash",
+          "drift_pct": "3.0064",
+          "target_pct": "5.0000"
+        },
+        {
+          "actual_pct": "66.4514",
+          "bucket": "Equity",
+          "drift_pct": "-3.5486",
+          "target_pct": "70.0000"
+        },
+        {
+          "actual_pct": "25.5422",
+          "bucket": "Fixed Income",
+          "drift_pct": "0.5422",
+          "target_pct": "25.0000"
+        }
+      ],
+      "region": [
+        {
+          "actual_pct": "24.7273",
+          "bucket": "Global ex-US",
+          "drift_pct": "-5.2727",
+          "target_pct": "30.0000"
+        },
+        {
+          "actual_pct": "75.2727",
+          "bucket": "North America",
+          "drift_pct": "5.2727",
+          "target_pct": "70.0000"
+        }
+      ]
+    }
+  },
+  "snapshot": {
+    "date": "2026-05-15",
+    "id": "template-etf-core-current"
+  }
+}

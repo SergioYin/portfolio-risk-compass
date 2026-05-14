@@ -51,6 +51,36 @@ class ScriptTests(unittest.TestCase):
             self.assertIn("notes.txt:1: openai_key", text)
             self.assertNotIn(secret, text)
 
+    def test_privacy_scan_can_exclude_known_public_fixture_paths(self):
+        privacy_scan = load_script("privacy_scan")
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "fixtures").mkdir()
+            (root / "fixtures/public.txt").write_text(
+                "demo-private-term\n", encoding="utf-8"
+            )
+            (root / "notes.txt").write_text(
+                "demo-private-term\n", encoding="utf-8"
+            )
+            output = io.StringIO()
+
+            with redirect_stdout(output):
+                result = privacy_scan.main(
+                    [
+                        "--root",
+                        str(root),
+                        "--term",
+                        "demo-private-term",
+                        "--exclude",
+                        "fixtures/*",
+                    ]
+                )
+
+            self.assertEqual(result, 1)
+            text = output.getvalue()
+            self.assertIn("notes.txt:1: private_term:1", text)
+            self.assertNotIn("fixtures/public.txt", text)
+
 
 if __name__ == "__main__":
     unittest.main()

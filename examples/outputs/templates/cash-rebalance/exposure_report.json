@@ -1,0 +1,202 @@
+{
+  "concentration": [],
+  "exposures": {
+    "asset_class": [
+      {
+        "bucket": "Equity",
+        "market_value": "24649.00",
+        "pct_of_portfolio": "40.0728"
+      },
+      {
+        "bucket": "Cash",
+        "market_value": "24275.60",
+        "pct_of_portfolio": "39.4657"
+      },
+      {
+        "bucket": "Fixed Income",
+        "market_value": "12586.00",
+        "pct_of_portfolio": "20.4615"
+      }
+    ],
+    "currency": [
+      {
+        "bucket": "USD",
+        "market_value": "61510.60",
+        "pct_of_portfolio": "100.0000"
+      }
+    ],
+    "region": [
+      {
+        "bucket": "North America",
+        "market_value": "55348.60",
+        "pct_of_portfolio": "89.9822"
+      },
+      {
+        "bucket": "Global ex-US",
+        "market_value": "6162.00",
+        "pct_of_portfolio": "10.0178"
+      }
+    ],
+    "sector": [
+      {
+        "bucket": "Diversified",
+        "market_value": "24649.00",
+        "pct_of_portfolio": "40.0728"
+      },
+      {
+        "bucket": "Treasury Bills",
+        "market_value": "18075.60",
+        "pct_of_portfolio": "29.3862"
+      },
+      {
+        "bucket": "Aggregate Bonds",
+        "market_value": "8296.00",
+        "pct_of_portfolio": "13.4871"
+      },
+      {
+        "bucket": "Cash",
+        "market_value": "6200.00",
+        "pct_of_portfolio": "10.0796"
+      },
+      {
+        "bucket": "Municipal Bonds",
+        "market_value": "4290.00",
+        "pct_of_portfolio": "6.9744"
+      }
+    ]
+  },
+  "holdings": [
+    {
+      "asset_class": "Fixed Income",
+      "currency": "USD",
+      "market_value": "8296.00",
+      "name": "iShares Core U.S. Aggregate Bond ETF",
+      "price": "97.60",
+      "quantity": "85",
+      "region": "North America",
+      "sector": "Aggregate Bonds",
+      "symbol": "AGG"
+    },
+    {
+      "asset_class": "Cash",
+      "currency": "USD",
+      "market_value": "6200.00",
+      "name": "USD Cash",
+      "price": "1.00",
+      "quantity": "6200",
+      "region": "North America",
+      "sector": "Cash",
+      "symbol": "CASH"
+    },
+    {
+      "asset_class": "Equity",
+      "currency": "USD",
+      "market_value": "18487.00",
+      "name": "iShares Core S&P 500 ETF",
+      "price": "528.20",
+      "quantity": "35",
+      "region": "North America",
+      "sector": "Diversified",
+      "symbol": "IVV"
+    },
+    {
+      "asset_class": "Fixed Income",
+      "currency": "USD",
+      "market_value": "4290.00",
+      "name": "iShares National Muni Bond ETF",
+      "price": "107.25",
+      "quantity": "40",
+      "region": "North America",
+      "sector": "Municipal Bonds",
+      "symbol": "MUB"
+    },
+    {
+      "asset_class": "Cash",
+      "currency": "USD",
+      "market_value": "18075.60",
+      "name": "iShares 0-3 Month Treasury Bond ETF",
+      "price": "100.42",
+      "quantity": "180",
+      "region": "North America",
+      "sector": "Treasury Bills",
+      "symbol": "SGOV"
+    },
+    {
+      "asset_class": "Equity",
+      "currency": "USD",
+      "market_value": "6162.00",
+      "name": "Vanguard FTSE Developed Markets ETF",
+      "price": "51.35",
+      "quantity": "120",
+      "region": "Global ex-US",
+      "sector": "Diversified",
+      "symbol": "VEA"
+    }
+  ],
+  "metadata": {
+    "base_currency": "USD",
+    "concentration_limit_pct": "35.0000",
+    "group_by": [
+      "asset_class",
+      "sector",
+      "region",
+      "currency"
+    ],
+    "holding_count": 6,
+    "total_market_value": "61510.60"
+  },
+  "target_drift": {
+    "asset_class": [
+      {
+        "actual_pct": "39.4657",
+        "bucket": "Cash",
+        "drift_pct": "19.4657",
+        "target_pct": "20.0000"
+      },
+      {
+        "actual_pct": "40.0728",
+        "bucket": "Equity",
+        "drift_pct": "-14.9272",
+        "target_pct": "55.0000"
+      },
+      {
+        "actual_pct": "20.4615",
+        "bucket": "Fixed Income",
+        "drift_pct": "-4.5385",
+        "target_pct": "25.0000"
+      }
+    ],
+    "sector": [
+      {
+        "actual_pct": "13.4871",
+        "bucket": "Aggregate Bonds",
+        "drift_pct": "-1.5129",
+        "target_pct": "15.0000"
+      },
+      {
+        "actual_pct": "10.0796",
+        "bucket": "Cash",
+        "drift_pct": "5.0796",
+        "target_pct": "5.0000"
+      },
+      {
+        "actual_pct": "40.0728",
+        "bucket": "Diversified",
+        "drift_pct": "-14.9272",
+        "target_pct": "55.0000"
+      },
+      {
+        "actual_pct": "6.9744",
+        "bucket": "Municipal Bonds",
+        "drift_pct": "-3.0256",
+        "target_pct": "10.0000"
+      },
+      {
+        "actual_pct": "29.3862",
+        "bucket": "Treasury Bills",
+        "drift_pct": "14.3862",
+        "target_pct": "15.0000"
+      }
+    ]
+  }
+}

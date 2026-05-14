@@ -1,0 +1,25 @@
+{
+  "name": "Growth shock with leverage drag",
+  "shocks": [
+    {
+      "name": "Technology factor selloff",
+      "sector": "Technology",
+      "price_move_pct": "-12"
+    },
+    {
+      "name": "Leveraged ETF decay proxy",
+      "asset_class": "Leveraged Equity",
+      "price_move_pct": "-8"
+    },
+    {
+      "name": "Short Treasury bid",
+      "sector": "Treasury Bonds",
+      "price_move_pct": "1"
+    },
+    {
+      "name": "Broad equity risk-off",
+      "asset_class": "Equity",
+      "price_move_pct": "-5"
+    }
+  ]
+}

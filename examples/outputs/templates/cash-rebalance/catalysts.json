@@ -1,0 +1,41 @@
+{
+  "catalysts": [
+    {
+      "action": "Compare cash yield against short Treasury alternatives",
+      "date": "2026-05-15",
+      "days_from_as_of": 0,
+      "flag": "today",
+      "importance": "high",
+      "symbol": "SGOV",
+      "thesis_link": "https://example.com/templates/cash-rebalance/cash-drag",
+      "title": "Cash sweep rate check"
+    },
+    {
+      "action": "Decide whether cash should be deployed toward target equity weight",
+      "date": "2026-05-25",
+      "days_from_as_of": 10,
+      "flag": "upcoming",
+      "importance": "medium",
+      "symbol": "IVV",
+      "thesis_link": "https://example.com/templates/cash-rebalance/equity-top-up",
+      "title": "Equity rebalance trigger review"
+    },
+    {
+      "action": "Check whether tax-exempt duration still fits the rebalance plan",
+      "date": "2026-06-05",
+      "days_from_as_of": 21,
+      "flag": "upcoming",
+      "importance": "medium",
+      "symbol": "MUB",
+      "thesis_link": "https://example.com/templates/cash-rebalance/muni-sleeve",
+      "title": "Tax-aware bond allocation review"
+    }
+  ],
+  "metadata": {
+    "as_of": "2026-05-15",
+    "catalyst_count": 3,
+    "overdue_count": 0,
+    "today_count": 1,
+    "upcoming_count": 2
+  }
+}

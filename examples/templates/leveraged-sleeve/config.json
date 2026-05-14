@@ -1,0 +1,25 @@
+{
+  "base_currency": "USD",
+  "group_by": ["asset_class", "sector", "region", "currency"],
+  "concentration_limit_pct": "40",
+  "max_position_pct": "45",
+  "max_sector_pct": "55",
+  "min_cash_pct": "5",
+  "max_leverage_multiple": "1.35",
+  "required_review_cadence_days": 14,
+  "last_review_date": "2026-05-10",
+  "target_allocations": {
+    "asset_class": {
+      "Equity": "65",
+      "Leveraged Equity": "15",
+      "Fixed Income": "12",
+      "Cash": "8"
+    },
+    "sector": {
+      "Diversified": "55",
+      "Technology": "25",
+      "Treasury Bonds": "12",
+      "Cash": "8"
+    }
+  }
+}

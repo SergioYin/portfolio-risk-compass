@@ -1,0 +1,122 @@
+{
+  "items": [
+    {
+      "actual": "13.4871",
+      "check": "max_position_pct",
+      "limit": "40.0000",
+      "message": "AGG is 13.4871% of portfolio.",
+      "scope": "AGG",
+      "status": "PASS"
+    },
+    {
+      "actual": "10.0796",
+      "check": "max_position_pct",
+      "limit": "40.0000",
+      "message": "CASH is 10.0796% of portfolio.",
+      "scope": "CASH",
+      "status": "PASS"
+    },
+    {
+      "actual": "30.0550",
+      "check": "max_position_pct",
+      "limit": "40.0000",
+      "message": "IVV is 30.0550% of portfolio.",
+      "scope": "IVV",
+      "status": "PASS"
+    },
+    {
+      "actual": "6.9744",
+      "check": "max_position_pct",
+      "limit": "40.0000",
+      "message": "MUB is 6.9744% of portfolio.",
+      "scope": "MUB",
+      "status": "PASS"
+    },
+    {
+      "actual": "29.3862",
+      "check": "max_position_pct",
+      "limit": "40.0000",
+      "message": "SGOV is 29.3862% of portfolio.",
+      "scope": "SGOV",
+      "status": "PASS"
+    },
+    {
+      "actual": "10.0178",
+      "check": "max_position_pct",
+      "limit": "40.0000",
+      "message": "VEA is 10.0178% of portfolio.",
+      "scope": "VEA",
+      "status": "PASS"
+    },
+    {
+      "actual": "13.4871",
+      "check": "max_sector_pct",
+      "limit": "60.0000",
+      "message": "Aggregate Bonds sector is 13.4871% of portfolio.",
+      "scope": "Aggregate Bonds",
+      "status": "PASS"
+    },
+    {
+      "actual": "10.0796",
+      "check": "max_sector_pct",
+      "limit": "60.0000",
+      "message": "Cash sector is 10.0796% of portfolio.",
+      "scope": "Cash",
+      "status": "PASS"
+    },
+    {
+      "actual": "40.0728",
+      "check": "max_sector_pct",
+      "limit": "60.0000",
+      "message": "Diversified sector is 40.0728% of portfolio.",
+      "scope": "Diversified",
+      "status": "PASS"
+    },
+    {
+      "actual": "6.9744",
+      "check": "max_sector_pct",
+      "limit": "60.0000",
+      "message": "Municipal Bonds sector is 6.9744% of portfolio.",
+      "scope": "Municipal Bonds",
+      "status": "PASS"
+    },
+    {
+      "actual": "29.3862",
+      "check": "max_sector_pct",
+      "limit": "60.0000",
+      "message": "Treasury Bills sector is 29.3862% of portfolio.",
+      "scope": "Treasury Bills",
+      "status": "PASS"
+    },
+    {
+      "actual": "39.4657",
+      "check": "min_cash_pct",
+      "limit": "8.0000",
+      "message": "Cash is 39.4657% of portfolio.",
+      "scope": "Cash",
+      "status": "PASS"
+    },
+    {
+      "actual": "1.0000",
+      "check": "max_leverage_multiple",
+      "limit": "1.1000",
+      "message": "Gross exposure is 1.0000x net value.",
+      "scope": "portfolio",
+      "status": "WARN"
+    },
+    {
+      "actual": "25",
+      "check": "required_review_cadence_days",
+      "limit": "30",
+      "message": "Last review was 25 day(s) before snapshot.",
+      "scope": "portfolio",
+      "status": "PASS"
+    }
+  ],
+  "metadata": {
+    "configured_checks": 14,
+    "last_review_date": "2026-04-20",
+    "overall_status": "WARN",
+    "snapshot_date": "2026-05-15"
+  }
+}

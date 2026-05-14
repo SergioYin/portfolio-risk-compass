@@ -1,0 +1,25 @@
+{
+  "name": "Global risk-off with bond cushion",
+  "shocks": [
+    {
+      "name": "US equity drawdown",
+      "region": "North America",
+      "price_move_pct": "-6"
+    },
+    {
+      "name": "Ex-US equity drawdown",
+      "region": "Global ex-US",
+      "price_move_pct": "-8"
+    },
+    {
+      "name": "Aggregate bond rally",
+      "asset_class": "Fixed Income",
+      "price_move_pct": "2"
+    },
+    {
+      "name": "Cash stable",
+      "asset_class": "Cash",
+      "price_move_pct": "0"
+    }
+  ]
+}

@@ -34,7 +34,9 @@ Agent-facing usage is documented in
 This project does not connect to brokers, place trades, fetch live market data,
 or provide investment advice. Prices come from your holdings CSV, and scenario
 shocks come from your JSON files. Outputs are portfolio review artifacts, not
-recommendations or execution instructions.
+recommendations, suitability analysis, current quotes, or execution
+instructions. The bundled fixtures use static example data and should not be
+treated as live prices or model portfolios.
 
 ## Quickstart
 
@@ -48,7 +50,8 @@ portfolio-risk-compass analyze examples/fixtures/holdings.csv \
 
 `--no-build-isolation` keeps the editable install usable in offline or
 network-restricted environments when `setuptools` is already available in the
-active Python environment.
+active Python environment. If `setuptools` is not already installed, install it
+before running the editable install.
 
 You can also run the CLI without installing the console script:
 
@@ -62,6 +65,7 @@ stdout.
 For a full demo bundle with all supported report types:
 
 ```bash
+portfolio-risk-compass template-list --format markdown
 portfolio-risk-compass demo-bundle
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
 ```
@@ -78,9 +82,18 @@ The repository includes generated artifacts under
 | [`stress.md`](examples/outputs/stress.md) | Scenario shock impacts by rule and holding |
 | [`catalysts.md`](examples/outputs/catalysts.md) | Date-ordered thesis event checklist |
 | [`dashboard.html`](examples/outputs/dashboard.html) | Self-contained static dashboard export |
+| [`gallery.md`](examples/outputs/gallery.md) | Static gallery index for dashboard and demo artifacts |
+| [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
+| [`dashboard_snippet.html`](examples/outputs/dashboard_snippet.html) | Small embeddable HTML showcase snippet for docs pages |
 | [`index.json`](examples/outputs/index.json) | Demo bundle manifest for generated artifacts |
+| [`invest_thesis_ledger_adapter.json`](examples/outputs/invest_thesis_ledger_adapter.json) | Optional adapter payload for thesis-ledger style consumers |
+| [`leveraged_etp_risk_lab_adapter.json`](examples/outputs/leveraged_etp_risk_lab_adapter.json) | Optional adapter payload for leveraged ETP stress-review consumers |
 | [`release_manifest.md`](examples/outputs/release_manifest.md) | Release artifact inventory with SHA-256 hashes |
 | [`release_manifest.json`](examples/outputs/release_manifest.json) | Machine-readable release artifact inventory |
+
+Template outputs are also generated under
+[`examples/outputs/templates`](examples/outputs/templates) when the demo bundle
+is refreshed.
 
 Sample exposure output:
 
@@ -272,6 +285,25 @@ sections.
 
 ## Demo Bundle and Dashboard Export
 
+List the named example portfolio templates:
+
+```bash
+portfolio-risk-compass template-list --format markdown
+```
+
+The repository includes three realistic template fixture sets under
+[`examples/templates`](examples/templates):
+
+| Template | Focus | Fixture directory |
+| --- | --- | --- |
+| ETF Core | Diversified stock, bond, and Treasury-bill core allocation | [`examples/templates/etf-core`](examples/templates/etf-core) |
+| Leveraged Sleeve | Core equity book with a capped leveraged growth sleeve and liquidity buffer | [`examples/templates/leveraged-sleeve`](examples/templates/leveraged-sleeve) |
+| Cash Rebalance | High-cash portfolio staged for tax-aware deployment after drift or pullback triggers | [`examples/templates/cash-rebalance`](examples/templates/cash-rebalance) |
+
+Each template has `holdings.csv`, `config.json`, `catalysts.json`, and
+`scenario.json` fixtures, so the same `analyze`, `guardrails`, `catalysts`, and
+`stress` commands work against every template.
+
 Regenerate the deterministic demo artifact bundle from `examples/fixtures`:
 
 ```bash
@@ -282,7 +314,15 @@ portfolio-risk-compass demo-bundle \
 ```
 
 The command writes `examples/outputs/index.json`, a manifest for the generated
-JSON and Markdown reports.
+JSON and Markdown reports. It also refreshes
+[`examples/outputs/gallery.md`](examples/outputs/gallery.md),
+[`examples/outputs/dashboard_preview.md`](examples/outputs/dashboard_preview.md),
+and
+[`examples/outputs/dashboard_snippet.html`](examples/outputs/dashboard_snippet.html)
+as static showcase material for README, docs, and release pages. By default it
+also writes template gallery outputs under
+`examples/outputs/templates/<template-slug>/`. Use `--no-templates` when you
+only want the base demo fixture outputs.
 
 Export a static dashboard from that manifest:
 
@@ -296,11 +336,44 @@ concentration tables, guardrail risk boundary text, stress results, catalysts,
 and the source bundle artifact list. Dynamic values from the report and manifest
 are HTML escaped before rendering.
 
+Text preview surrogate:
+
+| Panel | What it shows | Source artifact |
+| --- | --- | --- |
+| Summary | Total value, holding count, concentration limit, risk boundary | `exposure_report.json`, `guardrails.json` |
+| Exposure | Asset class, sector, region, and currency allocation tables | `exposure_report.json` |
+| Concentration | Holdings above the configured concentration limit | `exposure_report.json` |
+| Risk Boundaries | PASS/WARN/FAIL policy checks with actuals and limits | `guardrails.json` |
+| Stress | Scenario value, shock impacts, and value delta | `stress.json` |
+| Catalysts | Date-ordered thesis event checklist | `catalysts.json` |
+| Bundle | Generated artifact inventory | `index.json` |
+
 You can also render a dashboard from a single exposure report JSON:
 
 ```bash
 portfolio-risk-compass dashboard examples/outputs/exposure_report.json dashboard.html
 ```
+
+## Optional Artifact Integrations
+
+Generate neutral adapter JSON for adjacent local tools without importing or
+depending on those repositories:
+
+```bash
+portfolio-risk-compass integration-export invest-thesis-ledger \
+  --outputs-dir examples/outputs \
+  --json examples/outputs/invest_thesis_ledger_adapter.json
+
+portfolio-risk-compass integration-export leveraged-etp-risk-lab \
+  --outputs-dir examples/outputs \
+  --json examples/outputs/leveraged_etp_risk_lab_adapter.json
+```
+
+The command reads existing JSON artifacts, emits relative source artifact paths
+with SHA-256 hashes, and writes profile-shaped payloads for optional downstream
+consumers. See [`docs/integrations.md`](docs/integrations.md) for field examples
+and boundary notes. These adapter files are generated artifacts; rerun the
+commands after refreshing `examples/outputs`.
 
 ## Package Audit and Release Manifest
 
@@ -411,18 +484,21 @@ python scripts/selfcheck.py
 ```
 
 The selfcheck runs a temporary local-skill sync, unit tests, deterministic demo
-bundle generation, dashboard export, release manifest generation, a privacy
-scan over the refreshed repository artifacts, and the package audit command.
+bundle generation, dashboard export, adapter export regeneration, release
+manifest generation, a privacy scan over the refreshed repository artifacts,
+and the package audit command.
 
 Scan repository text for local/private terms and token-like patterns:
 
 ```bash
 python scripts/privacy_scan.py
 python scripts/privacy_scan.py --term "internal-project-name"
+python scripts/privacy_scan.py --exclude "examples/fixtures/public-demo-*"
 ```
 
 The scanner reports only file locations and rule names. It does not print the
-matched private term or token-like value.
+matched private term or token-like value. Use `--exclude` only for paths that
+are intentionally public fixtures or generated examples.
 
 Copy the public agent skill into a local skills directory:
 

@@ -1,0 +1,25 @@
+{
+  "base_currency": "USD",
+  "group_by": ["asset_class", "sector", "region", "currency"],
+  "concentration_limit_pct": "35",
+  "max_position_pct": "40",
+  "max_sector_pct": "60",
+  "min_cash_pct": "8",
+  "max_leverage_multiple": "1.10",
+  "required_review_cadence_days": 30,
+  "last_review_date": "2026-04-20",
+  "target_allocations": {
+    "asset_class": {
+      "Equity": "55",
+      "Fixed Income": "25",
+      "Cash": "20"
+    },
+    "sector": {
+      "Diversified": "55",
+      "Aggregate Bonds": "15",
+      "Municipal Bonds": "10",
+      "Treasury Bills": "15",
+      "Cash": "5"
+    }
+  }
+}

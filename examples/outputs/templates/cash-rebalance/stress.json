@@ -1,0 +1,170 @@
+{
+  "holdings": [
+    {
+      "base_contribution_pct": "13.4871",
+      "base_market_value": "8296.00",
+      "contribution_delta_pct": "0.0161",
+      "market_value_delta": "-165.92",
+      "name": "iShares Core U.S. Aggregate Bond ETF",
+      "shocks": [
+        {
+          "bucket": "Fixed Income",
+          "market_value_delta": "-165.92",
+          "name": "Bond mark-to-market pressure",
+          "price_move_pct": "-2.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "13.5032",
+      "stressed_market_value": "8130.08",
+      "symbol": "AGG",
+      "total_price_move_pct": "-2.0000"
+    },
+    {
+      "base_contribution_pct": "10.0796",
+      "base_market_value": "6200.00",
+      "contribution_delta_pct": "0.2180",
+      "market_value_delta": "0.00",
+      "name": "USD Cash",
+      "shocks": [
+        {
+          "bucket": "Cash",
+          "market_value_delta": "0.00",
+          "name": "Cash principal stable",
+          "price_move_pct": "0.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "10.2975",
+      "stressed_market_value": "6200.00",
+      "symbol": "CASH",
+      "total_price_move_pct": "0.0000"
+    },
+    {
+      "base_contribution_pct": "30.0550",
+      "base_market_value": "18487.00",
+      "contribution_delta_pct": "-0.5782",
+      "market_value_delta": "-739.48",
+      "name": "iShares Core S&P 500 ETF",
+      "shocks": [
+        {
+          "bucket": "Equity",
+          "market_value_delta": "-739.48",
+          "name": "Equity pullback",
+          "price_move_pct": "-4.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "29.4767",
+      "stressed_market_value": "17747.52",
+      "symbol": "IVV",
+      "total_price_move_pct": "-4.0000"
+    },
+    {
+      "base_contribution_pct": "6.9744",
+      "base_market_value": "4290.00",
+      "contribution_delta_pct": "-0.0986",
+      "market_value_delta": "-150.15",
+      "name": "iShares National Muni Bond ETF",
+      "shocks": [
+        {
+          "bucket": "Fixed Income",
+          "market_value_delta": "-85.80",
+          "name": "Bond mark-to-market pressure",
+          "price_move_pct": "-2.0000",
+          "selector": "asset_class"
+        },
+        {
+          "bucket": "Municipal Bonds",
+          "market_value_delta": "-64.35",
+          "name": "Municipal spread widening",
+          "price_move_pct": "-1.5000",
+          "selector": "sector"
+        }
+      ],
+      "stressed_contribution_pct": "6.8758",
+      "stressed_market_value": "4139.85",
+      "symbol": "MUB",
+      "total_price_move_pct": "-3.5000"
+    },
+    {
+      "base_contribution_pct": "29.3862",
+      "base_market_value": "18075.60",
+      "contribution_delta_pct": "0.6355",
+      "market_value_delta": "0.00",
+      "name": "iShares 0-3 Month Treasury Bond ETF",
+      "shocks": [
+        {
+          "bucket": "Cash",
+          "market_value_delta": "0.00",
+          "name": "Cash principal stable",
+          "price_move_pct": "0.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "30.0216",
+      "stressed_market_value": "18075.60",
+      "symbol": "SGOV",
+      "total_price_move_pct": "0.0000"
+    },
+    {
+      "base_contribution_pct": "10.0178",
+      "base_market_value": "6162.00",
+      "contribution_delta_pct": "-0.1927",
+      "market_value_delta": "-246.48",
+      "name": "Vanguard FTSE Developed Markets ETF",
+      "shocks": [
+        {
+          "bucket": "Equity",
+          "market_value_delta": "-246.48",
+          "name": "Equity pullback",
+          "price_move_pct": "-4.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "9.8250",
+      "stressed_market_value": "5915.52",
+      "symbol": "VEA",
+      "total_price_move_pct": "-4.0000"
+    }
+  ],
+  "metadata": {
+    "base_market_value": "61510.60",
+    "holding_count": 6,
+    "market_value_delta": "-1302.03",
+    "market_value_delta_pct": "-2.1168",
+    "scenario_name": "Cash deployment after mild pullback",
+    "shock_count": 4,
+    "stressed_market_value": "60208.57"
+  },
+  "shock_impacts": [
+    {
+      "bucket": "Equity",
+      "market_value_delta": "-985.96",
+      "name": "Equity pullback",
+      "price_move_pct": "-4.0000",
+      "selector": "asset_class"
+    },
+    {
+      "bucket": "Fixed Income",
+      "market_value_delta": "-251.72",
+      "name": "Bond mark-to-market pressure",
+      "price_move_pct": "-2.0000",
+      "selector": "asset_class"
+    },
+    {
+      "bucket": "Cash",
+      "market_value_delta": "0.00",
+      "name": "Cash principal stable",
+      "price_move_pct": "0.0000",
+      "selector": "asset_class"
+    },
+    {
+      "bucket": "Municipal Bonds",
+      "market_value_delta": "-64.35",
+      "name": "Municipal spread widening",
+      "price_move_pct": "-1.5000",
+      "selector": "sector"
+    }
+  ]
+}

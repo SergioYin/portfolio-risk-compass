@@ -87,6 +87,270 @@
         "holdings.csv",
         "scenario.json"
       ]
+    },
+    {
+      "bytes": 4711,
+      "description": "Portfolio exposure report as JSON.",
+      "format": "json",
+      "path": "templates/cash-rebalance/exposure_report.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1603,
+      "description": "Portfolio exposure report as Markdown.",
+      "format": "markdown",
+      "path": "templates/cash-rebalance/exposure_report.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 5220,
+      "description": "Current portfolio snapshot JSON.",
+      "format": "json",
+      "path": "templates/cash-rebalance/snapshot_current.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1233,
+      "description": "Catalyst checklist as JSON.",
+      "format": "json",
+      "path": "templates/cash-rebalance/catalysts.json",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 751,
+      "description": "Catalyst checklist as Markdown.",
+      "format": "markdown",
+      "path": "templates/cash-rebalance/catalysts.md",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 3063,
+      "description": "Portfolio guardrail review as JSON.",
+      "format": "json",
+      "path": "templates/cash-rebalance/guardrails.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1401,
+      "description": "Portfolio guardrail review as Markdown.",
+      "format": "markdown",
+      "path": "templates/cash-rebalance/guardrails.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 4947,
+      "description": "Stress scenario report as JSON.",
+      "format": "json",
+      "path": "templates/cash-rebalance/stress.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 1121,
+      "description": "Stress scenario report as Markdown.",
+      "format": "markdown",
+      "path": "templates/cash-rebalance/stress.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 3917,
+      "description": "Portfolio exposure report as JSON.",
+      "format": "json",
+      "path": "templates/etf-core/exposure_report.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1384,
+      "description": "Portfolio exposure report as Markdown.",
+      "format": "markdown",
+      "path": "templates/etf-core/exposure_report.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 4356,
+      "description": "Current portfolio snapshot JSON.",
+      "format": "json",
+      "path": "templates/etf-core/snapshot_current.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1221,
+      "description": "Catalyst checklist as JSON.",
+      "format": "json",
+      "path": "templates/etf-core/catalysts.json",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 742,
+      "description": "Catalyst checklist as Markdown.",
+      "format": "markdown",
+      "path": "templates/etf-core/catalysts.md",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 2437,
+      "description": "Portfolio guardrail review as JSON.",
+      "format": "json",
+      "path": "templates/etf-core/guardrails.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1135,
+      "description": "Portfolio guardrail review as Markdown.",
+      "format": "markdown",
+      "path": "templates/etf-core/guardrails.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 4765,
+      "description": "Stress scenario report as JSON.",
+      "format": "json",
+      "path": "templates/etf-core/stress.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 1054,
+      "description": "Stress scenario report as Markdown.",
+      "format": "markdown",
+      "path": "templates/etf-core/stress.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 4669,
+      "description": "Portfolio exposure report as JSON.",
+      "format": "json",
+      "path": "templates/leveraged-sleeve/exposure_report.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1553,
+      "description": "Portfolio exposure report as Markdown.",
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/exposure_report.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 5184,
+      "description": "Current portfolio snapshot JSON.",
+      "format": "json",
+      "path": "templates/leveraged-sleeve/snapshot_current.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1236,
+      "description": "Catalyst checklist as JSON.",
+      "format": "json",
+      "path": "templates/leveraged-sleeve/catalysts.json",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 759,
+      "description": "Catalyst checklist as Markdown.",
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/catalysts.md",
+      "source_fixtures": [
+        "catalysts.json"
+      ]
+    },
+    {
+      "bytes": 2820,
+      "description": "Portfolio guardrail review as JSON.",
+      "format": "json",
+      "path": "templates/leveraged-sleeve/guardrails.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 1291,
+      "description": "Portfolio guardrail review as Markdown.",
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/guardrails.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json"
+      ]
+    },
+    {
+      "bytes": 4930,
+      "description": "Stress scenario report as JSON.",
+      "format": "json",
+      "path": "templates/leveraged-sleeve/stress.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
+    },
+    {
+      "bytes": 1129,
+      "description": "Stress scenario report as Markdown.",
+      "format": "markdown",
+      "path": "templates/leveraged-sleeve/stress.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "scenario.json"
+      ]
     }
   ],
   "as_of": "2026-05-15",
@@ -100,5 +364,51 @@
       "scenario.json"
     ]
   },
-  "schema_version": 1
+  "schema_version": 1,
+  "templates": {
+    "schema_version": 1,
+    "template_count": 3,
+    "templates": [
+      {
+        "description": "High-cash portfolio staged for tax-aware deployment after drift or market pullback triggers.",
+        "fixture_dir": "examples/templates/cash-rebalance",
+        "fixture_files": [
+          "holdings.csv",
+          "config.json",
+          "catalysts.json",
+          "scenario.json"
+        ],
+        "name": "Cash Rebalance",
+        "output_prefix": "templates/cash-rebalance/",
+        "slug": "cash-rebalance"
+      },
+      {
+        "description": "Diversified stock, bond, and Treasury-bill core allocation with global equity and duration review points.",
+        "fixture_dir": "examples/templates/etf-core",
+        "fixture_files": [
+          "holdings.csv",
+          "config.json",
+          "catalysts.json",
+          "scenario.json"
+        ],
+        "name": "ETF Core",
+        "output_prefix": "templates/etf-core/",
+        "slug": "etf-core"
+      },
+      {
+        "description": "Core equity book with a capped leveraged growth sleeve, liquidity buffer, and tighter review cadence.",
+        "fixture_dir": "examples/templates/leveraged-sleeve",
+        "fixture_files": [
+          "holdings.csv",
+          "config.json",
+          "catalysts.json",
+          "scenario.json"
+        ],
+        "name": "Leveraged Sleeve",
+        "output_prefix": "templates/leveraged-sleeve/",
+        "slug": "leveraged-sleeve"
+      }
+    ],
+    "templates_dir": "examples/templates"
+  }
 }

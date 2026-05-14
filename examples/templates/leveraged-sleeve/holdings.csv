@@ -1,0 +1,7 @@
+symbol,name,quantity,price,asset_class,sector,region,currency
+SPY,SPDR S&P 500 ETF Trust,40,525.10,Equity,Diversified,North America,USD
+QQQ,Invesco QQQ Trust,25,448.75,Equity,Technology,North America,USD
+TQQQ,ProShares UltraPro QQQ,60,58.40,Leveraged Equity,Technology,North America,USD
+SSO,ProShares Ultra S&P500,30,82.15,Leveraged Equity,Diversified,North America,USD
+SHY,iShares 1-3 Year Treasury Bond ETF,80,82.70,Fixed Income,Treasury Bonds,North America,USD
+CASH,USD Cash,2500,1.00,Cash,Cash,North America,USD

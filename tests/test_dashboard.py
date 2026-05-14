@@ -6,6 +6,8 @@ from unittest.mock import patch
 
 from portfolio_risk_compass.cli import main
 from portfolio_risk_compass.dashboard import build_dashboard_html
+from portfolio_risk_compass.dashboard import render_dashboard_snippet_html
+from portfolio_risk_compass.dashboard import render_gallery_markdown
 from portfolio_risk_compass.demo import build_demo_bundle
 
 
@@ -135,6 +137,29 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("Total Value", html)
         self.assertIn("Exposure", html)
         self.assertIn("No guardrail artifact was provided.", html)
+
+    def test_showcase_renderers_link_dashboard_outputs(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            manifest = build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+
+        gallery = render_gallery_markdown(manifest)
+        snippet = render_dashboard_snippet_html(manifest)
+
+        self.assertIn("# Dashboard Output Gallery", gallery)
+        self.assertIn("[dashboard.html](dashboard.html)", gallery)
+        self.assertIn("[exposure_report.md](exposure_report.md)", gallery)
+        self.assertIn("Template Galleries", gallery)
+        self.assertIn("portfolio-risk-compass-showcase", snippet)
+        self.assertIn('href="dashboard.html"', snippet)
+        self.assertIn("JavaScript-free dashboard", snippet)
+        self.assertIn("not investment advice", gallery)
+        self.assertIn("not investment advice", snippet)
+        self.assertNotIn("<script", snippet.lower())
 
 
 if __name__ == "__main__":

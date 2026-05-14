@@ -1,0 +1,81 @@
+{
+  "adapter": "portfolio-risk-compass.integration-export",
+  "payload": {
+    "portfolio_context": {
+      "base_currency": "USD",
+      "concentration_symbols": [
+        "MSFT",
+        "AAPL"
+      ],
+      "overall_guardrail_status": "FAIL",
+      "total_market_value": "7350.00"
+    },
+    "risk_flags": [
+      {
+        "actual": "54.4218",
+        "check": "max_sector_pct",
+        "limit": "50.0000",
+        "message": "Technology sector is 54.4218% of portfolio.",
+        "scope": "Technology",
+        "status": "FAIL"
+      }
+    ],
+    "thesis_review_items": [
+      {
+        "action": "Review Azure growth and margin commentary",
+        "catalyst_date": "2026-05-12",
+        "days_from_as_of": -3,
+        "flag": "overdue",
+        "importance": "high",
+        "symbol": "MSFT",
+        "thesis_link": "https://example.com/theses/msft-cloud-margin",
+        "title": "Cloud segment investor update"
+      },
+      {
+        "action": "Decide whether event risk still fits the position size",
+        "catalyst_date": "2026-05-15",
+        "days_from_as_of": 0,
+        "flag": "today",
+        "importance": "critical",
+        "symbol": "TSLA",
+        "thesis_link": "https://example.com/theses/tsla-autonomy-optionality",
+        "title": "Robotaxi milestone review"
+      },
+      {
+        "action": "Check whether announcements support the services growth thesis",
+        "catalyst_date": "2026-05-20",
+        "days_from_as_of": 5,
+        "flag": "upcoming",
+        "importance": "medium",
+        "symbol": "AAPL",
+        "thesis_link": "https://example.com/theses/aapl-platform-services",
+        "title": "Developer conference product announcements"
+      }
+    ]
+  },
+  "profile": "invest-thesis-ledger",
+  "schema_version": 1,
+  "source_artifacts": [
+    {
+      "bytes": 3747,
+      "path": "exposure_report.json",
+      "sha256": "d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c"
+    },
+    {
+      "bytes": 2644,
+      "path": "guardrails.json",
+      "sha256": "bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82"
+    },
+    {
+      "bytes": 4029,
+      "path": "stress.json",
+      "sha256": "d7693910dc7c2b6e90c5d4029b41e557be9d26a2ef2c22999e452c0e11c9e58c"
+    },
+    {
+      "bytes": 1198,
+      "path": "catalysts.json",
+      "sha256": "4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1"
+    }
+  ],
+  "source_package": "portfolio-risk-compass"
+}

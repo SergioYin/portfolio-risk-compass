@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "actual": "5.2846",
+      "check": "max_position_pct",
+      "limit": "45.0000",
+      "message": "CASH is 5.2846% of portfolio.",
+      "scope": "CASH",
+      "status": "PASS"
+    },
+    {
+      "actual": "23.7147",
+      "check": "max_position_pct",
+      "limit": "45.0000",
+      "message": "QQQ is 23.7147% of portfolio.",
+      "scope": "QQQ",
+      "status": "PASS"
+    },
+    {
+      "actual": "13.9852",
+      "check": "max_position_pct",
+      "limit": "45.0000",
+      "message": "SHY is 13.9852% of portfolio.",
+      "scope": "SHY",
+      "status": "PASS"
+    },
+    {
+      "actual": "44.3991",
+      "check": "max_position_pct",
+      "limit": "45.0000",
+      "message": "SPY is 44.3991% of portfolio.",
+      "scope": "SPY",
+      "status": "WARN"
+    },
+    {
+      "actual": "5.2096",
+      "check": "max_position_pct",
+      "limit": "45.0000",
+      "message": "SSO is 5.2096% of portfolio.",
+      "scope": "SSO",
+      "status": "PASS"
+    },
+    {
+      "actual": "7.4069",
+      "check": "max_position_pct",
+      "limit": "45.0000",
+      "message": "TQQQ is 7.4069% of portfolio.",
+      "scope": "TQQQ",
+      "status": "PASS"
+    },
+    {
+      "actual": "5.2846",
+      "check": "max_sector_pct",
+      "limit": "55.0000",
+      "message": "Cash sector is 5.2846% of portfolio.",
+      "scope": "Cash",
+      "status": "PASS"
+    },
+    {
+      "actual": "49.6087",
+      "check": "max_sector_pct",
+      "limit": "55.0000",
+      "message": "Diversified sector is 49.6087% of portfolio.",
+      "scope": "Diversified",
+      "status": "WARN"
+    },
+    {
+      "actual": "31.1216",
+      "check": "max_sector_pct",
+      "limit": "55.0000",
+      "message": "Technology sector is 31.1216% of portfolio.",
+      "scope": "Technology",
+      "status": "PASS"
+    },
+    {
+      "actual": "13.9852",
+      "check": "max_sector_pct",
+      "limit": "55.0000",
+      "message": "Treasury Bonds sector is 13.9852% of portfolio.",
+      "scope": "Treasury Bonds",
+      "status": "PASS"
+    },
+    {
+      "actual": "5.2846",
+      "check": "min_cash_pct",
+      "limit": "5.0000",
+      "message": "Cash is 5.2846% of portfolio.",
+      "scope": "Cash",
+      "status": "WARN"
+    },
+    {
+      "actual": "1.0000",
+      "check": "max_leverage_multiple",
+      "limit": "1.3500",
+      "message": "Gross exposure is 1.0000x net value.",
+      "scope": "portfolio",
+      "status": "PASS"
+    },
+    {
+      "actual": "5",
+      "check": "required_review_cadence_days",
+      "limit": "14",
+      "message": "Last review was 5 day(s) before snapshot.",
+      "scope": "portfolio",
+      "status": "PASS"
+    }
+  ],
+  "metadata": {
+    "configured_checks": 13,
+    "last_review_date": "2026-05-10",
+    "overall_status": "WARN",
+    "snapshot_date": "2026-05-15"
+  }
+}

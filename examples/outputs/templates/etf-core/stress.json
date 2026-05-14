@@ -1,0 +1,164 @@
+{
+  "holdings": [
+    {
+      "base_contribution_pct": "18.3952",
+      "base_market_value": "11536.00",
+      "contribution_delta_pct": "0.3881",
+      "market_value_delta": "-461.44",
+      "name": "Vanguard Total Bond Market ETF",
+      "shocks": [
+        {
+          "bucket": "North America",
+          "market_value_delta": "-692.16",
+          "name": "US equity drawdown",
+          "price_move_pct": "-6.0000",
+          "selector": "region"
+        },
+        {
+          "bucket": "Fixed Income",
+          "market_value_delta": "230.72",
+          "name": "Aggregate bond rally",
+          "price_move_pct": "2.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "18.7833",
+      "stressed_market_value": "11074.56",
+      "symbol": "BND",
+      "total_price_move_pct": "-4.0000"
+    },
+    {
+      "base_contribution_pct": "7.1470",
+      "base_market_value": "4482.00",
+      "contribution_delta_pct": "-0.0012",
+      "market_value_delta": "-268.92",
+      "name": "Vanguard Total International Bond ETF",
+      "shocks": [
+        {
+          "bucket": "Global ex-US",
+          "market_value_delta": "-358.56",
+          "name": "Ex-US equity drawdown",
+          "price_move_pct": "-8.0000",
+          "selector": "region"
+        },
+        {
+          "bucket": "Fixed Income",
+          "market_value_delta": "89.64",
+          "name": "Aggregate bond rally",
+          "price_move_pct": "2.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "7.1457",
+      "stressed_market_value": "4213.08",
+      "symbol": "BNDX",
+      "total_price_move_pct": "-6.0000"
+    },
+    {
+      "base_contribution_pct": "8.0064",
+      "base_market_value": "5021.00",
+      "contribution_delta_pct": "-0.0014",
+      "market_value_delta": "-301.26",
+      "name": "iShares 0-3 Month Treasury Bond ETF",
+      "shocks": [
+        {
+          "bucket": "North America",
+          "market_value_delta": "-301.26",
+          "name": "US equity drawdown",
+          "price_move_pct": "-6.0000",
+          "selector": "region"
+        },
+        {
+          "bucket": "Cash",
+          "market_value_delta": "0.00",
+          "name": "Cash stable",
+          "price_move_pct": "0.0000",
+          "selector": "asset_class"
+        }
+      ],
+      "stressed_contribution_pct": "8.0051",
+      "stressed_market_value": "4719.74",
+      "symbol": "SGOV",
+      "total_price_move_pct": "-6.0000"
+    },
+    {
+      "base_contribution_pct": "48.8710",
+      "base_market_value": "30648.00",
+      "contribution_delta_pct": "-0.0085",
+      "market_value_delta": "-1838.88",
+      "name": "Vanguard Total Stock Market ETF",
+      "shocks": [
+        {
+          "bucket": "North America",
+          "market_value_delta": "-1838.88",
+          "name": "US equity drawdown",
+          "price_move_pct": "-6.0000",
+          "selector": "region"
+        }
+      ],
+      "stressed_contribution_pct": "48.8626",
+      "stressed_market_value": "28809.12",
+      "symbol": "VTI",
+      "total_price_move_pct": "-6.0000"
+    },
+    {
+      "base_contribution_pct": "17.5804",
+      "base_market_value": "11025.00",
+      "contribution_delta_pct": "-0.3770",
+      "market_value_delta": "-882.00",
+      "name": "Vanguard Total International Stock ETF",
+      "shocks": [
+        {
+          "bucket": "Global ex-US",
+          "market_value_delta": "-882.00",
+          "name": "Ex-US equity drawdown",
+          "price_move_pct": "-8.0000",
+          "selector": "region"
+        }
+      ],
+      "stressed_contribution_pct": "17.2033",
+      "stressed_market_value": "10143.00",
+      "symbol": "VXUS",
+      "total_price_move_pct": "-8.0000"
+    }
+  ],
+  "metadata": {
+    "base_market_value": "62712.00",
+    "holding_count": 5,
+    "market_value_delta": "-3752.50",
+    "market_value_delta_pct": "-5.9837",
+    "scenario_name": "Global risk-off with bond cushion",
+    "shock_count": 4,
+    "stressed_market_value": "58959.50"
+  },
+  "shock_impacts": [
+    {
+      "bucket": "North America",
+      "market_value_delta": "-2832.30",
+      "name": "US equity drawdown",
+      "price_move_pct": "-6.0000",
+      "selector": "region"
+    },
+    {
+      "bucket": "Global ex-US",
+      "market_value_delta": "-1240.56",
+      "name": "Ex-US equity drawdown",
+      "price_move_pct": "-8.0000",
+      "selector": "region"
+    },
+    {
+      "bucket": "Fixed Income",
+      "market_value_delta": "320.36",
+      "name": "Aggregate bond rally",
+      "price_move_pct": "2.0000",
+      "selector": "asset_class"
+    },
+    {
+      "bucket": "Cash",
+      "market_value_delta": "0.00",
+      "name": "Cash stable",
+      "price_move_pct": "0.0000",
+      "selector": "asset_class"
+    }
+  ]
+}

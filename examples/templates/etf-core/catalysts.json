@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "VTI",
+    "date": "2026-05-28",
+    "title": "Quarterly index rebalance window",
+    "importance": "medium",
+    "thesis_link": "https://example.com/templates/etf-core/us-equity-core",
+    "action": "Confirm the broad equity sleeve remains inside target drift"
+  },
+  {
+    "symbol": "BND",
+    "date": "2026-06-10",
+    "title": "FOMC rate decision follow-up",
+    "importance": "high",
+    "thesis_link": "https://example.com/templates/etf-core/duration-buffer",
+    "action": "Review duration exposure after the rates update"
+  },
+  {
+    "symbol": "VXUS",
+    "date": "2026-06-21",
+    "title": "International allocation review",
+    "importance": "medium",
+    "thesis_link": "https://example.com/templates/etf-core/global-diversification",
+    "action": "Check whether ex-US equity weight still matches policy"
+  }
+]

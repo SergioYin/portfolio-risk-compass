@@ -9,6 +9,14 @@ from urllib.parse import urlparse
 
 
 DEFAULT_DASHBOARD_TITLE = "Portfolio Risk Compass Dashboard"
+DEFAULT_DASHBOARD_OUTPUT = "dashboard.html"
+DEFAULT_GALLERY_MARKDOWN = "gallery.md"
+DEFAULT_DASHBOARD_SNIPPET = "dashboard_snippet.html"
+DEFAULT_DASHBOARD_PREVIEW = "dashboard_preview.md"
+SAFETY_BOUNDARY_TEXT = (
+    "Static portfolio review artifact only; not investment advice, trading "
+    "guidance, live market data, or broker execution."
+)
 
 
 def build_dashboard_html(
@@ -129,8 +137,176 @@ def write_dashboard_html(
     output_html.write_text(build_dashboard_html(input_json, title=title), encoding="utf-8")
 
 
+def write_showcase_artifacts(
+    manifest: dict,
+    output_dir: Path,
+    dashboard_path: str = DEFAULT_DASHBOARD_OUTPUT,
+) -> dict[str, Path]:
+    """Write static gallery and preview artifacts for generated dashboard outputs."""
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    paths = {
+        "gallery_markdown": output_dir / DEFAULT_GALLERY_MARKDOWN,
+        "dashboard_snippet": output_dir / DEFAULT_DASHBOARD_SNIPPET,
+        "dashboard_preview": output_dir / DEFAULT_DASHBOARD_PREVIEW,
+    }
+    paths["gallery_markdown"].write_text(
+        render_gallery_markdown(manifest, dashboard_path=dashboard_path),
+        encoding="utf-8",
+    )
+    paths["dashboard_snippet"].write_text(
+        render_dashboard_snippet_html(manifest, dashboard_path=dashboard_path),
+        encoding="utf-8",
+    )
+    paths["dashboard_preview"].write_text(
+        render_dashboard_preview_markdown(manifest, dashboard_path=dashboard_path),
+        encoding="utf-8",
+    )
+    return paths
+
+
+def render_gallery_markdown(
+    manifest: dict,
+    dashboard_path: str = DEFAULT_DASHBOARD_OUTPUT,
+) -> str:
+    """Render a static gallery index for the demo dashboard and source artifacts."""
+
+    artifacts = _select_gallery_artifacts(manifest)
+    lines = [
+        "# Dashboard Output Gallery",
+        "",
+        "Static showcase index for the deterministic demo bundle.",
+        "",
+        f"Safety boundary: {SAFETY_BOUNDARY_TEXT}",
+        "",
+        f"- Bundle: {manifest.get('bundle', 'unknown')}",
+        f"- As of: {manifest.get('as_of', 'unknown')}",
+        f"- Dashboard: [{dashboard_path}]({dashboard_path})",
+        f"- README preview: [{DEFAULT_DASHBOARD_PREVIEW}]({DEFAULT_DASHBOARD_PREVIEW})",
+        f"- Embeddable snippet: [{DEFAULT_DASHBOARD_SNIPPET}]({DEFAULT_DASHBOARD_SNIPPET})",
+        "",
+        "## Featured Artifacts",
+        "",
+        "| Artifact | Format | Purpose |",
+        "| --- | --- | --- |",
+    ]
+    for artifact in artifacts:
+        path = artifact.get("path", "")
+        lines.append(
+            f"| [{path}]({path}) | {artifact.get('format', '')} | {artifact.get('description', '')} |"
+        )
+
+    template_entries = manifest.get("templates", {}).get("templates", [])
+    if template_entries:
+        lines.extend(
+            [
+                "",
+                "## Template Galleries",
+                "",
+                "| Template | Outputs | Fixture directory |",
+                "| --- | --- | --- |",
+            ]
+        )
+        for template in template_entries:
+            output_prefix = template.get("output_prefix", "")
+            lines.append(
+                "| [{name}]({prefix}exposure_report.md) | [{prefix}guardrails.md]({prefix}guardrails.md), "
+                "[{prefix}stress.md]({prefix}stress.md), [{prefix}catalysts.md]({prefix}catalysts.md) | "
+                "`{fixture_dir}` |".format(
+                    name=template.get("name", template.get("slug", "")),
+                    prefix=output_prefix,
+                    fixture_dir=template.get("fixture_dir", ""),
+                )
+            )
+
+    return "\n".join(lines) + "\n"
+
+
+def render_dashboard_preview_markdown(
+    manifest: dict,
+    dashboard_path: str = DEFAULT_DASHBOARD_OUTPUT,
+) -> str:
+    """Render a text screenshot surrogate suitable for embedding in README."""
+
+    lines = [
+        "# Dashboard Preview",
+        "",
+        f"[Open the static dashboard]({dashboard_path})",
+        "",
+        f"Safety boundary: {SAFETY_BOUNDARY_TEXT}",
+        "",
+        "| Panel | What it shows | Source artifact |",
+        "| --- | --- | --- |",
+        "| Summary | Total value, holding count, concentration limit, risk boundary | `exposure_report.json`, `guardrails.json` |",
+        "| Exposure | Asset class, sector, region, and currency allocation tables | `exposure_report.json` |",
+        "| Concentration | Holdings above the configured concentration limit | `exposure_report.json` |",
+        "| Risk Boundaries | PASS/WARN/FAIL policy checks with actuals and limits | `guardrails.json` |",
+        "| Stress | Scenario value, shock impacts, and value delta | `stress.json` |",
+        "| Catalysts | Date-ordered thesis event checklist | `catalysts.json` |",
+        "| Bundle | Generated artifact inventory | `index.json` |",
+        "",
+        "## Featured Files",
+        "",
+        "| File | Format | Bytes |",
+        "| --- | --- | ---: |",
+    ]
+    for artifact in _select_gallery_artifacts(manifest):
+        lines.append(
+            "| `{path}` | {format} | {bytes} |".format(
+                path=artifact.get("path", ""),
+                format=artifact.get("format", ""),
+                bytes=artifact.get("bytes", ""),
+            )
+        )
+    return "\n".join(lines) + "\n"
+
+
+def render_dashboard_snippet_html(
+    manifest: dict,
+    dashboard_path: str = DEFAULT_DASHBOARD_OUTPUT,
+) -> str:
+    """Render a small static HTML promo block for docs or release pages."""
+
+    artifacts = _select_gallery_artifacts(manifest)
+    links = "\n".join(
+        "      <li><a href=\"{href}\">{label}</a> <span>{kind}</span></li>".format(
+            href=_attr(artifact.get("path", "")),
+            label=_text(artifact.get("path", "")),
+            kind=_text(artifact.get("format", "")),
+        )
+        for artifact in artifacts
+    )
+    return (
+        '<section class="portfolio-risk-compass-showcase">\n'
+        "  <h2>Portfolio Risk Compass Dashboard</h2>\n"
+        "  <p>Static, JavaScript-free dashboard generated from deterministic JSON and Markdown artifacts.</p>\n"
+        f"  <p>{_text(SAFETY_BOUNDARY_TEXT)}</p>\n"
+        f'  <p><a href="{_attr(dashboard_path)}">Open dashboard</a> '
+        f'or <a href="{_attr(DEFAULT_DASHBOARD_PREVIEW)}">view the text preview</a>.</p>\n'
+        "  <ul>\n"
+        f"{links}\n"
+        "  </ul>\n"
+        "</section>\n"
+    )
+
+
 def _is_manifest(data: dict) -> bool:
     return isinstance(data.get("artifacts"), list) and "bundle" in data
+
+
+def _select_gallery_artifacts(manifest: dict) -> list[dict]:
+    wanted = {
+        "exposure_report.md",
+        "guardrails.md",
+        "stress.md",
+        "catalysts.md",
+        "index.json",
+    }
+    return [
+        artifact
+        for artifact in manifest.get("artifacts", [])
+        if artifact.get("path") in wanted
+    ]
 
 
 def _load_artifact(bundle_dir: Path, manifest: dict, path: str) -> dict | None:

@@ -1,0 +1,41 @@
+{
+  "catalysts": [
+    {
+      "action": "Confirm the broad equity sleeve remains inside target drift",
+      "date": "2026-05-28",
+      "days_from_as_of": 13,
+      "flag": "upcoming",
+      "importance": "medium",
+      "symbol": "VTI",
+      "thesis_link": "https://example.com/templates/etf-core/us-equity-core",
+      "title": "Quarterly index rebalance window"
+    },
+    {
+      "action": "Review duration exposure after the rates update",
+      "date": "2026-06-10",
+      "days_from_as_of": 26,
+      "flag": "upcoming",
+      "importance": "high",
+      "symbol": "BND",
+      "thesis_link": "https://example.com/templates/etf-core/duration-buffer",
+      "title": "FOMC rate decision follow-up"
+    },
+    {
+      "action": "Check whether ex-US equity weight still matches policy",
+      "date": "2026-06-21",
+      "days_from_as_of": 37,
+      "flag": "upcoming",
+      "importance": "medium",
+      "symbol": "VXUS",
+      "thesis_link": "https://example.com/templates/etf-core/global-diversification",
+      "title": "International allocation review"
+    }
+  ],
+  "metadata": {
+    "as_of": "2026-05-15",
+    "catalyst_count": 3,
+    "overdue_count": 0,
+    "today_count": 0,
+    "upcoming_count": 3
+  }
+}

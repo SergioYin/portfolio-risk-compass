@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "SGOV",
+    "date": "2026-05-15",
+    "title": "Cash sweep rate check",
+    "importance": "high",
+    "thesis_link": "https://example.com/templates/cash-rebalance/cash-drag",
+    "action": "Compare cash yield against short Treasury alternatives"
+  },
+  {
+    "symbol": "IVV",
+    "date": "2026-05-25",
+    "title": "Equity rebalance trigger review",
+    "importance": "medium",
+    "thesis_link": "https://example.com/templates/cash-rebalance/equity-top-up",
+    "action": "Decide whether cash should be deployed toward target equity weight"
+  },
+  {
+    "symbol": "MUB",
+    "date": "2026-06-05",
+    "title": "Tax-aware bond allocation review",
+    "importance": "medium",
+    "thesis_link": "https://example.com/templates/cash-rebalance/muni-sleeve",
+    "action": "Check whether tax-exempt duration still fits the rebalance plan"
+  }
+]

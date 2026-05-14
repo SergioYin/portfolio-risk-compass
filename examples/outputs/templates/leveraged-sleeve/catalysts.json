@@ -1,0 +1,41 @@
+{
+  "catalysts": [
+    {
+      "action": "Decide whether drawdown budget still supports the sleeve size",
+      "date": "2026-05-16",
+      "days_from_as_of": 1,
+      "flag": "upcoming",
+      "importance": "critical",
+      "symbol": "TQQQ",
+      "thesis_link": "https://example.com/templates/leveraged-sleeve/convexity-budget",
+      "title": "Leveraged sleeve stop review"
+    },
+    {
+      "action": "Check if earnings concentration changes the risk budget",
+      "date": "2026-05-22",
+      "days_from_as_of": 7,
+      "flag": "upcoming",
+      "importance": "high",
+      "symbol": "QQQ",
+      "thesis_link": "https://example.com/templates/leveraged-sleeve/technology-beta",
+      "title": "Mega-cap earnings cluster"
+    },
+    {
+      "action": "Confirm short Treasury sleeve can fund a rebalance",
+      "date": "2026-06-03",
+      "days_from_as_of": 19,
+      "flag": "upcoming",
+      "importance": "medium",
+      "symbol": "SHY",
+      "thesis_link": "https://example.com/templates/leveraged-sleeve/liquidity-buffer",
+      "title": "Collateral liquidity review"
+    }
+  ],
+  "metadata": {
+    "as_of": "2026-05-15",
+    "catalyst_count": 3,
+    "overdue_count": 0,
+    "today_count": 0,
+    "upcoming_count": 3
+  }
+}

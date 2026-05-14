@@ -30,6 +30,12 @@ from .demo import (
 )
 from .dashboard import DEFAULT_DASHBOARD_TITLE, write_dashboard_html
 from .holdings import read_holdings_csv
+from .integrations import (
+    INTEGRATION_PROFILES,
+    build_integration_export,
+    render_integration_export_json,
+    write_integration_export,
+)
 from .packaging import (
     DEFAULT_RELEASE_MANIFEST_JSON,
     DEFAULT_RELEASE_MANIFEST_MARKDOWN,
@@ -54,6 +60,12 @@ from .stress import (
     render_stress_markdown,
     stress_portfolio,
 )
+from .templates import (
+    DEFAULT_TEMPLATES_DIR,
+    render_template_list_json,
+    render_template_list_markdown,
+    template_manifest,
+)
 
 COMMAND_NAMES = (
     "analyze",
@@ -62,8 +74,10 @@ COMMAND_NAMES = (
     "catalysts",
     "guardrails",
     "stress",
+    "template-list",
     "demo-bundle",
     "dashboard",
+    "integration-export",
     "package-audit",
     "release-manifest",
 )
@@ -85,10 +99,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_guardrails(args)
     if args.command == "stress":
         return _run_stress(args)
+    if args.command == "template-list":
+        return _run_template_list(args)
     if args.command == "demo-bundle":
         return _run_demo_bundle(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
+    if args.command == "integration-export":
+        return _run_integration_export(args)
     if args.command == "package-audit":
         return _run_package_audit(args)
     if args.command == "release-manifest":
@@ -215,8 +233,23 @@ def _run_stress(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_template_list(args: argparse.Namespace) -> int:
+    manifest = template_manifest(args.templates_dir)
+    if args.format == "markdown":
+        sys.stdout.write(render_template_list_markdown(manifest))
+    else:
+        sys.stdout.write(render_template_list_json(manifest))
+    return 0
+
+
 def _run_demo_bundle(args: argparse.Namespace) -> int:
-    build_demo_bundle(args.fixtures_dir, args.output_dir, args.as_of)
+    build_demo_bundle(
+        args.fixtures_dir,
+        args.output_dir,
+        args.as_of,
+        templates_dir=args.templates_dir,
+        include_templates=not args.no_templates,
+    )
     sys.stdout.write(str(args.output_dir / "index.json") + "\n")
     return 0
 
@@ -224,6 +257,16 @@ def _run_demo_bundle(args: argparse.Namespace) -> int:
 def _run_dashboard(args: argparse.Namespace) -> int:
     write_dashboard_html(args.input_json, args.output_html, title=args.title)
     sys.stdout.write(str(args.output_html) + "\n")
+    return 0
+
+
+def _run_integration_export(args: argparse.Namespace) -> int:
+    if args.json:
+        write_integration_export(args.outputs_dir, args.profile, args.json)
+        sys.stdout.write(str(args.json) + "\n")
+    else:
+        export = build_integration_export(args.outputs_dir, args.profile)
+        sys.stdout.write(render_integration_export_json(export))
     return 0
 
 
@@ -380,12 +423,34 @@ def _build_parser() -> argparse.ArgumentParser:
         "--markdown", type=Path, help="Write Markdown stress report to this path."
     )
 
+    template_list = subparsers.add_parser(
+        "template-list",
+        help="List example portfolio templates.",
+        description=(
+            "List named example portfolio templates with their holdings, config, "
+            "catalysts, and scenario fixture files."
+        ),
+    )
+    template_list.add_argument(
+        "--templates-dir",
+        type=Path,
+        default=DEFAULT_TEMPLATES_DIR,
+        help=f"Directory containing template fixtures. Defaults to {DEFAULT_TEMPLATES_DIR}.",
+    )
+    template_list.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="json",
+        help="Output format. Defaults to JSON.",
+    )
+
     demo_bundle = subparsers.add_parser(
         "demo-bundle",
         help="Regenerate example output artifacts from fixtures.",
         description=(
             "Regenerate examples/outputs artifacts from examples/fixtures, including "
-            "reports, snapshot, catalyst checklist, guardrails, stress results, and index manifest."
+            "reports, snapshot, catalyst checklist, guardrails, stress results, "
+            "template gallery outputs, and index manifest."
         ),
     )
     demo_bundle.add_argument(
@@ -404,6 +469,17 @@ def _build_parser() -> argparse.ArgumentParser:
         "--as-of",
         default=DEFAULT_AS_OF,
         help=f"Reference date for date-sensitive demo outputs. Defaults to {DEFAULT_AS_OF}.",
+    )
+    demo_bundle.add_argument(
+        "--templates-dir",
+        type=Path,
+        default=DEFAULT_TEMPLATES_DIR,
+        help=f"Directory containing template fixtures. Defaults to {DEFAULT_TEMPLATES_DIR}.",
+    )
+    demo_bundle.add_argument(
+        "--no-templates",
+        action="store_true",
+        help="Only render the base demo fixtures, without template gallery outputs.",
     )
 
     dashboard = subparsers.add_parser(
@@ -428,6 +504,31 @@ def _build_parser() -> argparse.ArgumentParser:
         "--title",
         default=DEFAULT_DASHBOARD_TITLE,
         help=f"Dashboard title. Defaults to {DEFAULT_DASHBOARD_TITLE!r}.",
+    )
+
+    integration_export = subparsers.add_parser(
+        "integration-export",
+        help="Export neutral adapter JSON for adjacent artifact consumers.",
+        description=(
+            "Read generated output artifacts and write deterministic adapter JSON "
+            "for optional downstream workflows without importing or depending on them."
+        ),
+    )
+    integration_export.add_argument(
+        "profile",
+        choices=INTEGRATION_PROFILES,
+        help="Adapter profile to render.",
+    )
+    integration_export.add_argument(
+        "--outputs-dir",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR,
+        help=f"Directory containing generated artifacts. Defaults to {DEFAULT_OUTPUT_DIR}.",
+    )
+    integration_export.add_argument(
+        "--json",
+        type=Path,
+        help="Path to write adapter JSON. Prints JSON to stdout when omitted.",
     )
 
     package_audit = subparsers.add_parser(

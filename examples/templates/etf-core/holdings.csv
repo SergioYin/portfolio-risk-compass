@@ -1,0 +1,6 @@
+symbol,name,quantity,price,asset_class,sector,region,currency
+VTI,Vanguard Total Stock Market ETF,120,255.40,Equity,Diversified,North America,USD
+VXUS,Vanguard Total International Stock ETF,180,61.25,Equity,Diversified,Global ex-US,USD
+BND,Vanguard Total Bond Market ETF,160,72.10,Fixed Income,Aggregate Bonds,North America,USD
+BNDX,Vanguard Total International Bond ETF,90,49.80,Fixed Income,Aggregate Bonds,Global ex-US,USD
+SGOV,iShares 0-3 Month Treasury Bond ETF,50,100.42,Cash,Treasury Bills,North America,USD

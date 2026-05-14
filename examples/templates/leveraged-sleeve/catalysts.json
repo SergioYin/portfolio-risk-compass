@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "TQQQ",
+    "date": "2026-05-16",
+    "title": "Leveraged sleeve stop review",
+    "importance": "critical",
+    "thesis_link": "https://example.com/templates/leveraged-sleeve/convexity-budget",
+    "action": "Decide whether drawdown budget still supports the sleeve size"
+  },
+  {
+    "symbol": "QQQ",
+    "date": "2026-05-22",
+    "title": "Mega-cap earnings cluster",
+    "importance": "high",
+    "thesis_link": "https://example.com/templates/leveraged-sleeve/technology-beta",
+    "action": "Check if earnings concentration changes the risk budget"
+  },
+  {
+    "symbol": "SHY",
+    "date": "2026-06-03",
+    "title": "Collateral liquidity review",
+    "importance": "medium",
+    "thesis_link": "https://example.com/templates/leveraged-sleeve/liquidity-buffer",
+    "action": "Confirm short Treasury sleeve can fund a rebalance"
+  }
+]

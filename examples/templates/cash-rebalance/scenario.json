@@ -1,0 +1,25 @@
+{
+  "name": "Cash deployment after mild pullback",
+  "shocks": [
+    {
+      "name": "Equity pullback",
+      "asset_class": "Equity",
+      "price_move_pct": "-4"
+    },
+    {
+      "name": "Bond mark-to-market pressure",
+      "asset_class": "Fixed Income",
+      "price_move_pct": "-2"
+    },
+    {
+      "name": "Cash principal stable",
+      "asset_class": "Cash",
+      "price_move_pct": "0"
+    },
+    {
+      "name": "Municipal spread widening",
+      "sector": "Municipal Bonds",
+      "price_move_pct": "-1.5"
+    }
+  ]
+}

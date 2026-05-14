@@ -37,6 +37,24 @@ def main() -> int:
                 "examples/outputs/index.json",
                 "examples/outputs/dashboard.html",
             ],
+            [
+                sys.executable,
+                "-m",
+                "portfolio_risk_compass",
+                "integration-export",
+                "invest-thesis-ledger",
+                "--json",
+                "examples/outputs/invest_thesis_ledger_adapter.json",
+            ],
+            [
+                sys.executable,
+                "-m",
+                "portfolio_risk_compass",
+                "integration-export",
+                "leveraged-etp-risk-lab",
+                "--json",
+                "examples/outputs/leveraged_etp_risk_lab_adapter.json",
+            ],
             [sys.executable, "-m", "portfolio_risk_compass", "release-manifest"],
             [sys.executable, "scripts/privacy_scan.py"],
             [sys.executable, "-m", "portfolio_risk_compass", "package-audit"],
@@ -45,6 +63,17 @@ def main() -> int:
             result = subprocess.run(command, check=False, cwd=root, env=env)
             if result.returncode != 0:
                 return result.returncode
+    required_showcase_files = [
+        root / "examples/outputs/gallery.md",
+        root / "examples/outputs/dashboard_preview.md",
+        root / "examples/outputs/dashboard_snippet.html",
+        root / "examples/outputs/invest_thesis_ledger_adapter.json",
+        root / "examples/outputs/leveraged_etp_risk_lab_adapter.json",
+    ]
+    for path in required_showcase_files:
+        if not path.is_file():
+            sys.stderr.write(f"missing showcase artifact: {path}\n")
+            return 1
     return 0
 
 

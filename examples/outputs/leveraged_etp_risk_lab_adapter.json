@@ -1,0 +1,146 @@
+{
+  "adapter": "portfolio-risk-compass.integration-export",
+  "payload": {
+    "asset_class_exposures": [
+      {
+        "bucket": "Equity",
+        "market_value": "4900.00",
+        "pct_of_portfolio": "66.6667"
+      },
+      {
+        "bucket": "Fixed Income",
+        "market_value": "1450.00",
+        "pct_of_portfolio": "19.7279"
+      },
+      {
+        "bucket": "Cash",
+        "market_value": "1000.00",
+        "pct_of_portfolio": "13.6054"
+      }
+    ],
+    "leverage_guardrails": [
+      {
+        "actual": "1.0000",
+        "limit": "1.2500",
+        "message": "Gross exposure is 1.0000x net value.",
+        "scope": "portfolio",
+        "status": "PASS"
+      }
+    ],
+    "portfolio_stress_summary": {
+      "base_market_value": "7350.00",
+      "holding_count": 5,
+      "market_value_delta": "-538.00",
+      "market_value_delta_pct": "-7.3197",
+      "scenario_name": "Risk-off rotation",
+      "shock_count": 4,
+      "stressed_market_value": "6812.00"
+    },
+    "shock_impacts": [
+      {
+        "bucket": "Technology",
+        "market_value_delta": "-400.00",
+        "name": "Technology rerating",
+        "price_move_pct": "-10.0000",
+        "selector": "sector"
+      },
+      {
+        "bucket": "AAPL",
+        "market_value_delta": "-95.00",
+        "name": "Apple idiosyncratic miss",
+        "price_move_pct": "-5.0000",
+        "selector": "symbol"
+      },
+      {
+        "bucket": "Fixed Income",
+        "market_value_delta": "29.00",
+        "name": "Bond rally",
+        "price_move_pct": "2.0000",
+        "selector": "asset_class"
+      },
+      {
+        "bucket": "Global ex-US",
+        "market_value_delta": "-72.00",
+        "name": "International equity drawdown",
+        "price_move_pct": "-8.0000",
+        "selector": "region"
+      }
+    ],
+    "stressed_holdings": [
+      {
+        "base_market_value": "1900.00",
+        "market_value_delta": "-285.00",
+        "shock_names": [
+          "Technology rerating",
+          "Apple idiosyncratic miss"
+        ],
+        "stressed_market_value": "1615.00",
+        "symbol": "AAPL",
+        "total_price_move_pct": "-15.0000"
+      },
+      {
+        "base_market_value": "1450.00",
+        "market_value_delta": "29.00",
+        "shock_names": [
+          "Bond rally"
+        ],
+        "stressed_market_value": "1479.00",
+        "symbol": "BND",
+        "total_price_move_pct": "2.0000"
+      },
+      {
+        "base_market_value": "1000.00",
+        "market_value_delta": "0.00",
+        "shock_names": [],
+        "stressed_market_value": "1000.00",
+        "symbol": "CASH",
+        "total_price_move_pct": "0.0000"
+      },
+      {
+        "base_market_value": "2100.00",
+        "market_value_delta": "-210.00",
+        "shock_names": [
+          "Technology rerating"
+        ],
+        "stressed_market_value": "1890.00",
+        "symbol": "MSFT",
+        "total_price_move_pct": "-10.0000"
+      },
+      {
+        "base_market_value": "900.00",
+        "market_value_delta": "-72.00",
+        "shock_names": [
+          "International equity drawdown"
+        ],
+        "stressed_market_value": "828.00",
+        "symbol": "VXUS",
+        "total_price_move_pct": "-8.0000"
+      }
+    ]
+  },
+  "profile": "leveraged-etp-risk-lab",
+  "schema_version": 1,
+  "source_artifacts": [
+    {
+      "bytes": 3747,
+      "path": "exposure_report.json",
+      "sha256": "d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c"
+    },
+    {
+      "bytes": 2644,
+      "path": "guardrails.json",
+      "sha256": "bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82"
+    },
+    {
+      "bytes": 4029,
+      "path": "stress.json",
+      "sha256": "d7693910dc7c2b6e90c5d4029b41e557be9d26a2ef2c22999e452c0e11c9e58c"
+    },
+    {
+      "bytes": 1198,
+      "path": "catalysts.json",
+      "sha256": "4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1"
+    }
+  ],
+  "source_package": "portfolio-risk-compass"
+}

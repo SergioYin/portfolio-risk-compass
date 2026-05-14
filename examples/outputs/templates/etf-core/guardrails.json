@@ -1,0 +1,98 @@
+{
+  "items": [
+    {
+      "actual": "18.3952",
+      "check": "max_position_pct",
+      "limit": "50.0000",
+      "message": "BND is 18.3952% of portfolio.",
+      "scope": "BND",
+      "status": "PASS"
+    },
+    {
+      "actual": "7.1470",
+      "check": "max_position_pct",
+      "limit": "50.0000",
+      "message": "BNDX is 7.1470% of portfolio.",
+      "scope": "BNDX",
+      "status": "PASS"
+    },
+    {
+      "actual": "8.0064",
+      "check": "max_position_pct",
+      "limit": "50.0000",
+      "message": "SGOV is 8.0064% of portfolio.",
+      "scope": "SGOV",
+      "status": "PASS"
+    },
+    {
+      "actual": "48.8710",
+      "check": "max_position_pct",
+      "limit": "50.0000",
+      "message": "VTI is 48.8710% of portfolio.",
+      "scope": "VTI",
+      "status": "WARN"
+    },
+    {
+      "actual": "17.5804",
+      "check": "max_position_pct",
+      "limit": "50.0000",
+      "message": "VXUS is 17.5804% of portfolio.",
+      "scope": "VXUS",
+      "status": "PASS"
+    },
+    {
+      "actual": "25.5422",
+      "check": "max_sector_pct",
+      "limit": "70.0000",
+      "message": "Aggregate Bonds sector is 25.5422% of portfolio.",
+      "scope": "Aggregate Bonds",
+      "status": "PASS"
+    },
+    {
+      "actual": "66.4514",
+      "check": "max_sector_pct",
+      "limit": "70.0000",
+      "message": "Diversified sector is 66.4514% of portfolio.",
+      "scope": "Diversified",
+      "status": "WARN"
+    },
+    {
+      "actual": "8.0064",
+      "check": "max_sector_pct",
+      "limit": "70.0000",
+      "message": "Treasury Bills sector is 8.0064% of portfolio.",
+      "scope": "Treasury Bills",
+      "status": "PASS"
+    },
+    {
+      "actual": "8.0064",
+      "check": "min_cash_pct",
+      "limit": "3.0000",
+      "message": "Cash is 8.0064% of portfolio.",
+      "scope": "Cash",
+      "status": "PASS"
+    },
+    {
+      "actual": "1.0000",
+      "check": "max_leverage_multiple",
+      "limit": "1.0500",
+      "message": "Gross exposure is 1.0000x net value.",
+      "scope": "portfolio",
+      "status": "WARN"
+    },
+    {
+      "actual": "14",
+      "check": "required_review_cadence_days",
+      "limit": "45",
+      "message": "Last review was 14 day(s) before snapshot.",
+      "scope": "portfolio",
+      "status": "PASS"
+    }
+  ],
+  "metadata": {
+    "configured_checks": 11,
+    "last_review_date": "2026-05-01",
+    "overall_status": "WARN",
+    "snapshot_date": "2026-05-15"
+  }
+}
