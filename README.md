@@ -67,6 +67,7 @@ For a full demo bundle with all supported report types:
 ```bash
 portfolio-risk-compass template-list --format markdown
 portfolio-risk-compass demo-bundle
+portfolio-risk-compass showcase
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
 ```
 
@@ -86,6 +87,8 @@ The repository includes generated artifacts under
 | [`catalysts.md`](examples/outputs/catalysts.md) | Date-ordered thesis event checklist |
 | [`dashboard.html`](examples/outputs/dashboard.html) | Self-contained static dashboard export |
 | [`gallery.md`](examples/outputs/gallery.md) | Static gallery index for dashboard and demo artifacts |
+| [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
+| [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
 | [`dashboard_snippet.html`](examples/outputs/dashboard_snippet.html) | Small embeddable HTML showcase snippet for docs pages |
 | [`index.json`](examples/outputs/index.json) | Demo bundle manifest for generated artifacts |
@@ -426,6 +429,23 @@ as static showcase material for README, docs, and release pages. By default it
 also writes template gallery outputs under
 `examples/outputs/templates/<template-slug>/`. Use `--no-templates` when you
 only want the base demo fixture outputs.
+
+Write or refresh the guided showcase walkthrough from an existing bundle
+manifest:
+
+```bash
+portfolio-risk-compass showcase \
+  --manifest examples/outputs/index.json \
+  --markdown examples/outputs/walkthrough.md \
+  --json examples/outputs/walkthrough.json
+```
+
+The walkthrough is designed for cold users reviewing the project for the first
+time. It compares the base demo, ETF core, leveraged sleeve, and cash rebalance
+templates in one deterministic artifact, links to the relevant Markdown reports,
+and summarizes total value, guardrail status, stress delta, catalyst count, and
+watchlist count. It is a static review guide only and does not recommend trades,
+position sizes, account transfers, or timing.
 
 Export a static dashboard from that manifest:
 

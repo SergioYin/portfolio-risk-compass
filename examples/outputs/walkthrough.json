@@ -1,0 +1,184 @@
+{
+  "artifact": "portfolio-risk-compass-showcase-walkthrough",
+  "as_of": "2026-05-15",
+  "case_count": 4,
+  "cases": [
+    {
+      "artifact_paths": [
+        "exposure_report.json",
+        "exposure_report.md",
+        "snapshot_current.json",
+        "catalysts.json",
+        "catalysts.md",
+        "guardrails.json",
+        "guardrails.md",
+        "stress.json",
+        "stress.md",
+        "rebalance_watchlist.json",
+        "rebalance_watchlist.md",
+        "history.json",
+        "history.md",
+        "review_memo.md"
+      ],
+      "description": "Repository demo fixture set.",
+      "fixture_dir": "examples/fixtures",
+      "links": {
+        "catalysts_markdown": "catalysts.md",
+        "exposure_markdown": "exposure_report.md",
+        "guardrails_markdown": "guardrails.md",
+        "stress_markdown": "stress.md",
+        "watchlist_markdown": "rebalance_watchlist.md"
+      },
+      "metrics": {
+        "catalyst_count": 3,
+        "concentration_count": 2,
+        "guardrail_fail_count": 1,
+        "guardrail_status": "FAIL",
+        "guardrail_warn_count": 0,
+        "holding_count": 5,
+        "stress_market_value_delta_pct": "-7.3197",
+        "total_market_value": "7350.00",
+        "watchlist_item_count": 8
+      },
+      "name": "Base Demo",
+      "output_prefix": "",
+      "slug": "base-demo"
+    },
+    {
+      "artifact_paths": [
+        "templates/cash-rebalance/exposure_report.json",
+        "templates/cash-rebalance/exposure_report.md",
+        "templates/cash-rebalance/snapshot_current.json",
+        "templates/cash-rebalance/catalysts.json",
+        "templates/cash-rebalance/catalysts.md",
+        "templates/cash-rebalance/guardrails.json",
+        "templates/cash-rebalance/guardrails.md",
+        "templates/cash-rebalance/stress.json",
+        "templates/cash-rebalance/stress.md",
+        "templates/cash-rebalance/rebalance_watchlist.json",
+        "templates/cash-rebalance/rebalance_watchlist.md"
+      ],
+      "description": "High-cash portfolio staged for tax-aware deployment after drift or market pullback triggers.",
+      "fixture_dir": "examples/templates/cash-rebalance",
+      "links": {
+        "catalysts_markdown": "templates/cash-rebalance/catalysts.md",
+        "exposure_markdown": "templates/cash-rebalance/exposure_report.md",
+        "guardrails_markdown": "templates/cash-rebalance/guardrails.md",
+        "stress_markdown": "templates/cash-rebalance/stress.md",
+        "watchlist_markdown": "templates/cash-rebalance/rebalance_watchlist.md"
+      },
+      "metrics": {
+        "catalyst_count": 3,
+        "concentration_count": 0,
+        "guardrail_fail_count": 0,
+        "guardrail_status": "WARN",
+        "guardrail_warn_count": 1,
+        "holding_count": 6,
+        "stress_market_value_delta_pct": "-2.1168",
+        "total_market_value": "61510.60",
+        "watchlist_item_count": 13
+      },
+      "name": "Cash Rebalance",
+      "output_prefix": "templates/cash-rebalance/",
+      "slug": "cash-rebalance"
+    },
+    {
+      "artifact_paths": [
+        "templates/etf-core/exposure_report.json",
+        "templates/etf-core/exposure_report.md",
+        "templates/etf-core/snapshot_current.json",
+        "templates/etf-core/catalysts.json",
+        "templates/etf-core/catalysts.md",
+        "templates/etf-core/guardrails.json",
+        "templates/etf-core/guardrails.md",
+        "templates/etf-core/stress.json",
+        "templates/etf-core/stress.md",
+        "templates/etf-core/rebalance_watchlist.json",
+        "templates/etf-core/rebalance_watchlist.md"
+      ],
+      "description": "Diversified stock, bond, and Treasury-bill core allocation with global equity and duration review points.",
+      "fixture_dir": "examples/templates/etf-core",
+      "links": {
+        "catalysts_markdown": "templates/etf-core/catalysts.md",
+        "exposure_markdown": "templates/etf-core/exposure_report.md",
+        "guardrails_markdown": "templates/etf-core/guardrails.md",
+        "stress_markdown": "templates/etf-core/stress.md",
+        "watchlist_markdown": "templates/etf-core/rebalance_watchlist.md"
+      },
+      "metrics": {
+        "catalyst_count": 3,
+        "concentration_count": 1,
+        "guardrail_fail_count": 0,
+        "guardrail_status": "WARN",
+        "guardrail_warn_count": 3,
+        "holding_count": 5,
+        "stress_market_value_delta_pct": "-5.9837",
+        "total_market_value": "62712.00",
+        "watchlist_item_count": 12
+      },
+      "name": "ETF Core",
+      "output_prefix": "templates/etf-core/",
+      "slug": "etf-core"
+    },
+    {
+      "artifact_paths": [
+        "templates/leveraged-sleeve/exposure_report.json",
+        "templates/leveraged-sleeve/exposure_report.md",
+        "templates/leveraged-sleeve/snapshot_current.json",
+        "templates/leveraged-sleeve/catalysts.json",
+        "templates/leveraged-sleeve/catalysts.md",
+        "templates/leveraged-sleeve/guardrails.json",
+        "templates/leveraged-sleeve/guardrails.md",
+        "templates/leveraged-sleeve/stress.json",
+        "templates/leveraged-sleeve/stress.md",
+        "templates/leveraged-sleeve/rebalance_watchlist.json",
+        "templates/leveraged-sleeve/rebalance_watchlist.md"
+      ],
+      "description": "Core equity book with a capped leveraged growth sleeve, liquidity buffer, and tighter review cadence.",
+      "fixture_dir": "examples/templates/leveraged-sleeve",
+      "links": {
+        "catalysts_markdown": "templates/leveraged-sleeve/catalysts.md",
+        "exposure_markdown": "templates/leveraged-sleeve/exposure_report.md",
+        "guardrails_markdown": "templates/leveraged-sleeve/guardrails.md",
+        "stress_markdown": "templates/leveraged-sleeve/stress.md",
+        "watchlist_markdown": "templates/leveraged-sleeve/rebalance_watchlist.md"
+      },
+      "metrics": {
+        "catalyst_count": 3,
+        "concentration_count": 1,
+        "guardrail_fail_count": 0,
+        "guardrail_status": "WARN",
+        "guardrail_warn_count": 3,
+        "holding_count": 6,
+        "stress_market_value_delta_pct": "-8.0097",
+        "total_market_value": "47307.25",
+        "watchlist_item_count": 13
+      },
+      "name": "Leveraged Sleeve",
+      "output_prefix": "templates/leveraged-sleeve/",
+      "slug": "leveraged-sleeve"
+    }
+  ],
+  "guided_steps": [
+    {
+      "artifact": "dashboard.html",
+      "purpose": "Start with the no-JavaScript overview before inspecting source files.",
+      "step": 1,
+      "title": "Open the static dashboard"
+    },
+    {
+      "artifact": "walkthrough.md",
+      "purpose": "Use the case table to compare allocation, guardrail, stress, catalyst, and watchlist signals.",
+      "step": 2,
+      "title": "Compare template risk postures"
+    },
+    {
+      "artifact": "index.json",
+      "purpose": "Use the manifest and linked Markdown reports to verify each generated artifact.",
+      "step": 3,
+      "title": "Trace every number to a file"
+    }
+  ],
+  "safety_boundary": "Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.",
+  "schema_version": 1
+}

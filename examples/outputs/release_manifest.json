@@ -1,5 +1,5 @@
 {
-  "artifact_count": 54,
+  "artifact_count": 56,
   "artifacts": [
     {
       "bytes": 1198,
@@ -29,7 +29,7 @@
       "bytes": 876,
       "format": "html",
       "path": "dashboard_snippet.html",
-      "sha256": "bdedaa119048fd3ff5cdf9ac0fd460b99e12f0338f45790352498194f12254b4"
+      "sha256": "2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77"
     },
     {
       "bytes": 3747,
@@ -44,10 +44,10 @@
       "sha256": "c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6"
     },
     {
-      "bytes": 2068,
+      "bytes": 2123,
       "format": "markdown",
       "path": "gallery.md",
-      "sha256": "a1336dedf3f71fa95aaa11d9c718148c2a50aafd2879c48737283683d9bb9ea4"
+      "sha256": "6c504766262437d6a940c31b77e21d9e5f3297bcf8796ad024ba41926476d8c3"
     },
     {
       "bytes": 2644,
@@ -324,6 +324,18 @@
       "format": "markdown",
       "path": "templates/leveraged-sleeve/stress.md",
       "sha256": "070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89"
+    },
+    {
+      "bytes": 7119,
+      "format": "json",
+      "path": "walkthrough.json",
+      "sha256": "b32e46081e81dbe26e4f5f380a5a6197a73377472128dd84a261588c23d6c47c"
+    },
+    {
+      "bytes": 3568,
+      "format": "markdown",
+      "path": "walkthrough.md",
+      "sha256": "85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932"
     }
   ],
   "bundle": "portfolio-risk-compass-release",

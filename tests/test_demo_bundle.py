@@ -24,9 +24,20 @@ class DemoBundleTests(unittest.TestCase):
             self.assertTrue((output_dir / "gallery.md").is_file())
             self.assertTrue((output_dir / "dashboard_snippet.html").is_file())
             self.assertTrue((output_dir / "dashboard_preview.md").is_file())
+            self.assertTrue((output_dir / "walkthrough.md").is_file())
+            self.assertTrue((output_dir / "walkthrough.json").is_file())
             preview = (output_dir / "dashboard_preview.md").read_text(encoding="utf-8")
             self.assertIn("| Summary | Total value", preview)
             self.assertIn("[Open the static dashboard](dashboard.html)", preview)
+            walkthrough = json.loads(
+                (output_dir / "walkthrough.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(walkthrough["case_count"], 4)
+            self.assertEqual(
+                [case["slug"] for case in walkthrough["cases"]],
+                ["base-demo", "cash-rebalance", "etf-core", "leveraged-sleeve"],
+            )
+            self.assertIn("not investment advice", walkthrough["safety_boundary"])
 
         expected_paths = [
             "exposure_report.json",
@@ -148,6 +159,49 @@ class DemoBundleTests(unittest.TestCase):
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
         self.assertEqual(len(manifest["artifacts"]), 14)
+
+    def test_cli_showcase_writes_walkthrough_artifacts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            markdown_path = Path(temp_dir) / "showcase.md"
+            json_path = Path(temp_dir) / "showcase.json"
+            build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+
+            with patch("sys.stdout") as stdout:
+                self.assertEqual(
+                    main(
+                        [
+                            "showcase",
+                            "--manifest",
+                            str(output_dir / "index.json"),
+                            "--markdown",
+                            str(markdown_path),
+                            "--json",
+                            str(json_path),
+                        ]
+                    ),
+                    0,
+                )
+
+            markdown = markdown_path.read_text(encoding="utf-8")
+            walkthrough = json.loads(json_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            stdout.write.call_args_list[0].args[0],
+            str(markdown_path) + "\n",
+        )
+        self.assertEqual(
+            stdout.write.call_args_list[1].args[0],
+            str(json_path) + "\n",
+        )
+        self.assertIn("# Portfolio Risk Compass Guided Walkthrough", markdown)
+        self.assertIn("Cash Rebalance", markdown)
+        self.assertEqual(walkthrough["artifact"], "portfolio-risk-compass-showcase-walkthrough")
+        self.assertEqual(walkthrough["cases"][2]["metrics"]["guardrail_status"], "WARN")
 
 
 if __name__ == "__main__":

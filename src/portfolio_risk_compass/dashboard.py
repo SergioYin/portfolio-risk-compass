@@ -13,6 +13,8 @@ DEFAULT_DASHBOARD_OUTPUT = "dashboard.html"
 DEFAULT_GALLERY_MARKDOWN = "gallery.md"
 DEFAULT_DASHBOARD_SNIPPET = "dashboard_snippet.html"
 DEFAULT_DASHBOARD_PREVIEW = "dashboard_preview.md"
+DEFAULT_WALKTHROUGH_MARKDOWN = "walkthrough.md"
+DEFAULT_WALKTHROUGH_JSON = "walkthrough.json"
 SAFETY_BOUNDARY_TEXT = (
     "Static portfolio review artifact only; not investment advice, trading "
     "guidance, live market data, or broker execution."
@@ -149,6 +151,8 @@ def write_showcase_artifacts(
         "gallery_markdown": output_dir / DEFAULT_GALLERY_MARKDOWN,
         "dashboard_snippet": output_dir / DEFAULT_DASHBOARD_SNIPPET,
         "dashboard_preview": output_dir / DEFAULT_DASHBOARD_PREVIEW,
+        "walkthrough_markdown": output_dir / DEFAULT_WALKTHROUGH_MARKDOWN,
+        "walkthrough_json": output_dir / DEFAULT_WALKTHROUGH_JSON,
     }
     paths["gallery_markdown"].write_text(
         render_gallery_markdown(manifest, dashboard_path=dashboard_path),
@@ -162,7 +166,154 @@ def write_showcase_artifacts(
         render_dashboard_preview_markdown(manifest, dashboard_path=dashboard_path),
         encoding="utf-8",
     )
+    walkthrough = build_showcase_walkthrough(manifest, output_dir)
+    paths["walkthrough_markdown"].write_text(
+        render_showcase_walkthrough_markdown(walkthrough),
+        encoding="utf-8",
+    )
+    paths["walkthrough_json"].write_text(
+        json.dumps(walkthrough, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     return paths
+
+
+def write_showcase_walkthrough(
+    manifest_json: Path,
+    markdown_path: Path,
+    json_path: Path,
+) -> dict[str, Path]:
+    """Write a guided, multi-template walkthrough from a demo manifest."""
+
+    manifest = _read_json(manifest_json)
+    output_dir = manifest_json.parent
+    walkthrough = build_showcase_walkthrough(manifest, output_dir)
+    markdown_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    markdown_path.write_text(
+        render_showcase_walkthrough_markdown(walkthrough),
+        encoding="utf-8",
+    )
+    json_path.write_text(
+        json.dumps(walkthrough, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return {"markdown": markdown_path, "json": json_path}
+
+
+def build_showcase_walkthrough(manifest: dict, output_dir: Path) -> dict:
+    """Build deterministic guided walkthrough data for the base demo and templates."""
+
+    cases = [_walkthrough_case("base-demo", "Base Demo", "Repository demo fixture set.", "", manifest, output_dir)]
+    for template in manifest.get("templates", {}).get("templates", []):
+        prefix = template.get("output_prefix", "")
+        cases.append(
+            _walkthrough_case(
+                template.get("slug", prefix.strip("/") or "template"),
+                template.get("name", template.get("slug", "Template")),
+                template.get("description", ""),
+                prefix,
+                manifest,
+                output_dir,
+                fixture_dir=template.get("fixture_dir", ""),
+            )
+        )
+
+    return {
+        "schema_version": 1,
+        "artifact": "portfolio-risk-compass-showcase-walkthrough",
+        "as_of": manifest.get("as_of", "unknown"),
+        "safety_boundary": SAFETY_BOUNDARY_TEXT,
+        "case_count": len(cases),
+        "guided_steps": [
+            {
+                "step": 1,
+                "title": "Open the static dashboard",
+                "artifact": DEFAULT_DASHBOARD_OUTPUT,
+                "purpose": "Start with the no-JavaScript overview before inspecting source files.",
+            },
+            {
+                "step": 2,
+                "title": "Compare template risk postures",
+                "artifact": DEFAULT_WALKTHROUGH_MARKDOWN,
+                "purpose": "Use the case table to compare allocation, guardrail, stress, catalyst, and watchlist signals.",
+            },
+            {
+                "step": 3,
+                "title": "Trace every number to a file",
+                "artifact": "index.json",
+                "purpose": "Use the manifest and linked Markdown reports to verify each generated artifact.",
+            },
+        ],
+        "cases": cases,
+    }
+
+
+def render_showcase_walkthrough_markdown(walkthrough: dict) -> str:
+    lines = [
+        "# Portfolio Risk Compass Guided Walkthrough",
+        "",
+        "Deterministic walkthrough for the base demo and bundled portfolio templates.",
+        "",
+        f"Safety boundary: {walkthrough.get('safety_boundary', SAFETY_BOUNDARY_TEXT)}",
+        "",
+        f"- As of: {walkthrough.get('as_of', 'unknown')}",
+        f"- Case count: {walkthrough.get('case_count', 0)}",
+        "",
+        "## Guided Steps",
+        "",
+    ]
+    for step in walkthrough.get("guided_steps", []):
+        lines.append(
+            "{step}. {title}: open `{artifact}`. {purpose}".format(
+                step=step.get("step", ""),
+                title=step.get("title", ""),
+                artifact=step.get("artifact", ""),
+                purpose=step.get("purpose", ""),
+            )
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Case Gallery",
+            "",
+            "| Case | Focus | Total value | Guardrails | Stress delta | Catalysts | Watchlist | Start here |",
+            "| --- | --- | ---: | --- | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for case in walkthrough.get("cases", []):
+        metrics = case.get("metrics", {})
+        links = case.get("links", {})
+        lines.append(
+            "| {name} | {description} | {value} | {guardrails} | {stress_delta} | {catalysts} | {watchlist} | [{start}]({start}) |".format(
+                name=case.get("name", ""),
+                description=case.get("description", ""),
+                value=metrics.get("total_market_value", "n/a"),
+                guardrails=metrics.get("guardrail_status", "n/a"),
+                stress_delta=metrics.get("stress_market_value_delta_pct", "n/a"),
+                catalysts=metrics.get("catalyst_count", "n/a"),
+                watchlist=metrics.get("watchlist_item_count", "n/a"),
+                start=links.get("exposure_markdown", ""),
+            )
+        )
+
+    lines.extend(["", "## Inspection Path", ""])
+    for case in walkthrough.get("cases", []):
+        links = case.get("links", {})
+        lines.extend(
+            [
+                f"### {case.get('name', '')}",
+                "",
+                f"- Exposure: [{links.get('exposure_markdown', '')}]({links.get('exposure_markdown', '')})",
+                f"- Guardrails: [{links.get('guardrails_markdown', '')}]({links.get('guardrails_markdown', '')})",
+                f"- Stress: [{links.get('stress_markdown', '')}]({links.get('stress_markdown', '')})",
+                f"- Catalysts: [{links.get('catalysts_markdown', '')}]({links.get('catalysts_markdown', '')})",
+                f"- Rebalance review watchlist: [{links.get('watchlist_markdown', '')}]({links.get('watchlist_markdown', '')})",
+                "",
+            ]
+        )
+    return "\n".join(lines) + "\n"
 
 
 def render_gallery_markdown(
@@ -182,6 +333,7 @@ def render_gallery_markdown(
         f"- Bundle: {manifest.get('bundle', 'unknown')}",
         f"- As of: {manifest.get('as_of', 'unknown')}",
         f"- Dashboard: [{dashboard_path}]({dashboard_path})",
+        f"- Guided walkthrough: [{DEFAULT_WALKTHROUGH_MARKDOWN}]({DEFAULT_WALKTHROUGH_MARKDOWN})",
         f"- README preview: [{DEFAULT_DASHBOARD_PREVIEW}]({DEFAULT_DASHBOARD_PREVIEW})",
         f"- Embeddable snippet: [{DEFAULT_DASHBOARD_SNIPPET}]({DEFAULT_DASHBOARD_SNIPPET})",
         "",
@@ -282,12 +434,88 @@ def render_dashboard_snippet_html(
         "  <p>Static, JavaScript-free dashboard generated from deterministic JSON and Markdown artifacts.</p>\n"
         f"  <p>{_text(SAFETY_BOUNDARY_TEXT)}</p>\n"
         f'  <p><a href="{_attr(dashboard_path)}">Open dashboard</a> '
-        f'or <a href="{_attr(DEFAULT_DASHBOARD_PREVIEW)}">view the text preview</a>.</p>\n'
+        f'or <a href="{_attr(DEFAULT_WALKTHROUGH_MARKDOWN)}">view the guided walkthrough</a>.</p>\n'
         "  <ul>\n"
         f"{links}\n"
         "  </ul>\n"
         "</section>\n"
     )
+
+
+def _walkthrough_case(
+    slug: str,
+    name: str,
+    description: str,
+    output_prefix: str,
+    manifest: dict,
+    output_dir: Path,
+    fixture_dir: str = "",
+) -> dict:
+    exposure = _read_optional_artifact(output_dir, output_prefix + "exposure_report.json")
+    guardrails = _read_optional_artifact(output_dir, output_prefix + "guardrails.json")
+    stress = _read_optional_artifact(output_dir, output_prefix + "stress.json")
+    catalysts = _read_optional_artifact(output_dir, output_prefix + "catalysts.json")
+    watchlist = _read_optional_artifact(output_dir, output_prefix + "rebalance_watchlist.json")
+
+    links = {
+        "exposure_markdown": output_prefix + "exposure_report.md",
+        "guardrails_markdown": output_prefix + "guardrails.md",
+        "stress_markdown": output_prefix + "stress.md",
+        "catalysts_markdown": output_prefix + "catalysts.md",
+        "watchlist_markdown": output_prefix + "rebalance_watchlist.md",
+    }
+    return {
+        "slug": slug,
+        "name": name,
+        "description": description,
+        "fixture_dir": fixture_dir or manifest.get("fixtures", {}).get("directory", ""),
+        "output_prefix": output_prefix,
+        "links": links,
+        "metrics": {
+            "total_market_value": _nested(exposure, ("metadata", "total_market_value")),
+            "holding_count": _nested(exposure, ("metadata", "holding_count")),
+            "concentration_count": len(exposure.get("concentration", [])) if exposure else 0,
+            "guardrail_status": _nested(guardrails, ("metadata", "overall_status")),
+            "guardrail_fail_count": _status_count(guardrails, "FAIL"),
+            "guardrail_warn_count": _status_count(guardrails, "WARN"),
+            "stress_market_value_delta_pct": _nested(stress, ("metadata", "market_value_delta_pct")),
+            "catalyst_count": _nested(catalysts, ("metadata", "catalyst_count")),
+            "watchlist_item_count": len(watchlist.get("items", [])) if watchlist else 0,
+        },
+        "artifact_paths": _case_artifact_paths(manifest, output_prefix),
+    }
+
+
+def _case_artifact_paths(manifest: dict, output_prefix: str) -> list[str]:
+    paths = [artifact.get("path", "") for artifact in manifest.get("artifacts", [])]
+    if not output_prefix:
+        return [path for path in paths if "/" not in path]
+    return [path for path in paths if path.startswith(output_prefix)]
+
+
+def _read_optional_artifact(output_dir: Path, relative_path: str) -> dict | None:
+    path = Path(relative_path)
+    if path.is_absolute() or ".." in path.parts:
+        raise ValueError(f"artifact path must stay inside output directory: {relative_path}")
+    artifact_path = output_dir / path
+    if not artifact_path.is_file():
+        return None
+    return _read_json(artifact_path)
+
+
+def _nested(data: dict | None, keys: tuple[str, ...]) -> object:
+    current: object = data or {}
+    for key in keys:
+        if not isinstance(current, dict) or key not in current:
+            return "n/a"
+        current = current[key]
+    return current
+
+
+def _status_count(guardrails: dict | None, status: str) -> int:
+    if not guardrails:
+        return 0
+    return sum(1 for item in guardrails.get("items", []) if item.get("status") == status)
 
 
 def _is_manifest(data: dict) -> bool:

@@ -7,6 +7,7 @@ Safety boundary: Static portfolio review artifact only; not investment advice, t
 - Bundle: portfolio-risk-compass-demo
 - As of: 2026-05-15
 - Dashboard: [dashboard.html](dashboard.html)
+- Guided walkthrough: [walkthrough.md](walkthrough.md)
 - README preview: [dashboard_preview.md](dashboard_preview.md)
 - Embeddable snippet: [dashboard_snippet.html](dashboard_snippet.html)
 

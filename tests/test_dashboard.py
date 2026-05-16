@@ -6,8 +6,10 @@ from unittest.mock import patch
 
 from portfolio_risk_compass.cli import main
 from portfolio_risk_compass.dashboard import build_dashboard_html
+from portfolio_risk_compass.dashboard import build_showcase_walkthrough
 from portfolio_risk_compass.dashboard import render_dashboard_snippet_html
 from portfolio_risk_compass.dashboard import render_gallery_markdown
+from portfolio_risk_compass.dashboard import render_showcase_walkthrough_markdown
 from portfolio_risk_compass.demo import build_demo_bundle
 
 
@@ -152,14 +154,38 @@ class DashboardTests(unittest.TestCase):
 
         self.assertIn("# Dashboard Output Gallery", gallery)
         self.assertIn("[dashboard.html](dashboard.html)", gallery)
+        self.assertIn("[walkthrough.md](walkthrough.md)", gallery)
         self.assertIn("[exposure_report.md](exposure_report.md)", gallery)
         self.assertIn("Template Galleries", gallery)
         self.assertIn("portfolio-risk-compass-showcase", snippet)
         self.assertIn('href="dashboard.html"', snippet)
+        self.assertIn('href="walkthrough.md"', snippet)
         self.assertIn("JavaScript-free dashboard", snippet)
         self.assertIn("not investment advice", gallery)
         self.assertIn("not investment advice", snippet)
         self.assertNotIn("<script", snippet.lower())
+
+    def test_showcase_walkthrough_summarizes_each_template_case(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            manifest = build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+
+            walkthrough = build_showcase_walkthrough(manifest, output_dir)
+            markdown = render_showcase_walkthrough_markdown(walkthrough)
+
+        self.assertEqual(walkthrough["case_count"], 4)
+        self.assertEqual(walkthrough["cases"][0]["name"], "Base Demo")
+        self.assertEqual(walkthrough["cases"][1]["name"], "Cash Rebalance")
+        self.assertEqual(walkthrough["cases"][0]["metrics"]["guardrail_status"], "FAIL")
+        self.assertEqual(walkthrough["cases"][1]["metrics"]["guardrail_status"], "WARN")
+        self.assertEqual(walkthrough["cases"][2]["metrics"]["guardrail_status"], "WARN")
+        self.assertIn("Compare template risk postures", markdown)
+        self.assertIn("[templates/leveraged-sleeve/stress.md]", markdown)
+        self.assertIn("not investment advice", markdown)
 
 
 if __name__ == "__main__":

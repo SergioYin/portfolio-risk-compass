@@ -1,7 +1,7 @@
 # Release Manifest
 
 - Outputs directory: examples/outputs
-- Artifact count: 54
+- Artifact count: 56
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -9,10 +9,10 @@
 | catalysts.md | markdown | 711 | `6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6` |
 | dashboard.html | html | 16145 | `0faa2e0a2ca30cb6db1e282423f0e440443ab92387a05d7c3171158be71ad354` |
 | dashboard_preview.md | markdown | 1147 | `15666ede03bed22d242605024edf02faf329c56beeccca23c09437e59caecac0` |
-| dashboard_snippet.html | html | 876 | `bdedaa119048fd3ff5cdf9ac0fd460b99e12f0338f45790352498194f12254b4` |
+| dashboard_snippet.html | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
 | exposure_report.json | json | 3747 | `d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c` |
 | exposure_report.md | markdown | 1247 | `c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6` |
-| gallery.md | markdown | 2068 | `a1336dedf3f71fa95aaa11d9c718148c2a50aafd2879c48737283683d9bb9ea4` |
+| gallery.md | markdown | 2123 | `6c504766262437d6a940c31b77e21d9e5f3297bcf8796ad024ba41926476d8c3` |
 | guardrails.json | json | 2644 | `bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82` |
 | guardrails.md | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
 | history.json | json | 5520 | `0a90df843340771135e341619be8880d93b9fc2cff4dedfb02c24fe80bc5b6f7` |
@@ -59,3 +59,5 @@
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
+| walkthrough.json | json | 7119 | `b32e46081e81dbe26e4f5f380a5a6197a73377472128dd84a261588c23d6c47c` |
+| walkthrough.md | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |

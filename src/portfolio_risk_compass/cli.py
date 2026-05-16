@@ -28,7 +28,13 @@ from .demo import (
     DEFAULT_OUTPUT_DIR,
     build_demo_bundle,
 )
-from .dashboard import DEFAULT_DASHBOARD_TITLE, write_dashboard_html
+from .dashboard import (
+    DEFAULT_DASHBOARD_TITLE,
+    DEFAULT_WALKTHROUGH_JSON,
+    DEFAULT_WALKTHROUGH_MARKDOWN,
+    write_dashboard_html,
+    write_showcase_walkthrough,
+)
 from .docs_export import DEFAULT_DOCS_EXPORT, write_docs_export
 from .holdings import read_holdings_csv
 from .history import (
@@ -91,6 +97,7 @@ COMMAND_NAMES = (
     "review-memo",
     "template-list",
     "demo-bundle",
+    "showcase",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -125,6 +132,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_template_list(args)
     if args.command == "demo-bundle":
         return _run_demo_bundle(args)
+    if args.command == "showcase":
+        return _run_showcase(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -347,6 +356,13 @@ def _run_demo_bundle(args: argparse.Namespace) -> int:
         include_templates=not args.no_templates,
     )
     sys.stdout.write(str(args.output_dir / "index.json") + "\n")
+    return 0
+
+
+def _run_showcase(args: argparse.Namespace) -> int:
+    paths = write_showcase_walkthrough(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
     return 0
 
 
@@ -677,6 +693,40 @@ def _build_parser() -> argparse.ArgumentParser:
         "--no-templates",
         action="store_true",
         help="Only render the base demo fixtures, without template gallery outputs.",
+    )
+
+    showcase = subparsers.add_parser(
+        "showcase",
+        help="Write a guided multi-template walkthrough from a demo manifest.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON walkthrough artifacts for the base demo plus every generated template. "
+            "The walkthrough is a static review guide and does not provide investment advice."
+        ),
+    )
+    showcase.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    showcase.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_WALKTHROUGH_MARKDOWN,
+        help=(
+            "Path to write the Markdown walkthrough. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_WALKTHROUGH_MARKDOWN}."
+        ),
+    )
+    showcase.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_WALKTHROUGH_JSON,
+        help=(
+            "Path to write the machine-readable walkthrough. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_WALKTHROUGH_JSON}."
+        ),
     )
 
     dashboard = subparsers.add_parser(
