@@ -44,6 +44,13 @@ from .reviewer_evidence import (
     render_reviewer_evidence_json,
     render_reviewer_evidence_markdown,
 )
+from .scenario_evidence import (
+    DEFAULT_SCENARIO_EVIDENCE_JSON,
+    DEFAULT_SCENARIO_EVIDENCE_MARKDOWN,
+    build_scenario_evidence_receipt,
+    render_scenario_evidence_json,
+    render_scenario_evidence_markdown,
+)
 from .snapshots import build_snapshot, render_snapshot_json
 from .stress import (
     read_scenario_json,
@@ -142,6 +149,11 @@ def build_demo_bundle(
         output_dir,
     )
     artifacts.extend(evidence_artifacts)
+    scenario_evidence_artifacts = _write_scenario_evidence_artifacts(
+        manifest,
+        output_dir,
+    )
+    artifacts.extend(scenario_evidence_artifacts)
     write_showcase_artifacts({**manifest, "artifacts": artifacts}, output_dir)
     refreshed_evidence_artifacts = _write_reviewer_evidence_artifacts(
         manifest,
@@ -149,6 +161,38 @@ def build_demo_bundle(
         output_dir,
     )
     for artifact, refreshed in zip(evidence_artifacts, refreshed_evidence_artifacts):
+        artifact["bytes"] = refreshed["bytes"]
+    refreshed_scenario_evidence_artifacts = _write_scenario_evidence_artifacts(
+        manifest,
+        output_dir,
+    )
+    for artifact, refreshed in zip(
+        scenario_evidence_artifacts,
+        refreshed_scenario_evidence_artifacts,
+    ):
+        artifact["bytes"] = refreshed["bytes"]
+    refreshed_comparison = build_case_study_comparison(
+        {**manifest, "artifacts": artifacts},
+        output_dir,
+    )
+    _refresh_artifact(
+        output_dir,
+        artifacts,
+        DEFAULT_CASE_STUDY_JSON,
+        render_case_study_json(refreshed_comparison),
+    )
+    _refresh_artifact(
+        output_dir,
+        artifacts,
+        DEFAULT_CASE_STUDY_MARKDOWN,
+        render_case_study_markdown(refreshed_comparison),
+    )
+    final_evidence_artifacts = _write_reviewer_evidence_artifacts(
+        manifest,
+        artifacts,
+        output_dir,
+    )
+    for artifact, refreshed in zip(evidence_artifacts, final_evidence_artifacts):
         artifact["bytes"] = refreshed["bytes"]
     _write_text(
         output_dir / "index.json",
@@ -370,6 +414,31 @@ def _write_reviewer_evidence_artifacts(
     ]
 
 
+def _write_scenario_evidence_artifacts(
+    manifest: dict,
+    output_dir: Path,
+) -> list[dict]:
+    receipt = build_scenario_evidence_receipt(manifest, output_dir)
+    return [
+        _write_artifact(
+            output_dir,
+            DEFAULT_SCENARIO_EVIDENCE_JSON,
+            "json",
+            "Scenario evidence receipt for static stress, guardrail, and dashboard artifacts as JSON.",
+            ("holdings.csv", "config.json", "scenario.json", "generated static artifacts"),
+            render_scenario_evidence_json(receipt),
+        ),
+        _write_artifact(
+            output_dir,
+            DEFAULT_SCENARIO_EVIDENCE_MARKDOWN,
+            "markdown",
+            "Scenario evidence receipt for static stress, guardrail, and dashboard artifacts as Markdown.",
+            ("holdings.csv", "config.json", "scenario.json", "generated static artifacts"),
+            render_scenario_evidence_markdown(receipt),
+        ),
+    ]
+
+
 def _write_artifact(
     output_dir: Path,
     filename: str,
@@ -387,6 +456,20 @@ def _write_artifact(
         "source_fixtures": list(source_fixtures),
         "bytes": path.stat().st_size,
     }
+
+
+def _refresh_artifact(
+    output_dir: Path,
+    artifacts: list[dict],
+    filename: str,
+    content: str,
+) -> None:
+    path = output_dir / filename
+    _write_text(path, content)
+    for artifact in artifacts:
+        if artifact["path"] == filename:
+            artifact["bytes"] = path.stat().st_size
+            return
 
 
 def _write_text(path: Path, content: str) -> None:

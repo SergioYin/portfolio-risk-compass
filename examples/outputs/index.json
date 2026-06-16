@@ -510,6 +510,30 @@
         "index.json",
         "generated static artifacts"
       ]
+    },
+    {
+      "bytes": 10582,
+      "description": "Scenario evidence receipt for static stress, guardrail, and dashboard artifacts as JSON.",
+      "format": "json",
+      "path": "scenario_evidence_receipt.json",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json",
+        "generated static artifacts"
+      ]
+    },
+    {
+      "bytes": 8257,
+      "description": "Scenario evidence receipt for static stress, guardrail, and dashboard artifacts as Markdown.",
+      "format": "markdown",
+      "path": "scenario_evidence_receipt.md",
+      "source_fixtures": [
+        "holdings.csv",
+        "config.json",
+        "scenario.json",
+        "generated static artifacts"
+      ]
     }
   ],
   "as_of": "2026-05-15",

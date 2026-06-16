@@ -74,6 +74,11 @@ from .reviewer_evidence import (
     DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
     write_reviewer_evidence,
 )
+from .scenario_evidence import (
+    DEFAULT_SCENARIO_EVIDENCE_JSON,
+    DEFAULT_SCENARIO_EVIDENCE_MARKDOWN,
+    write_scenario_evidence_receipt,
+)
 from .snapshots import (
     build_snapshot,
     diff_snapshots,
@@ -110,6 +115,7 @@ COMMAND_NAMES = (
     "case-study",
     "showcase",
     "reviewer-evidence",
+    "scenario-evidence-receipt",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -150,6 +156,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_showcase(args)
     if args.command == "reviewer-evidence":
         return _run_reviewer_evidence(args)
+    if args.command == "scenario-evidence-receipt":
+        return _run_scenario_evidence_receipt(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -384,6 +392,13 @@ def _run_showcase(args: argparse.Namespace) -> int:
 
 def _run_reviewer_evidence(args: argparse.Namespace) -> int:
     paths = write_reviewer_evidence(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_scenario_evidence_receipt(args: argparse.Namespace) -> int:
+    paths = write_scenario_evidence_receipt(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -825,6 +840,41 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to write the machine-readable evidence. Defaults to "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_REVIEWER_EVIDENCE_JSON}."
+        ),
+    )
+
+    scenario_evidence = subparsers.add_parser(
+        "scenario-evidence-receipt",
+        help="Write scenario evidence receipt for static review artifacts.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON receipts tying static holdings, config, and scenario fixtures to "
+            "stress, guardrail, and dashboard artifacts. The receipt records hashes "
+            "and broker-free, no-live-data, no-advice boundaries."
+        ),
+    )
+    scenario_evidence.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    scenario_evidence.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_SCENARIO_EVIDENCE_MARKDOWN,
+        help=(
+            "Path to write the Markdown receipt. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_SCENARIO_EVIDENCE_MARKDOWN}."
+        ),
+    )
+    scenario_evidence.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_SCENARIO_EVIDENCE_JSON,
+        help=(
+            "Path to write the machine-readable receipt. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_SCENARIO_EVIDENCE_JSON}."
         ),
     )
 

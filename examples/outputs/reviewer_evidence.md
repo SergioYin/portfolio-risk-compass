@@ -20,7 +20,7 @@ Safety boundary: Static portfolio review artifact only; not investment advice, t
 | [dashboard_preview.md](dashboard_preview.md) | sidecar | `index.json` | 1244 |
 | [dashboard_snippet.html](dashboard_snippet.html) | sidecar | `index.json` | 876 |
 | [walkthrough.md](walkthrough.md) | sidecar | `index.json` | 3568 |
-| [walkthrough.json](walkthrough.json) | sidecar | `index.json` | 7259 |
+| [walkthrough.json](walkthrough.json) | sidecar | `index.json` | 7341 |
 
 ## Case-Study Evidence
 

@@ -71,6 +71,7 @@ portfolio-risk-compass case-study
 portfolio-risk-compass showcase
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
 portfolio-risk-compass reviewer-evidence
+portfolio-risk-compass scenario-evidence-receipt
 ```
 
 ## Example Outputs
@@ -93,6 +94,8 @@ The repository includes generated artifacts under
 | [`case_study_comparison.json`](examples/outputs/case_study_comparison.json) | Machine-readable case-study metrics and source artifact links |
 | [`reviewer_evidence.md`](examples/outputs/reviewer_evidence.md) | Public trace from dashboard and case-study artifacts back to static source fixtures |
 | [`reviewer_evidence.json`](examples/outputs/reviewer_evidence.json) | Machine-readable reviewer evidence for generated artifact and fixture verification |
+| [`scenario_evidence_receipt.md`](examples/outputs/scenario_evidence_receipt.md) | Deterministic receipt tying static scenario fixtures to stress, guardrail, and dashboard artifact hashes |
+| [`scenario_evidence_receipt.json`](examples/outputs/scenario_evidence_receipt.json) | Machine-readable scenario evidence receipt with regeneration commands and no-broker/no-live-data/no-advice boundaries |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -474,6 +477,13 @@ Export a static dashboard from that manifest:
 
 ```bash
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
+```
+
+Write the scenario evidence receipt after the stress, guardrail, and dashboard
+artifacts have been refreshed:
+
+```bash
+portfolio-risk-compass scenario-evidence-receipt
 ```
 
 The dashboard export writes one self-contained HTML file with inline CSS and no
