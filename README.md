@@ -70,6 +70,7 @@ portfolio-risk-compass demo-bundle
 portfolio-risk-compass case-study
 portfolio-risk-compass showcase
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
+portfolio-risk-compass reviewer-evidence
 ```
 
 ## Example Outputs
@@ -90,6 +91,8 @@ The repository includes generated artifacts under
 | [`gallery.md`](examples/outputs/gallery.md) | Static gallery index for dashboard and demo artifacts |
 | [`case_study_comparison.md`](examples/outputs/case_study_comparison.md) | Deterministic base-demo and template case-study comparison |
 | [`case_study_comparison.json`](examples/outputs/case_study_comparison.json) | Machine-readable case-study metrics and source artifact links |
+| [`reviewer_evidence.md`](examples/outputs/reviewer_evidence.md) | Public trace from dashboard and case-study artifacts back to static source fixtures |
+| [`reviewer_evidence.json`](examples/outputs/reviewer_evidence.json) | Machine-readable reviewer evidence for generated artifact and fixture verification |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |

@@ -1,5 +1,5 @@
 {
-  "artifact_count": 58,
+  "artifact_count": 60,
   "artifacts": [
     {
       "bytes": 8586,
@@ -26,16 +26,16 @@
       "sha256": "6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6"
     },
     {
-      "bytes": 16435,
+      "bytes": 16735,
       "format": "html",
       "path": "dashboard.html",
-      "sha256": "c162dfa6d1f242641c76f07f5c38b202eb24ca27278a970cfa5873a1fc36725e"
+      "sha256": "9bce7f010ef159e0cff4725184ca7cc569a876c2e52ed74cfa4ca1d5b4e3a7b2"
     },
     {
-      "bytes": 1147,
+      "bytes": 1244,
       "format": "markdown",
       "path": "dashboard_preview.md",
-      "sha256": "15666ede03bed22d242605024edf02faf329c56beeccca23c09437e59caecac0"
+      "sha256": "e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b"
     },
     {
       "bytes": 876,
@@ -56,10 +56,10 @@
       "sha256": "c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6"
     },
     {
-      "bytes": 2123,
+      "bytes": 2189,
       "format": "markdown",
       "path": "gallery.md",
-      "sha256": "6c504766262437d6a940c31b77e21d9e5f3297bcf8796ad024ba41926476d8c3"
+      "sha256": "d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e"
     },
     {
       "bytes": 2644,
@@ -86,10 +86,10 @@
       "sha256": "782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186"
     },
     {
-      "bytes": 14384,
+      "bytes": 14966,
       "format": "json",
       "path": "index.json",
-      "sha256": "38ca0a4ac390434e18c6d65a8c6df77d704aedd8b3728d61f04160b74172ad35"
+      "sha256": "e4227b1eb5469005e294b2acad8cd12bf6e2cfba8b7692be24132ce03e3e60cb"
     },
     {
       "bytes": 2441,
@@ -120,6 +120,18 @@
       "format": "markdown",
       "path": "review_memo.md",
       "sha256": "cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8"
+    },
+    {
+      "bytes": 5754,
+      "format": "json",
+      "path": "reviewer_evidence.json",
+      "sha256": "367a77e437658c8d221ccf8dfe050de6314849c37a844a44bd69f7a475ef8b66"
+    },
+    {
+      "bytes": 3455,
+      "format": "markdown",
+      "path": "reviewer_evidence.md",
+      "sha256": "00c21f39a1d94d90e74426b22f1ebee86a0fc138d5b64059cc35b0c5f6432668"
     },
     {
       "bytes": 4167,
@@ -338,10 +350,10 @@
       "sha256": "070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89"
     },
     {
-      "bytes": 7193,
+      "bytes": 7259,
       "format": "json",
       "path": "walkthrough.json",
-      "sha256": "f357b7041304521affd998848be9e7ac6ca280f36731a37c1bb49808c93dc8b2"
+      "sha256": "eaf817107db1dbb2b3b49e50295e68fc222ae4eb681927c026b901250048f79d"
     },
     {
       "bytes": 3568,

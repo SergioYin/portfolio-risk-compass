@@ -6,6 +6,10 @@ import json
 from pathlib import Path
 
 from .dashboard import SAFETY_BOUNDARY_TEXT
+from .reviewer_evidence import (
+    DEFAULT_REVIEWER_EVIDENCE_JSON,
+    DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
+)
 
 DEFAULT_CASE_STUDY_MARKDOWN = "case_study_comparison.md"
 DEFAULT_CASE_STUDY_JSON = "case_study_comparison.json"
@@ -34,7 +38,12 @@ CASE_SOURCE_FILENAMES = (
 def build_case_study_comparison(manifest: dict, output_dir: Path) -> dict:
     """Build deterministic comparison data for base and template demo cases."""
 
-    generated_paths = {DEFAULT_CASE_STUDY_JSON, DEFAULT_CASE_STUDY_MARKDOWN}
+    generated_paths = {
+        DEFAULT_CASE_STUDY_JSON,
+        DEFAULT_CASE_STUDY_MARKDOWN,
+        DEFAULT_REVIEWER_EVIDENCE_JSON,
+        DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
+    }
     manifest_paths = {
         artifact.get("path", "")
         for artifact in manifest.get("artifacts", [])

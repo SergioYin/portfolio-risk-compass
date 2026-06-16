@@ -15,6 +15,7 @@ DEFAULT_DASHBOARD_SNIPPET = "dashboard_snippet.html"
 DEFAULT_DASHBOARD_PREVIEW = "dashboard_preview.md"
 DEFAULT_WALKTHROUGH_MARKDOWN = "walkthrough.md"
 DEFAULT_WALKTHROUGH_JSON = "walkthrough.json"
+DEFAULT_REVIEWER_EVIDENCE_MARKDOWN = "reviewer_evidence.md"
 SAFETY_BOUNDARY_TEXT = (
     "Static portfolio review artifact only; not investment advice, trading "
     "guidance, live market data, or broker execution."
@@ -334,6 +335,7 @@ def render_gallery_markdown(
         f"- As of: {manifest.get('as_of', 'unknown')}",
         f"- Dashboard: [{dashboard_path}]({dashboard_path})",
         f"- Guided walkthrough: [{DEFAULT_WALKTHROUGH_MARKDOWN}]({DEFAULT_WALKTHROUGH_MARKDOWN})",
+        f"- Reviewer evidence: [{DEFAULT_REVIEWER_EVIDENCE_MARKDOWN}]({DEFAULT_REVIEWER_EVIDENCE_MARKDOWN})",
         f"- README preview: [{DEFAULT_DASHBOARD_PREVIEW}]({DEFAULT_DASHBOARD_PREVIEW})",
         f"- Embeddable snippet: [{DEFAULT_DASHBOARD_SNIPPET}]({DEFAULT_DASHBOARD_SNIPPET})",
         "",
@@ -396,6 +398,7 @@ def render_dashboard_preview_markdown(
         "| Stress | Scenario value, shock impacts, and value delta | `stress.json` |",
         "| Catalysts | Date-ordered thesis event checklist | `catalysts.json` |",
         "| Bundle | Generated artifact inventory | `index.json` |",
+        f"| Reviewer evidence | Dashboard and case-study artifact fixture trace | `{DEFAULT_REVIEWER_EVIDENCE_MARKDOWN}` |",
         "",
         "## Featured Files",
         "",

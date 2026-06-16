@@ -37,6 +37,13 @@ from .rebalance_watchlist import (
 )
 from .reports import render_json_report, render_markdown_report
 from .review_memo import build_review_memo, render_review_memo_markdown
+from .reviewer_evidence import (
+    DEFAULT_REVIEWER_EVIDENCE_JSON,
+    DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
+    build_reviewer_evidence,
+    render_reviewer_evidence_json,
+    render_reviewer_evidence_markdown,
+)
 from .snapshots import build_snapshot, render_snapshot_json
 from .stress import (
     read_scenario_json,
@@ -128,11 +135,25 @@ def build_demo_bundle(
             ),
         ]
     )
+    write_showcase_artifacts({**manifest, "artifacts": artifacts}, output_dir)
+    evidence_artifacts = _write_reviewer_evidence_artifacts(
+        manifest,
+        artifacts,
+        output_dir,
+    )
+    artifacts.extend(evidence_artifacts)
+    write_showcase_artifacts({**manifest, "artifacts": artifacts}, output_dir)
+    refreshed_evidence_artifacts = _write_reviewer_evidence_artifacts(
+        manifest,
+        artifacts,
+        output_dir,
+    )
+    for artifact, refreshed in zip(evidence_artifacts, refreshed_evidence_artifacts):
+        artifact["bytes"] = refreshed["bytes"]
     _write_text(
         output_dir / "index.json",
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
     )
-    write_showcase_artifacts(manifest, output_dir)
     return manifest
 
 
@@ -321,6 +342,32 @@ def _fixture_files(fixtures_dir: Path) -> list[str]:
     if (fixtures_dir / "history").is_dir():
         files.append("history/*.json")
     return files
+
+
+def _write_reviewer_evidence_artifacts(
+    manifest: dict,
+    artifacts: list[dict],
+    output_dir: Path,
+) -> list[dict]:
+    evidence = build_reviewer_evidence({**manifest, "artifacts": artifacts}, output_dir)
+    return [
+        _write_artifact(
+            output_dir,
+            DEFAULT_REVIEWER_EVIDENCE_JSON,
+            "json",
+            "Reviewer evidence trace for dashboard and case-study artifacts as JSON.",
+            ("index.json", "generated static artifacts"),
+            render_reviewer_evidence_json(evidence),
+        ),
+        _write_artifact(
+            output_dir,
+            DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
+            "markdown",
+            "Reviewer evidence trace for dashboard and case-study artifacts as Markdown.",
+            ("index.json", "generated static artifacts"),
+            render_reviewer_evidence_markdown(evidence),
+        ),
+    ]
 
 
 def _write_artifact(

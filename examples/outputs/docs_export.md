@@ -189,6 +189,18 @@ Usage: `portfolio-risk-compass review-memo [-h] [--outputs-dir OUTPUTS_DIR] [--m
 | `--markdown` | no | Path to write the Markdown memo. Prints Markdown to stdout when omitted. |
 | `--title` | no | Memo title. Defaults to 'Portfolio Review Memo'. |
 
+### `reviewer-evidence`
+
+Read a demo-bundle index manifest and write deterministic Markdown and JSON evidence showing which dashboard and case-study artifacts exist and which fixture files feed them.
+
+Usage: `portfolio-risk-compass reviewer-evidence [-h] [--manifest MANIFEST] [--markdown MARKDOWN] [--json JSON]`
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `--manifest` | no | Demo-bundle manifest to read. Defaults to examples/outputs/index.json. |
+| `--markdown` | no | Path to write the Markdown evidence. Defaults to examples/outputs/reviewer_evidence.md. |
+| `--json` | no | Path to write the machine-readable evidence. Defaults to examples/outputs/reviewer_evidence.json. |
+
 ### `showcase`
 
 Read a demo-bundle index manifest and write deterministic Markdown and JSON walkthrough artifacts for the base demo plus every generated template. The walkthrough is a static review guide and does not provide investment advice.
@@ -315,7 +327,7 @@ Directory of generated snapshot JSON files for the history ledger.
 ## Artifact Inventory
 
 - Outputs directory: examples/outputs
-- Artifact count: 60
+- Artifact count: 62
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -323,24 +335,26 @@ Directory of generated snapshot JSON files for the history ledger.
 | case_study_comparison.md | markdown | 3190 | `1b8188a950bed8d61d767e9f48b5597f2482eb5e8a82458f87ba89853c82c781` |
 | catalysts.json | json | 1198 | `4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1` |
 | catalysts.md | markdown | 711 | `6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6` |
-| dashboard.html | html | 16435 | `c162dfa6d1f242641c76f07f5c38b202eb24ca27278a970cfa5873a1fc36725e` |
-| dashboard_preview.md | markdown | 1147 | `15666ede03bed22d242605024edf02faf329c56beeccca23c09437e59caecac0` |
+| dashboard.html | html | 16735 | `9bce7f010ef159e0cff4725184ca7cc569a876c2e52ed74cfa4ca1d5b4e3a7b2` |
+| dashboard_preview.md | markdown | 1244 | `e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b` |
 | dashboard_snippet.html | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
 | exposure_report.json | json | 3747 | `d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c` |
 | exposure_report.md | markdown | 1247 | `c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6` |
-| gallery.md | markdown | 2123 | `6c504766262437d6a940c31b77e21d9e5f3297bcf8796ad024ba41926476d8c3` |
+| gallery.md | markdown | 2189 | `d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e` |
 | guardrails.json | json | 2644 | `bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82` |
 | guardrails.md | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
 | history.json | json | 5520 | `0a90df843340771135e341619be8880d93b9fc2cff4dedfb02c24fe80bc5b6f7` |
 | history.md | markdown | 1219 | `782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186` |
-| index.json | json | 14384 | `38ca0a4ac390434e18c6d65a8c6df77d704aedd8b3728d61f04160b74172ad35` |
+| index.json | json | 14966 | `e4227b1eb5469005e294b2acad8cd12bf6e2cfba8b7692be24132ce03e3e60cb` |
 | invest_thesis_ledger_adapter.json | json | 2441 | `4c4351aaf1ad9a8930cee64a82163619170692ceacf7f2bbc05301eb8ab5ea0a` |
 | leveraged_etp_risk_lab_adapter.json | json | 3954 | `866db8127afbabf788523aa45d66603810026fe947c901ff7626d08294a07170` |
 | rebalance_watchlist.json | json | 6298 | `14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80` |
 | rebalance_watchlist.md | markdown | 2386 | `d36cea814fee02520e73f53bc164369c289e8dff97b7bc08d244e9eaf70253ae` |
-| release_manifest.json | json | 11235 | `f599c7202d8ec7f860655730794e013ad74c2993bd1449f8bb8c0cee0ca39e72` |
-| release_manifest.md | markdown | 7106 | `3b7fbe22c5ec2df35d09996ac14aadf515ab4c3b435d6220404c210d518ba12c` |
+| release_manifest.json | json | 11599 | `2e7ec121cce076922bd5486e3fbb7283da070b61bc74ec52f8353ac51789b1af` |
+| release_manifest.md | markdown | 7328 | `050ad5c87ca93f2534099633c345293984a51763247f53c7d662fcf0a9703c3a` |
 | review_memo.md | markdown | 6337 | `cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8` |
+| reviewer_evidence.json | json | 5754 | `367a77e437658c8d221ccf8dfe050de6314849c37a844a44bd69f7a475ef8b66` |
+| reviewer_evidence.md | markdown | 3455 | `00c21f39a1d94d90e74426b22f1ebee86a0fc138d5b64059cc35b0c5f6432668` |
 | snapshot_current.json | json | 4167 | `86a21abdb6c48e054f7524858dbecec2f3f101506680cdaef1f23d4b0a52ff7b` |
 | stress.json | json | 4029 | `d7693910dc7c2b6e90c5d4029b41e557be9d26a2ef2c22999e452c0e11c9e58c` |
 | stress.md | markdown | 1024 | `1066d939df0e190691409dc8b028033f077211f45a464db466703b241b86adb8` |
@@ -377,7 +391,7 @@ Directory of generated snapshot JSON files for the history ledger.
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
-| walkthrough.json | json | 7193 | `f357b7041304521affd998848be9e7ac6ca280f36731a37c1bb49808c93dc8b2` |
+| walkthrough.json | json | 7259 | `eaf817107db1dbb2b3b49e50295e68fc222ae4eb681927c026b901250048f79d` |
 | walkthrough.md | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |
 
 ## Safety Boundary

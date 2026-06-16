@@ -13,6 +13,7 @@ Safety boundary: Static portfolio review artifact only; not investment advice, t
 | Stress | Scenario value, shock impacts, and value delta | `stress.json` |
 | Catalysts | Date-ordered thesis event checklist | `catalysts.json` |
 | Bundle | Generated artifact inventory | `index.json` |
+| Reviewer evidence | Dashboard and case-study artifact fixture trace | `reviewer_evidence.md` |
 
 ## Featured Files
 

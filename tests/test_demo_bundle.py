@@ -6,6 +6,10 @@ from unittest.mock import patch
 
 from portfolio_risk_compass.cli import main
 from portfolio_risk_compass.demo import build_demo_bundle
+from portfolio_risk_compass.reviewer_evidence import (
+    build_reviewer_evidence,
+    render_reviewer_evidence_markdown,
+)
 
 
 class DemoBundleTests(unittest.TestCase):
@@ -28,9 +32,12 @@ class DemoBundleTests(unittest.TestCase):
             self.assertTrue((output_dir / "walkthrough.json").is_file())
             self.assertTrue((output_dir / "case_study_comparison.md").is_file())
             self.assertTrue((output_dir / "case_study_comparison.json").is_file())
+            self.assertTrue((output_dir / "reviewer_evidence.md").is_file())
+            self.assertTrue((output_dir / "reviewer_evidence.json").is_file())
             preview = (output_dir / "dashboard_preview.md").read_text(encoding="utf-8")
             self.assertIn("| Summary | Total value", preview)
             self.assertIn("[Open the static dashboard](dashboard.html)", preview)
+            self.assertIn("Reviewer evidence", preview)
             comparison = json.loads(
                 (output_dir / "case_study_comparison.json").read_text(encoding="utf-8")
             )
@@ -60,6 +67,31 @@ class DemoBundleTests(unittest.TestCase):
                 ["base-demo", "cash-rebalance", "etf-core", "leveraged-sleeve"],
             )
             self.assertIn("not investment advice", walkthrough["safety_boundary"])
+            self.assertIn(
+                "reviewer_evidence.json",
+                walkthrough["cases"][0]["artifact_paths"],
+            )
+            evidence = json.loads(
+                (output_dir / "reviewer_evidence.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                evidence["artifact"],
+                "portfolio-risk-compass-reviewer-evidence",
+            )
+            self.assertEqual(
+                [item["path"] for item in evidence["review_paths"]["case_study"]],
+                ["case_study_comparison.md", "case_study_comparison.json"],
+            )
+            self.assertEqual(evidence["review_paths"]["dashboard"][0]["path"], "gallery.md")
+            self.assertEqual(evidence["review_paths"]["dashboard"][0]["status"], "sidecar")
+            self.assertIn(
+                "examples/templates/leveraged-sleeve/scenario.json",
+                evidence["review_paths"]["case_study"][0]["source_paths"],
+            )
+            self.assertEqual(
+                [source["case"] for source in evidence["source_fixture_sets"]],
+                ["base-demo", "cash-rebalance", "etf-core", "leveraged-sleeve"],
+            )
 
         expected_paths = [
             "exposure_report.json",
@@ -111,6 +143,8 @@ class DemoBundleTests(unittest.TestCase):
             "templates/leveraged-sleeve/rebalance_watchlist.md",
             "case_study_comparison.json",
             "case_study_comparison.md",
+            "reviewer_evidence.json",
+            "reviewer_evidence.md",
         ]
         self.assertEqual(index, manifest)
         self.assertEqual(index["schema_version"], 1)
@@ -182,9 +216,13 @@ class DemoBundleTests(unittest.TestCase):
 
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
-        self.assertEqual(len(manifest["artifacts"]), 16)
+        self.assertEqual(len(manifest["artifacts"]), 18)
         self.assertIn(
             "case_study_comparison.json",
+            [artifact["path"] for artifact in manifest["artifacts"]],
+        )
+        self.assertIn(
+            "reviewer_evidence.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
         )
 
@@ -286,6 +324,100 @@ class DemoBundleTests(unittest.TestCase):
             comparison["cases"][2]["metrics"]["stress_market_value_delta_pct"],
             "-8.0097",
         )
+
+    def test_cli_reviewer_evidence_writes_trace_artifacts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            markdown_path = Path(temp_dir) / "reviewer-evidence.md"
+            json_path = Path(temp_dir) / "reviewer-evidence.json"
+            build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+
+            with patch("sys.stdout") as stdout:
+                self.assertEqual(
+                    main(
+                        [
+                            "reviewer-evidence",
+                            "--manifest",
+                            str(output_dir / "index.json"),
+                            "--markdown",
+                            str(markdown_path),
+                            "--json",
+                            str(json_path),
+                        ]
+                    ),
+                    0,
+                )
+
+            markdown = markdown_path.read_text(encoding="utf-8")
+            evidence = json.loads(json_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            stdout.write.call_args_list[0].args[0],
+            str(markdown_path) + "\n",
+        )
+        self.assertEqual(
+            stdout.write.call_args_list[1].args[0],
+            str(json_path) + "\n",
+        )
+        self.assertIn("# Portfolio Risk Compass Reviewer Evidence", markdown)
+        self.assertIn("examples/fixtures/holdings.csv", markdown)
+        self.assertEqual(evidence["review_paths"]["dashboard"][0]["status"], "sidecar")
+        self.assertEqual(
+            evidence["review_paths"]["case_study"][1]["source_paths"][:2],
+            ["index.json", "generated JSON artifacts"],
+        )
+        self.assertIn(
+            "examples/fixtures/holdings.csv",
+            evidence["review_paths"]["case_study"][1]["source_paths"],
+        )
+
+    def test_reviewer_evidence_markdown_escapes_table_cells(self):
+        manifest = {
+            "as_of": "2026-05-15",
+            "fixtures": {
+                "directory": "examples/fixtures",
+                "files": ["holdings.csv"],
+            },
+            "templates": {
+                "templates": [
+                    {
+                        "slug": "z|case",
+                        "fixture_dir": "examples/templates/z|case",
+                        "fixture_files": ["config|risk.json"],
+                    },
+                    {
+                        "slug": "a-case",
+                        "fixture_dir": "examples/templates/a-case",
+                        "fixture_files": ["holdings.csv"],
+                    },
+                ],
+            },
+            "artifacts": [
+                {
+                    "path": "case_study_comparison.md",
+                    "format": "markdown",
+                    "description": "case study",
+                    "source_fixtures": ["index.json", "generated JSON artifacts"],
+                    "bytes": 1,
+                }
+            ],
+        }
+
+        evidence = build_reviewer_evidence(manifest)
+        evidence["review_paths"]["dashboard"][0]["path"] = "odd name|a].md"
+        markdown = render_reviewer_evidence_markdown(evidence)
+
+        self.assertEqual(
+            [source["case"] for source in evidence["source_fixture_sets"]],
+            ["base-demo", "a-case", "z|case"],
+        )
+        self.assertIn("[odd name\\|a\\].md](odd%20name%7Ca%5D.md)", markdown)
+        self.assertIn("| z\\|case | `examples/templates/z\\|case` |", markdown)
+        self.assertIn("`config\\|risk.json`", markdown)
 
 
 if __name__ == "__main__":

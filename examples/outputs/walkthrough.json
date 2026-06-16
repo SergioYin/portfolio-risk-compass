@@ -20,7 +20,9 @@
         "history.md",
         "review_memo.md",
         "case_study_comparison.json",
-        "case_study_comparison.md"
+        "case_study_comparison.md",
+        "reviewer_evidence.json",
+        "reviewer_evidence.md"
       ],
       "description": "Repository demo fixture set.",
       "fixture_dir": "examples/fixtures",

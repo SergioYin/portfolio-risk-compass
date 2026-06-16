@@ -39,6 +39,7 @@ def main() -> int:
                 "examples/outputs/index.json",
                 "examples/outputs/dashboard.html",
             ],
+            [sys.executable, "-m", "portfolio_risk_compass", "reviewer-evidence"],
             [
                 sys.executable,
                 "-m",
@@ -72,6 +73,8 @@ def main() -> int:
         root / "examples/outputs/case_study_comparison.json",
         root / "examples/outputs/walkthrough.md",
         root / "examples/outputs/walkthrough.json",
+        root / "examples/outputs/reviewer_evidence.md",
+        root / "examples/outputs/reviewer_evidence.json",
         root / "examples/outputs/dashboard_preview.md",
         root / "examples/outputs/dashboard_snippet.html",
         root / "examples/outputs/invest_thesis_ledger_adapter.json",

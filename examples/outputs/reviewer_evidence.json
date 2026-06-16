@@ -1,0 +1,179 @@
+{
+  "artifact": "portfolio-risk-compass-reviewer-evidence",
+  "as_of": "2026-05-15",
+  "regeneration_commands": [
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+    "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+    "PYTHONPATH=src python -m portfolio_risk_compass reviewer-evidence"
+  ],
+  "review_paths": {
+    "case_study": [
+      {
+        "bytes": 3190,
+        "description": "Deterministic base and template case-study comparison as Markdown.",
+        "format": "markdown",
+        "path": "case_study_comparison.md",
+        "source_fixtures": [
+          "index.json",
+          "generated JSON artifacts"
+        ],
+        "source_paths": [
+          "index.json",
+          "generated JSON artifacts",
+          "examples/fixtures/holdings.csv",
+          "examples/fixtures/config.json",
+          "examples/fixtures/catalysts.json",
+          "examples/fixtures/scenario.json",
+          "examples/fixtures/history/*.json",
+          "examples/templates/cash-rebalance/holdings.csv",
+          "examples/templates/cash-rebalance/config.json",
+          "examples/templates/cash-rebalance/catalysts.json",
+          "examples/templates/cash-rebalance/scenario.json",
+          "examples/templates/etf-core/holdings.csv",
+          "examples/templates/etf-core/config.json",
+          "examples/templates/etf-core/catalysts.json",
+          "examples/templates/etf-core/scenario.json",
+          "examples/templates/leveraged-sleeve/holdings.csv",
+          "examples/templates/leveraged-sleeve/config.json",
+          "examples/templates/leveraged-sleeve/catalysts.json",
+          "examples/templates/leveraged-sleeve/scenario.json"
+        ],
+        "status": "manifested"
+      },
+      {
+        "bytes": 8586,
+        "description": "Deterministic base and template case-study comparison as JSON.",
+        "format": "json",
+        "path": "case_study_comparison.json",
+        "source_fixtures": [
+          "index.json",
+          "generated JSON artifacts"
+        ],
+        "source_paths": [
+          "index.json",
+          "generated JSON artifacts",
+          "examples/fixtures/holdings.csv",
+          "examples/fixtures/config.json",
+          "examples/fixtures/catalysts.json",
+          "examples/fixtures/scenario.json",
+          "examples/fixtures/history/*.json",
+          "examples/templates/cash-rebalance/holdings.csv",
+          "examples/templates/cash-rebalance/config.json",
+          "examples/templates/cash-rebalance/catalysts.json",
+          "examples/templates/cash-rebalance/scenario.json",
+          "examples/templates/etf-core/holdings.csv",
+          "examples/templates/etf-core/config.json",
+          "examples/templates/etf-core/catalysts.json",
+          "examples/templates/etf-core/scenario.json",
+          "examples/templates/leveraged-sleeve/holdings.csv",
+          "examples/templates/leveraged-sleeve/config.json",
+          "examples/templates/leveraged-sleeve/catalysts.json",
+          "examples/templates/leveraged-sleeve/scenario.json"
+        ],
+        "status": "manifested"
+      }
+    ],
+    "dashboard": [
+      {
+        "bytes": 2189,
+        "description": "Generated outside the demo manifest.",
+        "format": "markdown",
+        "path": "gallery.md",
+        "source_fixtures": [],
+        "source_paths": [
+          "index.json"
+        ],
+        "status": "sidecar"
+      },
+      {
+        "bytes": 1244,
+        "description": "Generated outside the demo manifest.",
+        "format": "markdown",
+        "path": "dashboard_preview.md",
+        "source_fixtures": [],
+        "source_paths": [
+          "index.json"
+        ],
+        "status": "sidecar"
+      },
+      {
+        "bytes": 876,
+        "description": "Generated outside the demo manifest.",
+        "format": "html",
+        "path": "dashboard_snippet.html",
+        "source_fixtures": [],
+        "source_paths": [
+          "index.json"
+        ],
+        "status": "sidecar"
+      },
+      {
+        "bytes": 3568,
+        "description": "Generated outside the demo manifest.",
+        "format": "markdown",
+        "path": "walkthrough.md",
+        "source_fixtures": [],
+        "source_paths": [
+          "index.json"
+        ],
+        "status": "sidecar"
+      },
+      {
+        "bytes": 7259,
+        "description": "Generated outside the demo manifest.",
+        "format": "json",
+        "path": "walkthrough.json",
+        "source_fixtures": [],
+        "source_paths": [
+          "index.json"
+        ],
+        "status": "sidecar"
+      }
+    ]
+  },
+  "safety_boundary": "Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.",
+  "schema_version": 1,
+  "source_fixture_sets": [
+    {
+      "case": "base-demo",
+      "fixture_dir": "examples/fixtures",
+      "fixture_files": [
+        "holdings.csv",
+        "config.json",
+        "catalysts.json",
+        "scenario.json",
+        "history/*.json"
+      ]
+    },
+    {
+      "case": "cash-rebalance",
+      "fixture_dir": "examples/templates/cash-rebalance",
+      "fixture_files": [
+        "holdings.csv",
+        "config.json",
+        "catalysts.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "case": "etf-core",
+      "fixture_dir": "examples/templates/etf-core",
+      "fixture_files": [
+        "holdings.csv",
+        "config.json",
+        "catalysts.json",
+        "scenario.json"
+      ]
+    },
+    {
+      "case": "leveraged-sleeve",
+      "fixture_dir": "examples/templates/leveraged-sleeve",
+      "fixture_files": [
+        "holdings.csv",
+        "config.json",
+        "catalysts.json",
+        "scenario.json"
+      ]
+    }
+  ]
+}

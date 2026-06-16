@@ -490,6 +490,26 @@
         "index.json",
         "generated JSON artifacts"
       ]
+    },
+    {
+      "bytes": 5754,
+      "description": "Reviewer evidence trace for dashboard and case-study artifacts as JSON.",
+      "format": "json",
+      "path": "reviewer_evidence.json",
+      "source_fixtures": [
+        "index.json",
+        "generated static artifacts"
+      ]
+    },
+    {
+      "bytes": 3455,
+      "description": "Reviewer evidence trace for dashboard and case-study artifacts as Markdown.",
+      "format": "markdown",
+      "path": "reviewer_evidence.md",
+      "source_fixtures": [
+        "index.json",
+        "generated static artifacts"
+      ]
     }
   ],
   "as_of": "2026-05-15",

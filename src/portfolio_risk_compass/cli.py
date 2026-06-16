@@ -69,6 +69,11 @@ from .rebalance_watchlist import (
 )
 from .reports import render_json_report, render_markdown_report
 from .review_memo import build_review_memo, render_review_memo_markdown
+from .reviewer_evidence import (
+    DEFAULT_REVIEWER_EVIDENCE_JSON,
+    DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
+    write_reviewer_evidence,
+)
 from .snapshots import (
     build_snapshot,
     diff_snapshots,
@@ -104,6 +109,7 @@ COMMAND_NAMES = (
     "demo-bundle",
     "case-study",
     "showcase",
+    "reviewer-evidence",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -142,6 +148,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_case_study(args)
     if args.command == "showcase":
         return _run_showcase(args)
+    if args.command == "reviewer-evidence":
+        return _run_reviewer_evidence(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -369,6 +377,13 @@ def _run_demo_bundle(args: argparse.Namespace) -> int:
 
 def _run_showcase(args: argparse.Namespace) -> int:
     paths = write_showcase_walkthrough(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_reviewer_evidence(args: argparse.Namespace) -> int:
+    paths = write_reviewer_evidence(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -776,6 +791,40 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to write the machine-readable walkthrough. Defaults to "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_WALKTHROUGH_JSON}."
+        ),
+    )
+
+    evidence = subparsers.add_parser(
+        "reviewer-evidence",
+        help="Write reviewer evidence for static demo artifacts.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON evidence showing which dashboard and case-study artifacts exist "
+            "and which fixture files feed them."
+        ),
+    )
+    evidence.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    evidence.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_REVIEWER_EVIDENCE_MARKDOWN,
+        help=(
+            "Path to write the Markdown evidence. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_REVIEWER_EVIDENCE_MARKDOWN}."
+        ),
+    )
+    evidence.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_REVIEWER_EVIDENCE_JSON,
+        help=(
+            "Path to write the machine-readable evidence. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_REVIEWER_EVIDENCE_JSON}."
         ),
     )
 
