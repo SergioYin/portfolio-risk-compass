@@ -1,6 +1,18 @@
 {
-  "artifact_count": 56,
+  "artifact_count": 58,
   "artifacts": [
+    {
+      "bytes": 8586,
+      "format": "json",
+      "path": "case_study_comparison.json",
+      "sha256": "2c402265c45f7c20ada5cdd3d67a9f8814ccf3604e06815d8a77c962e57648e7"
+    },
+    {
+      "bytes": 3190,
+      "format": "markdown",
+      "path": "case_study_comparison.md",
+      "sha256": "1b8188a950bed8d61d767e9f48b5597f2482eb5e8a82458f87ba89853c82c781"
+    },
     {
       "bytes": 1198,
       "format": "json",
@@ -14,10 +26,10 @@
       "sha256": "6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6"
     },
     {
-      "bytes": 16145,
+      "bytes": 16435,
       "format": "html",
       "path": "dashboard.html",
-      "sha256": "0faa2e0a2ca30cb6db1e282423f0e440443ab92387a05d7c3171158be71ad354"
+      "sha256": "c162dfa6d1f242641c76f07f5c38b202eb24ca27278a970cfa5873a1fc36725e"
     },
     {
       "bytes": 1147,
@@ -74,10 +86,10 @@
       "sha256": "782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186"
     },
     {
-      "bytes": 13816,
+      "bytes": 14384,
       "format": "json",
       "path": "index.json",
-      "sha256": "51bf9e4f1fbb068d34a58b4a30e40c88bfb855016b7c1e491bc8984c91f78902"
+      "sha256": "38ca0a4ac390434e18c6d65a8c6df77d704aedd8b3728d61f04160b74172ad35"
     },
     {
       "bytes": 2441,
@@ -326,10 +338,10 @@
       "sha256": "070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89"
     },
     {
-      "bytes": 7119,
+      "bytes": 7193,
       "format": "json",
       "path": "walkthrough.json",
-      "sha256": "b32e46081e81dbe26e4f5f380a5a6197a73377472128dd84a261588c23d6c47c"
+      "sha256": "f357b7041304521affd998848be9e7ac6ca280f36731a37c1bb49808c93dc8b2"
     },
     {
       "bytes": 3568,

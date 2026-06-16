@@ -6,6 +6,13 @@ import json
 from pathlib import Path
 
 from .analysis import analyze_portfolio
+from .case_study import (
+    DEFAULT_CASE_STUDY_JSON,
+    DEFAULT_CASE_STUDY_MARKDOWN,
+    build_case_study_comparison,
+    render_case_study_json,
+    render_case_study_markdown,
+)
 from .catalysts import (
     build_catalyst_checklist,
     read_catalysts_json,
@@ -100,6 +107,27 @@ def build_demo_bundle(
         },
         "artifacts": artifacts,
     }
+    comparison = build_case_study_comparison(manifest, output_dir)
+    artifacts.extend(
+        [
+            _write_artifact(
+                output_dir,
+                DEFAULT_CASE_STUDY_JSON,
+                "json",
+                "Deterministic base and template case-study comparison as JSON.",
+                ("index.json", "generated JSON artifacts"),
+                render_case_study_json(comparison),
+            ),
+            _write_artifact(
+                output_dir,
+                DEFAULT_CASE_STUDY_MARKDOWN,
+                "markdown",
+                "Deterministic base and template case-study comparison as Markdown.",
+                ("index.json", "generated JSON artifacts"),
+                render_case_study_markdown(comparison),
+            ),
+        ]
+    )
     _write_text(
         output_dir / "index.json",
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",

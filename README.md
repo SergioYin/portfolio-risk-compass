@@ -67,6 +67,7 @@ For a full demo bundle with all supported report types:
 ```bash
 portfolio-risk-compass template-list --format markdown
 portfolio-risk-compass demo-bundle
+portfolio-risk-compass case-study
 portfolio-risk-compass showcase
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
 ```
@@ -87,6 +88,8 @@ The repository includes generated artifacts under
 | [`catalysts.md`](examples/outputs/catalysts.md) | Date-ordered thesis event checklist |
 | [`dashboard.html`](examples/outputs/dashboard.html) | Self-contained static dashboard export |
 | [`gallery.md`](examples/outputs/gallery.md) | Static gallery index for dashboard and demo artifacts |
+| [`case_study_comparison.md`](examples/outputs/case_study_comparison.md) | Deterministic base-demo and template case-study comparison |
+| [`case_study_comparison.json`](examples/outputs/case_study_comparison.json) | Machine-readable case-study metrics and source artifact links |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -422,6 +425,8 @@ JSON and Markdown reports. It also refreshes
 [`examples/outputs/history.md`](examples/outputs/history.md),
 [`examples/outputs/review_memo.md`](examples/outputs/review_memo.md),
 [`examples/outputs/gallery.md`](examples/outputs/gallery.md),
+[`examples/outputs/case_study_comparison.md`](examples/outputs/case_study_comparison.md),
+[`examples/outputs/case_study_comparison.json`](examples/outputs/case_study_comparison.json),
 [`examples/outputs/dashboard_preview.md`](examples/outputs/dashboard_preview.md),
 and
 [`examples/outputs/dashboard_snippet.html`](examples/outputs/dashboard_snippet.html)
@@ -429,6 +434,21 @@ as static showcase material for README, docs, and release pages. By default it
 also writes template gallery outputs under
 `examples/outputs/templates/<template-slug>/`. Use `--no-templates` when you
 only want the base demo fixture outputs.
+
+Write or refresh just the case-study comparison from an existing bundle
+manifest:
+
+```bash
+portfolio-risk-compass case-study \
+  --manifest examples/outputs/index.json \
+  --markdown examples/outputs/case_study_comparison.md \
+  --json examples/outputs/case_study_comparison.json
+```
+
+The comparison uses the generated base-demo and template JSON artifacts to
+summarize allocation posture, guardrail status, stress drawdown, catalyst count,
+and watchlist severity counts. It links back to the source Markdown reports and
+does not recommend trades, quantities, transfers, or timing.
 
 Write or refresh the guided showcase walkthrough from an existing bundle
 manifest:

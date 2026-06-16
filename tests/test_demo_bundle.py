@@ -26,9 +26,31 @@ class DemoBundleTests(unittest.TestCase):
             self.assertTrue((output_dir / "dashboard_preview.md").is_file())
             self.assertTrue((output_dir / "walkthrough.md").is_file())
             self.assertTrue((output_dir / "walkthrough.json").is_file())
+            self.assertTrue((output_dir / "case_study_comparison.md").is_file())
+            self.assertTrue((output_dir / "case_study_comparison.json").is_file())
             preview = (output_dir / "dashboard_preview.md").read_text(encoding="utf-8")
             self.assertIn("| Summary | Total value", preview)
             self.assertIn("[Open the static dashboard](dashboard.html)", preview)
+            comparison = json.loads(
+                (output_dir / "case_study_comparison.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(comparison["case_count"], 4)
+            self.assertEqual(
+                [case["slug"] for case in comparison["cases"]],
+                ["base-demo", "etf-core", "leveraged-sleeve", "cash-rebalance"],
+            )
+            self.assertEqual(
+                comparison["comparison_highlights"][0]["case"],
+                "Cash Rebalance",
+            )
+            self.assertTrue(comparison["artifact_coverage"]["complete"])
+            self.assertEqual(comparison["artifact_coverage"]["missing"], [])
+            self.assertIn(
+                "templates/leveraged-sleeve/stress.json",
+                comparison["cases"][2]["source_artifacts"]["expected"],
+            )
+            self.assertEqual(comparison["cases"][2]["source_artifacts"]["missing"], [])
+            self.assertIn("not investment advice", comparison["safety_boundary"])
             walkthrough = json.loads(
                 (output_dir / "walkthrough.json").read_text(encoding="utf-8")
             )
@@ -87,6 +109,8 @@ class DemoBundleTests(unittest.TestCase):
             "templates/leveraged-sleeve/stress.md",
             "templates/leveraged-sleeve/rebalance_watchlist.json",
             "templates/leveraged-sleeve/rebalance_watchlist.md",
+            "case_study_comparison.json",
+            "case_study_comparison.md",
         ]
         self.assertEqual(index, manifest)
         self.assertEqual(index["schema_version"], 1)
@@ -158,7 +182,11 @@ class DemoBundleTests(unittest.TestCase):
 
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
-        self.assertEqual(len(manifest["artifacts"]), 14)
+        self.assertEqual(len(manifest["artifacts"]), 16)
+        self.assertIn(
+            "case_study_comparison.json",
+            [artifact["path"] for artifact in manifest["artifacts"]],
+        )
 
     def test_cli_showcase_writes_walkthrough_artifacts(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -202,6 +230,62 @@ class DemoBundleTests(unittest.TestCase):
         self.assertIn("Cash Rebalance", markdown)
         self.assertEqual(walkthrough["artifact"], "portfolio-risk-compass-showcase-walkthrough")
         self.assertEqual(walkthrough["cases"][2]["metrics"]["guardrail_status"], "WARN")
+
+    def test_cli_case_study_writes_comparison_artifacts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            markdown_path = Path(temp_dir) / "case-study.md"
+            json_path = Path(temp_dir) / "case-study.json"
+            build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+            bundled_comparison = json.loads(
+                (output_dir / "case_study_comparison.json").read_text(encoding="utf-8")
+            )
+
+            with patch("sys.stdout") as stdout:
+                self.assertEqual(
+                    main(
+                        [
+                            "case-study",
+                            "--manifest",
+                            str(output_dir / "index.json"),
+                            "--markdown",
+                            str(markdown_path),
+                            "--json",
+                            str(json_path),
+                        ]
+                    ),
+                    0,
+                )
+
+            markdown = markdown_path.read_text(encoding="utf-8")
+            comparison = json.loads(json_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            stdout.write.call_args_list[0].args[0],
+            str(markdown_path) + "\n",
+        )
+        self.assertEqual(
+            stdout.write.call_args_list[1].args[0],
+            str(json_path) + "\n",
+        )
+        self.assertIn("# Portfolio Risk Compass Case-Study Comparison", markdown)
+        self.assertIn("Leveraged Sleeve", markdown)
+        self.assertIn("- Manifest coverage: complete", markdown)
+        self.assertEqual(
+            comparison["artifact"],
+            "portfolio-risk-compass-case-study-comparison",
+        )
+        self.assertEqual(comparison, bundled_comparison)
+        self.assertTrue(comparison["artifact_coverage"]["complete"])
+        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 47)
+        self.assertEqual(
+            comparison["cases"][2]["metrics"]["stress_market_value_delta_pct"],
+            "-8.0097",
+        )
 
 
 if __name__ == "__main__":

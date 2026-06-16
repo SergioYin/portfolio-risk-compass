@@ -29,6 +29,7 @@ def main() -> int:
             ],
             [sys.executable, "-m", "unittest", "discover", "-s", "tests"],
             [sys.executable, "-m", "portfolio_risk_compass", "demo-bundle"],
+            [sys.executable, "-m", "portfolio_risk_compass", "case-study"],
             [sys.executable, "-m", "portfolio_risk_compass", "showcase"],
             [
                 sys.executable,
@@ -67,6 +68,8 @@ def main() -> int:
                 return result.returncode
     required_showcase_files = [
         root / "examples/outputs/gallery.md",
+        root / "examples/outputs/case_study_comparison.md",
+        root / "examples/outputs/case_study_comparison.json",
         root / "examples/outputs/walkthrough.md",
         root / "examples/outputs/walkthrough.json",
         root / "examples/outputs/dashboard_preview.md",

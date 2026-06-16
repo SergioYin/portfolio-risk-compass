@@ -1,13 +1,15 @@
 # Release Manifest
 
 - Outputs directory: examples/outputs
-- Artifact count: 56
+- Artifact count: 58
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
+| case_study_comparison.json | json | 8586 | `2c402265c45f7c20ada5cdd3d67a9f8814ccf3604e06815d8a77c962e57648e7` |
+| case_study_comparison.md | markdown | 3190 | `1b8188a950bed8d61d767e9f48b5597f2482eb5e8a82458f87ba89853c82c781` |
 | catalysts.json | json | 1198 | `4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1` |
 | catalysts.md | markdown | 711 | `6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6` |
-| dashboard.html | html | 16145 | `0faa2e0a2ca30cb6db1e282423f0e440443ab92387a05d7c3171158be71ad354` |
+| dashboard.html | html | 16435 | `c162dfa6d1f242641c76f07f5c38b202eb24ca27278a970cfa5873a1fc36725e` |
 | dashboard_preview.md | markdown | 1147 | `15666ede03bed22d242605024edf02faf329c56beeccca23c09437e59caecac0` |
 | dashboard_snippet.html | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
 | exposure_report.json | json | 3747 | `d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c` |
@@ -17,7 +19,7 @@
 | guardrails.md | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
 | history.json | json | 5520 | `0a90df843340771135e341619be8880d93b9fc2cff4dedfb02c24fe80bc5b6f7` |
 | history.md | markdown | 1219 | `782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186` |
-| index.json | json | 13816 | `51bf9e4f1fbb068d34a58b4a30e40c88bfb855016b7c1e491bc8984c91f78902` |
+| index.json | json | 14384 | `38ca0a4ac390434e18c6d65a8c6df77d704aedd8b3728d61f04160b74172ad35` |
 | invest_thesis_ledger_adapter.json | json | 2441 | `4c4351aaf1ad9a8930cee64a82163619170692ceacf7f2bbc05301eb8ab5ea0a` |
 | leveraged_etp_risk_lab_adapter.json | json | 3954 | `866db8127afbabf788523aa45d66603810026fe947c901ff7626d08294a07170` |
 | rebalance_watchlist.json | json | 6298 | `14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80` |
@@ -59,5 +61,5 @@
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
-| walkthrough.json | json | 7119 | `b32e46081e81dbe26e4f5f380a5a6197a73377472128dd84a261588c23d6c47c` |
+| walkthrough.json | json | 7193 | `f357b7041304521affd998848be9e7ac6ca280f36731a37c1bb49808c93dc8b2` |
 | walkthrough.md | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |

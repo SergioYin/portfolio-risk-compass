@@ -27,6 +27,7 @@ class DocsExportTests(unittest.TestCase):
             markdown = render_docs_markdown(export)
 
         self.assertIn("## CLI Reference", markdown)
+        self.assertIn("### `case-study`", markdown)
         self.assertIn("### `docs-export`", markdown)
         self.assertIn("## Input Schemas", markdown)
         self.assertIn("### holdings.csv", markdown)

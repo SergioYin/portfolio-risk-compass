@@ -18,7 +18,9 @@
         "rebalance_watchlist.md",
         "history.json",
         "history.md",
-        "review_memo.md"
+        "review_memo.md",
+        "case_study_comparison.json",
+        "case_study_comparison.md"
       ],
       "description": "Repository demo fixture set.",
       "fixture_dir": "examples/fixtures",

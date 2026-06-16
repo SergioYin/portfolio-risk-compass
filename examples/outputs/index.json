@@ -470,6 +470,26 @@
         "config.json",
         "scenario.json"
       ]
+    },
+    {
+      "bytes": 8586,
+      "description": "Deterministic base and template case-study comparison as JSON.",
+      "format": "json",
+      "path": "case_study_comparison.json",
+      "source_fixtures": [
+        "index.json",
+        "generated JSON artifacts"
+      ]
+    },
+    {
+      "bytes": 3190,
+      "description": "Deterministic base and template case-study comparison as Markdown.",
+      "format": "markdown",
+      "path": "case_study_comparison.md",
+      "source_fixtures": [
+        "index.json",
+        "generated JSON artifacts"
+      ]
     }
   ],
   "as_of": "2026-05-15",

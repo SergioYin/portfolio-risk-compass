@@ -8,6 +8,11 @@ from pathlib import Path
 from typing import Sequence
 
 from .analysis import analyze_portfolio
+from .case_study import (
+    DEFAULT_CASE_STUDY_JSON,
+    DEFAULT_CASE_STUDY_MARKDOWN,
+    write_case_study_comparison,
+)
 from .catalysts import (
     build_catalyst_checklist,
     read_catalysts_json,
@@ -97,6 +102,7 @@ COMMAND_NAMES = (
     "review-memo",
     "template-list",
     "demo-bundle",
+    "case-study",
     "showcase",
     "dashboard",
     "integration-export",
@@ -132,6 +138,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_template_list(args)
     if args.command == "demo-bundle":
         return _run_demo_bundle(args)
+    if args.command == "case-study":
+        return _run_case_study(args)
     if args.command == "showcase":
         return _run_showcase(args)
     if args.command == "dashboard":
@@ -361,6 +369,13 @@ def _run_demo_bundle(args: argparse.Namespace) -> int:
 
 def _run_showcase(args: argparse.Namespace) -> int:
     paths = write_showcase_walkthrough(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_case_study(args: argparse.Namespace) -> int:
+    paths = write_case_study_comparison(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -693,6 +708,41 @@ def _build_parser() -> argparse.ArgumentParser:
         "--no-templates",
         action="store_true",
         help="Only render the base demo fixtures, without template gallery outputs.",
+    )
+
+    case_study = subparsers.add_parser(
+        "case-study",
+        help="Write a deterministic base and template comparison from a demo manifest.",
+        description=(
+            "Read a demo-bundle index manifest and generated JSON artifacts, then "
+            "write Markdown and JSON case-study comparison artifacts for the base "
+            "demo, ETF core, leveraged sleeve, and cash rebalance examples. The "
+            "comparison is static and does not provide investment advice."
+        ),
+    )
+    case_study.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    case_study.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_CASE_STUDY_MARKDOWN,
+        help=(
+            "Path to write the Markdown comparison. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_CASE_STUDY_MARKDOWN}."
+        ),
+    )
+    case_study.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_CASE_STUDY_JSON,
+        help=(
+            "Path to write the machine-readable comparison. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_CASE_STUDY_JSON}."
+        ),
     )
 
     showcase = subparsers.add_parser(
