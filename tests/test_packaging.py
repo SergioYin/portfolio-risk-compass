@@ -55,7 +55,7 @@ class PackagingCommandTests(unittest.TestCase):
                 run_tests=False,
             )
 
-        self.assertEqual(report["version"], "0.5.0")
+        self.assertEqual(report["version"], "0.5.1")
         self.assertEqual(report["command_count"], 22)
         self.assertEqual(report["fixture_count"], 1)
         self.assertEqual(report["output_artifact_count"], 1)
