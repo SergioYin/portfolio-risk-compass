@@ -1,0 +1,134 @@
+{
+  "artifact": "portfolio-risk-compass-visual-evidence-receipt",
+  "artifact_coverage": {
+    "complete": true,
+    "expected": 7,
+    "missing": [],
+    "present": 7
+  },
+  "artifacts": [
+    {
+      "bytes": 17770,
+      "format": "html",
+      "path": "dashboard.html",
+      "purpose": "Self-contained no-JavaScript dashboard for visual review.",
+      "role": "static_dashboard",
+      "sha256": "236d5d8d14dc3e950716f7d62fa5b8c78629c8cb16a8b34148dbb6631f4c248e",
+      "status": "present"
+    },
+    {
+      "bytes": 1244,
+      "format": "markdown",
+      "path": "dashboard_preview.md",
+      "purpose": "Text preview of the dashboard for release notes and reviewers.",
+      "role": "dashboard_preview",
+      "sha256": "e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b",
+      "status": "present"
+    },
+    {
+      "bytes": 876,
+      "format": "html",
+      "path": "dashboard_snippet.html",
+      "purpose": "Small static HTML route into the dashboard and walkthrough.",
+      "role": "dashboard_snippet",
+      "sha256": "2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77",
+      "status": "present"
+    },
+    {
+      "bytes": 6952,
+      "format": "markdown",
+      "path": "public_review_walkthrough.md",
+      "purpose": "Public reviewer walkthrough with rerun commands and hashes.",
+      "role": "public_review_walkthrough",
+      "sha256": "f205869c7ea480f6f13b971bdf3f2dc90cb507e44272e0f196d4205e76c57d4b",
+      "status": "present"
+    },
+    {
+      "bytes": 9032,
+      "format": "json",
+      "path": "public_review_walkthrough.json",
+      "purpose": "Machine-readable public-review packet.",
+      "role": "public_review_packet",
+      "sha256": "ac71404067c51d566fbe9b96bafa3fcc98c8063e971632ca1ed56ddc846ed461",
+      "status": "present"
+    },
+    {
+      "bytes": 10582,
+      "format": "json",
+      "path": "scenario_evidence_receipt.json",
+      "purpose": "Scenario, guardrail, and dashboard evidence hashes.",
+      "role": "scenario_evidence_receipt",
+      "sha256": "25e962b6c84d2ed6d21b1b15c4a2e1f9664a3eaf085154a34195e32a8dfcef3e",
+      "status": "present"
+    },
+    {
+      "bytes": 5754,
+      "format": "json",
+      "path": "reviewer_evidence.json",
+      "purpose": "Reviewer evidence export linking generated artifacts to fixtures.",
+      "role": "reviewer_evidence_export",
+      "sha256": "a96c4fe2f368c806d876b38b09666aa46d66bcee08683bbab7625889c971c561",
+      "status": "present"
+    }
+  ],
+  "as_of": "2026-05-15",
+  "boundary_flags": {
+    "advice": "none; artifact is a review walkthrough, not investment advice or trading guidance",
+    "broker": "none; no account access, order entry, execution, or broker connectivity",
+    "live_data": "none; all values come from static CSV/JSON fixtures or generated local artifacts"
+  },
+  "public_safety_notice": "Audit receipt only; not investment advice, trading guidance, live market data, broker connectivity, account access, order entry, or trade execution.",
+  "regeneration_commands": [
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+    "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+    "PYTHONPATH=src python -m portfolio_risk_compass reviewer-evidence",
+    "PYTHONPATH=src python -m portfolio_risk_compass scenario-evidence-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass public-review",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-evidence-receipt"
+  ],
+  "review_scope": "Visual evidence route for static local dashboard artifacts only. The receipt does not fetch data, connect to brokers, or provide advice.",
+  "route": [
+    {
+      "artifact": "dashboard.html",
+      "label": "dashboard",
+      "step": 1,
+      "verifies": [
+        "static visual summary",
+        "no JavaScript dashboard export",
+        "broker-free review boundary"
+      ]
+    },
+    {
+      "artifact": "public_review_walkthrough.md",
+      "label": "public_review",
+      "step": 2,
+      "verifies": [
+        "public reviewer rerun path",
+        "no-live-data boundary",
+        "no-advice boundary"
+      ]
+    },
+    {
+      "artifact": "scenario_evidence_receipt.json",
+      "label": "scenario_evidence",
+      "step": 3,
+      "verifies": [
+        "scenario fixture hashes",
+        "stress and guardrail artifact hashes",
+        "prohibited capability list"
+      ]
+    },
+    {
+      "artifact": "reviewer_evidence.json",
+      "label": "reviewer_evidence",
+      "step": 4,
+      "verifies": [
+        "reviewer export path",
+        "fixture lineage",
+        "generated artifact coverage"
+      ]
+    }
+  ],
+  "safety_boundary": "Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.",
+  "schema_version": 1
+}

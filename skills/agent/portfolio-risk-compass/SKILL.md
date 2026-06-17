@@ -150,6 +150,8 @@ portfolio-risk-compass public-review \
   --manifest examples/outputs/index.json \
   --markdown examples/outputs/public_review_walkthrough.md \
   --json examples/outputs/public_review_walkthrough.json
+
+portfolio-risk-compass visual-evidence-receipt
 ```
 
 Validate the repository:

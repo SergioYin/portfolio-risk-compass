@@ -23,19 +23,19 @@ Public safety notice: Audit receipt only; not investment advice, trading guidanc
 
 | Path | Status | Format | Bytes | SHA-256 |
 | --- | --- | --- | ---: | --- |
-| [dashboard.html](dashboard.html) | present | html | 17388 | `873c0bd092a6f14a3da67e7eb838755036d153058c2c036cf0561fb2ddcd7ca8` |
+| [dashboard.html](dashboard.html) | present | html | 17770 | `236d5d8d14dc3e950716f7d62fa5b8c78629c8cb16a8b34148dbb6631f4c248e` |
 | [dashboard_preview.md](dashboard_preview.md) | present | markdown | 1244 | `e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b` |
 | [dashboard_snippet.html](dashboard_snippet.html) | present | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
 | [gallery.md](gallery.md) | present | markdown | 2189 | `d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e` |
 | [walkthrough.md](walkthrough.md) | present | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |
-| [walkthrough.json](walkthrough.json) | present | json | 7423 | `9e7016b96d4da8681b702f916fdac4704e0ec0e7189fdb50227dfb89b06a6492` |
-| [reviewer_evidence.md](reviewer_evidence.md) | present | markdown | 3455 | `f86b654295e7e7f4f9c8fdc9ddb5e98b0ba37143177a5d3574c64a4db2afd944` |
-| [reviewer_evidence.json](reviewer_evidence.json) | present | json | 5754 | `8692a0fee67396642de6a9ce40701d459f7e40faf1e583cc4063947efa755d52` |
-| [scenario_evidence_receipt.md](scenario_evidence_receipt.md) | present | markdown | 8257 | `2de5e9c6a948d7422c0691a3fc8933be72d967518819d4782f1c53c72f54627c` |
-| [scenario_evidence_receipt.json](scenario_evidence_receipt.json) | present | json | 10582 | `8ace62485f5754bb2bd2c0e39e6c881431fe9ed2ded4bbb511a4a1d554f227ce` |
+| [walkthrough.json](walkthrough.json) | present | json | 7501 | `b4a718dfcf5050ae918a64be2b19ddd224d78e9613fbeaf1d4bed21fca0ea4ba` |
+| [reviewer_evidence.md](reviewer_evidence.md) | present | markdown | 3455 | `4738083dcebb64ef5ef8bb1f26e9c4529b0c226b644dd542d440c319561c8d7f` |
+| [reviewer_evidence.json](reviewer_evidence.json) | present | json | 5754 | `a96c4fe2f368c806d876b38b09666aa46d66bcee08683bbab7625889c971c561` |
+| [scenario_evidence_receipt.md](scenario_evidence_receipt.md) | present | markdown | 8257 | `67fcf24f1e833e64375732ddb6787d80ede854b739ca166bfb95f035df38fb45` |
+| [scenario_evidence_receipt.json](scenario_evidence_receipt.json) | present | json | 10582 | `25e962b6c84d2ed6d21b1b15c4a2e1f9664a3eaf085154a34195e32a8dfcef3e` |
 | [case_study_comparison.md](case_study_comparison.md) | present | markdown | 3190 | `1b8188a950bed8d61d767e9f48b5597f2482eb5e8a82458f87ba89853c82c781` |
-| [case_study_comparison.json](case_study_comparison.json) | present | json | 8586 | `70788a0b9ebdb9f0ad3a5feeb50fdbdc298d058ff7d3ba8f9409515a98cc7dd6` |
-| [index.json](index.json) | present | json | 16283 | `8b758838862856a97713e769fd133220ec6ea7f465a86796ce95d013cb24fe36` |
+| [case_study_comparison.json](case_study_comparison.json) | present | json | 8586 | `548b92d3ddda667a9f752a39224449b181dc86cf703cc75a250ff47647f7574f` |
+| [index.json](index.json) | present | json | 16947 | `d3d65d958cf30fe03c37cff71786b731eef29bc2b58885ad5fefa5f7e6fef038` |
 
 ## Fixture Input Hashes
 

@@ -104,6 +104,11 @@ from .templates import (
     render_template_list_markdown,
     template_manifest,
 )
+from .visual_evidence import (
+    DEFAULT_VISUAL_EVIDENCE_JSON,
+    DEFAULT_VISUAL_EVIDENCE_MARKDOWN,
+    write_visual_evidence_receipt,
+)
 
 COMMAND_NAMES = (
     "analyze",
@@ -122,6 +127,7 @@ COMMAND_NAMES = (
     "reviewer-evidence",
     "scenario-evidence-receipt",
     "public-review",
+    "visual-evidence-receipt",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -166,6 +172,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_scenario_evidence_receipt(args)
     if args.command == "public-review":
         return _run_public_review(args)
+    if args.command == "visual-evidence-receipt":
+        return _run_visual_evidence_receipt(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -414,6 +422,13 @@ def _run_scenario_evidence_receipt(args: argparse.Namespace) -> int:
 
 def _run_public_review(args: argparse.Namespace) -> int:
     paths = write_public_review_walkthrough(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_visual_evidence_receipt(args: argparse.Namespace) -> int:
+    paths = write_visual_evidence_receipt(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -924,6 +939,41 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to write the machine-readable public-review packet. Defaults to "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_PUBLIC_REVIEW_JSON}."
+        ),
+    )
+
+    visual_evidence = subparsers.add_parser(
+        "visual-evidence-receipt",
+        help="Write a visual evidence receipt for static dashboard review artifacts.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON receipts tying the static dashboard, public-review walkthrough, "
+            "scenario evidence, reviewer evidence export, and broker-free/no-advice "
+            "boundaries into one visual review route."
+        ),
+    )
+    visual_evidence.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    visual_evidence.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_EVIDENCE_MARKDOWN,
+        help=(
+            "Path to write the Markdown visual evidence receipt. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_EVIDENCE_MARKDOWN}."
+        ),
+    )
+    visual_evidence.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_EVIDENCE_JSON,
+        help=(
+            "Path to write the machine-readable visual evidence receipt. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_EVIDENCE_JSON}."
         ),
     )
 

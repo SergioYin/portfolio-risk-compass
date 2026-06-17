@@ -73,6 +73,7 @@ portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/da
 portfolio-risk-compass reviewer-evidence
 portfolio-risk-compass scenario-evidence-receipt
 portfolio-risk-compass public-review
+portfolio-risk-compass visual-evidence-receipt
 ```
 
 ## Example Outputs
@@ -99,6 +100,8 @@ The repository includes generated artifacts under
 | [`scenario_evidence_receipt.json`](examples/outputs/scenario_evidence_receipt.json) | Machine-readable scenario evidence receipt with regeneration commands and no-broker/no-live-data/no-advice boundaries |
 | [`public_review_walkthrough.md`](examples/outputs/public_review_walkthrough.md) | Public static dashboard walkthrough with exact rerun commands, hashes, and no-live-data/no-broker/no-advice boundaries |
 | [`public_review_walkthrough.json`](examples/outputs/public_review_walkthrough.json) | Machine-readable public review packet for static dashboard evidence verification |
+| [`visual_evidence_receipt.md`](examples/outputs/visual_evidence_receipt.md) | Visual evidence route tying the static dashboard, public-review, scenario, and reviewer evidence artifacts |
+| [`visual_evidence_receipt.json`](examples/outputs/visual_evidence_receipt.json) | Machine-readable visual evidence receipt with hashes and broker-free/no-advice boundaries |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -503,6 +506,14 @@ The public review packet combines a static dashboard walkthrough with SHA-256
 hashes for the dashboard, walkthrough, reviewer evidence, scenario evidence,
 case-study, manifest, and fixture inputs. It records exact rerun commands and
 states the no-live-data, no-broker, and no-advice boundaries for public review.
+
+Write the visual evidence receipt to tie the static dashboard route, public
+walkthrough, scenario evidence, reviewer export, and boundaries into one
+machine-readable receipt:
+
+```bash
+portfolio-risk-compass visual-evidence-receipt
+```
 
 The dashboard export writes one self-contained HTML file with inline CSS and no
 JavaScript. It includes summary cards, internal section links, exposure and

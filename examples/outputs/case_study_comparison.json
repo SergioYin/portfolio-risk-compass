@@ -3,7 +3,7 @@
   "artifact_coverage": {
     "complete": true,
     "expected_case_artifact_count": 40,
-    "manifest_artifact_count": 51,
+    "manifest_artifact_count": 53,
     "missing": []
   },
   "as_of": "2026-05-15",

@@ -554,6 +554,26 @@
         "index.json",
         "generated static artifacts"
       ]
+    },
+    {
+      "bytes": 4842,
+      "description": "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as JSON.",
+      "format": "json",
+      "path": "visual_evidence_receipt.json",
+      "source_fixtures": [
+        "index.json",
+        "generated static artifacts"
+      ]
+    },
+    {
+      "bytes": 3513,
+      "description": "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as Markdown.",
+      "format": "markdown",
+      "path": "visual_evidence_receipt.md",
+      "source_fixtures": [
+        "index.json",
+        "generated static artifacts"
+      ]
     }
   ],
   "as_of": "2026-05-15",

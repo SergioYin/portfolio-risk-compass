@@ -66,6 +66,13 @@ from .stress import (
     stress_portfolio,
 )
 from .templates import DEFAULT_TEMPLATES_DIR, list_templates, template_manifest
+from .visual_evidence import (
+    DEFAULT_VISUAL_EVIDENCE_JSON,
+    DEFAULT_VISUAL_EVIDENCE_MARKDOWN,
+    build_visual_evidence_receipt,
+    render_visual_evidence_json,
+    render_visual_evidence_markdown,
+)
 
 DEFAULT_FIXTURES_DIR = Path("examples/fixtures")
 DEFAULT_OUTPUT_DIR = Path("examples/outputs")
@@ -207,6 +214,11 @@ def build_demo_bundle(
         output_dir,
     )
     artifacts.extend(public_review_artifacts)
+    visual_evidence_artifacts = _write_visual_evidence_artifacts(
+        manifest,
+        output_dir,
+    )
+    artifacts.extend(visual_evidence_artifacts)
     final_comparison = build_case_study_comparison(
         {**manifest, "artifacts": artifacts},
         output_dir,
@@ -493,6 +505,31 @@ def _write_public_review_artifacts(
             "Public static dashboard walkthrough and evidence packet as Markdown.",
             ("index.json", "generated static artifacts"),
             render_public_review_markdown(packet),
+        ),
+    ]
+
+
+def _write_visual_evidence_artifacts(
+    manifest: dict,
+    output_dir: Path,
+) -> list[dict]:
+    receipt = build_visual_evidence_receipt(manifest, output_dir)
+    return [
+        _write_artifact(
+            output_dir,
+            DEFAULT_VISUAL_EVIDENCE_JSON,
+            "json",
+            "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as JSON.",
+            ("index.json", "generated static artifacts"),
+            render_visual_evidence_json(receipt),
+        ),
+        _write_artifact(
+            output_dir,
+            DEFAULT_VISUAL_EVIDENCE_MARKDOWN,
+            "markdown",
+            "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as Markdown.",
+            ("index.json", "generated static artifacts"),
+            render_visual_evidence_markdown(receipt),
         ),
     ]
 
