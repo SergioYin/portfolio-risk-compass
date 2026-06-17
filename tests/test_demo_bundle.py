@@ -36,6 +36,8 @@ class DemoBundleTests(unittest.TestCase):
             self.assertTrue((output_dir / "reviewer_evidence.json").is_file())
             self.assertTrue((output_dir / "scenario_evidence_receipt.md").is_file())
             self.assertTrue((output_dir / "scenario_evidence_receipt.json").is_file())
+            self.assertTrue((output_dir / "public_review_walkthrough.md").is_file())
+            self.assertTrue((output_dir / "public_review_walkthrough.json").is_file())
             preview = (output_dir / "dashboard_preview.md").read_text(encoding="utf-8")
             self.assertIn("| Summary | Total value", preview)
             self.assertIn("[Open the static dashboard](dashboard.html)", preview)
@@ -166,6 +168,42 @@ class DemoBundleTests(unittest.TestCase):
                 "scenario-evidence-receipt",
                 receipt["regeneration_commands"][-1],
             )
+            public_review = json.loads(
+                (output_dir / "public_review_walkthrough.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            self.assertEqual(
+                public_review["artifact"],
+                "portfolio-risk-compass-public-review-walkthrough",
+            )
+            self.assertEqual(public_review["case_count"], 4)
+            self.assertIn("advice", public_review["boundary_flags"])
+            self.assertIn("broker", public_review["boundary_flags"])
+            self.assertIn(
+                "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+                [step["command"] for step in public_review["walkthrough_steps"]],
+            )
+            self.assertEqual(
+                public_review["review_artifacts"][0]["path"],
+                "dashboard.html",
+            )
+            self.assertEqual(
+                public_review["review_artifacts"][0]["status"],
+                "missing",
+            )
+            self.assertRegex(
+                public_review["review_artifacts"][1]["sha256"],
+                r"^[0-9a-f]{64}$",
+            )
+            self.assertEqual(
+                public_review["fixture_inputs"][0]["path"],
+                "examples/fixtures/holdings.csv",
+            )
+            self.assertRegex(
+                public_review["fixture_inputs"][0]["sha256"],
+                r"^[0-9a-f]{64}$",
+            )
 
         expected_paths = [
             "exposure_report.json",
@@ -221,6 +259,8 @@ class DemoBundleTests(unittest.TestCase):
             "reviewer_evidence.md",
             "scenario_evidence_receipt.json",
             "scenario_evidence_receipt.md",
+            "public_review_walkthrough.json",
+            "public_review_walkthrough.md",
         ]
         self.assertEqual(index, manifest)
         self.assertEqual(index["schema_version"], 1)
@@ -292,7 +332,7 @@ class DemoBundleTests(unittest.TestCase):
 
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
-        self.assertEqual(len(manifest["artifacts"]), 20)
+        self.assertEqual(len(manifest["artifacts"]), 22)
         self.assertIn(
             "case_study_comparison.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
@@ -303,6 +343,10 @@ class DemoBundleTests(unittest.TestCase):
         )
         self.assertIn(
             "scenario_evidence_receipt.json",
+            [artifact["path"] for artifact in manifest["artifacts"]],
+        )
+        self.assertIn(
+            "public_review_walkthrough.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
         )
 
@@ -399,7 +443,7 @@ class DemoBundleTests(unittest.TestCase):
         )
         self.assertEqual(comparison, bundled_comparison)
         self.assertTrue(comparison["artifact_coverage"]["complete"])
-        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 49)
+        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 51)
         self.assertEqual(
             comparison["cases"][2]["metrics"]["stress_market_value_delta_pct"],
             "-8.0097",
@@ -505,6 +549,63 @@ class DemoBundleTests(unittest.TestCase):
         self.assertEqual(receipt["cases"][0]["artifacts"][1]["path"], "stress.md")
         self.assertEqual(receipt["cases"][0]["artifacts"][2]["path"], "guardrails.json")
         self.assertRegex(receipt["cases"][0]["artifacts"][2]["sha256"], r"^[0-9a-f]{64}$")
+
+    def test_cli_public_review_writes_walkthrough_and_hash_artifacts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            markdown_path = Path(temp_dir) / "public-review.md"
+            json_path = Path(temp_dir) / "public-review.json"
+            build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+            main(
+                [
+                    "dashboard",
+                    str(output_dir / "index.json"),
+                    str(output_dir / "dashboard.html"),
+                ]
+            )
+
+            with patch("sys.stdout") as stdout:
+                self.assertEqual(
+                    main(
+                        [
+                            "public-review",
+                            "--manifest",
+                            str(output_dir / "index.json"),
+                            "--markdown",
+                            str(markdown_path),
+                            "--json",
+                            str(json_path),
+                        ]
+                    ),
+                    0,
+                )
+
+            markdown = markdown_path.read_text(encoding="utf-8")
+            packet = json.loads(json_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            stdout.write.call_args_list[0].args[0],
+            str(markdown_path) + "\n",
+        )
+        self.assertEqual(
+            stdout.write.call_args_list[1].args[0],
+            str(json_path) + "\n",
+        )
+        self.assertIn("# Portfolio Risk Compass Public Review Walkthrough", markdown)
+        self.assertIn("No live data", markdown)
+        self.assertIn("No broker", markdown)
+        self.assertIn("No advice", markdown)
+        self.assertIn(
+            "dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+            markdown,
+        )
+        self.assertEqual(packet["review_artifacts"][0]["status"], "present")
+        self.assertRegex(packet["review_artifacts"][0]["sha256"], r"^[0-9a-f]{64}$")
+        self.assertEqual(packet["fixture_inputs"][0]["case"], "base-demo")
 
     def test_reviewer_evidence_markdown_escapes_table_cells(self):
         manifest = {

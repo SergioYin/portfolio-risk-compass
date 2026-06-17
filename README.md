@@ -72,6 +72,7 @@ portfolio-risk-compass showcase
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
 portfolio-risk-compass reviewer-evidence
 portfolio-risk-compass scenario-evidence-receipt
+portfolio-risk-compass public-review
 ```
 
 ## Example Outputs
@@ -96,6 +97,8 @@ The repository includes generated artifacts under
 | [`reviewer_evidence.json`](examples/outputs/reviewer_evidence.json) | Machine-readable reviewer evidence for generated artifact and fixture verification |
 | [`scenario_evidence_receipt.md`](examples/outputs/scenario_evidence_receipt.md) | Deterministic receipt tying static scenario fixtures to stress, guardrail, and dashboard artifact hashes |
 | [`scenario_evidence_receipt.json`](examples/outputs/scenario_evidence_receipt.json) | Machine-readable scenario evidence receipt with regeneration commands and no-broker/no-live-data/no-advice boundaries |
+| [`public_review_walkthrough.md`](examples/outputs/public_review_walkthrough.md) | Public static dashboard walkthrough with exact rerun commands, hashes, and no-live-data/no-broker/no-advice boundaries |
+| [`public_review_walkthrough.json`](examples/outputs/public_review_walkthrough.json) | Machine-readable public review packet for static dashboard evidence verification |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -485,6 +488,21 @@ artifacts have been refreshed:
 ```bash
 portfolio-risk-compass scenario-evidence-receipt
 ```
+
+Write the public reviewer packet after the dashboard and evidence artifacts have
+been refreshed:
+
+```bash
+portfolio-risk-compass public-review \
+  --manifest examples/outputs/index.json \
+  --markdown examples/outputs/public_review_walkthrough.md \
+  --json examples/outputs/public_review_walkthrough.json
+```
+
+The public review packet combines a static dashboard walkthrough with SHA-256
+hashes for the dashboard, walkthrough, reviewer evidence, scenario evidence,
+case-study, manifest, and fixture inputs. It records exact rerun commands and
+states the no-live-data, no-broker, and no-advice boundaries for public review.
 
 The dashboard export writes one self-contained HTML file with inline CSS and no
 JavaScript. It includes summary cards, internal section links, exposure and

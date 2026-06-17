@@ -45,12 +45,12 @@ Review scope: Hashes static fixture inputs and generated local review artifacts.
 | [stress.md](stress.md) | present | markdown | 1024 | `1066d939df0e190691409dc8b028033f077211f45a464db466703b241b86adb8` |
 | [guardrails.json](guardrails.json) | present | json | 2644 | `bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82` |
 | [guardrails.md](guardrails.md) | present | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
-| [dashboard.html](dashboard.html) | present | html | 17086 | `5b3c2447a4410cba5a3f6904976c7b212f53163d753c3b2fab1663f98f9a9730` |
+| [dashboard.html](dashboard.html) | present | html | 17388 | `873c0bd092a6f14a3da67e7eb838755036d153058c2c036cf0561fb2ddcd7ca8` |
 | [dashboard_preview.md](dashboard_preview.md) | present | markdown | 1244 | `e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b` |
 | [dashboard_snippet.html](dashboard_snippet.html) | present | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
 | [gallery.md](gallery.md) | present | markdown | 2189 | `d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e` |
 | [walkthrough.md](walkthrough.md) | present | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |
-| [walkthrough.json](walkthrough.json) | present | json | 7341 | `6e1de321937ca142f1cf3fdcabadee3cb22bcfc9f59bc27d52d411fe5d3085ef` |
+| [walkthrough.json](walkthrough.json) | present | json | 7423 | `9e7016b96d4da8681b702f916fdac4704e0ec0e7189fdb50227dfb89b06a6492` |
 
 ## Case: cash-rebalance
 

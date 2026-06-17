@@ -17,7 +17,7 @@ Typical requests include:
 - Build an educational rebalance review watchlist without trade quantities.
 - Prepare a catalyst checklist.
 - Assemble generated artifacts into a human review memo.
-- Generate the demo bundle, guided showcase walkthrough, or static dashboard.
+- Generate the demo bundle, guided showcase walkthrough, static dashboard, or public review packet.
 - Audit package readiness or create a release manifest.
 
 ## Task Routing
@@ -36,6 +36,7 @@ Route tasks to the command that matches the requested output:
 - Demo artifacts: `portfolio-risk-compass demo-bundle`.
 - Guided showcase walkthrough: `portfolio-risk-compass showcase`.
 - Dashboard export: `portfolio-risk-compass dashboard`.
+- Public dashboard review packet: `portfolio-risk-compass public-review`.
 - Package checks: `portfolio-risk-compass package-audit`.
 - Output inventory: `portfolio-risk-compass release-manifest`.
 
@@ -144,6 +145,11 @@ portfolio-risk-compass showcase \
   --json examples/outputs/walkthrough.json
 
 portfolio-risk-compass dashboard examples/outputs/index.json examples/outputs/dashboard.html
+
+portfolio-risk-compass public-review \
+  --manifest examples/outputs/index.json \
+  --markdown examples/outputs/public_review_walkthrough.md \
+  --json examples/outputs/public_review_walkthrough.json
 ```
 
 Validate the repository:

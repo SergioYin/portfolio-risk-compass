@@ -1,0 +1,276 @@
+{
+  "artifact": "portfolio-risk-compass-public-review-walkthrough",
+  "as_of": "2026-05-15",
+  "boundary_flags": {
+    "advice": "none; artifact is a review walkthrough, not investment advice or trading guidance",
+    "broker": "none; no account access, order entry, execution, or broker connectivity",
+    "live_data": "none; all values come from static CSV/JSON fixtures or generated local artifacts"
+  },
+  "case_count": 4,
+  "fixture_inputs": [
+    {
+      "bytes": 423,
+      "case": "base-demo",
+      "path": "examples/fixtures/holdings.csv",
+      "sha256": "c93c9c4b852d80e5b54cdd952c7f2d63ccebbe1854c8161130d94ba134021a7c",
+      "status": "present"
+    },
+    {
+      "bytes": 440,
+      "case": "base-demo",
+      "path": "examples/fixtures/config.json",
+      "sha256": "f61c58f945f8028f7090076515b3789aeb3fdaae0282a7319d81d7cea355befc",
+      "status": "present"
+    },
+    {
+      "bytes": 827,
+      "case": "base-demo",
+      "path": "examples/fixtures/catalysts.json",
+      "sha256": "d37900eab554ffecf6c0c427a760aa667c24501d4f76f39c4742e05eb65cef5f",
+      "status": "present"
+    },
+    {
+      "bytes": 497,
+      "case": "base-demo",
+      "path": "examples/fixtures/scenario.json",
+      "sha256": "82284bfd0be70c3053b6a694da15c2ac106bc9607d79103ede0ca023996a8d46",
+      "status": "present"
+    },
+    {
+      "bytes": 3379,
+      "case": "base-demo",
+      "path": "examples/fixtures/history/*.json",
+      "sha256": "e945232aa8712dad53477c4a77e6bc3929e998a24652fbb813d95cfd92f41086",
+      "status": "present"
+    },
+    {
+      "bytes": 555,
+      "case": "cash-rebalance",
+      "path": "examples/templates/cash-rebalance/holdings.csv",
+      "sha256": "32b87398502c5db37fde3951930b041018e7e8cc83850575984b952a31a2ba84",
+      "status": "present"
+    },
+    {
+      "bytes": 600,
+      "case": "cash-rebalance",
+      "path": "examples/templates/cash-rebalance/config.json",
+      "sha256": "6bf02470ead55e402896e585acb2e1d4f2a2ae8d611e7453d06d56776fbddbc7",
+      "status": "present"
+    },
+    {
+      "bytes": 860,
+      "case": "cash-rebalance",
+      "path": "examples/templates/cash-rebalance/catalysts.json",
+      "sha256": "50bfcceef469878494317c9cf67be7e27e400e511423ab37aa4ffbee1613573e",
+      "status": "present"
+    },
+    {
+      "bytes": 532,
+      "case": "cash-rebalance",
+      "path": "examples/templates/cash-rebalance/scenario.json",
+      "sha256": "dec52116f05a459d230eafa07d43ca9a9f4fdfe361dd934f73f231d4cf29d7ca",
+      "status": "present"
+    },
+    {
+      "bytes": 515,
+      "case": "etf-core",
+      "path": "examples/templates/etf-core/holdings.csv",
+      "sha256": "8d9ce7d73d3c5c382763097e2d306908c09395b5cfd1fe8758e24e570ec2e59f",
+      "status": "present"
+    },
+    {
+      "bytes": 518,
+      "case": "etf-core",
+      "path": "examples/templates/etf-core/config.json",
+      "sha256": "853e9caa5549fa60b7691224466f929b4efe84cdee9a49a0838b4b9ce6179cf9",
+      "status": "present"
+    },
+    {
+      "bytes": 844,
+      "case": "etf-core",
+      "path": "examples/templates/etf-core/catalysts.json",
+      "sha256": "cd0b5b9d950afce4fcb587f09570cf81f4f82fb262de32736de4bfffa2197ab0",
+      "status": "present"
+    },
+    {
+      "bytes": 507,
+      "case": "etf-core",
+      "path": "examples/templates/etf-core/scenario.json",
+      "sha256": "09c6898eff9cfb219d53a40e73748a6275bb1c4d6e2a02bd52d276afd2f1096c",
+      "status": "present"
+    },
+    {
+      "bytes": 516,
+      "case": "leveraged-sleeve",
+      "path": "examples/templates/leveraged-sleeve/holdings.csv",
+      "sha256": "778d7fa9d35f5384e28f504904742895281746a256e252341c6314e72c7ec5a9",
+      "status": "present"
+    },
+    {
+      "bytes": 595,
+      "case": "leveraged-sleeve",
+      "path": "examples/templates/leveraged-sleeve/config.json",
+      "sha256": "79d503f25f08f4bc670d69b40920155f24f8dfc038a30bb7cfac7dd7c6acc05a",
+      "status": "present"
+    },
+    {
+      "bytes": 861,
+      "case": "leveraged-sleeve",
+      "path": "examples/templates/leveraged-sleeve/catalysts.json",
+      "sha256": "2bc47ce43d39d1b4bd7903636e1e37f0e4a7e3867a9957caac14310c6cb70ff1",
+      "status": "present"
+    },
+    {
+      "bytes": 531,
+      "case": "leveraged-sleeve",
+      "path": "examples/templates/leveraged-sleeve/scenario.json",
+      "sha256": "adc0cefc219892a4b887ae91e4dc18a0db12b0bf11f753c0e625a4b3af8e67b8",
+      "status": "present"
+    }
+  ],
+  "manifest_artifact_count": 55,
+  "public_safety_notice": "Audit receipt only; not investment advice, trading guidance, live market data, broker connectivity, account access, order entry, or trade execution.",
+  "review_artifacts": [
+    {
+      "bytes": 17388,
+      "format": "html",
+      "path": "dashboard.html",
+      "sha256": "873c0bd092a6f14a3da67e7eb838755036d153058c2c036cf0561fb2ddcd7ca8",
+      "status": "present"
+    },
+    {
+      "bytes": 1244,
+      "format": "markdown",
+      "path": "dashboard_preview.md",
+      "sha256": "e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b",
+      "status": "present"
+    },
+    {
+      "bytes": 876,
+      "format": "html",
+      "path": "dashboard_snippet.html",
+      "sha256": "2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77",
+      "status": "present"
+    },
+    {
+      "bytes": 2189,
+      "format": "markdown",
+      "path": "gallery.md",
+      "sha256": "d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e",
+      "status": "present"
+    },
+    {
+      "bytes": 3568,
+      "format": "markdown",
+      "path": "walkthrough.md",
+      "sha256": "85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932",
+      "status": "present"
+    },
+    {
+      "bytes": 7423,
+      "format": "json",
+      "path": "walkthrough.json",
+      "sha256": "9e7016b96d4da8681b702f916fdac4704e0ec0e7189fdb50227dfb89b06a6492",
+      "status": "present"
+    },
+    {
+      "bytes": 3455,
+      "format": "markdown",
+      "path": "reviewer_evidence.md",
+      "sha256": "f86b654295e7e7f4f9c8fdc9ddb5e98b0ba37143177a5d3574c64a4db2afd944",
+      "status": "present"
+    },
+    {
+      "bytes": 5754,
+      "format": "json",
+      "path": "reviewer_evidence.json",
+      "sha256": "8692a0fee67396642de6a9ce40701d459f7e40faf1e583cc4063947efa755d52",
+      "status": "present"
+    },
+    {
+      "bytes": 8257,
+      "format": "markdown",
+      "path": "scenario_evidence_receipt.md",
+      "sha256": "2de5e9c6a948d7422c0691a3fc8933be72d967518819d4782f1c53c72f54627c",
+      "status": "present"
+    },
+    {
+      "bytes": 10582,
+      "format": "json",
+      "path": "scenario_evidence_receipt.json",
+      "sha256": "8ace62485f5754bb2bd2c0e39e6c881431fe9ed2ded4bbb511a4a1d554f227ce",
+      "status": "present"
+    },
+    {
+      "bytes": 3190,
+      "format": "markdown",
+      "path": "case_study_comparison.md",
+      "sha256": "1b8188a950bed8d61d767e9f48b5597f2482eb5e8a82458f87ba89853c82c781",
+      "status": "present"
+    },
+    {
+      "bytes": 8586,
+      "format": "json",
+      "path": "case_study_comparison.json",
+      "sha256": "70788a0b9ebdb9f0ad3a5feeb50fdbdc298d058ff7d3ba8f9409515a98cc7dd6",
+      "status": "present"
+    },
+    {
+      "bytes": 16283,
+      "format": "json",
+      "path": "index.json",
+      "sha256": "8b758838862856a97713e769fd133220ec6ea7f465a86796ce95d013cb24fe36",
+      "status": "present"
+    }
+  ],
+  "review_scope": "Static dashboard walkthrough and evidence packet for public reviewers. It hashes local fixture inputs and generated local artifacts only.",
+  "safety_boundary": "Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.",
+  "schema_version": 1,
+  "walkthrough_steps": [
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+      "evidence": [
+        "index.json"
+      ],
+      "step": 1,
+      "title": "Regenerate the deterministic bundle"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+      "evidence": [
+        "dashboard.html",
+        "dashboard_preview.md",
+        "dashboard_snippet.html"
+      ],
+      "step": 2,
+      "title": "Render the static dashboard"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass reviewer-evidence",
+      "evidence": [
+        "reviewer_evidence.md",
+        "reviewer_evidence.json"
+      ],
+      "step": 3,
+      "title": "Refresh review evidence"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass scenario-evidence-receipt",
+      "evidence": [
+        "scenario_evidence_receipt.md",
+        "scenario_evidence_receipt.json"
+      ],
+      "step": 4,
+      "title": "Refresh scenario evidence receipt"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass public-review",
+      "evidence": [
+        "public_review_walkthrough.md",
+        "public_review_walkthrough.json"
+      ],
+      "step": 5,
+      "title": "Refresh this public packet"
+    }
+  ]
+}

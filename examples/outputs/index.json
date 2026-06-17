@@ -534,6 +534,26 @@
         "scenario.json",
         "generated static artifacts"
       ]
+    },
+    {
+      "bytes": 9032,
+      "description": "Public static dashboard walkthrough and evidence packet as JSON.",
+      "format": "json",
+      "path": "public_review_walkthrough.json",
+      "source_fixtures": [
+        "index.json",
+        "generated static artifacts"
+      ]
+    },
+    {
+      "bytes": 6952,
+      "description": "Public static dashboard walkthrough and evidence packet as Markdown.",
+      "format": "markdown",
+      "path": "public_review_walkthrough.md",
+      "source_fixtures": [
+        "index.json",
+        "generated static artifacts"
+      ]
     }
   ],
   "as_of": "2026-05-15",

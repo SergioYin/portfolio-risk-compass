@@ -62,6 +62,11 @@ from .packaging import (
     render_package_audit_markdown,
     write_release_manifest,
 )
+from .public_review import (
+    DEFAULT_PUBLIC_REVIEW_JSON,
+    DEFAULT_PUBLIC_REVIEW_MARKDOWN,
+    write_public_review_walkthrough,
+)
 from .rebalance_watchlist import (
     build_rebalance_watchlist,
     render_rebalance_watchlist_json,
@@ -116,6 +121,7 @@ COMMAND_NAMES = (
     "showcase",
     "reviewer-evidence",
     "scenario-evidence-receipt",
+    "public-review",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -158,6 +164,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_reviewer_evidence(args)
     if args.command == "scenario-evidence-receipt":
         return _run_scenario_evidence_receipt(args)
+    if args.command == "public-review":
+        return _run_public_review(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -399,6 +407,13 @@ def _run_reviewer_evidence(args: argparse.Namespace) -> int:
 
 def _run_scenario_evidence_receipt(args: argparse.Namespace) -> int:
     paths = write_scenario_evidence_receipt(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_public_review(args: argparse.Namespace) -> int:
+    paths = write_public_review_walkthrough(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -875,6 +890,40 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to write the machine-readable receipt. Defaults to "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_SCENARIO_EVIDENCE_JSON}."
+        ),
+    )
+
+    public_review = subparsers.add_parser(
+        "public-review",
+        help="Write a public static dashboard walkthrough and evidence packet.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON public-review artifacts with exact rerun commands, SHA-256 hashes, "
+            "and no-live-data, no-broker, no-advice boundaries."
+        ),
+    )
+    public_review.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    public_review.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_PUBLIC_REVIEW_MARKDOWN,
+        help=(
+            "Path to write the Markdown public-review packet. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_PUBLIC_REVIEW_MARKDOWN}."
+        ),
+    )
+    public_review.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_PUBLIC_REVIEW_JSON,
+        help=(
+            "Path to write the machine-readable public-review packet. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_PUBLIC_REVIEW_JSON}."
         ),
     )
 

@@ -30,6 +30,13 @@ from .guardrails import (
 )
 from .holdings import read_holdings_csv
 from .history import build_history_ledger, render_history_json, render_history_markdown
+from .public_review import (
+    DEFAULT_PUBLIC_REVIEW_JSON,
+    DEFAULT_PUBLIC_REVIEW_MARKDOWN,
+    build_public_review_walkthrough,
+    render_public_review_json,
+    render_public_review_markdown,
+)
 from .rebalance_watchlist import (
     build_rebalance_watchlist,
     render_rebalance_watchlist_json,
@@ -194,6 +201,28 @@ def build_demo_bundle(
     )
     for artifact, refreshed in zip(evidence_artifacts, final_evidence_artifacts):
         artifact["bytes"] = refreshed["bytes"]
+    public_review_artifacts = _write_public_review_artifacts(
+        manifest,
+        artifacts,
+        output_dir,
+    )
+    artifacts.extend(public_review_artifacts)
+    final_comparison = build_case_study_comparison(
+        {**manifest, "artifacts": artifacts},
+        output_dir,
+    )
+    _refresh_artifact(
+        output_dir,
+        artifacts,
+        DEFAULT_CASE_STUDY_JSON,
+        render_case_study_json(final_comparison),
+    )
+    _refresh_artifact(
+        output_dir,
+        artifacts,
+        DEFAULT_CASE_STUDY_MARKDOWN,
+        render_case_study_markdown(final_comparison),
+    )
     _write_text(
         output_dir / "index.json",
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
@@ -435,6 +464,35 @@ def _write_scenario_evidence_artifacts(
             "Scenario evidence receipt for static stress, guardrail, and dashboard artifacts as Markdown.",
             ("holdings.csv", "config.json", "scenario.json", "generated static artifacts"),
             render_scenario_evidence_markdown(receipt),
+        ),
+    ]
+
+
+def _write_public_review_artifacts(
+    manifest: dict,
+    artifacts: list[dict],
+    output_dir: Path,
+) -> list[dict]:
+    packet = build_public_review_walkthrough(
+        {**manifest, "artifacts": artifacts},
+        output_dir,
+    )
+    return [
+        _write_artifact(
+            output_dir,
+            DEFAULT_PUBLIC_REVIEW_JSON,
+            "json",
+            "Public static dashboard walkthrough and evidence packet as JSON.",
+            ("index.json", "generated static artifacts"),
+            render_public_review_json(packet),
+        ),
+        _write_artifact(
+            output_dir,
+            DEFAULT_PUBLIC_REVIEW_MARKDOWN,
+            "markdown",
+            "Public static dashboard walkthrough and evidence packet as Markdown.",
+            ("index.json", "generated static artifacts"),
+            render_public_review_markdown(packet),
         ),
     ]
 
