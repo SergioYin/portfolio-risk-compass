@@ -47,6 +47,7 @@ def main() -> int:
                 "scenario-evidence-receipt",
             ],
             [sys.executable, "-m", "portfolio_risk_compass", "public-review"],
+            [sys.executable, "-m", "portfolio_risk_compass", "screenshot-guide"],
             [
                 sys.executable,
                 "-m",
@@ -94,6 +95,8 @@ def main() -> int:
         root / "examples/outputs/public_review_walkthrough.json",
         root / "examples/outputs/visual_evidence_receipt.md",
         root / "examples/outputs/visual_evidence_receipt.json",
+        root / "examples/outputs/dashboard_screenshot_guide.md",
+        root / "examples/outputs/dashboard_screenshot_guide.json",
         root / "examples/outputs/dashboard_preview.md",
         root / "examples/outputs/dashboard_snippet.html",
         root / "examples/outputs/invest_thesis_ledger_adapter.json",

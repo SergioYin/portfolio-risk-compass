@@ -58,6 +58,13 @@ from .scenario_evidence import (
     render_scenario_evidence_json,
     render_scenario_evidence_markdown,
 )
+from .screenshot_guide import (
+    DEFAULT_SCREENSHOT_GUIDE_JSON,
+    DEFAULT_SCREENSHOT_GUIDE_MARKDOWN,
+    build_screenshot_guide,
+    render_screenshot_guide_json,
+    render_screenshot_guide_markdown,
+)
 from .snapshots import build_snapshot, render_snapshot_json
 from .stress import (
     read_scenario_json,
@@ -219,6 +226,30 @@ def build_demo_bundle(
         output_dir,
     )
     artifacts.extend(visual_evidence_artifacts)
+    screenshot_guide_artifacts = _write_screenshot_guide_artifacts(
+        manifest,
+        output_dir,
+    )
+    artifacts.extend(screenshot_guide_artifacts)
+    final_public_review_artifacts = _write_public_review_artifacts(
+        manifest,
+        artifacts,
+        output_dir,
+    )
+    for artifact, refreshed in zip(
+        public_review_artifacts,
+        final_public_review_artifacts,
+    ):
+        artifact["bytes"] = refreshed["bytes"]
+    final_visual_evidence_artifacts = _write_visual_evidence_artifacts(
+        manifest,
+        output_dir,
+    )
+    for artifact, refreshed in zip(
+        visual_evidence_artifacts,
+        final_visual_evidence_artifacts,
+    ):
+        artifact["bytes"] = refreshed["bytes"]
     final_comparison = build_case_study_comparison(
         {**manifest, "artifacts": artifacts},
         output_dir,
@@ -530,6 +561,31 @@ def _write_visual_evidence_artifacts(
             "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as Markdown.",
             ("index.json", "generated static artifacts"),
             render_visual_evidence_markdown(receipt),
+        ),
+    ]
+
+
+def _write_screenshot_guide_artifacts(
+    manifest: dict,
+    output_dir: Path,
+) -> list[dict]:
+    guide = build_screenshot_guide(manifest, output_dir)
+    return [
+        _write_artifact(
+            output_dir,
+            DEFAULT_SCREENSHOT_GUIDE_JSON,
+            "json",
+            "Dashboard screenshot guide with exact capture instructions and hashes as JSON.",
+            ("index.json", "dashboard.html", "generated static artifacts"),
+            render_screenshot_guide_json(guide),
+        ),
+        _write_artifact(
+            output_dir,
+            DEFAULT_SCREENSHOT_GUIDE_MARKDOWN,
+            "markdown",
+            "Dashboard screenshot guide with exact capture instructions and hashes as Markdown.",
+            ("index.json", "dashboard.html", "generated static artifacts"),
+            render_screenshot_guide_markdown(guide),
         ),
     ]
 

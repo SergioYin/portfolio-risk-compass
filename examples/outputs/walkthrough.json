@@ -28,7 +28,9 @@
         "public_review_walkthrough.json",
         "public_review_walkthrough.md",
         "visual_evidence_receipt.json",
-        "visual_evidence_receipt.md"
+        "visual_evidence_receipt.md",
+        "dashboard_screenshot_guide.json",
+        "dashboard_screenshot_guide.md"
       ],
       "description": "Repository demo fixture set.",
       "fixture_dir": "examples/fixtures",

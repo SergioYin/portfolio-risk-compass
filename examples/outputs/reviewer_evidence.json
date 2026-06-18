@@ -119,7 +119,7 @@
         "status": "sidecar"
       },
       {
-        "bytes": 7501,
+        "bytes": 7585,
         "description": "Generated outside the demo manifest.",
         "format": "json",
         "path": "walkthrough.json",

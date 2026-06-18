@@ -128,14 +128,14 @@
       "status": "present"
     }
   ],
-  "manifest_artifact_count": 57,
+  "manifest_artifact_count": 59,
   "public_safety_notice": "Audit receipt only; not investment advice, trading guidance, live market data, broker connectivity, account access, order entry, or trade execution.",
   "review_artifacts": [
     {
-      "bytes": 17770,
+      "bytes": 18102,
       "format": "html",
       "path": "dashboard.html",
-      "sha256": "236d5d8d14dc3e950716f7d62fa5b8c78629c8cb16a8b34148dbb6631f4c248e",
+      "sha256": "f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f",
       "status": "present"
     },
     {
@@ -167,38 +167,38 @@
       "status": "present"
     },
     {
-      "bytes": 7501,
+      "bytes": 7585,
       "format": "json",
       "path": "walkthrough.json",
-      "sha256": "b4a718dfcf5050ae918a64be2b19ddd224d78e9613fbeaf1d4bed21fca0ea4ba",
+      "sha256": "11b4f0420d8c7f92c252b2307468e6467e30d3734c491d894034430fd4bcca02",
       "status": "present"
     },
     {
       "bytes": 3455,
       "format": "markdown",
       "path": "reviewer_evidence.md",
-      "sha256": "4738083dcebb64ef5ef8bb1f26e9c4529b0c226b644dd542d440c319561c8d7f",
+      "sha256": "9d548e90b209b2210f1d6e75818c2a368d2479e5e44a71910ccb88b762e5637c",
       "status": "present"
     },
     {
       "bytes": 5754,
       "format": "json",
       "path": "reviewer_evidence.json",
-      "sha256": "a96c4fe2f368c806d876b38b09666aa46d66bcee08683bbab7625889c971c561",
+      "sha256": "2b0d5c7dd6c308591ce969f7b51a7f430bd4f0262d19c596b89e09ca9463de7a",
       "status": "present"
     },
     {
       "bytes": 8257,
       "format": "markdown",
       "path": "scenario_evidence_receipt.md",
-      "sha256": "67fcf24f1e833e64375732ddb6787d80ede854b739ca166bfb95f035df38fb45",
+      "sha256": "ae25215b7e5dd2a96bec73fe076d1e67e2d747ef0b28c26ee095939a602b69fc",
       "status": "present"
     },
     {
       "bytes": 10582,
       "format": "json",
       "path": "scenario_evidence_receipt.json",
-      "sha256": "25e962b6c84d2ed6d21b1b15c4a2e1f9664a3eaf085154a34195e32a8dfcef3e",
+      "sha256": "ce3a73a08bdd6e28d003f0f7edf5b718deb66b9fc7b7068371a84ec669210d35",
       "status": "present"
     },
     {
@@ -212,14 +212,14 @@
       "bytes": 8586,
       "format": "json",
       "path": "case_study_comparison.json",
-      "sha256": "548b92d3ddda667a9f752a39224449b181dc86cf703cc75a250ff47647f7574f",
+      "sha256": "c095f5c612e59da2bf1322d75bcb8e179b45a4a31f96e9ccbc2e7b099b61e844",
       "status": "present"
     },
     {
-      "bytes": 16947,
+      "bytes": 17613,
       "format": "json",
       "path": "index.json",
-      "sha256": "d3d65d958cf30fe03c37cff71786b731eef29bc2b58885ad5fefa5f7e6fef038",
+      "sha256": "e65d032fd007f67b5fec5fa348c3f90eb5434d171f872b0042d2ccdb56385395",
       "status": "present"
     }
   ],

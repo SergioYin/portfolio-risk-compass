@@ -40,6 +40,8 @@ class DemoBundleTests(unittest.TestCase):
             self.assertTrue((output_dir / "public_review_walkthrough.json").is_file())
             self.assertTrue((output_dir / "visual_evidence_receipt.md").is_file())
             self.assertTrue((output_dir / "visual_evidence_receipt.json").is_file())
+            self.assertTrue((output_dir / "dashboard_screenshot_guide.md").is_file())
+            self.assertTrue((output_dir / "dashboard_screenshot_guide.json").is_file())
             preview = (output_dir / "dashboard_preview.md").read_text(encoding="utf-8")
             self.assertIn("| Summary | Total value", preview)
             self.assertIn("[Open the static dashboard](dashboard.html)", preview)
@@ -220,6 +222,7 @@ class DemoBundleTests(unittest.TestCase):
                 [
                     "dashboard",
                     "public_review",
+                    "screenshot_guide",
                     "scenario_evidence",
                     "reviewer_evidence",
                 ],
@@ -233,6 +236,39 @@ class DemoBundleTests(unittest.TestCase):
                 ["dashboard.html"],
             )
             self.assertRegex(visual["artifacts"][1]["sha256"], r"^[0-9a-f]{64}$")
+            screenshot = json.loads(
+                (output_dir / "dashboard_screenshot_guide.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            self.assertEqual(
+                screenshot["artifact"],
+                "portfolio-risk-compass-dashboard-screenshot-guide",
+            )
+            self.assertEqual(screenshot["capture_profile"]["browser"], "chromium")
+            self.assertEqual(screenshot["capture_profile"]["viewport_width"], 1365)
+            self.assertEqual(screenshot["capture_profile"]["viewport_height"], 900)
+            self.assertIn("live data", screenshot["review_scope"])
+            self.assertIn("broker", screenshot["boundary_flags"])
+            self.assertEqual(
+                screenshot["source_artifacts"][0]["path"],
+                "dashboard.html",
+            )
+            self.assertEqual(
+                screenshot["source_artifacts"][0]["status"],
+                "missing",
+            )
+            self.assertEqual(
+                screenshot["screenshot_artifacts"][0]["path"],
+                "screenshots/dashboard-public-review-1365x900.png",
+            )
+            self.assertEqual(
+                screenshot["artifact_coverage"]["missing"],
+                [
+                    "dashboard.html",
+                    "screenshots/dashboard-public-review-1365x900.png",
+                ],
+            )
 
         expected_paths = [
             "exposure_report.json",
@@ -292,6 +328,8 @@ class DemoBundleTests(unittest.TestCase):
             "public_review_walkthrough.md",
             "visual_evidence_receipt.json",
             "visual_evidence_receipt.md",
+            "dashboard_screenshot_guide.json",
+            "dashboard_screenshot_guide.md",
         ]
         self.assertEqual(index, manifest)
         self.assertEqual(index["schema_version"], 1)
@@ -363,7 +401,7 @@ class DemoBundleTests(unittest.TestCase):
 
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
-        self.assertEqual(len(manifest["artifacts"]), 24)
+        self.assertEqual(len(manifest["artifacts"]), 26)
         self.assertIn(
             "case_study_comparison.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
@@ -382,6 +420,10 @@ class DemoBundleTests(unittest.TestCase):
         )
         self.assertIn(
             "visual_evidence_receipt.json",
+            [artifact["path"] for artifact in manifest["artifacts"]],
+        )
+        self.assertIn(
+            "dashboard_screenshot_guide.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
         )
 
@@ -478,7 +520,7 @@ class DemoBundleTests(unittest.TestCase):
         )
         self.assertEqual(comparison, bundled_comparison)
         self.assertTrue(comparison["artifact_coverage"]["complete"])
-        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 53)
+        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 55)
         self.assertEqual(
             comparison["cases"][2]["metrics"]["stress_market_value_delta_pct"],
             "-8.0097",
@@ -695,6 +737,69 @@ class DemoBundleTests(unittest.TestCase):
         self.assertEqual(receipt["artifact_coverage"]["missing"], [])
         self.assertEqual(receipt["artifacts"][0]["status"], "present")
         self.assertRegex(receipt["artifacts"][0]["sha256"], r"^[0-9a-f]{64}$")
+
+    def test_cli_screenshot_guide_writes_capture_receipt_artifacts(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            markdown_path = Path(temp_dir) / "screenshot-guide.md"
+            json_path = Path(temp_dir) / "screenshot-guide.json"
+            build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+            main(
+                [
+                    "dashboard",
+                    str(output_dir / "index.json"),
+                    str(output_dir / "dashboard.html"),
+                ]
+            )
+
+            with patch("sys.stdout") as stdout:
+                self.assertEqual(
+                    main(
+                        [
+                            "screenshot-guide",
+                            "--manifest",
+                            str(output_dir / "index.json"),
+                            "--markdown",
+                            str(markdown_path),
+                            "--json",
+                            str(json_path),
+                        ]
+                    ),
+                    0,
+                )
+
+            markdown = markdown_path.read_text(encoding="utf-8")
+            guide = json.loads(json_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            stdout.write.call_args_list[0].args[0],
+            str(markdown_path) + "\n",
+        )
+        self.assertEqual(
+            stdout.write.call_args_list[1].args[0],
+            str(json_path) + "\n",
+        )
+        self.assertIn("# Portfolio Risk Compass Dashboard Screenshot Guide", markdown)
+        self.assertIn("No live data", markdown)
+        self.assertIn("No broker", markdown)
+        self.assertIn("No advice", markdown)
+        self.assertIn("python -m playwright screenshot", markdown)
+        self.assertIn("1365x900", markdown)
+        self.assertEqual(
+            guide["artifact"],
+            "portfolio-risk-compass-dashboard-screenshot-guide",
+        )
+        self.assertEqual(guide["source_artifacts"][0]["status"], "present")
+        self.assertRegex(guide["source_artifacts"][0]["sha256"], r"^[0-9a-f]{64}$")
+        self.assertEqual(guide["screenshot_artifacts"][0]["status"], "missing")
+        self.assertEqual(
+            guide["artifact_coverage"]["missing"],
+            ["screenshots/dashboard-public-review-1365x900.png"],
+        )
 
     def test_reviewer_evidence_markdown_escapes_table_cells(self):
         manifest = {

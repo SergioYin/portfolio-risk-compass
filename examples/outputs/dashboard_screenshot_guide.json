@@ -1,0 +1,96 @@
+{
+  "artifact": "portfolio-risk-compass-dashboard-screenshot-guide",
+  "artifact_coverage": {
+    "complete": false,
+    "expected": 3,
+    "missing": [
+      "screenshots/dashboard-public-review-1365x900.png"
+    ],
+    "present": 2
+  },
+  "as_of": "2026-05-15",
+  "boundary_flags": {
+    "advice": "none; artifact is a review walkthrough, not investment advice or trading guidance",
+    "broker": "none; no account access, order entry, execution, or broker connectivity",
+    "live_data": "none; all values come from static CSV/JSON fixtures or generated local artifacts"
+  },
+  "capture_profile": {
+    "browser": "chromium",
+    "full_page": false,
+    "input_url": "file://$PWD/examples/outputs/dashboard.html",
+    "output_path": "examples/outputs/screenshots/dashboard-public-review-1365x900.png",
+    "viewport_height": 900,
+    "viewport_width": 1365
+  },
+  "capture_steps": [
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+      "step": 1,
+      "title": "Regenerate static review artifacts"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+      "step": 2,
+      "title": "Render the public dashboard route"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass public-review",
+      "step": 3,
+      "title": "Refresh the public review packet"
+    },
+    {
+      "command": "mkdir -p examples/outputs/screenshots",
+      "step": 4,
+      "title": "Prepare screenshot output directory"
+    },
+    {
+      "command": "python -m playwright screenshot --browser chromium --viewport-size=1365,900 file://$PWD/examples/outputs/dashboard.html examples/outputs/screenshots/dashboard-public-review-1365x900.png",
+      "step": 5,
+      "title": "Capture the deterministic dashboard screenshot"
+    },
+    {
+      "command": "PYTHONPATH=src python -m portfolio_risk_compass screenshot-guide && PYTHONPATH=src python -m portfolio_risk_compass visual-evidence-receipt",
+      "step": 6,
+      "title": "Refresh this screenshot guide and visual receipt"
+    }
+  ],
+  "public_route": {
+    "dashboard": "dashboard.html",
+    "public_review": "public_review_walkthrough.md"
+  },
+  "public_safety_notice": "Audit receipt only; not investment advice, trading guidance, live market data, broker connectivity, account access, order entry, or trade execution.",
+  "review_scope": "Deterministic screenshot guide for the static public dashboard route. Public means generated demo/review artifacts that are suitable to share after review; it records local artifact hashes only and does not fetch live data, expose private account data, connect to brokers, place orders, or provide investment advice.",
+  "safety_boundary": "Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.",
+  "schema_version": 1,
+  "screenshot_artifacts": [
+    {
+      "bytes": "n/a",
+      "format": "png",
+      "path": "screenshots/dashboard-public-review-1365x900.png",
+      "purpose": "Expected browser screenshot produced by the exact capture command.",
+      "role": "dashboard_screenshot",
+      "sha256": "n/a",
+      "status": "missing"
+    }
+  ],
+  "source_artifacts": [
+    {
+      "bytes": 18102,
+      "format": "html",
+      "path": "dashboard.html",
+      "purpose": "Browser-rendered public dashboard route to capture.",
+      "role": "static_dashboard_route",
+      "sha256": "f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f",
+      "status": "present"
+    },
+    {
+      "bytes": 6952,
+      "format": "markdown",
+      "path": "public_review_walkthrough.md",
+      "purpose": "Public reviewer route, rerun commands, and boundary checks.",
+      "role": "public_review_walkthrough",
+      "sha256": "6222fd4e6b4404ac7cbc14bbf927c51c84230bdf7bb39635d860a1355c66cd60",
+      "status": "present"
+    }
+  ]
+}

@@ -84,6 +84,12 @@ from .scenario_evidence import (
     DEFAULT_SCENARIO_EVIDENCE_MARKDOWN,
     write_scenario_evidence_receipt,
 )
+from .screenshot_guide import (
+    DEFAULT_SCREENSHOT_GUIDE_JSON,
+    DEFAULT_SCREENSHOT_GUIDE_MARKDOWN,
+    DEFAULT_SCREENSHOT_PATH,
+    write_screenshot_guide,
+)
 from .snapshots import (
     build_snapshot,
     diff_snapshots,
@@ -128,6 +134,7 @@ COMMAND_NAMES = (
     "scenario-evidence-receipt",
     "public-review",
     "visual-evidence-receipt",
+    "screenshot-guide",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -174,6 +181,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_public_review(args)
     if args.command == "visual-evidence-receipt":
         return _run_visual_evidence_receipt(args)
+    if args.command == "screenshot-guide":
+        return _run_screenshot_guide(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -429,6 +438,18 @@ def _run_public_review(args: argparse.Namespace) -> int:
 
 def _run_visual_evidence_receipt(args: argparse.Namespace) -> int:
     paths = write_visual_evidence_receipt(args.manifest, args.markdown, args.json)
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_screenshot_guide(args: argparse.Namespace) -> int:
+    paths = write_screenshot_guide(
+        args.manifest,
+        args.markdown,
+        args.json,
+        screenshot_path=args.screenshot_path,
+    )
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -974,6 +995,49 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to write the machine-readable visual evidence receipt. Defaults to "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_EVIDENCE_JSON}."
+        ),
+    )
+
+    screenshot_guide = subparsers.add_parser(
+        "screenshot-guide",
+        help="Write exact dashboard screenshot capture instructions and hashes.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON guide artifacts tying the static public dashboard route to an exact "
+            "Chromium screenshot command, source artifact hashes, screenshot hashes, "
+            "and no-live-data, no-broker, no-advice boundaries."
+        ),
+    )
+    screenshot_guide.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    screenshot_guide.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_SCREENSHOT_GUIDE_MARKDOWN,
+        help=(
+            "Path to write the Markdown screenshot guide. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_SCREENSHOT_GUIDE_MARKDOWN}."
+        ),
+    )
+    screenshot_guide.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_SCREENSHOT_GUIDE_JSON,
+        help=(
+            "Path to write the machine-readable screenshot guide. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_SCREENSHOT_GUIDE_JSON}."
+        ),
+    )
+    screenshot_guide.add_argument(
+        "--screenshot-path",
+        default=DEFAULT_SCREENSHOT_PATH,
+        help=(
+            "Screenshot path relative to the manifest directory. Defaults to "
+            f"{DEFAULT_SCREENSHOT_PATH}."
         ),
     )
 

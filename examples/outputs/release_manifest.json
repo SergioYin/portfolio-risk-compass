@@ -1,11 +1,11 @@
 {
-  "artifact_count": 66,
+  "artifact_count": 68,
   "artifacts": [
     {
       "bytes": 8586,
       "format": "json",
       "path": "case_study_comparison.json",
-      "sha256": "548b92d3ddda667a9f752a39224449b181dc86cf703cc75a250ff47647f7574f"
+      "sha256": "c095f5c612e59da2bf1322d75bcb8e179b45a4a31f96e9ccbc2e7b099b61e844"
     },
     {
       "bytes": 3190,
@@ -26,16 +26,28 @@
       "sha256": "6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6"
     },
     {
-      "bytes": 17770,
+      "bytes": 18102,
       "format": "html",
       "path": "dashboard.html",
-      "sha256": "236d5d8d14dc3e950716f7d62fa5b8c78629c8cb16a8b34148dbb6631f4c248e"
+      "sha256": "f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f"
     },
     {
       "bytes": 1244,
       "format": "markdown",
       "path": "dashboard_preview.md",
       "sha256": "e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b"
+    },
+    {
+      "bytes": 3937,
+      "format": "json",
+      "path": "dashboard_screenshot_guide.json",
+      "sha256": "50453e60f2ab429e3ab99dbf8fdbadd03409d1bed1af6c32e794e8becfbfc321"
+    },
+    {
+      "bytes": 3047,
+      "format": "markdown",
+      "path": "dashboard_screenshot_guide.md",
+      "sha256": "1b1d92fed27f9fb2b5e8bdefd1c2f47b42ddaf0134748ed649f1f72f6690e072"
     },
     {
       "bytes": 876,
@@ -86,10 +98,10 @@
       "sha256": "782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186"
     },
     {
-      "bytes": 16947,
+      "bytes": 17613,
       "format": "json",
       "path": "index.json",
-      "sha256": "d3d65d958cf30fe03c37cff71786b731eef29bc2b58885ad5fefa5f7e6fef038"
+      "sha256": "e65d032fd007f67b5fec5fa348c3f90eb5434d171f872b0042d2ccdb56385395"
     },
     {
       "bytes": 2441,
@@ -107,13 +119,13 @@
       "bytes": 9032,
       "format": "json",
       "path": "public_review_walkthrough.json",
-      "sha256": "ac71404067c51d566fbe9b96bafa3fcc98c8063e971632ca1ed56ddc846ed461"
+      "sha256": "a60e13a73f2f0a16fe188b0ed4a8c6d375fa99e3d150628028bf1f2cf240fbef"
     },
     {
       "bytes": 6952,
       "format": "markdown",
       "path": "public_review_walkthrough.md",
-      "sha256": "f205869c7ea480f6f13b971bdf3f2dc90cb507e44272e0f196d4205e76c57d4b"
+      "sha256": "6222fd4e6b4404ac7cbc14bbf927c51c84230bdf7bb39635d860a1355c66cd60"
     },
     {
       "bytes": 6298,
@@ -137,25 +149,25 @@
       "bytes": 5754,
       "format": "json",
       "path": "reviewer_evidence.json",
-      "sha256": "a96c4fe2f368c806d876b38b09666aa46d66bcee08683bbab7625889c971c561"
+      "sha256": "2b0d5c7dd6c308591ce969f7b51a7f430bd4f0262d19c596b89e09ca9463de7a"
     },
     {
       "bytes": 3455,
       "format": "markdown",
       "path": "reviewer_evidence.md",
-      "sha256": "4738083dcebb64ef5ef8bb1f26e9c4529b0c226b644dd542d440c319561c8d7f"
+      "sha256": "9d548e90b209b2210f1d6e75818c2a368d2479e5e44a71910ccb88b762e5637c"
     },
     {
       "bytes": 10582,
       "format": "json",
       "path": "scenario_evidence_receipt.json",
-      "sha256": "25e962b6c84d2ed6d21b1b15c4a2e1f9664a3eaf085154a34195e32a8dfcef3e"
+      "sha256": "ce3a73a08bdd6e28d003f0f7edf5b718deb66b9fc7b7068371a84ec669210d35"
     },
     {
       "bytes": 8257,
       "format": "markdown",
       "path": "scenario_evidence_receipt.md",
-      "sha256": "67fcf24f1e833e64375732ddb6787d80ede854b739ca166bfb95f035df38fb45"
+      "sha256": "ae25215b7e5dd2a96bec73fe076d1e67e2d747ef0b28c26ee095939a602b69fc"
     },
     {
       "bytes": 4167,
@@ -374,22 +386,22 @@
       "sha256": "070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89"
     },
     {
-      "bytes": 4842,
+      "bytes": 5519,
       "format": "json",
       "path": "visual_evidence_receipt.json",
-      "sha256": "6e3d7ba00d4710017089629ac2a471b2fbd9aec9e54eda5f8134b2c3ac443ed9"
+      "sha256": "fe6a08475103ec55faee443304ca57fac59bac763c66e4ca43e0ae87e58e291f"
     },
     {
-      "bytes": 3513,
+      "bytes": 3950,
       "format": "markdown",
       "path": "visual_evidence_receipt.md",
-      "sha256": "6f2a7c43ef1b5b826a543687a1ac771f08d841fef0bd8598a833f05dd2717d01"
+      "sha256": "1f53c3c967d5139a73afd8edd839fad1b2fbcbb5070274f68e4df7bfc035c655"
     },
     {
-      "bytes": 7501,
+      "bytes": 7585,
       "format": "json",
       "path": "walkthrough.json",
-      "sha256": "b4a718dfcf5050ae918a64be2b19ddd224d78e9613fbeaf1d4bed21fca0ea4ba"
+      "sha256": "11b4f0420d8c7f92c252b2307468e6467e30d3734c491d894034430fd4bcca02"
     },
     {
       "bytes": 3568,

@@ -556,7 +556,7 @@
       ]
     },
     {
-      "bytes": 4842,
+      "bytes": 5519,
       "description": "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as JSON.",
       "format": "json",
       "path": "visual_evidence_receipt.json",
@@ -566,12 +566,34 @@
       ]
     },
     {
-      "bytes": 3513,
+      "bytes": 3950,
       "description": "Visual evidence receipt tying dashboard, public-review, scenario, and reviewer evidence artifacts as Markdown.",
       "format": "markdown",
       "path": "visual_evidence_receipt.md",
       "source_fixtures": [
         "index.json",
+        "generated static artifacts"
+      ]
+    },
+    {
+      "bytes": 3937,
+      "description": "Dashboard screenshot guide with exact capture instructions and hashes as JSON.",
+      "format": "json",
+      "path": "dashboard_screenshot_guide.json",
+      "source_fixtures": [
+        "index.json",
+        "dashboard.html",
+        "generated static artifacts"
+      ]
+    },
+    {
+      "bytes": 3047,
+      "description": "Dashboard screenshot guide with exact capture instructions and hashes as Markdown.",
+      "format": "markdown",
+      "path": "dashboard_screenshot_guide.md",
+      "source_fixtures": [
+        "index.json",
+        "dashboard.html",
         "generated static artifacts"
       ]
     }

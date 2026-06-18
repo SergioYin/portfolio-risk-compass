@@ -41,6 +41,11 @@ VISUAL_EVIDENCE_ARTIFACTS = (
         "purpose": "Machine-readable public-review packet.",
     },
     {
+        "role": "dashboard_screenshot_guide",
+        "path": "dashboard_screenshot_guide.json",
+        "purpose": "Exact public dashboard screenshot capture instructions and hashes.",
+    },
+    {
         "role": "scenario_evidence_receipt",
         "path": "scenario_evidence_receipt.json",
         "purpose": "Scenario, guardrail, and dashboard evidence hashes.",
@@ -79,6 +84,16 @@ def build_visual_evidence_receipt(manifest: dict, output_dir: Path) -> dict:
         },
         {
             "step": 3,
+            "label": "screenshot_guide",
+            "artifact": "dashboard_screenshot_guide.md",
+            "verifies": [
+                "exact dashboard screenshot command",
+                "capture viewport",
+                "screenshot hash receipt path",
+            ],
+        },
+        {
+            "step": 4,
             "label": "scenario_evidence",
             "artifact": "scenario_evidence_receipt.json",
             "verifies": [
@@ -88,7 +103,7 @@ def build_visual_evidence_receipt(manifest: dict, output_dir: Path) -> dict:
             ],
         },
         {
-            "step": 4,
+            "step": 5,
             "label": "reviewer_evidence",
             "artifact": "reviewer_evidence.json",
             "verifies": [
@@ -131,6 +146,7 @@ def build_visual_evidence_receipt(manifest: dict, output_dir: Path) -> dict:
             "PYTHONPATH=src python -m portfolio_risk_compass reviewer-evidence",
             "PYTHONPATH=src python -m portfolio_risk_compass scenario-evidence-receipt",
             "PYTHONPATH=src python -m portfolio_risk_compass public-review",
+            "PYTHONPATH=src python -m portfolio_risk_compass screenshot-guide",
             "PYTHONPATH=src python -m portfolio_risk_compass visual-evidence-receipt",
         ],
     }
