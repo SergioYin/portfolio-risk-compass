@@ -21,6 +21,13 @@ from .catalysts import (
 )
 from .config import read_config_json
 from .dashboard import write_showcase_artifacts
+from .demo_capture_receipt import (
+    DEFAULT_DEMO_CAPTURE_RECEIPT_JSON,
+    DEFAULT_DEMO_CAPTURE_RECEIPT_MARKDOWN,
+    build_demo_capture_receipt,
+    render_demo_capture_receipt_json,
+    render_demo_capture_receipt_markdown,
+)
 from .guardrails import (
     ReviewDates,
     evaluate_guardrails,
@@ -250,6 +257,27 @@ def build_demo_bundle(
         final_visual_evidence_artifacts,
     ):
         artifact["bytes"] = refreshed["bytes"]
+    final_comparison = build_case_study_comparison(
+        {**manifest, "artifacts": artifacts},
+        output_dir,
+    )
+    _refresh_artifact(
+        output_dir,
+        artifacts,
+        DEFAULT_CASE_STUDY_JSON,
+        render_case_study_json(final_comparison),
+    )
+    _refresh_artifact(
+        output_dir,
+        artifacts,
+        DEFAULT_CASE_STUDY_MARKDOWN,
+        render_case_study_markdown(final_comparison),
+    )
+    capture_receipt_artifacts = _write_demo_capture_receipt_artifacts(
+        manifest,
+        output_dir,
+    )
+    artifacts.extend(capture_receipt_artifacts)
     final_comparison = build_case_study_comparison(
         {**manifest, "artifacts": artifacts},
         output_dir,
@@ -586,6 +614,39 @@ def _write_screenshot_guide_artifacts(
             "Dashboard screenshot guide with exact capture instructions and hashes as Markdown.",
             ("index.json", "dashboard.html", "generated static artifacts"),
             render_screenshot_guide_markdown(guide),
+        ),
+    ]
+
+
+def _write_demo_capture_receipt_artifacts(
+    manifest: dict,
+    output_dir: Path,
+) -> list[dict]:
+    receipt = build_demo_capture_receipt(manifest, output_dir)
+    return [
+        _write_artifact(
+            output_dir,
+            DEFAULT_DEMO_CAPTURE_RECEIPT_JSON,
+            "json",
+            "Public demo capture receipt and evidence index as JSON.",
+            (
+                "dashboard_screenshot_guide",
+                "visual_evidence_receipt",
+                "review evidence",
+            ),
+            render_demo_capture_receipt_json(receipt),
+        ),
+        _write_artifact(
+            output_dir,
+            DEFAULT_DEMO_CAPTURE_RECEIPT_MARKDOWN,
+            "markdown",
+            "Public demo capture receipt and evidence index as Markdown.",
+            (
+                "dashboard_screenshot_guide",
+                "visual_evidence_receipt",
+                "review evidence",
+            ),
+            render_demo_capture_receipt_markdown(receipt),
         ),
     ]
 

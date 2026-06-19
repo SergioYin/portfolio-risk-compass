@@ -596,6 +596,28 @@
         "dashboard.html",
         "generated static artifacts"
       ]
+    },
+    {
+      "bytes": 8631,
+      "description": "Public demo capture receipt and evidence index as JSON.",
+      "format": "json",
+      "path": "demo_capture_receipt.json",
+      "source_fixtures": [
+        "dashboard_screenshot_guide",
+        "visual_evidence_receipt",
+        "review evidence"
+      ]
+    },
+    {
+      "bytes": 5971,
+      "description": "Public demo capture receipt and evidence index as Markdown.",
+      "format": "markdown",
+      "path": "demo_capture_receipt.md",
+      "source_fixtures": [
+        "dashboard_screenshot_guide",
+        "visual_evidence_receipt",
+        "review evidence"
+      ]
     }
   ],
   "as_of": "2026-05-15",

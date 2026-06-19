@@ -39,10 +39,10 @@
           "status": "present"
         },
         {
-          "bytes": 18102,
+          "bytes": 18376,
           "format": "html",
           "path": "dashboard.html",
-          "sha256": "f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f",
+          "sha256": "cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac",
           "status": "present"
         },
         {
@@ -74,10 +74,10 @@
           "status": "present"
         },
         {
-          "bytes": 7585,
+          "bytes": 7657,
           "format": "json",
           "path": "walkthrough.json",
-          "sha256": "11b4f0420d8c7f92c252b2307468e6467e30d3734c491d894034430fd4bcca02",
+          "sha256": "a7580a81bf9c21dc96e3a52ce884e53b2603390a1495eb74823b57205ece4b1a",
           "status": "present"
         }
       ],

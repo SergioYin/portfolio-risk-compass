@@ -152,6 +152,8 @@ portfolio-risk-compass public-review \
   --json examples/outputs/public_review_walkthrough.json
 
 portfolio-risk-compass visual-evidence-receipt
+
+portfolio-risk-compass demo-capture-receipt
 ```
 
 Validate the repository:

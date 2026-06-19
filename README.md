@@ -75,6 +75,7 @@ portfolio-risk-compass scenario-evidence-receipt
 portfolio-risk-compass public-review
 portfolio-risk-compass screenshot-guide
 portfolio-risk-compass visual-evidence-receipt
+portfolio-risk-compass demo-capture-receipt
 ```
 
 ## Example Outputs
@@ -105,6 +106,8 @@ The repository includes generated artifacts under
 | [`dashboard_screenshot_guide.json`](examples/outputs/dashboard_screenshot_guide.json) | Machine-readable screenshot guide and hash receipt for public dashboard capture |
 | [`visual_evidence_receipt.md`](examples/outputs/visual_evidence_receipt.md) | Visual evidence route tying the static dashboard, public-review, scenario, and reviewer evidence artifacts |
 | [`visual_evidence_receipt.json`](examples/outputs/visual_evidence_receipt.json) | Machine-readable visual evidence receipt with hashes and broker-free/no-advice boundaries |
+| [`demo_capture_receipt.md`](examples/outputs/demo_capture_receipt.md) | Public demo capture receipt tying screenshot/capture evidence to screenshot guide, visual, public-review, scenario, and reviewer evidence artifacts |
+| [`demo_capture_receipt.json`](examples/outputs/demo_capture_receipt.json) | Machine-readable public demo capture evidence index with no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-advice boundaries |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -536,6 +539,18 @@ machine-readable receipt:
 ```bash
 portfolio-risk-compass visual-evidence-receipt
 ```
+
+Write the public demo capture receipt to index screenshot/capture evidence
+against the screenshot guide, visual evidence receipt, public walkthrough,
+scenario receipt, and reviewer evidence:
+
+```bash
+portfolio-risk-compass demo-capture-receipt
+```
+
+The capture receipt is broker-free and public-safe: it records local file
+hashes only and does not fetch live data, connect to brokers, place orders,
+size positions, make recommendations, or provide advice.
 
 The dashboard export writes one self-contained HTML file with inline CSS and no
 JavaScript. It includes summary cards, internal section links, exposure and

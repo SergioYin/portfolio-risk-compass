@@ -75,12 +75,12 @@
   ],
   "source_artifacts": [
     {
-      "bytes": 18102,
+      "bytes": 18376,
       "format": "html",
       "path": "dashboard.html",
       "purpose": "Browser-rendered public dashboard route to capture.",
       "role": "static_dashboard_route",
-      "sha256": "f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f",
+      "sha256": "cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac",
       "status": "present"
     },
     {
@@ -89,7 +89,7 @@
       "path": "public_review_walkthrough.md",
       "purpose": "Public reviewer route, rerun commands, and boundary checks.",
       "role": "public_review_walkthrough",
-      "sha256": "6222fd4e6b4404ac7cbc14bbf927c51c84230bdf7bb39635d860a1355c66cd60",
+      "sha256": "5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740",
       "status": "present"
     }
   ]

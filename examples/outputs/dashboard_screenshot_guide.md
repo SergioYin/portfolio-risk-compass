@@ -33,8 +33,8 @@ Review scope: Deterministic screenshot guide for the static public dashboard rou
 
 | Role | Path | Status | Format | Bytes | SHA-256 |
 | --- | --- | --- | --- | ---: | --- |
-| static_dashboard_route | [dashboard.html](dashboard.html) | present | html | 18102 | `f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f` |
-| public_review_walkthrough | [public_review_walkthrough.md](public_review_walkthrough.md) | present | markdown | 6952 | `6222fd4e6b4404ac7cbc14bbf927c51c84230bdf7bb39635d860a1355c66cd60` |
+| static_dashboard_route | [dashboard.html](dashboard.html) | present | html | 18376 | `cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac` |
+| public_review_walkthrough | [public_review_walkthrough.md](public_review_walkthrough.md) | present | markdown | 6952 | `5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740` |
 
 ## Screenshot Hashes
 

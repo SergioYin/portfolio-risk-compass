@@ -26,14 +26,14 @@ Review scope: Visual evidence route for static local dashboard artifacts only. T
 
 | Role | Path | Status | Format | Bytes | SHA-256 |
 | --- | --- | --- | --- | ---: | --- |
-| static_dashboard | [dashboard.html](dashboard.html) | present | html | 18102 | `f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f` |
+| static_dashboard | [dashboard.html](dashboard.html) | present | html | 18376 | `cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac` |
 | dashboard_preview | [dashboard_preview.md](dashboard_preview.md) | present | markdown | 1244 | `e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b` |
 | dashboard_snippet | [dashboard_snippet.html](dashboard_snippet.html) | present | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
-| public_review_walkthrough | [public_review_walkthrough.md](public_review_walkthrough.md) | present | markdown | 6952 | `6222fd4e6b4404ac7cbc14bbf927c51c84230bdf7bb39635d860a1355c66cd60` |
-| public_review_packet | [public_review_walkthrough.json](public_review_walkthrough.json) | present | json | 9032 | `a60e13a73f2f0a16fe188b0ed4a8c6d375fa99e3d150628028bf1f2cf240fbef` |
-| dashboard_screenshot_guide | [dashboard_screenshot_guide.json](dashboard_screenshot_guide.json) | present | json | 3937 | `50453e60f2ab429e3ab99dbf8fdbadd03409d1bed1af6c32e794e8becfbfc321` |
-| scenario_evidence_receipt | [scenario_evidence_receipt.json](scenario_evidence_receipt.json) | present | json | 10582 | `ce3a73a08bdd6e28d003f0f7edf5b718deb66b9fc7b7068371a84ec669210d35` |
-| reviewer_evidence_export | [reviewer_evidence.json](reviewer_evidence.json) | present | json | 5754 | `2b0d5c7dd6c308591ce969f7b51a7f430bd4f0262d19c596b89e09ca9463de7a` |
+| public_review_walkthrough | [public_review_walkthrough.md](public_review_walkthrough.md) | present | markdown | 6952 | `5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740` |
+| public_review_packet | [public_review_walkthrough.json](public_review_walkthrough.json) | present | json | 9032 | `0e7c364980c094d48ed7c17c8fd272518378f4d5792ee985c5e073aa1ea7c28e` |
+| dashboard_screenshot_guide | [dashboard_screenshot_guide.json](dashboard_screenshot_guide.json) | present | json | 3937 | `69969afc2e074954e562d414ca4552c869e8187229399c107ad025cb83b88ee3` |
+| scenario_evidence_receipt | [scenario_evidence_receipt.json](scenario_evidence_receipt.json) | present | json | 10582 | `659e028eccbe9ae59d2d8817277b91030957699fa3b2d4b8a6cbcbf06394a296` |
+| reviewer_evidence_export | [reviewer_evidence.json](reviewer_evidence.json) | present | json | 5754 | `572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707` |
 
 ## Coverage
 

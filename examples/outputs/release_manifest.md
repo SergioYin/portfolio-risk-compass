@@ -1,19 +1,21 @@
 # Release Manifest
 
 - Outputs directory: examples/outputs
-- Artifact count: 68
+- Artifact count: 70
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
-| case_study_comparison.json | json | 8586 | `c095f5c612e59da2bf1322d75bcb8e179b45a4a31f96e9ccbc2e7b099b61e844` |
+| case_study_comparison.json | json | 8586 | `8e57db407c4270d33e299b35c89f152473cfe6fa87ea4c11ee7c750bc152f0f8` |
 | case_study_comparison.md | markdown | 3190 | `1b8188a950bed8d61d767e9f48b5597f2482eb5e8a82458f87ba89853c82c781` |
 | catalysts.json | json | 1198 | `4e6b573a6d29b4b0be1f0f5e9529dfc99be849dd760cfa3f8668f902a45a27c1` |
 | catalysts.md | markdown | 711 | `6208400c99633ff86103cf3eafa12d6af7291fca0703e35f220fff2b96518da6` |
-| dashboard.html | html | 18102 | `f716c91351ca9e645f80476ce8c1761d0b3d802b4fae41ea8e2a99bb24bb393f` |
+| dashboard.html | html | 18376 | `cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac` |
 | dashboard_preview.md | markdown | 1244 | `e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b` |
-| dashboard_screenshot_guide.json | json | 3937 | `50453e60f2ab429e3ab99dbf8fdbadd03409d1bed1af6c32e794e8becfbfc321` |
-| dashboard_screenshot_guide.md | markdown | 3047 | `1b1d92fed27f9fb2b5e8bdefd1c2f47b42ddaf0134748ed649f1f72f6690e072` |
+| dashboard_screenshot_guide.json | json | 3937 | `69969afc2e074954e562d414ca4552c869e8187229399c107ad025cb83b88ee3` |
+| dashboard_screenshot_guide.md | markdown | 3047 | `70c91400968a3d052556cba97e5ea0557f9074184c28787f48ddab800b1026cf` |
 | dashboard_snippet.html | html | 876 | `2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77` |
+| demo_capture_receipt.json | json | 8631 | `c4a4d793d1813724c138639780eefc6afb2d8432b3c20f59a14e4257005e31c7` |
+| demo_capture_receipt.md | markdown | 5971 | `357d3095f3fe1d4553d0319eecf6ac7ccf72b15af2e2412d94b147942bc497e8` |
 | exposure_report.json | json | 3747 | `d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c` |
 | exposure_report.md | markdown | 1247 | `c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6` |
 | gallery.md | markdown | 2189 | `d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e` |
@@ -21,18 +23,18 @@
 | guardrails.md | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
 | history.json | json | 5520 | `0a90df843340771135e341619be8880d93b9fc2cff4dedfb02c24fe80bc5b6f7` |
 | history.md | markdown | 1219 | `782ac8b595ab43a3dcc684e84f019f8e774384b205763884d3f26b67b15cc186` |
-| index.json | json | 17613 | `e65d032fd007f67b5fec5fa348c3f90eb5434d171f872b0042d2ccdb56385395` |
+| index.json | json | 18249 | `7dfc4a6b6271ed35b95ecf57ba1af98be23159e10acb58ae5d8d60805de91eb4` |
 | invest_thesis_ledger_adapter.json | json | 2441 | `4c4351aaf1ad9a8930cee64a82163619170692ceacf7f2bbc05301eb8ab5ea0a` |
 | leveraged_etp_risk_lab_adapter.json | json | 3954 | `866db8127afbabf788523aa45d66603810026fe947c901ff7626d08294a07170` |
-| public_review_walkthrough.json | json | 9032 | `a60e13a73f2f0a16fe188b0ed4a8c6d375fa99e3d150628028bf1f2cf240fbef` |
-| public_review_walkthrough.md | markdown | 6952 | `6222fd4e6b4404ac7cbc14bbf927c51c84230bdf7bb39635d860a1355c66cd60` |
+| public_review_walkthrough.json | json | 9032 | `0e7c364980c094d48ed7c17c8fd272518378f4d5792ee985c5e073aa1ea7c28e` |
+| public_review_walkthrough.md | markdown | 6952 | `5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740` |
 | rebalance_watchlist.json | json | 6298 | `14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80` |
 | rebalance_watchlist.md | markdown | 2386 | `d36cea814fee02520e73f53bc164369c289e8dff97b7bc08d244e9eaf70253ae` |
 | review_memo.md | markdown | 6337 | `cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8` |
-| reviewer_evidence.json | json | 5754 | `2b0d5c7dd6c308591ce969f7b51a7f430bd4f0262d19c596b89e09ca9463de7a` |
-| reviewer_evidence.md | markdown | 3455 | `9d548e90b209b2210f1d6e75818c2a368d2479e5e44a71910ccb88b762e5637c` |
-| scenario_evidence_receipt.json | json | 10582 | `ce3a73a08bdd6e28d003f0f7edf5b718deb66b9fc7b7068371a84ec669210d35` |
-| scenario_evidence_receipt.md | markdown | 8257 | `ae25215b7e5dd2a96bec73fe076d1e67e2d747ef0b28c26ee095939a602b69fc` |
+| reviewer_evidence.json | json | 5754 | `572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707` |
+| reviewer_evidence.md | markdown | 3455 | `900a178c479c4708470bc4b3a5bc814216927b9b5ab099591e5e979f16f93127` |
+| scenario_evidence_receipt.json | json | 10582 | `659e028eccbe9ae59d2d8817277b91030957699fa3b2d4b8a6cbcbf06394a296` |
+| scenario_evidence_receipt.md | markdown | 8257 | `c5194f3421474d88032b5f5de66deb067313ab438e72581a5283d2cc25db3b18` |
 | snapshot_current.json | json | 4167 | `86a21abdb6c48e054f7524858dbecec2f3f101506680cdaef1f23d4b0a52ff7b` |
 | stress.json | json | 4029 | `d7693910dc7c2b6e90c5d4029b41e557be9d26a2ef2c22999e452c0e11c9e58c` |
 | stress.md | markdown | 1024 | `1066d939df0e190691409dc8b028033f077211f45a464db466703b241b86adb8` |
@@ -69,7 +71,7 @@
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
-| visual_evidence_receipt.json | json | 5519 | `fe6a08475103ec55faee443304ca57fac59bac763c66e4ca43e0ae87e58e291f` |
-| visual_evidence_receipt.md | markdown | 3950 | `1f53c3c967d5139a73afd8edd839fad1b2fbcbb5070274f68e4df7bfc035c655` |
-| walkthrough.json | json | 7585 | `11b4f0420d8c7f92c252b2307468e6467e30d3734c491d894034430fd4bcca02` |
+| visual_evidence_receipt.json | json | 5519 | `a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326` |
+| visual_evidence_receipt.md | markdown | 3950 | `277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8` |
+| walkthrough.json | json | 7657 | `a7580a81bf9c21dc96e3a52ce884e53b2603390a1495eb74823b57205ece4b1a` |
 | walkthrough.md | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |

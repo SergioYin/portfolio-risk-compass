@@ -1,0 +1,241 @@
+{
+  "artifact": "portfolio-risk-compass-demo-capture-receipt",
+  "artifact_coverage": {
+    "complete": false,
+    "expected": 13,
+    "missing": [
+      "screenshots/dashboard-public-review-1365x900.png"
+    ],
+    "present": 12
+  },
+  "artifacts": [
+    {
+      "bytes": 18376,
+      "format": "html",
+      "path": "dashboard.html",
+      "purpose": "Static portfolio dashboard route used for public demo capture.",
+      "role": "static_dashboard_route",
+      "sha256": "cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac",
+      "status": "present"
+    },
+    {
+      "bytes": "n/a",
+      "format": "png",
+      "path": "screenshots/dashboard-public-review-1365x900.png",
+      "purpose": "Expected screenshot path produced by the screenshot guide command.",
+      "role": "dashboard_capture_slot",
+      "sha256": "n/a",
+      "status": "missing"
+    },
+    {
+      "bytes": 3047,
+      "format": "markdown",
+      "path": "dashboard_screenshot_guide.md",
+      "purpose": "Human-readable dashboard screenshot capture instructions and hash receipt.",
+      "role": "dashboard_screenshot_guide",
+      "sha256": "70c91400968a3d052556cba97e5ea0557f9074184c28787f48ddab800b1026cf",
+      "status": "present"
+    },
+    {
+      "bytes": 3937,
+      "format": "json",
+      "path": "dashboard_screenshot_guide.json",
+      "purpose": "Machine-readable dashboard screenshot capture profile and artifact hashes.",
+      "role": "dashboard_screenshot_guide_packet",
+      "sha256": "69969afc2e074954e562d414ca4552c869e8187229399c107ad025cb83b88ee3",
+      "status": "present"
+    },
+    {
+      "bytes": 3950,
+      "format": "markdown",
+      "path": "visual_evidence_receipt.md",
+      "purpose": "Human-readable visual evidence route for the static dashboard review.",
+      "role": "visual_evidence_receipt",
+      "sha256": "277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8",
+      "status": "present"
+    },
+    {
+      "bytes": 5519,
+      "format": "json",
+      "path": "visual_evidence_receipt.json",
+      "purpose": "Machine-readable visual evidence route and artifact hashes.",
+      "role": "visual_evidence_receipt_packet",
+      "sha256": "a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326",
+      "status": "present"
+    },
+    {
+      "bytes": 6952,
+      "format": "markdown",
+      "path": "public_review_walkthrough.md",
+      "purpose": "Human-readable public review walkthrough and rerun commands.",
+      "role": "public_review_walkthrough",
+      "sha256": "5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740",
+      "status": "present"
+    },
+    {
+      "bytes": 9032,
+      "format": "json",
+      "path": "public_review_walkthrough.json",
+      "purpose": "Machine-readable public review packet.",
+      "role": "public_review_walkthrough_packet",
+      "sha256": "0e7c364980c094d48ed7c17c8fd272518378f4d5792ee985c5e073aa1ea7c28e",
+      "status": "present"
+    },
+    {
+      "bytes": 8257,
+      "format": "markdown",
+      "path": "scenario_evidence_receipt.md",
+      "purpose": "Human-readable static scenario, guardrail, and dashboard receipt.",
+      "role": "scenario_evidence_receipt",
+      "sha256": "c5194f3421474d88032b5f5de66deb067313ab438e72581a5283d2cc25db3b18",
+      "status": "present"
+    },
+    {
+      "bytes": 10582,
+      "format": "json",
+      "path": "scenario_evidence_receipt.json",
+      "purpose": "Machine-readable scenario evidence receipt.",
+      "role": "scenario_evidence_receipt_packet",
+      "sha256": "659e028eccbe9ae59d2d8817277b91030957699fa3b2d4b8a6cbcbf06394a296",
+      "status": "present"
+    },
+    {
+      "bytes": 3455,
+      "format": "markdown",
+      "path": "reviewer_evidence.md",
+      "purpose": "Human-readable reviewer evidence trace to fixtures and generated artifacts.",
+      "role": "reviewer_evidence",
+      "sha256": "900a178c479c4708470bc4b3a5bc814216927b9b5ab099591e5e979f16f93127",
+      "status": "present"
+    },
+    {
+      "bytes": 5754,
+      "format": "json",
+      "path": "reviewer_evidence.json",
+      "purpose": "Machine-readable reviewer evidence trace.",
+      "role": "reviewer_evidence_packet",
+      "sha256": "572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707",
+      "status": "present"
+    },
+    {
+      "bytes": 1244,
+      "format": "markdown",
+      "path": "dashboard_preview.md",
+      "purpose": "Text preview of the static dashboard for review notes.",
+      "role": "dashboard_preview",
+      "sha256": "e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b",
+      "status": "present"
+    }
+  ],
+  "as_of": "2026-05-15",
+  "boundary_flags": {
+    "advice": "none; artifact is a review walkthrough, not investment advice or trading guidance",
+    "broker": "none; no account access, order entry, execution, or broker connectivity",
+    "live_data": "none; all values come from static CSV/JSON fixtures or generated local artifacts",
+    "orders": "none; no order entry, execution, or broker workflow is present",
+    "position_sizing": "none; output records evidence only and does not size positions",
+    "recommendations": "none; output is an evidence index, not portfolio recommendations"
+  },
+  "capture_profile": {
+    "browser": "chromium",
+    "full_page": false,
+    "input_url": "file://$PWD/examples/outputs/dashboard.html",
+    "output_path": "examples/outputs/screenshots/dashboard-public-review-1365x900.png",
+    "viewport_height": 900,
+    "viewport_width": 1365
+  },
+  "evidence_index": [
+    {
+      "artifacts": [
+        "dashboard_screenshot_guide.md",
+        "dashboard_screenshot_guide.json"
+      ],
+      "label": "capture_instructions",
+      "verifies": [
+        "exact dashboard capture command",
+        "viewport and browser profile",
+        "screenshot output path"
+      ]
+    },
+    {
+      "artifacts": [
+        "visual_evidence_receipt.md",
+        "visual_evidence_receipt.json"
+      ],
+      "label": "visual_route",
+      "verifies": [
+        "static dashboard route",
+        "public review link",
+        "scenario and reviewer evidence links"
+      ]
+    },
+    {
+      "artifacts": [
+        "public_review_walkthrough.md",
+        "public_review_walkthrough.json"
+      ],
+      "label": "public_review",
+      "verifies": [
+        "rerun commands",
+        "fixture hashes",
+        "public-safe review boundaries"
+      ]
+    },
+    {
+      "artifacts": [
+        "scenario_evidence_receipt.md",
+        "scenario_evidence_receipt.json"
+      ],
+      "label": "scenario_receipt",
+      "verifies": [
+        "static scenario fixture hashes",
+        "stress and guardrail artifact hashes",
+        "prohibited capability list"
+      ]
+    },
+    {
+      "artifacts": [
+        "reviewer_evidence.md",
+        "reviewer_evidence.json"
+      ],
+      "label": "reviewer_evidence",
+      "verifies": [
+        "fixture lineage",
+        "generated artifact coverage",
+        "reviewer export path"
+      ]
+    }
+  ],
+  "prohibited_capabilities": [
+    "broker_connection",
+    "live_market_data",
+    "account_access",
+    "order_entry",
+    "trade_execution",
+    "position_sizing",
+    "portfolio_recommendations",
+    "investment_advice"
+  ],
+  "public_safety_notice": "Audit receipt only; not investment advice, trading guidance, live market data, broker connectivity, account access, order entry, or trade execution.",
+  "regeneration_commands": [
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+    "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+    "PYTHONPATH=src python -m portfolio_risk_compass screenshot-guide",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-evidence-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-capture-receipt"
+  ],
+  "review_scope": "Public-safe static demo capture receipt for generated local artifacts. It indexes dashboard screenshot/capture evidence and hashes existing review receipts without fetching data, connecting to brokers, sizing positions, placing orders, or providing recommendations or advice.",
+  "safety_boundary": "Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.",
+  "schema_version": 1,
+  "screenshot_artifacts": [
+    {
+      "bytes": "n/a",
+      "format": "png",
+      "path": "screenshots/dashboard-public-review-1365x900.png",
+      "purpose": "Expected browser screenshot produced by the exact capture command.",
+      "role": "dashboard_screenshot",
+      "sha256": "n/a",
+      "status": "missing"
+    }
+  ]
+}

@@ -42,6 +42,8 @@ class DemoBundleTests(unittest.TestCase):
             self.assertTrue((output_dir / "visual_evidence_receipt.json").is_file())
             self.assertTrue((output_dir / "dashboard_screenshot_guide.md").is_file())
             self.assertTrue((output_dir / "dashboard_screenshot_guide.json").is_file())
+            self.assertTrue((output_dir / "demo_capture_receipt.md").is_file())
+            self.assertTrue((output_dir / "demo_capture_receipt.json").is_file())
             preview = (output_dir / "dashboard_preview.md").read_text(encoding="utf-8")
             self.assertIn("| Summary | Total value", preview)
             self.assertIn("[Open the static dashboard](dashboard.html)", preview)
@@ -269,6 +271,36 @@ class DemoBundleTests(unittest.TestCase):
                     "screenshots/dashboard-public-review-1365x900.png",
                 ],
             )
+            capture = json.loads(
+                (output_dir / "demo_capture_receipt.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            self.assertEqual(
+                capture["artifact"],
+                "portfolio-risk-compass-demo-capture-receipt",
+            )
+            self.assertIn("position_sizing", capture["prohibited_capabilities"])
+            self.assertIn("portfolio_recommendations", capture["prohibited_capabilities"])
+            self.assertIn("orders", capture["boundary_flags"])
+            self.assertEqual(capture["capture_profile"]["browser"], "chromium")
+            self.assertEqual(
+                [item["label"] for item in capture["evidence_index"]],
+                [
+                    "capture_instructions",
+                    "visual_route",
+                    "public_review",
+                    "scenario_receipt",
+                    "reviewer_evidence",
+                ],
+            )
+            self.assertEqual(
+                capture["artifact_coverage"]["missing"],
+                [
+                    "dashboard.html",
+                    "screenshots/dashboard-public-review-1365x900.png",
+                ],
+            )
 
         expected_paths = [
             "exposure_report.json",
@@ -330,6 +362,8 @@ class DemoBundleTests(unittest.TestCase):
             "visual_evidence_receipt.md",
             "dashboard_screenshot_guide.json",
             "dashboard_screenshot_guide.md",
+            "demo_capture_receipt.json",
+            "demo_capture_receipt.md",
         ]
         self.assertEqual(index, manifest)
         self.assertEqual(index["schema_version"], 1)
@@ -401,7 +435,7 @@ class DemoBundleTests(unittest.TestCase):
 
         self.assertEqual(manifest["templates"]["template_count"], 3)
         self.assertEqual(manifest["templates"]["templates"], [])
-        self.assertEqual(len(manifest["artifacts"]), 26)
+        self.assertEqual(len(manifest["artifacts"]), 28)
         self.assertIn(
             "case_study_comparison.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
@@ -424,6 +458,10 @@ class DemoBundleTests(unittest.TestCase):
         )
         self.assertIn(
             "dashboard_screenshot_guide.json",
+            [artifact["path"] for artifact in manifest["artifacts"]],
+        )
+        self.assertIn(
+            "demo_capture_receipt.json",
             [artifact["path"] for artifact in manifest["artifacts"]],
         )
 
@@ -520,7 +558,7 @@ class DemoBundleTests(unittest.TestCase):
         )
         self.assertEqual(comparison, bundled_comparison)
         self.assertTrue(comparison["artifact_coverage"]["complete"])
-        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 55)
+        self.assertEqual(comparison["artifact_coverage"]["manifest_artifact_count"], 57)
         self.assertEqual(
             comparison["cases"][2]["metrics"]["stress_market_value_delta_pct"],
             "-8.0097",
@@ -798,6 +836,74 @@ class DemoBundleTests(unittest.TestCase):
         self.assertEqual(guide["screenshot_artifacts"][0]["status"], "missing")
         self.assertEqual(
             guide["artifact_coverage"]["missing"],
+            ["screenshots/dashboard-public-review-1365x900.png"],
+        )
+
+    def test_cli_demo_capture_receipt_writes_evidence_index(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            markdown_path = Path(temp_dir) / "demo-capture.md"
+            json_path = Path(temp_dir) / "demo-capture.json"
+            build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+            main(
+                [
+                    "dashboard",
+                    str(output_dir / "index.json"),
+                    str(output_dir / "dashboard.html"),
+                ]
+            )
+            main(
+                [
+                    "screenshot-guide",
+                    "--manifest",
+                    str(output_dir / "index.json"),
+                    "--markdown",
+                    str(output_dir / "dashboard_screenshot_guide.md"),
+                    "--json",
+                    str(output_dir / "dashboard_screenshot_guide.json"),
+                ]
+            )
+
+            with patch("sys.stdout") as stdout:
+                self.assertEqual(
+                    main(
+                        [
+                            "demo-capture-receipt",
+                            "--manifest",
+                            str(output_dir / "index.json"),
+                            "--markdown",
+                            str(markdown_path),
+                            "--json",
+                            str(json_path),
+                        ]
+                    ),
+                    0,
+                )
+
+            markdown = markdown_path.read_text(encoding="utf-8")
+            receipt = json.loads(json_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(
+            stdout.write.call_args_list[0].args[0],
+            str(markdown_path) + "\n",
+        )
+        self.assertEqual(
+            stdout.write.call_args_list[1].args[0],
+            str(json_path) + "\n",
+        )
+        self.assertIn("# Portfolio Risk Compass Demo Capture Receipt", markdown)
+        self.assertIn("No orders", markdown)
+        self.assertIn("No position sizing", markdown)
+        self.assertIn("No recommendations", markdown)
+        self.assertEqual(receipt["artifacts"][0]["status"], "present")
+        self.assertEqual(receipt["artifacts"][1]["status"], "missing")
+        self.assertRegex(receipt["artifacts"][2]["sha256"], r"^[0-9a-f]{64}$")
+        self.assertEqual(
+            receipt["artifact_coverage"]["missing"],
             ["screenshots/dashboard-public-review-1365x900.png"],
         )
 

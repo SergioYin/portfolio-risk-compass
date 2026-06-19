@@ -33,6 +33,11 @@ from .demo import (
     DEFAULT_OUTPUT_DIR,
     build_demo_bundle,
 )
+from .demo_capture_receipt import (
+    DEFAULT_DEMO_CAPTURE_RECEIPT_JSON,
+    DEFAULT_DEMO_CAPTURE_RECEIPT_MARKDOWN,
+    write_demo_capture_receipt,
+)
 from .dashboard import (
     DEFAULT_DASHBOARD_TITLE,
     DEFAULT_WALKTHROUGH_JSON,
@@ -135,6 +140,7 @@ COMMAND_NAMES = (
     "public-review",
     "visual-evidence-receipt",
     "screenshot-guide",
+    "demo-capture-receipt",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -183,6 +189,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_visual_evidence_receipt(args)
     if args.command == "screenshot-guide":
         return _run_screenshot_guide(args)
+    if args.command == "demo-capture-receipt":
+        return _run_demo_capture_receipt(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -450,6 +458,13 @@ def _run_screenshot_guide(args: argparse.Namespace) -> int:
         args.json,
         screenshot_path=args.screenshot_path,
     )
+    sys.stdout.write(str(paths["markdown"]) + "\n")
+    sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_demo_capture_receipt(args: argparse.Namespace) -> int:
+    paths = write_demo_capture_receipt(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
     return 0
@@ -1038,6 +1053,43 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Screenshot path relative to the manifest directory. Defaults to "
             f"{DEFAULT_SCREENSHOT_PATH}."
+        ),
+    )
+
+    demo_capture = subparsers.add_parser(
+        "demo-capture-receipt",
+        help="Write a public demo capture receipt and evidence index.",
+        description=(
+            "Read a demo-bundle index manifest and write deterministic Markdown and "
+            "JSON artifacts tying the static dashboard screenshot/capture evidence "
+            "to the screenshot guide, visual evidence receipt, public walkthrough, "
+            "scenario receipt, reviewer evidence, and public-safe no-live-data, "
+            "no-broker, no-order, no-position-sizing, no-recommendation, no-advice "
+            "boundaries."
+        ),
+    )
+    demo_capture.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "index.json",
+        help=f"Demo-bundle manifest to read. Defaults to {DEFAULT_OUTPUT_DIR / 'index.json'}.",
+    )
+    demo_capture.add_argument(
+        "--markdown",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_DEMO_CAPTURE_RECEIPT_MARKDOWN,
+        help=(
+            "Path to write the Markdown capture receipt. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_DEMO_CAPTURE_RECEIPT_MARKDOWN}."
+        ),
+    )
+    demo_capture.add_argument(
+        "--json",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / DEFAULT_DEMO_CAPTURE_RECEIPT_JSON,
+        help=(
+            "Path to write the machine-readable capture receipt. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_DEMO_CAPTURE_RECEIPT_JSON}."
         ),
     )
 
