@@ -1,7 +1,7 @@
 # Release Manifest
 
 - Outputs directory: examples/outputs
-- Artifact count: 70
+- Artifact count: 72
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -71,6 +71,8 @@
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
+| visual_capture_audit.json | json | 8811 | `10f66b73a7173cddb5a522c4c5f54644dcf4da9310b54ed1fc1ff7605b309ea8` |
+| visual_capture_audit.md | markdown | 6187 | `8fa5f557dab72cc23085b1492b0223388d5acba94bb56d00f6a161169392409a` |
 | visual_evidence_receipt.json | json | 5519 | `a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326` |
 | visual_evidence_receipt.md | markdown | 3950 | `277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8` |
 | walkthrough.json | json | 7657 | `a7580a81bf9c21dc96e3a52ce884e53b2603390a1495eb74823b57205ece4b1a` |

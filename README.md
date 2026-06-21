@@ -76,6 +76,7 @@ portfolio-risk-compass public-review
 portfolio-risk-compass screenshot-guide
 portfolio-risk-compass visual-evidence-receipt
 portfolio-risk-compass demo-capture-receipt
+portfolio-risk-compass visual-capture-audit --root examples/outputs
 ```
 
 ## Example Outputs
@@ -108,6 +109,8 @@ The repository includes generated artifacts under
 | [`visual_evidence_receipt.json`](examples/outputs/visual_evidence_receipt.json) | Machine-readable visual evidence receipt with hashes and broker-free/no-advice boundaries |
 | [`demo_capture_receipt.md`](examples/outputs/demo_capture_receipt.md) | Public demo capture receipt tying screenshot/capture evidence to screenshot guide, visual, public-review, scenario, and reviewer evidence artifacts |
 | [`demo_capture_receipt.json`](examples/outputs/demo_capture_receipt.json) | Machine-readable public demo capture evidence index with no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-advice boundaries |
+| [`visual_capture_audit.md`](examples/outputs/visual_capture_audit.md) | Deterministic audit of static visual/demo artifacts and missing capture gaps |
+| [`visual_capture_audit.json`](examples/outputs/visual_capture_audit.json) | Machine-readable visual capture audit with hashes, regeneration commands, and no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-file-contents/no-advice boundaries |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -551,6 +554,17 @@ portfolio-risk-compass demo-capture-receipt
 The capture receipt is broker-free and public-safe: it records local file
 hashes only and does not fetch live data, connect to brokers, place orders,
 size positions, make recommendations, or provide advice.
+
+Audit the checked-in static visual/demo evidence artifacts and identify missing
+capture gaps without live data, broker access, orders, position sizing,
+recommendations, file contents, or advice:
+
+```bash
+portfolio-risk-compass visual-capture-audit \
+  --root examples/outputs \
+  --format markdown \
+  --output examples/outputs/visual_capture_audit.md
+```
 
 The dashboard export writes one self-contained HTML file with inline CSS and no
 JavaScript. It includes summary cards, internal section links, exposure and

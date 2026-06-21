@@ -1,5 +1,5 @@
 {
-  "artifact_count": 70,
+  "artifact_count": 72,
   "artifacts": [
     {
       "bytes": 8586,
@@ -396,6 +396,18 @@
       "format": "markdown",
       "path": "templates/leveraged-sleeve/stress.md",
       "sha256": "070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89"
+    },
+    {
+      "bytes": 8811,
+      "format": "json",
+      "path": "visual_capture_audit.json",
+      "sha256": "10f66b73a7173cddb5a522c4c5f54644dcf4da9310b54ed1fc1ff7605b309ea8"
+    },
+    {
+      "bytes": 6187,
+      "format": "markdown",
+      "path": "visual_capture_audit.md",
+      "sha256": "8fa5f557dab72cc23085b1492b0223388d5acba94bb56d00f6a161169392409a"
     },
     {
       "bytes": 5519,

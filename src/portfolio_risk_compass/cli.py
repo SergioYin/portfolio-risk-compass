@@ -120,6 +120,14 @@ from .visual_evidence import (
     DEFAULT_VISUAL_EVIDENCE_MARKDOWN,
     write_visual_evidence_receipt,
 )
+from .visual_capture_audit import (
+    DEFAULT_VISUAL_CAPTURE_AUDIT_JSON,
+    DEFAULT_VISUAL_CAPTURE_AUDIT_MARKDOWN,
+    build_visual_capture_audit,
+    render_visual_capture_audit_json,
+    render_visual_capture_audit_markdown,
+    write_visual_capture_audit,
+)
 
 COMMAND_NAMES = (
     "analyze",
@@ -141,6 +149,7 @@ COMMAND_NAMES = (
     "visual-evidence-receipt",
     "screenshot-guide",
     "demo-capture-receipt",
+    "visual-capture-audit",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -191,6 +200,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_screenshot_guide(args)
     if args.command == "demo-capture-receipt":
         return _run_demo_capture_receipt(args)
+    if args.command == "visual-capture-audit":
+        return _run_visual_capture_audit(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -204,6 +215,15 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     parser.error("a command is required")
     return 2
+
+
+def visual_capture_audit_main(argv: Sequence[str] | None = None) -> int:
+    args = ["visual-capture-audit"]
+    if argv is None:
+        args.extend(sys.argv[1:])
+    else:
+        args.extend(argv)
+    return main(args)
 
 
 def _run_analyze(args: argparse.Namespace) -> int:
@@ -467,6 +487,19 @@ def _run_demo_capture_receipt(args: argparse.Namespace) -> int:
     paths = write_demo_capture_receipt(args.manifest, args.markdown, args.json)
     sys.stdout.write(str(paths["markdown"]) + "\n")
     sys.stdout.write(str(paths["json"]) + "\n")
+    return 0
+
+
+def _run_visual_capture_audit(args: argparse.Namespace) -> int:
+    if args.output:
+        write_visual_capture_audit(args.root, args.output, args.format)
+        sys.stdout.write(str(args.output) + "\n")
+        return 0
+    audit = build_visual_capture_audit(args.root)
+    if args.format == "markdown":
+        sys.stdout.write(render_visual_capture_audit_markdown(audit))
+    else:
+        sys.stdout.write(render_visual_capture_audit_json(audit))
     return 0
 
 
@@ -1090,6 +1123,40 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Path to write the machine-readable capture receipt. Defaults to "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_DEMO_CAPTURE_RECEIPT_JSON}."
+        ),
+    )
+
+    visual_capture_audit = subparsers.add_parser(
+        "visual-capture-audit",
+        help="Audit static visual/demo capture artifacts for gaps.",
+        description=(
+            "Read local visual/demo evidence artifacts under --root and write a "
+            "deterministic JSON or Markdown audit with hashes, missing capture "
+            "items, regeneration commands, and no-live-data/no-broker/no-order/"
+            "no-position-sizing/no-recommendation/no-file-contents/no-advice "
+            "boundaries."
+        ),
+    )
+    visual_capture_audit.add_argument(
+        "--root",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR,
+        help=f"Artifact directory to audit. Defaults to {DEFAULT_OUTPUT_DIR}.",
+    )
+    visual_capture_audit.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="json",
+        help="Output format. Defaults to JSON.",
+    )
+    visual_capture_audit.add_argument(
+        "--output",
+        type=Path,
+        help=(
+            "Optional output path. Defaults are "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_AUDIT_JSON} for JSON "
+            f"or {DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_AUDIT_MARKDOWN} for Markdown "
+            "when used in examples."
         ),
     )
 

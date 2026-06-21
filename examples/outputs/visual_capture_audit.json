@@ -1,0 +1,235 @@
+{
+  "artifact": "portfolio-risk-compass-visual-capture-audit",
+  "boundaries": {
+    "no_advice": "public finance-research artifact audit only; not investment advice",
+    "no_broker": "does not connect to brokers or accounts",
+    "no_file_contents": "does not embed artifact contents; records relative paths, byte counts, and SHA-256 hashes only",
+    "no_live_data": "does not fetch or require live market data",
+    "no_orders": "does not place, route, stage, or recommend orders",
+    "no_position_sizing": "does not calculate trade quantities or position sizing",
+    "no_recommendations": "does not recommend portfolio actions"
+  },
+  "checked_artifacts": [
+    {
+      "bytes": 18376,
+      "path": "dashboard.html",
+      "present": true,
+      "regenerate": "Regenerate with the dashboard command from index.json.",
+      "role": "static_dashboard",
+      "sha256": "cfe55b4e94a5066b369fd76cc0838022a71c9f0f3370eca1a70499bf84c087ac"
+    },
+    {
+      "bytes": 1244,
+      "path": "dashboard_preview.md",
+      "present": true,
+      "regenerate": "Regenerate with demo-bundle.",
+      "role": "dashboard_preview",
+      "sha256": "e47d97af20592889bf1e1b43b55a24260585da950465cd8392b3f5916855ff4b"
+    },
+    {
+      "bytes": 876,
+      "path": "dashboard_snippet.html",
+      "present": true,
+      "regenerate": "Regenerate with demo-bundle.",
+      "role": "dashboard_snippet",
+      "sha256": "2493dfe2d60c043cbf26ac5f3f2ef81fe266e9eba89bde9adeb846c445a5eb77"
+    },
+    {
+      "bytes": 6952,
+      "path": "public_review_walkthrough.md",
+      "present": true,
+      "regenerate": "Regenerate with public-review.",
+      "role": "public_review_walkthrough",
+      "sha256": "5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740"
+    },
+    {
+      "bytes": 9032,
+      "path": "public_review_walkthrough.json",
+      "present": true,
+      "regenerate": "Regenerate with public-review.",
+      "role": "public_review_packet",
+      "sha256": "0e7c364980c094d48ed7c17c8fd272518378f4d5792ee985c5e073aa1ea7c28e"
+    },
+    {
+      "bytes": 3047,
+      "path": "dashboard_screenshot_guide.md",
+      "present": true,
+      "regenerate": "Regenerate with screenshot-guide.",
+      "role": "dashboard_screenshot_guide",
+      "sha256": "70c91400968a3d052556cba97e5ea0557f9074184c28787f48ddab800b1026cf"
+    },
+    {
+      "bytes": 3937,
+      "path": "dashboard_screenshot_guide.json",
+      "present": true,
+      "regenerate": "Regenerate with screenshot-guide.",
+      "role": "dashboard_screenshot_guide_packet",
+      "sha256": "69969afc2e074954e562d414ca4552c869e8187229399c107ad025cb83b88ee3"
+    },
+    {
+      "bytes": 3950,
+      "path": "visual_evidence_receipt.md",
+      "present": true,
+      "regenerate": "Regenerate with visual-evidence-receipt.",
+      "role": "visual_evidence_receipt",
+      "sha256": "277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8"
+    },
+    {
+      "bytes": 5519,
+      "path": "visual_evidence_receipt.json",
+      "present": true,
+      "regenerate": "Regenerate with visual-evidence-receipt.",
+      "role": "visual_evidence_receipt_packet",
+      "sha256": "a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326"
+    },
+    {
+      "bytes": 5971,
+      "path": "demo_capture_receipt.md",
+      "present": true,
+      "regenerate": "Regenerate with demo-capture-receipt.",
+      "role": "demo_capture_receipt",
+      "sha256": "357d3095f3fe1d4553d0319eecf6ac7ccf72b15af2e2412d94b147942bc497e8"
+    },
+    {
+      "bytes": 8631,
+      "path": "demo_capture_receipt.json",
+      "present": true,
+      "regenerate": "Regenerate with demo-capture-receipt.",
+      "role": "demo_capture_receipt_packet",
+      "sha256": "c4a4d793d1813724c138639780eefc6afb2d8432b3c20f59a14e4257005e31c7"
+    },
+    {
+      "bytes": 8257,
+      "path": "scenario_evidence_receipt.md",
+      "present": true,
+      "regenerate": "Regenerate with scenario-evidence-receipt.",
+      "role": "scenario_evidence_receipt",
+      "sha256": "c5194f3421474d88032b5f5de66deb067313ab438e72581a5283d2cc25db3b18"
+    },
+    {
+      "bytes": 10582,
+      "path": "scenario_evidence_receipt.json",
+      "present": true,
+      "regenerate": "Regenerate with scenario-evidence-receipt.",
+      "role": "scenario_evidence_receipt_packet",
+      "sha256": "659e028eccbe9ae59d2d8817277b91030957699fa3b2d4b8a6cbcbf06394a296"
+    },
+    {
+      "bytes": 3455,
+      "path": "reviewer_evidence.md",
+      "present": true,
+      "regenerate": "Regenerate with reviewer-evidence.",
+      "role": "reviewer_evidence",
+      "sha256": "900a178c479c4708470bc4b3a5bc814216927b9b5ab099591e5e979f16f93127"
+    },
+    {
+      "bytes": 5754,
+      "path": "reviewer_evidence.json",
+      "present": true,
+      "regenerate": "Regenerate with reviewer-evidence.",
+      "role": "reviewer_evidence_packet",
+      "sha256": "572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707"
+    },
+    {
+      "bytes": 2189,
+      "path": "gallery.md",
+      "present": true,
+      "regenerate": "Regenerate with demo-bundle.",
+      "role": "gallery",
+      "sha256": "d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e"
+    },
+    {
+      "bytes": 18249,
+      "path": "index.json",
+      "present": true,
+      "regenerate": "Regenerate with demo-bundle.",
+      "role": "demo_manifest",
+      "sha256": "7dfc4a6b6271ed35b95ecf57ba1af98be23159e10acb58ae5d8d60805de91eb4"
+    },
+    {
+      "bytes": null,
+      "path": "screenshots/dashboard-public-review-1365x900.png",
+      "present": false,
+      "regenerate": "Capture with the command recorded in dashboard_screenshot_guide.md.",
+      "role": "dashboard_capture_image",
+      "sha256": null
+    }
+  ],
+  "missing": [
+    "screenshots/dashboard-public-review-1365x900.png"
+  ],
+  "recommended_capture_items": [
+    {
+      "path": "screenshots/dashboard-public-review-1365x900.png",
+      "reason": "missing static visual/demo evidence artifact",
+      "regenerate": "Capture with the command recorded in dashboard_screenshot_guide.md.",
+      "role": "dashboard_capture_image"
+    }
+  ],
+  "regeneration_commands": [
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+    "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+    "PYTHONPATH=src python -m portfolio_risk_compass reviewer-evidence",
+    "PYTHONPATH=src python -m portfolio_risk_compass scenario-evidence-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass public-review",
+    "PYTHONPATH=src python -m portfolio_risk_compass screenshot-guide",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-evidence-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-capture-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format json --output examples/outputs/visual_capture_audit.json",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format markdown --output examples/outputs/visual_capture_audit.md"
+  ],
+  "root": "examples/outputs",
+  "schema": "portfolio-risk-compass-visual-capture-audit.v1",
+  "scope": "Deterministic audit of existing static visual/demo evidence artifacts. The audit reads local files only and identifies capture gaps.",
+  "source_artifacts": [
+    {
+      "bytes": 18249,
+      "path": "index.json",
+      "present": true,
+      "role": "source_artifact",
+      "sha256": "7dfc4a6b6271ed35b95ecf57ba1af98be23159e10acb58ae5d8d60805de91eb4"
+    },
+    {
+      "bytes": 3047,
+      "path": "dashboard_screenshot_guide.md",
+      "present": true,
+      "role": "source_artifact",
+      "sha256": "70c91400968a3d052556cba97e5ea0557f9074184c28787f48ddab800b1026cf"
+    },
+    {
+      "bytes": 3937,
+      "path": "dashboard_screenshot_guide.json",
+      "present": true,
+      "role": "source_artifact",
+      "sha256": "69969afc2e074954e562d414ca4552c869e8187229399c107ad025cb83b88ee3"
+    },
+    {
+      "bytes": 5519,
+      "path": "visual_evidence_receipt.json",
+      "present": true,
+      "role": "source_artifact",
+      "sha256": "a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326"
+    },
+    {
+      "bytes": 8631,
+      "path": "demo_capture_receipt.json",
+      "present": true,
+      "role": "source_artifact",
+      "sha256": "c4a4d793d1813724c138639780eefc6afb2d8432b3c20f59a14e4257005e31c7"
+    },
+    {
+      "bytes": 9032,
+      "path": "public_review_walkthrough.json",
+      "present": true,
+      "role": "source_artifact",
+      "sha256": "0e7c364980c094d48ed7c17c8fd272518378f4d5792ee985c5e073aa1ea7c28e"
+    }
+  ],
+  "summary": {
+    "checked": 18,
+    "complete": false,
+    "missing": 1,
+    "present": 17,
+    "recommended_capture_items": 1
+  }
+}

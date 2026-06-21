@@ -31,6 +31,7 @@ classifiers = [
 
 [project.scripts]
 portfolio-risk-compass = "portfolio_risk_compass.cli:main"
+visual-capture-audit = "portfolio_risk_compass.cli:visual_capture_audit_main"
 
 [tool.setuptools]
 license-files = ["LICENSE"]
