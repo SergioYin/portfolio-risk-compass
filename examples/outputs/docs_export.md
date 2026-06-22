@@ -1,7 +1,7 @@
 # Portfolio Risk Compass Docs Export
 
 - Package: portfolio-risk-compass
-- Version: 0.5.3
+- Version: 0.6.1
 - Format: deterministic single-file Markdown, no JavaScript
 
 ## CLI Reference
@@ -313,6 +313,19 @@ Usage: `portfolio-risk-compass visual-capture-audit [-h] [--root ROOT] [--format
 | `--format` | no | Output format. Defaults to JSON. |
 | `--output` | no | Optional output path. Defaults are examples/outputs/visual_capture_audit.json for JSON or examples/outputs/visual_capture_audit.md for Markdown when used in examples. |
 
+### `visual-capture-compare`
+
+Compare release-to-release static/local visual capture audit JSON files by relative artifact path or artifact key and report added, removed, changed, and unchanged entries. Changed entries include bytes, hash, present, role, route, render, and capture command differences when available. The comparison has no live data, broker, order, position sizing, recommendation, advice, or private-data surface.
+
+Usage: `portfolio-risk-compass visual-capture-compare [-h] --before BEFORE --after AFTER [--format {json,markdown}] [--output OUTPUT]`
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `--before` | yes | Earlier visual_capture_audit.json file. |
+| `--after` | yes | Later visual_capture_audit.json file. |
+| `--format` | no | Output format. Defaults to JSON. |
+| `--output` | no | Optional output path. Defaults are examples/outputs/visual_capture_compare.json for JSON or examples/outputs/visual_capture_compare.md for Markdown when used in examples. |
+
 ### `visual-evidence-receipt`
 
 Read a demo-bundle index manifest and write deterministic Markdown and JSON receipts tying the static dashboard, public-review walkthrough, scenario evidence, reviewer evidence export, and broker-free/no-advice boundaries into one visual review route.
@@ -400,7 +413,7 @@ Directory of generated snapshot JSON files for the history ledger.
 ## Artifact Inventory
 
 - Outputs directory: examples/outputs
-- Artifact count: 74
+- Artifact count: 76
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -429,8 +442,8 @@ Directory of generated snapshot JSON files for the history ledger.
 | public_review_walkthrough.md | markdown | 6952 | `5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740` |
 | rebalance_watchlist.json | json | 6298 | `14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80` |
 | rebalance_watchlist.md | markdown | 2386 | `d36cea814fee02520e73f53bc164369c289e8dff97b7bc08d244e9eaf70253ae` |
-| release_manifest.json | json | 13858 | `d0679ea7d40399638923607a603663342735f42bf3570364cbd694d4c82b61c1` |
-| release_manifest.md | markdown | 8735 | `3e3c78d32bc28b51be2621155bcb163488fa3b54c0d9d37dae28ead12fbf214c` |
+| release_manifest.json | json | 14232 | `200ddbe451062e64e4c7a05b24008a13dd0cd100eb9a04ca741609b7e7f50423` |
+| release_manifest.md | markdown | 8967 | `a0313a59c1335ede26bf1e03f03dbaa8f3f00823cb156f92f1ac6ee2d1e21eb4` |
 | review_memo.md | markdown | 6337 | `cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8` |
 | reviewer_evidence.json | json | 5754 | `572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707` |
 | reviewer_evidence.md | markdown | 3455 | `900a178c479c4708470bc4b3a5bc814216927b9b5ab099591e5e979f16f93127` |
@@ -474,6 +487,8 @@ Directory of generated snapshot JSON files for the history ledger.
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
 | visual_capture_audit.json | json | 8811 | `10f66b73a7173cddb5a522c4c5f54644dcf4da9310b54ed1fc1ff7605b309ea8` |
 | visual_capture_audit.md | markdown | 6187 | `8fa5f557dab72cc23085b1492b0223388d5acba94bb56d00f6a161169392409a` |
+| visual_capture_compare.json | json | 2173 | `e2d769e4fc42910abab6903d7d9c58a414282b3c9e5e641a0a392efe234b9852` |
+| visual_capture_compare.md | markdown | 1606 | `0a31e8c007f04136a44c074462d5b7be9f97db838e814ba5cf94387dc7e2d9d4` |
 | visual_evidence_receipt.json | json | 5519 | `a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326` |
 | visual_evidence_receipt.md | markdown | 3950 | `277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8` |
 | walkthrough.json | json | 7657 | `a7580a81bf9c21dc96e3a52ce884e53b2603390a1495eb74823b57205ece4b1a` |

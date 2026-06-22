@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "portfolio-risk-compass"
-version = "0.5.3"
+version = "0.6.1"
 description = "Zero-dependency portfolio exposure reports from holdings CSV files."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -32,6 +32,7 @@ classifiers = [
 [project.scripts]
 portfolio-risk-compass = "portfolio_risk_compass.cli:main"
 visual-capture-audit = "portfolio_risk_compass.cli:visual_capture_audit_main"
+visual-capture-compare = "portfolio_risk_compass.cli:visual_capture_compare_main"
 
 [tool.setuptools]
 license-files = ["LICENSE"]

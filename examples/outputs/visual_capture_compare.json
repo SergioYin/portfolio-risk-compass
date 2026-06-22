@@ -1,0 +1,63 @@
+{
+  "added": [],
+  "artifact": "portfolio-risk-compass-visual-capture-compare",
+  "boundaries": {
+    "no_advice": "public finance-research artifact audit only; not investment advice",
+    "no_broker": "does not connect to brokers or accounts",
+    "no_file_contents": "does not embed artifact contents; records relative paths, byte counts, and SHA-256 hashes only",
+    "no_live_data": "does not fetch or require live market data",
+    "no_orders": "does not place, route, stage, or recommend orders",
+    "no_position_sizing": "does not calculate trade quantities or position sizing",
+    "no_private_data": "does not require, inspect, or emit private account data",
+    "no_recommendations": "does not recommend portfolio actions",
+    "scope": "static/local demo visual capture audit artifacts only"
+  },
+  "changed": [],
+  "compared_fields": [
+    "bytes",
+    "sha256",
+    "hash",
+    "present",
+    "role",
+    "route",
+    "render",
+    "capture_command"
+  ],
+  "inputs": {
+    "after_root": "examples/outputs",
+    "after_schema": "portfolio-risk-compass-visual-capture-audit.v1",
+    "before_root": "examples/outputs",
+    "before_schema": "portfolio-risk-compass-visual-capture-audit.v1"
+  },
+  "removed": [],
+  "schema": "portfolio-risk-compass-visual-capture-compare.v1",
+  "scope": "Release-to-release comparison of static local visual/demo capture audit entries keyed by relative path or artifact key.",
+  "summary": {
+    "added": 0,
+    "after_entries": 18,
+    "before_entries": 18,
+    "changed": 0,
+    "removed": 0,
+    "unchanged": 18
+  },
+  "unchanged": [
+    "dashboard.html",
+    "dashboard_preview.md",
+    "dashboard_screenshot_guide.json",
+    "dashboard_screenshot_guide.md",
+    "dashboard_snippet.html",
+    "demo_capture_receipt.json",
+    "demo_capture_receipt.md",
+    "gallery.md",
+    "index.json",
+    "public_review_walkthrough.json",
+    "public_review_walkthrough.md",
+    "reviewer_evidence.json",
+    "reviewer_evidence.md",
+    "scenario_evidence_receipt.json",
+    "scenario_evidence_receipt.md",
+    "screenshots/dashboard-public-review-1365x900.png",
+    "visual_evidence_receipt.json",
+    "visual_evidence_receipt.md"
+  ]
+}

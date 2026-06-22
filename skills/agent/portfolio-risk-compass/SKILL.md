@@ -18,6 +18,7 @@ Typical requests include:
 - Prepare a catalyst checklist.
 - Assemble generated artifacts into a human review memo.
 - Generate the demo bundle, guided showcase walkthrough, static dashboard, or public review packet.
+- Audit or compare static visual/demo capture artifacts.
 - Audit package readiness or create a release manifest.
 
 ## Task Routing
@@ -37,6 +38,8 @@ Route tasks to the command that matches the requested output:
 - Guided showcase walkthrough: `portfolio-risk-compass showcase`.
 - Dashboard export: `portfolio-risk-compass dashboard`.
 - Public dashboard review packet: `portfolio-risk-compass public-review`.
+- Visual capture audit: `portfolio-risk-compass visual-capture-audit`.
+- Visual capture comparison: `portfolio-risk-compass visual-capture-compare`.
 - Package checks: `portfolio-risk-compass package-audit`.
 - Output inventory: `portfolio-risk-compass release-manifest`.
 

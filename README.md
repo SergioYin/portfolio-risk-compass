@@ -77,6 +77,9 @@ portfolio-risk-compass screenshot-guide
 portfolio-risk-compass visual-evidence-receipt
 portfolio-risk-compass demo-capture-receipt
 portfolio-risk-compass visual-capture-audit --root examples/outputs
+portfolio-risk-compass visual-capture-compare \
+  --before examples/outputs/visual_capture_audit.json \
+  --after examples/outputs/visual_capture_audit.json
 ```
 
 ## Example Outputs
@@ -111,6 +114,8 @@ The repository includes generated artifacts under
 | [`demo_capture_receipt.json`](examples/outputs/demo_capture_receipt.json) | Machine-readable public demo capture evidence index with no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-advice boundaries |
 | [`visual_capture_audit.md`](examples/outputs/visual_capture_audit.md) | Deterministic audit of static visual/demo artifacts and missing capture gaps |
 | [`visual_capture_audit.json`](examples/outputs/visual_capture_audit.json) | Machine-readable visual capture audit with hashes, regeneration commands, and no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-file-contents/no-advice boundaries |
+| [`visual_capture_compare.md`](examples/outputs/visual_capture_compare.md) | Release-to-release comparison of static visual/demo capture audit entries by relative path |
+| [`visual_capture_compare.json`](examples/outputs/visual_capture_compare.json) | Machine-readable visual capture audit comparison with added/removed/changed/unchanged counts and no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-advice/no-private-data boundaries |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -565,6 +570,23 @@ portfolio-risk-compass visual-capture-audit \
   --format markdown \
   --output examples/outputs/visual_capture_audit.md
 ```
+
+Compare two generated visual capture audit JSON files release-to-release:
+
+```bash
+portfolio-risk-compass visual-capture-compare \
+  --before examples/outputs/visual_capture_audit.json \
+  --after examples/outputs/visual_capture_audit.json \
+  --format markdown \
+  --output examples/outputs/visual_capture_compare.md
+```
+
+The comparison is limited to static/local demo artifact entries. It reports
+added, removed, changed, and unchanged counts keyed by relative path or artifact
+key; changed entries include byte, hash, presence, role, route, render, and
+capture command differences when those fields exist. It does not fetch live
+data, connect to brokers, place orders, size positions, make recommendations,
+provide advice, or inspect private account data.
 
 The dashboard export writes one self-contained HTML file with inline CSS and no
 JavaScript. It includes summary cards, internal section links, exposure and

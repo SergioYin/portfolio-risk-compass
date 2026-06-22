@@ -128,6 +128,15 @@ from .visual_capture_audit import (
     render_visual_capture_audit_markdown,
     write_visual_capture_audit,
 )
+from .visual_capture_compare import (
+    DEFAULT_VISUAL_CAPTURE_COMPARE_JSON,
+    DEFAULT_VISUAL_CAPTURE_COMPARE_MARKDOWN,
+    compare_visual_capture_audits,
+    read_visual_capture_audit,
+    render_visual_capture_compare_json,
+    render_visual_capture_compare_markdown,
+    write_visual_capture_compare,
+)
 
 COMMAND_NAMES = (
     "analyze",
@@ -150,6 +159,7 @@ COMMAND_NAMES = (
     "screenshot-guide",
     "demo-capture-receipt",
     "visual-capture-audit",
+    "visual-capture-compare",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -202,6 +212,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_demo_capture_receipt(args)
     if args.command == "visual-capture-audit":
         return _run_visual_capture_audit(args)
+    if args.command == "visual-capture-compare":
+        return _run_visual_capture_compare(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -219,6 +231,15 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 def visual_capture_audit_main(argv: Sequence[str] | None = None) -> int:
     args = ["visual-capture-audit"]
+    if argv is None:
+        args.extend(sys.argv[1:])
+    else:
+        args.extend(argv)
+    return main(args)
+
+
+def visual_capture_compare_main(argv: Sequence[str] | None = None) -> int:
+    args = ["visual-capture-compare"]
     if argv is None:
         args.extend(sys.argv[1:])
     else:
@@ -500,6 +521,26 @@ def _run_visual_capture_audit(args: argparse.Namespace) -> int:
         sys.stdout.write(render_visual_capture_audit_markdown(audit))
     else:
         sys.stdout.write(render_visual_capture_audit_json(audit))
+    return 0
+
+
+def _run_visual_capture_compare(args: argparse.Namespace) -> int:
+    try:
+        if args.output:
+            write_visual_capture_compare(args.before, args.after, args.output, args.format)
+            sys.stdout.write(str(args.output) + "\n")
+            return 0
+        comparison = compare_visual_capture_audits(
+            read_visual_capture_audit(args.before),
+            read_visual_capture_audit(args.after),
+        )
+    except ValueError as exc:
+        sys.stderr.write(f"visual-capture-compare: {exc}\n")
+        return 2
+    if args.format == "markdown":
+        sys.stdout.write(render_visual_capture_compare_markdown(comparison))
+    else:
+        sys.stdout.write(render_visual_capture_compare_json(comparison))
     return 0
 
 
@@ -1156,6 +1197,47 @@ def _build_parser() -> argparse.ArgumentParser:
             "Optional output path. Defaults are "
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_AUDIT_JSON} for JSON "
             f"or {DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_AUDIT_MARKDOWN} for Markdown "
+            "when used in examples."
+        ),
+    )
+
+    visual_capture_compare = subparsers.add_parser(
+        "visual-capture-compare",
+        help="Compare two static visual capture audit JSON files.",
+        description=(
+            "Compare release-to-release static/local visual capture audit JSON files "
+            "by relative artifact path or artifact key and report added, removed, "
+            "changed, and unchanged entries. Changed entries include bytes, hash, "
+            "present, role, route, render, and capture command differences when "
+            "available. The comparison has no live data, broker, order, position "
+            "sizing, recommendation, advice, or private-data surface."
+        ),
+    )
+    visual_capture_compare.add_argument(
+        "--before",
+        type=Path,
+        required=True,
+        help="Earlier visual_capture_audit.json file.",
+    )
+    visual_capture_compare.add_argument(
+        "--after",
+        type=Path,
+        required=True,
+        help="Later visual_capture_audit.json file.",
+    )
+    visual_capture_compare.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="json",
+        help="Output format. Defaults to JSON.",
+    )
+    visual_capture_compare.add_argument(
+        "--output",
+        type=Path,
+        help=(
+            "Optional output path. Defaults are "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_COMPARE_JSON} for JSON "
+            f"or {DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_COMPARE_MARKDOWN} for Markdown "
             "when used in examples."
         ),
     )

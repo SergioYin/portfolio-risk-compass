@@ -1,5 +1,5 @@
 {
-  "artifact_count": 72,
+  "artifact_count": 74,
   "artifacts": [
     {
       "bytes": 8586,
@@ -408,6 +408,18 @@
       "format": "markdown",
       "path": "visual_capture_audit.md",
       "sha256": "8fa5f557dab72cc23085b1492b0223388d5acba94bb56d00f6a161169392409a"
+    },
+    {
+      "bytes": 2173,
+      "format": "json",
+      "path": "visual_capture_compare.json",
+      "sha256": "e2d769e4fc42910abab6903d7d9c58a414282b3c9e5e641a0a392efe234b9852"
+    },
+    {
+      "bytes": 1606,
+      "format": "markdown",
+      "path": "visual_capture_compare.md",
+      "sha256": "0a31e8c007f04136a44c074462d5b7be9f97db838e814ba5cf94387dc7e2d9d4"
     },
     {
       "bytes": 5519,
