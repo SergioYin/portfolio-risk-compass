@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Risk Compass Public Gallery</title>
+<style>:root {
+  color-scheme: light;
+  --bg: #f5f7f9;
+  --panel: #ffffff;
+  --ink: #172026;
+  --muted: #5d6973;
+  --line: #d9e0e6;
+  --accent: #116466;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.45;
+}
+.site-header {
+  background: #172026;
+  color: #fff;
+  padding: 34px max(24px, calc((100vw - 1120px) / 2));
+}
+.site-header p { max-width: 820px; margin: 0 0 14px; color: #d4dde5; }
+.site-header h1 { margin: 0 0 10px; font-size: 34px; }
+nav { display: flex; flex-wrap: wrap; gap: 10px; }
+nav a {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  padding: 7px 10px;
+  text-decoration: none;
+}
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.section {
+  margin: 0 0 24px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+h2 { margin: 0 0 16px; font-size: 24px; }
+h3 { margin: 22px 0 10px; font-size: 18px; }
+a { color: var(--accent); }
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+.link-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fbfcfd;
+}
+.link-card a { font-weight: 700; }
+.link-label { font-weight: 700; }
+.link-card p { margin: 8px 0 0; color: var(--muted); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-family: Consolas, Monaco, monospace;
+}
+li { margin: 7px 0; }
+@media (max-width: 720px) {
+  .site-header { padding: 24px 16px; }
+  main { padding: 16px; }
+  .section { padding: 16px; overflow-x: auto; }
+  .site-header h1 { font-size: 28px; }
+}</style>
+</head>
+<body>
+<header class="site-header">
+<p>Portfolio Risk Compass</p>
+<h1>Public Gallery</h1>
+<p>Static landing page for the deterministic dashboard, demo bundle, release evidence, regeneration commands, and verification commands. Generated as of 2026-05-15.</p>
+<nav aria-label="Public gallery sections">
+<a href="#artifacts">Artifacts</a>
+<a href="#commands">Commands</a>
+<a href="#verification">Verification</a>
+<a href="#boundaries">Boundaries</a>
+</nav>
+</header>
+<main>
+<section id="artifacts" class="section">
+<h2>Public Artifact Route</h2>
+<div class="link-grid">
+<article class="link-card"><a href="dashboard.html">Static dashboard</a><p>Self-contained HTML review surface generated from the demo manifest.</p></article>
+<article class="link-card"><a href="index.json">Demo bundle manifest</a><p>Machine-readable inventory for the generated fixture outputs.</p></article>
+<article class="link-card"><a href="walkthrough.md">Guided walkthrough</a><p>Cold-review path across the base demo and bundled templates.</p></article>
+<article class="link-card"><a href="visual_release_checklist.md">Visual release checklist</a><p>Release-owner readiness checks for static visual evidence.</p></article>
+<article class="link-card"><a href="release_manifest.md">Release manifest</a><p>SHA-256 inventory for public generated outputs.</p></article>
+<article class="link-card"><a href="docs_export.md">Docs export</a><p>Single-file CLI, schema, artifact, and safety reference.</p></article>
+</div>
+<h3>Featured Demo Files</h3>
+<table><thead><tr><th>Artifact</th><th>Format</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><a href="exposure_report.md">exposure_report.md</a></td><td>markdown</td><td>Portfolio exposure report as Markdown.</td></tr>
+<tr><td><a href="catalysts.md">catalysts.md</a></td><td>markdown</td><td>Catalyst checklist as Markdown.</td></tr>
+<tr><td><a href="guardrails.md">guardrails.md</a></td><td>markdown</td><td>Portfolio guardrail review as Markdown.</td></tr>
+<tr><td><a href="stress.md">stress.md</a></td><td>markdown</td><td>Stress scenario report as Markdown.</td></tr>
+<tr><td><a href="rebalance_watchlist.md">rebalance_watchlist.md</a></td><td>markdown</td><td>Educational rebalance review watchlist as Markdown.</td></tr>
+</tbody></table>
+</section>
+<section id="commands" class="section">
+<h2>Regeneration Commands</h2>
+<ol>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass demo-bundle</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format json --output examples/outputs/visual_capture_audit.json</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format markdown --output examples/outputs/visual_capture_audit.md</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass visual-release-checklist --root examples/outputs --format json --output examples/outputs/visual_release_checklist.json</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass visual-release-checklist --root examples/outputs --format markdown --output examples/outputs/visual_release_checklist.md</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass release-manifest</code></li>
+<li><code>PYTHONPATH=src python -m portfolio_risk_compass docs-export</code></li>
+</ol>
+</section>
+<section id="verification" class="section">
+<h2>Verification Commands</h2>
+<ol>
+<li><code>PYTHONPATH=src python -m unittest tests.test_dashboard tests.test_demo_bundle tests.test_visual_release_checklist tests.test_packaging</code></li>
+<li><code>PYTHONPATH=src python scripts/selfcheck.py</code></li>
+<li><code>PYTHONPATH=src python scripts/privacy_scan.py</code></li>
+</ol>
+</section>
+<section id="boundaries" class="section">
+<h2>Safety Boundaries</h2>
+<p>Static portfolio review artifact only; not investment advice, trading guidance, live market data, or broker execution.</p>
+<ul>
+<li>Uses checked-in demo fixtures and generated local artifacts only.</li>
+<li>Does not connect to brokers, accounts, order entry, or execution systems.</li>
+<li>Does not fetch live market data or current quotes.</li>
+<li>Does not provide recommendations, position sizing, suitability analysis, or investment advice.</li>
+<li>Does not require private account data, private paths, secrets, or tokens.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>

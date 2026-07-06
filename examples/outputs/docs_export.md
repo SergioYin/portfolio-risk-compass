@@ -1,7 +1,7 @@
 # Portfolio Risk Compass Docs Export
 
 - Package: portfolio-risk-compass
-- Version: 0.6.2
+- Version: 0.6.3
 - Format: deterministic single-file Markdown, no JavaScript
 
 ## CLI Reference
@@ -426,7 +426,7 @@ Directory of generated snapshot JSON files for the history ledger.
 ## Artifact Inventory
 
 - Outputs directory: examples/outputs
-- Artifact count: 78
+- Artifact count: 79
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -443,6 +443,7 @@ Directory of generated snapshot JSON files for the history ledger.
 | demo_capture_receipt.md | markdown | 5971 | `357d3095f3fe1d4553d0319eecf6ac7ccf72b15af2e2412d94b147942bc497e8` |
 | exposure_report.json | json | 3747 | `d63966a67e039b083d07cd4512d7e46d35b69d32c7afd02dc3001d3e23e9dd9c` |
 | exposure_report.md | markdown | 1247 | `c0186b554d8659e42d0aa4b11bd6a37813fa1dc655982e3d940617599271c1b6` |
+| gallery.html | html | 6744 | `e3220cc695d6761bee9db1cac97ae5aec9fae612a0a6ee2e402d2e4be3209d6e` |
 | gallery.md | markdown | 2189 | `d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e` |
 | guardrails.json | json | 2644 | `bdf5d7a60bfb35244cb4e86173316fbcd5d58750b222d5915331e3e7b5451c82` |
 | guardrails.md | markdown | 1227 | `36cacf3305c25f59d63816ebc2201a217f10fb72df8be2344fad28c3e7344e3c` |
@@ -455,8 +456,8 @@ Directory of generated snapshot JSON files for the history ledger.
 | public_review_walkthrough.md | markdown | 6952 | `5d29db5a1b71e300da6a92feeeb31c2f45a504722562625bf28312335aaaa740` |
 | rebalance_watchlist.json | json | 6298 | `14986aed95f9287983dc71e5ea5bc36429c689aa8515d4e9aa8b7157474b5c80` |
 | rebalance_watchlist.md | markdown | 2386 | `d36cea814fee02520e73f53bc164369c289e8dff97b7bc08d244e9eaf70253ae` |
-| release_manifest.json | json | 14610 | `0ec9df65d1a4425aea692c711d5c83007e99268ab1324214e3a450267db5f953` |
-| release_manifest.md | markdown | 9203 | `3b6c6dbe3e5acc5c070cf3250b22436f21902578ef8926d56d385d21462a4521` |
+| release_manifest.json | json | 14781 | `d7ddc07c6df29e17470905b563d9e79cc7ffb473567f94f6098ebb8d02257424` |
+| release_manifest.md | markdown | 9303 | `bc0ce7727be063f3672868fbb339f66007f1ed7ad19533407d47d7abb5ffc551` |
 | review_memo.md | markdown | 6337 | `cbe1ec3234c60993c26f3f9cd9be4cc91a02683f19ca408f7aaee2cf5f7889d8` |
 | reviewer_evidence.json | json | 5754 | `572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707` |
 | reviewer_evidence.md | markdown | 3455 | `900a178c479c4708470bc4b3a5bc814216927b9b5ab099591e5e979f16f93127` |
@@ -498,14 +499,14 @@ Directory of generated snapshot JSON files for the history ledger.
 | templates/leveraged-sleeve/snapshot_current.json | json | 5184 | `b453529a58df60e5a11e59593b3d3cd316cb0e781cfb1eef67b2208b35959217` |
 | templates/leveraged-sleeve/stress.json | json | 4930 | `99137b3a1c01c768332704ea10bb741dbdf7925062d8a9e301bd24f59d2eeb34` |
 | templates/leveraged-sleeve/stress.md | markdown | 1129 | `070fa448f12cf1fd1e1e7f5101d32de99e69906220ebbd1115ba29a630d16b89` |
-| visual_capture_audit.json | json | 8811 | `10f66b73a7173cddb5a522c4c5f54644dcf4da9310b54ed1fc1ff7605b309ea8` |
-| visual_capture_audit.md | markdown | 6187 | `8fa5f557dab72cc23085b1492b0223388d5acba94bb56d00f6a161169392409a` |
-| visual_capture_compare.json | json | 2173 | `e2d769e4fc42910abab6903d7d9c58a414282b3c9e5e641a0a392efe234b9852` |
-| visual_capture_compare.md | markdown | 1606 | `0a31e8c007f04136a44c074462d5b7be9f97db838e814ba5cf94387dc7e2d9d4` |
+| visual_capture_audit.json | json | 9065 | `bf1dc7a0f3fdea3f1642f0908bee3c8bcb126b47bd72cb1b54e7cd72187f50a8` |
+| visual_capture_audit.md | markdown | 6320 | `a16204de831b3fd37ac28b26bae1a974ca50155df26fd69c8d38a58077f4b9ce` |
+| visual_capture_compare.json | json | 2193 | `11db93379e008c09c9a34810ef7afe02a4dae8ee161399fe880b5663aff627c1` |
+| visual_capture_compare.md | markdown | 1623 | `6ebed8898ea97f050371b0beae568c7e6c38242fdebb3ff8c6e686c51b4bc9db` |
 | visual_evidence_receipt.json | json | 5519 | `a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326` |
 | visual_evidence_receipt.md | markdown | 3950 | `277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8` |
-| visual_release_checklist.json | json | 7126 | `6d424c709420678e2f23a836e7acb3c0a28e1b5508b553ebf9963242e5dc1799` |
-| visual_release_checklist.md | markdown | 5382 | `5d060ea93e6aade914666e9eb694075e124994a3d1d65db1a8af567e2ea4d01a` |
+| visual_release_checklist.json | json | 7462 | `2de8c30fc17a80a308122a5aa67ef013c52ed32f80008be492dc6d3bb3169794` |
+| visual_release_checklist.md | markdown | 5530 | `e3f0e8facd0bd7a016489fec8e4eb287d124e192ffdab94fcbaed160b7925519` |
 | walkthrough.json | json | 7657 | `a7580a81bf9c21dc96e3a52ce884e53b2603390a1495eb74823b57205ece4b1a` |
 | walkthrough.md | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |
 

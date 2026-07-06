@@ -88,6 +88,10 @@ portfolio-risk-compass visual-release-checklist --root examples/outputs
 The repository includes generated artifacts under
 [`examples/outputs`](examples/outputs):
 
+For public demo/release review, start with
+[`gallery.html`](examples/outputs/gallery.html). It is a no-JavaScript landing
+page that links only local static artifacts in the checked-in output bundle.
+
 | Output | Use |
 | --- | --- |
 | [`exposure_report.md`](examples/outputs/exposure_report.md) | Allocation, concentration, and target drift summary |
@@ -99,6 +103,7 @@ The repository includes generated artifacts under
 | [`catalysts.md`](examples/outputs/catalysts.md) | Date-ordered thesis event checklist |
 | [`dashboard.html`](examples/outputs/dashboard.html) | Self-contained static dashboard export |
 | [`gallery.md`](examples/outputs/gallery.md) | Static gallery index for dashboard and demo artifacts |
+| [`gallery.html`](examples/outputs/gallery.html) | Static public gallery landing page for dashboard, demo, release evidence, commands, and safety boundaries |
 | [`case_study_comparison.md`](examples/outputs/case_study_comparison.md) | Deterministic base-demo and template case-study comparison |
 | [`case_study_comparison.json`](examples/outputs/case_study_comparison.json) | Machine-readable case-study metrics and source artifact links |
 | [`reviewer_evidence.md`](examples/outputs/reviewer_evidence.md) | Public trace from dashboard and case-study artifacts back to static source fixtures |
@@ -454,6 +459,7 @@ JSON and Markdown reports. It also refreshes
 [`examples/outputs/history.md`](examples/outputs/history.md),
 [`examples/outputs/review_memo.md`](examples/outputs/review_memo.md),
 [`examples/outputs/gallery.md`](examples/outputs/gallery.md),
+[`examples/outputs/gallery.html`](examples/outputs/gallery.html),
 [`examples/outputs/case_study_comparison.md`](examples/outputs/case_study_comparison.md),
 [`examples/outputs/case_study_comparison.json`](examples/outputs/case_study_comparison.json),
 [`examples/outputs/dashboard_preview.md`](examples/outputs/dashboard_preview.md),
@@ -463,6 +469,13 @@ as static showcase material for README, docs, and release pages. By default it
 also writes template gallery outputs under
 `examples/outputs/templates/<template-slug>/`. Use `--no-templates` when you
 only want the base demo fixture outputs.
+
+The public gallery landing page links the static dashboard, demo manifest,
+guided walkthrough, visual release checklist, release manifest, docs export,
+regeneration commands, verification commands, and explicit safety boundaries in
+one no-JavaScript HTML file. It is intended for public demo/release review only:
+do not add private holdings, account identifiers, private local paths, or
+secrets to generated artifacts before sharing them.
 
 Write or refresh just the case-study comparison from an existing bundle
 manifest:

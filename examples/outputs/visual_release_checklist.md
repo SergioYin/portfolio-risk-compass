@@ -20,8 +20,8 @@ Scope: Deterministic release-owner checklist for static dashboard/demo visual ca
 
 ## Summary
 
-- Items: 10
-- Required: 6
+- Items: 11
+- Required: 7
 - Required missing: 0
 - Recommended missing: 0
 - Optional missing: 1
@@ -33,6 +33,7 @@ Scope: Deterministic release-owner checklist for static dashboard/demo visual ca
 | Key | Status | Level | Evidence | Missing | Remediation |
 | --- | --- | --- | --- | --- | --- |
 | static_dashboard_present | pass | required | [dashboard.html](dashboard.html) | none | none |
+| public_gallery_present | pass | required | [gallery.html](gallery.html) | none | none |
 | public_review_present | pass | required | [public_review_walkthrough.md](public_review_walkthrough.md), [public_review_walkthrough.json](public_review_walkthrough.json) | none | none |
 | screenshot_guide_present | pass | required | [dashboard_screenshot_guide.md](dashboard_screenshot_guide.md), [dashboard_screenshot_guide.json](dashboard_screenshot_guide.json) | none | none |
 | visual_evidence_present | pass | required | [visual_evidence_receipt.md](visual_evidence_receipt.md), [visual_evidence_receipt.json](visual_evidence_receipt.json) | none | none |
@@ -45,6 +46,7 @@ Scope: Deterministic release-owner checklist for static dashboard/demo visual ca
 
 ## Owner Steps
 
+- Open gallery.html from the generated outputs directory.
 - Open dashboard.html from the generated outputs directory.
 - Run or inspect dashboard_screenshot_guide.md before capture.
 - Confirm public-review, scenario, reviewer, visual, and demo capture receipts are present.

@@ -31,6 +31,8 @@ class VisualReleaseChecklistTests(unittest.TestCase):
         self.assertNotIn(str(root), json.dumps(checklist, sort_keys=True))
         items = {item["key"]: item for item in checklist["checklist"]}
         self.assertEqual(items["static_dashboard_present"]["status"], "pass")
+        self.assertEqual(items["public_gallery_present"]["status"], "missing")
+        self.assertIn("gallery.html", items["public_gallery_present"]["missing_paths"])
         self.assertEqual(items["public_review_present"]["status"], "pass")
         self.assertEqual(items["release_manifest_present"]["status"], "pass")
         self.assertEqual(items["screenshot_guide_present"]["status"], "missing")

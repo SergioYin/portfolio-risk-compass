@@ -165,6 +165,7 @@ def main() -> int:
                 return result.returncode
     required_showcase_files = [
         root / "examples/outputs/gallery.md",
+        root / "examples/outputs/gallery.html",
         root / "examples/outputs/case_study_comparison.md",
         root / "examples/outputs/case_study_comparison.json",
         root / "examples/outputs/walkthrough.md",

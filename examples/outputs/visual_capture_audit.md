@@ -16,8 +16,8 @@ Scope: Deterministic audit of existing static visual/demo evidence artifacts. Th
 
 ## Summary
 
-- Checked: 18
-- Present: 17
+- Checked: 19
+- Present: 18
 - Missing: 1
 - Complete: false
 - Recommended capture items: 1
@@ -42,6 +42,7 @@ Scope: Deterministic audit of existing static visual/demo evidence artifacts. Th
 | reviewer_evidence | [reviewer_evidence.md](reviewer_evidence.md) | true | 3455 | `900a178c479c4708470bc4b3a5bc814216927b9b5ab099591e5e979f16f93127` |
 | reviewer_evidence_packet | [reviewer_evidence.json](reviewer_evidence.json) | true | 5754 | `572e774cb9c970c69974340704d64be506a172a8f928ab8213686541f3c26707` |
 | gallery | [gallery.md](gallery.md) | true | 2189 | `d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e` |
+| public_gallery | [gallery.html](gallery.html) | true | 6744 | `e3220cc695d6761bee9db1cac97ae5aec9fae612a0a6ee2e402d2e4be3209d6e` |
 | demo_manifest | [index.json](index.json) | true | 18249 | `7dfc4a6b6271ed35b95ecf57ba1af98be23159e10acb58ae5d8d60805de91eb4` |
 | dashboard_capture_image | [screenshots/dashboard-public-review-1365x900.png](screenshots/dashboard-public-review-1365x900.png) | false | n/a | n/a |
 

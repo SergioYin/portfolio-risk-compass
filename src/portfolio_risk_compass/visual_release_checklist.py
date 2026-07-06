@@ -35,6 +35,13 @@ READINESS_ITEMS = (
         "Regenerate with the dashboard command from index.json.",
     ),
     (
+        "public_gallery_present",
+        "Public gallery landing page is present",
+        ("gallery.html",),
+        "required",
+        "Regenerate with demo-bundle.",
+    ),
+    (
         "public_review_present",
         "Public review walkthrough is present",
         ("public_review_walkthrough.md", "public_review_walkthrough.json"),
@@ -100,6 +107,7 @@ READINESS_ITEMS = (
 )
 
 OWNER_STEPS = (
+    "Open gallery.html from the generated outputs directory.",
     "Open dashboard.html from the generated outputs directory.",
     "Run or inspect dashboard_screenshot_guide.md before capture.",
     "Confirm public-review, scenario, reviewer, visual, and demo capture receipts are present.",

@@ -27,6 +27,17 @@
     },
     {
       "evidence_paths": [
+        "gallery.html"
+      ],
+      "key": "public_gallery_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Public gallery landing page is present"
+    },
+    {
+      "evidence_paths": [
         "public_review_walkthrough.md",
         "public_review_walkthrough.json"
       ],
@@ -133,6 +144,7 @@
     }
   ],
   "owner_steps": [
+    "Open gallery.html from the generated outputs directory.",
     "Open dashboard.html from the generated outputs directory.",
     "Run or inspect dashboard_screenshot_guide.md before capture.",
     "Confirm public-review, scenario, reviewer, visual, and demo capture receipts are present.",
@@ -161,11 +173,11 @@
   "scope": "Deterministic release-owner checklist for static dashboard/demo visual capture readiness. It reads local artifact metadata only.",
   "summary": {
     "audit_complete": false,
-    "items": 10,
+    "items": 11,
     "optional_missing": 1,
     "ready_for_release_owner_review": true,
     "recommended_missing": 0,
-    "required": 6,
+    "required": 7,
     "required_missing": 0
   }
 }

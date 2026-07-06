@@ -139,6 +139,14 @@
       "sha256": "d7c5b1261c32106afe47f75bda871ff629f9779d551cb6e989f2c9c28f21465e"
     },
     {
+      "bytes": 6744,
+      "path": "gallery.html",
+      "present": true,
+      "regenerate": "Regenerate with demo-bundle.",
+      "role": "public_gallery",
+      "sha256": "e3220cc695d6761bee9db1cac97ae5aec9fae612a0a6ee2e402d2e4be3209d6e"
+    },
+    {
       "bytes": 18249,
       "path": "index.json",
       "present": true,
@@ -226,10 +234,10 @@
     }
   ],
   "summary": {
-    "checked": 18,
+    "checked": 19,
     "complete": false,
     "missing": 1,
-    "present": 17,
+    "present": 18,
     "recommended_capture_items": 1
   }
 }

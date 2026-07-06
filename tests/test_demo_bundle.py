@@ -26,6 +26,7 @@ class DemoBundleTests(unittest.TestCase):
             for artifact in index["artifacts"]:
                 self.assertTrue((output_dir / artifact["path"]).is_file())
             self.assertTrue((output_dir / "gallery.md").is_file())
+            self.assertTrue((output_dir / "gallery.html").is_file())
             self.assertTrue((output_dir / "dashboard_snippet.html").is_file())
             self.assertTrue((output_dir / "dashboard_preview.md").is_file())
             self.assertTrue((output_dir / "walkthrough.md").is_file())

@@ -29,6 +29,7 @@ class VisualCaptureAuditTests(unittest.TestCase):
         self.assertEqual(audit["checked_artifacts"][0]["path"], "dashboard.html")
         self.assertTrue(audit["checked_artifacts"][0]["present"])
         self.assertRegex(audit["checked_artifacts"][0]["sha256"], r"^[0-9a-f]{64}$")
+        self.assertIn("gallery.html", [item["path"] for item in audit["checked_artifacts"]])
         self.assertIn(
             "screenshots/dashboard-public-review-1365x900.png",
             audit["missing"],

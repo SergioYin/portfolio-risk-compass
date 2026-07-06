@@ -17,12 +17,12 @@ Scope: Release-to-release comparison of static local visual/demo capture audit e
 
 ## Summary
 
-- Before entries: 18
-- After entries: 18
+- Before entries: 19
+- After entries: 19
 - Added: 0
 - Removed: 0
 - Changed: 0
-- Unchanged: 18
+- Unchanged: 19
 
 ## Added
 
@@ -45,6 +45,7 @@ None.
 - `dashboard_snippet.html`
 - `demo_capture_receipt.json`
 - `demo_capture_receipt.md`
+- `gallery.html`
 - `gallery.md`
 - `index.json`
 - `public_review_walkthrough.json`

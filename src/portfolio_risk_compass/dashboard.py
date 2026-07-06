@@ -4,21 +4,47 @@ from __future__ import annotations
 
 import json
 from html import escape
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from urllib.parse import urlparse
 
 
 DEFAULT_DASHBOARD_TITLE = "Portfolio Risk Compass Dashboard"
 DEFAULT_DASHBOARD_OUTPUT = "dashboard.html"
 DEFAULT_GALLERY_MARKDOWN = "gallery.md"
+DEFAULT_PUBLIC_GALLERY_HTML = "gallery.html"
 DEFAULT_DASHBOARD_SNIPPET = "dashboard_snippet.html"
 DEFAULT_DASHBOARD_PREVIEW = "dashboard_preview.md"
 DEFAULT_WALKTHROUGH_MARKDOWN = "walkthrough.md"
 DEFAULT_WALKTHROUGH_JSON = "walkthrough.json"
 DEFAULT_REVIEWER_EVIDENCE_MARKDOWN = "reviewer_evidence.md"
+DEFAULT_VISUAL_RELEASE_CHECKLIST_MARKDOWN = "visual_release_checklist.md"
+DEFAULT_RELEASE_MANIFEST_MARKDOWN = "release_manifest.md"
+DEFAULT_DOCS_EXPORT_MARKDOWN = "docs_export.md"
 SAFETY_BOUNDARY_TEXT = (
     "Static portfolio review artifact only; not investment advice, trading "
     "guidance, live market data, or broker execution."
+)
+PUBLIC_GALLERY_BOUNDARIES = (
+    "Uses checked-in demo fixtures and generated local artifacts only.",
+    "Does not connect to brokers, accounts, order entry, or execution systems.",
+    "Does not fetch live market data or current quotes.",
+    "Does not provide recommendations, position sizing, suitability analysis, or investment advice.",
+    "Does not require private account data, private paths, secrets, or tokens.",
+)
+PUBLIC_GALLERY_REGENERATION_COMMANDS = (
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+    "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format json --output examples/outputs/visual_capture_audit.json",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format markdown --output examples/outputs/visual_capture_audit.md",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-release-checklist --root examples/outputs --format json --output examples/outputs/visual_release_checklist.json",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-release-checklist --root examples/outputs --format markdown --output examples/outputs/visual_release_checklist.md",
+    "PYTHONPATH=src python -m portfolio_risk_compass release-manifest",
+    "PYTHONPATH=src python -m portfolio_risk_compass docs-export",
+)
+PUBLIC_GALLERY_VERIFICATION_COMMANDS = (
+    "PYTHONPATH=src python -m unittest tests.test_dashboard tests.test_demo_bundle tests.test_visual_release_checklist tests.test_packaging",
+    "PYTHONPATH=src python scripts/selfcheck.py",
+    "PYTHONPATH=src python scripts/privacy_scan.py",
 )
 
 
@@ -150,6 +176,7 @@ def write_showcase_artifacts(
     output_dir.mkdir(parents=True, exist_ok=True)
     paths = {
         "gallery_markdown": output_dir / DEFAULT_GALLERY_MARKDOWN,
+        "public_gallery_html": output_dir / DEFAULT_PUBLIC_GALLERY_HTML,
         "dashboard_snippet": output_dir / DEFAULT_DASHBOARD_SNIPPET,
         "dashboard_preview": output_dir / DEFAULT_DASHBOARD_PREVIEW,
         "walkthrough_markdown": output_dir / DEFAULT_WALKTHROUGH_MARKDOWN,
@@ -157,6 +184,10 @@ def write_showcase_artifacts(
     }
     paths["gallery_markdown"].write_text(
         render_gallery_markdown(manifest, dashboard_path=dashboard_path),
+        encoding="utf-8",
+    )
+    paths["public_gallery_html"].write_text(
+        render_public_gallery_html(manifest, dashboard_path=dashboard_path),
         encoding="utf-8",
     )
     paths["dashboard_snippet"].write_text(
@@ -374,6 +405,128 @@ def render_gallery_markdown(
             )
 
     return "\n".join(lines) + "\n"
+
+
+def render_public_gallery_html(
+    manifest: dict,
+    dashboard_path: str = DEFAULT_DASHBOARD_OUTPUT,
+) -> str:
+    """Render a static public landing page for demo and release artifacts."""
+
+    featured_links = [
+        (
+            "Static dashboard",
+            dashboard_path,
+            "Self-contained HTML review surface generated from the demo manifest.",
+        ),
+        (
+            "Demo bundle manifest",
+            "index.json",
+            "Machine-readable inventory for the generated fixture outputs.",
+        ),
+        (
+            "Guided walkthrough",
+            DEFAULT_WALKTHROUGH_MARKDOWN,
+            "Cold-review path across the base demo and bundled templates.",
+        ),
+        (
+            "Visual release checklist",
+            DEFAULT_VISUAL_RELEASE_CHECKLIST_MARKDOWN,
+            "Release-owner readiness checks for static visual evidence.",
+        ),
+        (
+            "Release manifest",
+            DEFAULT_RELEASE_MANIFEST_MARKDOWN,
+            "SHA-256 inventory for public generated outputs.",
+        ),
+        (
+            "Docs export",
+            DEFAULT_DOCS_EXPORT_MARKDOWN,
+            "Single-file CLI, schema, artifact, and safety reference.",
+        ),
+    ]
+    artifact_rows = [
+        (
+            artifact.get("path", ""),
+            artifact.get("format", ""),
+            artifact.get("description", ""),
+        )
+        for artifact in _select_gallery_artifacts(manifest)
+    ]
+    return "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="en">',
+            "<head>",
+            '<meta charset="utf-8">',
+            '<meta name="viewport" content="width=device-width, initial-scale=1">',
+            "<title>Portfolio Risk Compass Public Gallery</title>",
+            f"<style>{_public_gallery_stylesheet()}</style>",
+            "</head>",
+            "<body>",
+            '<header class="site-header">',
+            "<p>Portfolio Risk Compass</p>",
+            "<h1>Public Gallery</h1>",
+            (
+                "<p>Static landing page for the deterministic dashboard, demo "
+                "bundle, release evidence, regeneration commands, and verification "
+                f"commands. Generated as of {_text(manifest.get('as_of', 'unknown'))}.</p>"
+            ),
+            '<nav aria-label="Public gallery sections">',
+            '<a href="#artifacts">Artifacts</a>',
+            '<a href="#commands">Commands</a>',
+            '<a href="#verification">Verification</a>',
+            '<a href="#boundaries">Boundaries</a>',
+            "</nav>",
+            "</header>",
+            "<main>",
+            '<section id="artifacts" class="section">',
+            "<h2>Public Artifact Route</h2>",
+            '<div class="link-grid">',
+            *(
+                _landing_link_card(label, href, description)
+                for label, href, description in featured_links
+            ),
+            "</div>",
+            "<h3>Featured Demo Files</h3>",
+            '<table><thead><tr><th>Artifact</th><th>Format</th><th>Purpose</th></tr></thead><tbody>',
+            *(
+                _public_gallery_artifact_row(path, format_name, description)
+                for path, format_name, description in artifact_rows
+            ),
+            "</tbody></table>",
+            "</section>",
+            '<section id="commands" class="section">',
+            "<h2>Regeneration Commands</h2>",
+            "<ol>",
+            *(
+                f"<li><code>{_text(command)}</code></li>"
+                for command in PUBLIC_GALLERY_REGENERATION_COMMANDS
+            ),
+            "</ol>",
+            "</section>",
+            '<section id="verification" class="section">',
+            "<h2>Verification Commands</h2>",
+            "<ol>",
+            *(
+                f"<li><code>{_text(command)}</code></li>"
+                for command in PUBLIC_GALLERY_VERIFICATION_COMMANDS
+            ),
+            "</ol>",
+            "</section>",
+            '<section id="boundaries" class="section">',
+            "<h2>Safety Boundaries</h2>",
+            f"<p>{_text(SAFETY_BOUNDARY_TEXT)}</p>",
+            "<ul>",
+            *(f"<li>{_text(boundary)}</li>" for boundary in PUBLIC_GALLERY_BOUNDARIES),
+            "</ul>",
+            "</section>",
+            "</main>",
+            "</body>",
+            "</html>",
+            "",
+        ]
+    )
 
 
 def render_dashboard_preview_markdown(
@@ -776,6 +929,147 @@ def _text(value: object) -> str:
 
 def _attr(value: object) -> str:
     return escape(str(value), quote=True)
+
+
+def _landing_link_card(label: str, href: str, description: str) -> str:
+    safe_href = _public_gallery_href(href)
+    link = (
+        f'<a href="{_attr(safe_href)}">{_text(label)}</a>'
+        if safe_href
+        else f'<span class="link-label">{_text(label)}</span>'
+    )
+    return (
+        '<article class="link-card">'
+        f"{link}"
+        f"<p>{_text(description)}</p>"
+        "</article>"
+    )
+
+
+def _public_gallery_artifact_row(path: str, format_name: str, description: str) -> str:
+    safe_href = _public_gallery_href(path)
+    artifact = (
+        f'<a href="{_attr(safe_href)}">{_text(path)}</a>'
+        if safe_href
+        else _text(path)
+    )
+    return (
+        "<tr>"
+        f"<td>{artifact}</td>"
+        f"<td>{_text(format_name)}</td>"
+        f"<td>{_text(description)}</td>"
+        "</tr>"
+    )
+
+
+def _public_gallery_href(value: object) -> str:
+    """Return a local static href target, or an empty string for unsafe targets."""
+
+    href = str(value)
+    if not href or any(ord(character) < 32 for character in href):
+        return ""
+    if href.startswith("#"):
+        return href
+    parsed = urlparse(href)
+    if parsed.scheme or parsed.netloc:
+        return ""
+    if href.startswith("/") or href.startswith("\\") or "\\" in href:
+        return ""
+    if ".." in PurePosixPath(parsed.path).parts:
+        return ""
+    return href
+
+
+def _public_gallery_stylesheet() -> str:
+    return """
+:root {
+  color-scheme: light;
+  --bg: #f5f7f9;
+  --panel: #ffffff;
+  --ink: #172026;
+  --muted: #5d6973;
+  --line: #d9e0e6;
+  --accent: #116466;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.45;
+}
+.site-header {
+  background: #172026;
+  color: #fff;
+  padding: 34px max(24px, calc((100vw - 1120px) / 2));
+}
+.site-header p { max-width: 820px; margin: 0 0 14px; color: #d4dde5; }
+.site-header h1 { margin: 0 0 10px; font-size: 34px; }
+nav { display: flex; flex-wrap: wrap; gap: 10px; }
+nav a {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  padding: 7px 10px;
+  text-decoration: none;
+}
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.section {
+  margin: 0 0 24px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+h2 { margin: 0 0 16px; font-size: 24px; }
+h3 { margin: 22px 0 10px; font-size: 18px; }
+a { color: var(--accent); }
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+.link-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fbfcfd;
+}
+.link-card a { font-weight: 700; }
+.link-label { font-weight: 700; }
+.link-card p { margin: 8px 0 0; color: var(--muted); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-family: Consolas, Monaco, monospace;
+}
+li { margin: 7px 0; }
+@media (max-width: 720px) {
+  .site-header { padding: 24px 16px; }
+  main { padding: 16px; }
+  .section { padding: 16px; overflow-x: auto; }
+  .site-header h1 { font-size: 28px; }
+}
+""".strip()
 
 
 def _stylesheet() -> str:

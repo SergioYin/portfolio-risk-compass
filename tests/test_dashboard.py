@@ -1,4 +1,5 @@
 import json
+from html.parser import HTMLParser
 from pathlib import Path
 import tempfile
 import unittest
@@ -9,8 +10,23 @@ from portfolio_risk_compass.dashboard import build_dashboard_html
 from portfolio_risk_compass.dashboard import build_showcase_walkthrough
 from portfolio_risk_compass.dashboard import render_dashboard_snippet_html
 from portfolio_risk_compass.dashboard import render_gallery_markdown
+from portfolio_risk_compass.dashboard import render_public_gallery_html
 from portfolio_risk_compass.dashboard import render_showcase_walkthrough_markdown
 from portfolio_risk_compass.demo import build_demo_bundle
+
+
+class _HrefParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.hrefs = []
+        self.sources = []
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if "href" in attributes:
+            self.hrefs.append(attributes["href"])
+        if "src" in attributes:
+            self.sources.append(attributes["src"])
 
 
 class DashboardTests(unittest.TestCase):
@@ -164,6 +180,76 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("not investment advice", gallery)
         self.assertIn("not investment advice", snippet)
         self.assertNotIn("<script", snippet.lower())
+
+    def test_public_gallery_html_ties_release_route_and_commands(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "outputs"
+            manifest = build_demo_bundle(
+                Path("examples/fixtures"),
+                output_dir,
+                as_of="2026-05-15",
+            )
+
+        html = render_public_gallery_html(manifest)
+
+        self.assertIn("<!doctype html>", html)
+        self.assertIn("Portfolio Risk Compass Public Gallery", html)
+        self.assertIn('href="dashboard.html"', html)
+        self.assertIn('href="index.json"', html)
+        self.assertIn('href="visual_release_checklist.md"', html)
+        self.assertIn('href="release_manifest.md"', html)
+        self.assertIn('href="docs_export.md"', html)
+        self.assertIn("PYTHONPATH=src python -m portfolio_risk_compass demo-bundle", html)
+        self.assertIn("PYTHONPATH=src python scripts/selfcheck.py", html)
+        self.assertIn("PYTHONPATH=src python scripts/privacy_scan.py", html)
+        self.assertIn("Does not connect to brokers", html)
+        self.assertIn("Does not fetch live market data", html)
+        self.assertIn("Does not provide recommendations", html)
+        self.assertNotIn("<script", html.lower())
+
+    def test_public_gallery_html_escapes_content_and_rejects_unsafe_links(self):
+        manifest = {
+            "bundle": "demo",
+            "as_of": "<img src=x onerror=alert(1)>",
+            "artifacts": [
+                {
+                    "path": "exposure_report.md",
+                    "format": 'markdown"><script>alert(1)</script>',
+                    "description": "<b>unsafe</b>",
+                }
+            ],
+        }
+
+        html = render_public_gallery_html(
+            manifest,
+            dashboard_path="javascript:alert(1)",
+        )
+        parser = _HrefParser()
+        parser.feed(html)
+
+        self.assertIn("&lt;img src=x onerror=alert(1)&gt;", html)
+        self.assertIn("markdown&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;", html)
+        self.assertIn("&lt;b&gt;unsafe&lt;/b&gt;", html)
+        self.assertIn('<span class="link-label">Static dashboard</span>', html)
+        self.assertNotIn('href="javascript:alert(1)"', html)
+        self.assertNotIn("<script", html.lower())
+        self.assertNotIn("<b>unsafe</b>", html)
+        self.assertEqual(parser.sources, [])
+
+    def test_checked_in_public_gallery_links_are_local_and_resolve(self):
+        gallery_path = Path("examples/outputs/gallery.html")
+        parser = _HrefParser()
+        parser.feed(gallery_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(parser.sources, [])
+        for href in parser.hrefs:
+            self.assertFalse(href.startswith(("http://", "https://", "file://", "//")))
+            if href.startswith("#"):
+                continue
+            self.assertTrue(
+                (gallery_path.parent / href).is_file(),
+                f"missing public gallery target: {href}",
+            )
 
     def test_showcase_walkthrough_summarizes_each_template_case(self):
         with tempfile.TemporaryDirectory() as temp_dir:

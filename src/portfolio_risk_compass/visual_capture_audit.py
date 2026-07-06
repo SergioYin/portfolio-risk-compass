@@ -40,6 +40,7 @@ CHECKED_ARTIFACTS = (
     ("reviewer_evidence", "reviewer_evidence.md", "Regenerate with reviewer-evidence."),
     ("reviewer_evidence_packet", "reviewer_evidence.json", "Regenerate with reviewer-evidence."),
     ("gallery", "gallery.md", "Regenerate with demo-bundle."),
+    ("public_gallery", "gallery.html", "Regenerate with demo-bundle."),
     ("demo_manifest", "index.json", "Regenerate with demo-bundle."),
     (
         "dashboard_capture_image",

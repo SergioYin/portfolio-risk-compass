@@ -34,11 +34,11 @@
   "scope": "Release-to-release comparison of static local visual/demo capture audit entries keyed by relative path or artifact key.",
   "summary": {
     "added": 0,
-    "after_entries": 18,
-    "before_entries": 18,
+    "after_entries": 19,
+    "before_entries": 19,
     "changed": 0,
     "removed": 0,
-    "unchanged": 18
+    "unchanged": 19
   },
   "unchanged": [
     "dashboard.html",
@@ -48,6 +48,7 @@
     "dashboard_snippet.html",
     "demo_capture_receipt.json",
     "demo_capture_receipt.md",
+    "gallery.html",
     "gallery.md",
     "index.json",
     "public_review_walkthrough.json",
