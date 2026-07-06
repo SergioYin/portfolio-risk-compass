@@ -80,6 +80,7 @@ portfolio-risk-compass visual-capture-audit --root examples/outputs
 portfolio-risk-compass visual-capture-compare \
   --before examples/outputs/visual_capture_audit.json \
   --after examples/outputs/visual_capture_audit.json
+portfolio-risk-compass visual-release-checklist --root examples/outputs
 ```
 
 ## Example Outputs
@@ -116,6 +117,8 @@ The repository includes generated artifacts under
 | [`visual_capture_audit.json`](examples/outputs/visual_capture_audit.json) | Machine-readable visual capture audit with hashes, regeneration commands, and no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-file-contents/no-advice boundaries |
 | [`visual_capture_compare.md`](examples/outputs/visual_capture_compare.md) | Release-to-release comparison of static visual/demo capture audit entries by relative path |
 | [`visual_capture_compare.json`](examples/outputs/visual_capture_compare.json) | Machine-readable visual capture audit comparison with added/removed/changed/unchanged counts and no-live-data/no-broker/no-order/no-position-sizing/no-recommendation/no-advice/no-private-data boundaries |
+| [`visual_release_checklist.md`](examples/outputs/visual_release_checklist.md) | Release-owner visual evidence readiness checklist for static dashboard/demo capture |
+| [`visual_release_checklist.json`](examples/outputs/visual_release_checklist.json) | Machine-readable visual release checklist with required/recommended/optional readiness status and public safety boundaries |
 | [`walkthrough.md`](examples/outputs/walkthrough.md) | Guided base-demo and multi-template walkthrough for cold users |
 | [`walkthrough.json`](examples/outputs/walkthrough.json) | Machine-readable showcase walkthrough metrics and artifact links |
 | [`dashboard_preview.md`](examples/outputs/dashboard_preview.md) | Text-based dashboard preview table suitable for README or release notes |
@@ -588,6 +591,22 @@ capture command differences when those fields exist. It does not fetch live
 data, connect to brokers, place orders, size positions, make recommendations,
 provide advice, or inspect private account data.
 
+Write the release-owner visual checklist after the visual audit and compare
+artifacts are refreshed:
+
+```bash
+portfolio-risk-compass visual-release-checklist \
+  --root examples/outputs \
+  --format markdown \
+  --output examples/outputs/visual_release_checklist.md
+```
+
+The checklist summarizes required, recommended, and optional visual evidence
+readiness items for static dashboard/demo capture. It reads an existing
+`visual_capture_audit.json` when present, checks release-only artifacts such as
+the manifest and docs export directly, and does not inspect private account
+data or provide advice.
+
 The dashboard export writes one self-contained HTML file with inline CSS and no
 JavaScript. It includes summary cards, internal section links, exposure and
 concentration tables, guardrail risk boundary text, stress results, catalysts,
@@ -762,8 +781,8 @@ python scripts/selfcheck.py
 
 The selfcheck runs a temporary local-skill sync, unit tests, deterministic demo
 bundle generation, dashboard export, adapter export regeneration, release
-manifest generation, a privacy scan over the refreshed repository artifacts,
-and the package audit command.
+visual checklist generation, release manifest generation, a privacy scan over
+the refreshed repository artifacts, and the package audit command.
 
 Scan repository text for local/private terms and token-like patterns:
 

@@ -1,5 +1,5 @@
 {
-  "artifact_count": 74,
+  "artifact_count": 76,
   "artifacts": [
     {
       "bytes": 8586,
@@ -432,6 +432,18 @@
       "format": "markdown",
       "path": "visual_evidence_receipt.md",
       "sha256": "277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8"
+    },
+    {
+      "bytes": 7126,
+      "format": "json",
+      "path": "visual_release_checklist.json",
+      "sha256": "6d424c709420678e2f23a836e7acb3c0a28e1b5508b553ebf9963242e5dc1799"
+    },
+    {
+      "bytes": 5382,
+      "format": "markdown",
+      "path": "visual_release_checklist.md",
+      "sha256": "5d060ea93e6aade914666e9eb694075e124994a3d1d65db1a8af567e2ea4d01a"
     },
     {
       "bytes": 7657,

@@ -1,7 +1,7 @@
 # Release Manifest
 
 - Outputs directory: examples/outputs
-- Artifact count: 74
+- Artifact count: 76
 
 | Path | Format | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -77,5 +77,7 @@
 | visual_capture_compare.md | markdown | 1606 | `0a31e8c007f04136a44c074462d5b7be9f97db838e814ba5cf94387dc7e2d9d4` |
 | visual_evidence_receipt.json | json | 5519 | `a9f86728802a7a16f721e2b6c659ab82579beec9ab93e5de250604c2e630f326` |
 | visual_evidence_receipt.md | markdown | 3950 | `277ea19fd12360129b56c0f3e888cf1787f84fe98c231727bd1ca631d8e027d8` |
+| visual_release_checklist.json | json | 7126 | `6d424c709420678e2f23a836e7acb3c0a28e1b5508b553ebf9963242e5dc1799` |
+| visual_release_checklist.md | markdown | 5382 | `5d060ea93e6aade914666e9eb694075e124994a3d1d65db1a8af567e2ea4d01a` |
 | walkthrough.json | json | 7657 | `a7580a81bf9c21dc96e3a52ce884e53b2603390a1495eb74823b57205ece4b1a` |
 | walkthrough.md | markdown | 3568 | `85169963cfbefa4ad317fd458e9109dbbca23050acd4d4230eeb6fec9c89a932` |

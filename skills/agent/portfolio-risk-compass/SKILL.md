@@ -40,6 +40,7 @@ Route tasks to the command that matches the requested output:
 - Public dashboard review packet: `portfolio-risk-compass public-review`.
 - Visual capture audit: `portfolio-risk-compass visual-capture-audit`.
 - Visual capture comparison: `portfolio-risk-compass visual-capture-compare`.
+- Visual release checklist: `portfolio-risk-compass visual-release-checklist`.
 - Package checks: `portfolio-risk-compass package-audit`.
 - Output inventory: `portfolio-risk-compass release-manifest`.
 

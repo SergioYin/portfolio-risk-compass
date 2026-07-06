@@ -40,6 +40,10 @@ class PackagingCommandTests(unittest.TestCase):
             project["scripts"]["visual-capture-compare"],
             "portfolio_risk_compass.cli:visual_capture_compare_main",
         )
+        self.assertEqual(
+            project["scripts"]["visual-release-checklist"],
+            "portfolio_risk_compass.cli:visual_release_checklist_main",
+        )
         self.assertEqual(project["requires-python"], ">=3.9")
         for version in ["3.9", "3.10", "3.11", "3.12", "3.13"]:
             self.assertIn(
@@ -63,8 +67,8 @@ class PackagingCommandTests(unittest.TestCase):
                 run_tests=False,
             )
 
-        self.assertEqual(report["version"], "0.6.1")
-        self.assertEqual(report["command_count"], 26)
+        self.assertEqual(report["version"], "0.6.2")
+        self.assertEqual(report["command_count"], 27)
         self.assertEqual(report["fixture_count"], 1)
         self.assertEqual(report["output_artifact_count"], 1)
         self.assertFalse(report["tests"]["run"])

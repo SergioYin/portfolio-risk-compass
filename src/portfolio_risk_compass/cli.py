@@ -137,6 +137,14 @@ from .visual_capture_compare import (
     render_visual_capture_compare_markdown,
     write_visual_capture_compare,
 )
+from .visual_release_checklist import (
+    DEFAULT_VISUAL_RELEASE_CHECKLIST_JSON,
+    DEFAULT_VISUAL_RELEASE_CHECKLIST_MARKDOWN,
+    build_visual_release_checklist,
+    render_visual_release_checklist_json,
+    render_visual_release_checklist_markdown,
+    write_visual_release_checklist,
+)
 
 COMMAND_NAMES = (
     "analyze",
@@ -160,6 +168,7 @@ COMMAND_NAMES = (
     "demo-capture-receipt",
     "visual-capture-audit",
     "visual-capture-compare",
+    "visual-release-checklist",
     "dashboard",
     "integration-export",
     "docs-export",
@@ -214,6 +223,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_visual_capture_audit(args)
     if args.command == "visual-capture-compare":
         return _run_visual_capture_compare(args)
+    if args.command == "visual-release-checklist":
+        return _run_visual_release_checklist(args)
     if args.command == "dashboard":
         return _run_dashboard(args)
     if args.command == "integration-export":
@@ -240,6 +251,15 @@ def visual_capture_audit_main(argv: Sequence[str] | None = None) -> int:
 
 def visual_capture_compare_main(argv: Sequence[str] | None = None) -> int:
     args = ["visual-capture-compare"]
+    if argv is None:
+        args.extend(sys.argv[1:])
+    else:
+        args.extend(argv)
+    return main(args)
+
+
+def visual_release_checklist_main(argv: Sequence[str] | None = None) -> int:
+    args = ["visual-release-checklist"]
     if argv is None:
         args.extend(sys.argv[1:])
     else:
@@ -541,6 +561,28 @@ def _run_visual_capture_compare(args: argparse.Namespace) -> int:
         sys.stdout.write(render_visual_capture_compare_markdown(comparison))
     else:
         sys.stdout.write(render_visual_capture_compare_json(comparison))
+    return 0
+
+
+def _run_visual_release_checklist(args: argparse.Namespace) -> int:
+    try:
+        if args.output:
+            write_visual_release_checklist(
+                args.root,
+                args.output,
+                args.format,
+                audit_path=args.audit,
+            )
+            sys.stdout.write(str(args.output) + "\n")
+            return 0
+        checklist = build_visual_release_checklist(args.root, audit_path=args.audit)
+    except ValueError as exc:
+        sys.stderr.write(f"visual-release-checklist: {exc}\n")
+        return 2
+    if args.format == "markdown":
+        sys.stdout.write(render_visual_release_checklist_markdown(checklist))
+    else:
+        sys.stdout.write(render_visual_release_checklist_json(checklist))
     return 0
 
 
@@ -1239,6 +1281,49 @@ def _build_parser() -> argparse.ArgumentParser:
             f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_COMPARE_JSON} for JSON "
             f"or {DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_COMPARE_MARKDOWN} for Markdown "
             "when used in examples."
+        ),
+    )
+
+    visual_release_checklist = subparsers.add_parser(
+        "visual-release-checklist",
+        help="Write a release-owner visual evidence readiness checklist.",
+        description=(
+            "Read an existing visual capture audit JSON file, or build one from "
+            "--root, and write deterministic JSON or Markdown checklist artifacts "
+            "for static dashboard/demo visual release readiness. The checklist is "
+            "local-only and has no live data, broker, order, position sizing, "
+            "recommendation, advice, or private-data surface."
+        ),
+    )
+    visual_release_checklist.add_argument(
+        "--root",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR,
+        help=f"Artifact directory to inspect. Defaults to {DEFAULT_OUTPUT_DIR}.",
+    )
+    visual_release_checklist.add_argument(
+        "--audit",
+        type=Path,
+        help=(
+            "Optional visual_capture_audit.json to read. Defaults to "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_CAPTURE_AUDIT_JSON} when present, "
+            "otherwise builds an audit from --root."
+        ),
+    )
+    visual_release_checklist.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="json",
+        help="Output format. Defaults to JSON.",
+    )
+    visual_release_checklist.add_argument(
+        "--output",
+        type=Path,
+        help=(
+            "Optional output path. Defaults are "
+            f"{DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_RELEASE_CHECKLIST_JSON} for JSON "
+            f"or {DEFAULT_OUTPUT_DIR / DEFAULT_VISUAL_RELEASE_CHECKLIST_MARKDOWN} "
+            "for Markdown when used in examples."
         ),
     )
 

@@ -1,0 +1,171 @@
+{
+  "artifact": "portfolio-risk-compass-visual-release-checklist",
+  "audit_schema": "portfolio-risk-compass-visual-capture-audit.v1",
+  "boundaries": {
+    "manual_review": "records readiness checks only; capture and release ownership remain human-reviewed",
+    "no_advice": "public finance-research artifact audit only; not investment advice",
+    "no_broker": "does not connect to brokers or accounts",
+    "no_file_contents": "does not embed artifact contents; records relative paths, byte counts, and SHA-256 hashes only",
+    "no_live_data": "does not fetch or require live market data",
+    "no_orders": "does not place, route, stage, or recommend orders",
+    "no_position_sizing": "does not calculate trade quantities or position sizing",
+    "no_private_data": "does not require, inspect, or emit private account data",
+    "no_recommendations": "does not recommend portfolio actions",
+    "scope": "release-owner readiness checklist for static dashboard/demo visual evidence"
+  },
+  "checklist": [
+    {
+      "evidence_paths": [
+        "dashboard.html"
+      ],
+      "key": "static_dashboard_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Static dashboard route is present"
+    },
+    {
+      "evidence_paths": [
+        "public_review_walkthrough.md",
+        "public_review_walkthrough.json"
+      ],
+      "key": "public_review_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Public review walkthrough is present"
+    },
+    {
+      "evidence_paths": [
+        "dashboard_screenshot_guide.md",
+        "dashboard_screenshot_guide.json"
+      ],
+      "key": "screenshot_guide_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Screenshot capture guide is present"
+    },
+    {
+      "evidence_paths": [
+        "visual_evidence_receipt.md",
+        "visual_evidence_receipt.json"
+      ],
+      "key": "visual_evidence_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Visual evidence receipt is present"
+    },
+    {
+      "evidence_paths": [
+        "demo_capture_receipt.md",
+        "demo_capture_receipt.json"
+      ],
+      "key": "demo_capture_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Demo capture receipt is present"
+    },
+    {
+      "evidence_paths": [
+        "visual_capture_audit.md",
+        "visual_capture_audit.json"
+      ],
+      "key": "visual_capture_audit_present",
+      "level": "required",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Visual capture audit artifacts are present"
+    },
+    {
+      "evidence_paths": [
+        "visual_capture_compare.md",
+        "visual_capture_compare.json"
+      ],
+      "key": "visual_capture_compare_present",
+      "level": "recommended",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Release-to-release visual compare artifacts are present"
+    },
+    {
+      "evidence_paths": [
+        "release_manifest.md",
+        "release_manifest.json"
+      ],
+      "key": "release_manifest_present",
+      "level": "recommended",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Release manifest includes current output inventory"
+    },
+    {
+      "evidence_paths": [
+        "docs_export.md"
+      ],
+      "key": "docs_export_present",
+      "level": "recommended",
+      "missing_paths": [],
+      "remediation": "none",
+      "status": "pass",
+      "title": "Docs export includes current CLI and artifact reference"
+    },
+    {
+      "evidence_paths": [],
+      "key": "dashboard_capture_image_present",
+      "level": "optional",
+      "missing_paths": [
+        "screenshots/dashboard-public-review-1365x900.png"
+      ],
+      "remediation": "Capture with the command recorded in dashboard_screenshot_guide.md when screenshot evidence is required.",
+      "status": "missing",
+      "title": "Dashboard screenshot capture image is present"
+    }
+  ],
+  "owner_steps": [
+    "Open dashboard.html from the generated outputs directory.",
+    "Run or inspect dashboard_screenshot_guide.md before capture.",
+    "Confirm public-review, scenario, reviewer, visual, and demo capture receipts are present.",
+    "Compare visual_capture_audit.json against the prior release audit when available.",
+    "Regenerate release_manifest and docs_export after checklist outputs are refreshed.",
+    "Run the repository selfcheck and privacy scan before publishing artifacts."
+  ],
+  "regeneration_commands": [
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-bundle",
+    "PYTHONPATH=src python -m portfolio_risk_compass dashboard examples/outputs/index.json examples/outputs/dashboard.html",
+    "PYTHONPATH=src python -m portfolio_risk_compass public-review",
+    "PYTHONPATH=src python -m portfolio_risk_compass screenshot-guide",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-evidence-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass demo-capture-receipt",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format json --output examples/outputs/visual_capture_audit.json",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-audit --root examples/outputs --format markdown --output examples/outputs/visual_capture_audit.md",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-compare --before examples/outputs/visual_capture_audit.json --after examples/outputs/visual_capture_audit.json --format json --output examples/outputs/visual_capture_compare.json",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-capture-compare --before examples/outputs/visual_capture_audit.json --after examples/outputs/visual_capture_audit.json --format markdown --output examples/outputs/visual_capture_compare.md",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-release-checklist --root examples/outputs --format json --output examples/outputs/visual_release_checklist.json",
+    "PYTHONPATH=src python -m portfolio_risk_compass visual-release-checklist --root examples/outputs --format markdown --output examples/outputs/visual_release_checklist.md",
+    "PYTHONPATH=src python -m portfolio_risk_compass release-manifest",
+    "PYTHONPATH=src python -m portfolio_risk_compass docs-export"
+  ],
+  "root": "examples/outputs",
+  "schema": "portfolio-risk-compass-visual-release-checklist.v1",
+  "scope": "Deterministic release-owner checklist for static dashboard/demo visual capture readiness. It reads local artifact metadata only.",
+  "summary": {
+    "audit_complete": false,
+    "items": 10,
+    "optional_missing": 1,
+    "ready_for_release_owner_review": true,
+    "recommended_missing": 0,
+    "required": 6,
+    "required_missing": 0
+  }
+}
